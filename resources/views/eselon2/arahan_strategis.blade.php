@@ -56,13 +56,12 @@
 
     <table id="table-arahan">
         <thead>
-            <tr><th>Judul Arahan</th><th>Dasar</th><th>Kompetensi</th><th>Sasaran Pegawai</th><th>Prioritas</th><th>Periode</th><th>Status</th></tr>
+            <tr><th>Judul Arahan</th><th>Kompetensi</th><th>Sasaran Pegawai</th><th>Prioritas</th><th>Periode</th><th>Status</th></tr>
         </thead>
         <tbody>
             @forelse($directions as $d)
             <tr class="arahan-row" data-title="{{ strtolower($d->title) }}" data-priority="{{ $d->priority }}" data-status="{{ $d->follow_up }}" data-competency="{{ $d->competency }}">
                 <td><strong>{{ $d->title }}</strong></td>
-                <td class="text-sm text-muted">{{ Str::limit($d->basis, 60) }}</td>
                 <td>{{ $d->competency }}</td>
                 <td>{{ $d->sasaran_pegawai ?? '-' }}</td>
                 <td>
@@ -95,10 +94,14 @@
                 </td>
             </tr>
             @empty
-            <tr><td colspan="7" class="text-muted text-sm" style="text-align:center;padding:24px;">Belum ada arahan strategis. Klik "Buat Arahan Baru" untuk memulai.</td></tr>
+            <tr><td colspan="6" class="text-muted text-sm" style="text-align:center;padding:24px;">Belum ada arahan strategis. Klik "Buat Arahan Baru" untuk memulai.</td></tr>
             @endforelse
         </tbody>
     </table>
+</div>
+
+<div class="mt-4">
+    {{ $directions->links() }}
 </div>
 
 @push('scripts')
@@ -202,8 +205,9 @@ function filterAndSortArahan() {
                     <select name="sasaran_pegawai" class="form-control" required>
                         <option value="Semua Pegawai">Semua Pegawai</option>
                         <option value="JFA">JFA</option>
-                        <option value="Non-JFA">Non-JFA</option>
-                        <option value="Struktural">Struktural</option>
+                        <option value="Enabler">Enabler</option>
+                        <option value="Koordinator/Korwas">Koordinator/Korwas</option>
+                        <option value="Subkoordinator/Ketua Tim">Subkoordinator/Ketua Tim</option>
                     </select>
                 </div>
             </div>

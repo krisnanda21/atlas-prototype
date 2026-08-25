@@ -248,7 +248,7 @@ class PegawaiController extends Controller
         ]);
 
         $employee = $this->getActiveEmployee($request);
-        $id = 'I' . substr(time(), -5);
+        $id = uniqid('IDP_') . rand(100, 999);
 
         // Auto-calculate priority based on COMPASS score if available
         $priority = $request->priority;
@@ -321,6 +321,42 @@ class PegawaiController extends Controller
         ]);
 
         return back()->with('success', 'IDP berhasil diajukan ke Kepala Unit Eselon II.');
+    }
+
+    /**
+     * Delete multiple draft IDPs simultaneously.
+     */
+    public function deleteIdpBatch(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        if (empty($ids) || !is_array($ids)) {
+            return back()->with('error', 'Pilih minimal satu draft IDP untuk dihapus.');
+        }
+
+        $items = DB::table('idp_items')
+            ->whereIn('id', $ids)
+            ->whereIn('status', ['Draft', 'Perlu Perbaikan'])
+            ->get();
+
+        if ($items->isEmpty()) {
+            return back()->with('error', 'Item yang dipilih tidak ditemukan atau tidak dapat dihapus.');
+        }
+
+        $validIds = $items->pluck('id')->toArray();
+
+        DB::table('idp_items')->whereIn('id', $validIds)->delete();
+
+        // Log to Audit Trail
+        DB::table('audit_trails')->insert([
+            'time' => now()->format('d M Y H:i'),
+            'actor' => Auth::user()->name,
+            'action' => 'Menghapus Massal IDP',
+            'object' => count($validIds) . ' item IDP',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return back()->with('success', count($validIds) . ' item IDP berhasil dihapus permanen.');
     }
 
     /**

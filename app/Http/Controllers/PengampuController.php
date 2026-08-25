@@ -27,7 +27,7 @@ class PengampuController extends Controller
             return [$user->unit_eselon2];
         }
         
-        return UnitKerjaHelper::getSubUnits($user->scope);
+        return UnitKerjaHelper::getSubUnits($user->scope, true);
     }
 
     /**
@@ -646,6 +646,9 @@ class PengampuController extends Controller
     public function storeRealisasiBangkom($id, Request $request)
     {
         $request->validate([
+            'realisasi_jp' => 'required|integer|min:0|max:99',
+            'realisasi_anggaran' => 'required|numeric',
+            'realisasi_peserta' => 'required|integer',
             'file_daftar_hadir' => 'required|file|max:2048|mimes:pdf',
             'file_notulen' => 'required|file|max:2048|mimes:pdf',
             'file_dokumentasi' => 'required|file|max:2048|mimes:jpg,jpeg,png',
@@ -678,6 +681,9 @@ class PengampuController extends Controller
 
         DB::table('bangkom_unit')->where('id', $id)->update([
             'status' => 'realisasi',
+            'realisasi_jp' => $request->realisasi_jp,
+            'realisasi_anggaran' => $request->realisasi_anggaran,
+            'realisasi_peserta' => $request->realisasi_peserta,
             'dok_daftar_hadir' => $fileDaftarHadir,
             'dok_notulen' => $fileNotulen,
             'dok_dokumentasi' => $fileDokumentasi,

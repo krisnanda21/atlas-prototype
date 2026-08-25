@@ -64,7 +64,7 @@ class UnitKerjaHelper
      * Get all Eselon 2 unit names under the given scope name (if the scope is Eselon 1).
      * Otherwise returns the scope name itself.
      */
-    public static function getSubUnits($scopeName)
+    public static function getSubUnits($scopeName, $excludePerwakilan = false)
     {
         self::init();
 
@@ -80,6 +80,9 @@ class UnitKerjaHelper
             $subCodes = self::$relationMap[$code];
             $subNames = [];
             foreach ($subCodes as $sc) {
+                if ($excludePerwakilan && str_starts_with($sc, 'PW')) {
+                    continue;
+                }
                 if (isset(self::$nameMap[$sc])) {
                     $subNames[] = self::$nameMap[$sc];
                 }

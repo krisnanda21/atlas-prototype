@@ -8,26 +8,70 @@
     <h2 style="font-size:24px; font-weight:700; margin:0;">Cari Profil Pegawai</h2>
     <p class="text-muted" style="margin-bottom:20px; text-align:center;">Masukkan Nama atau NIP pegawai untuk melihat profil 360°, gap kompetensi, dan riwayat pelatihan.</p>
     
-    <div style="display:flex; gap:10px; width:100%; max-width:600px;">
-        <input type="text" id="main-search-input" class="form-control" placeholder="Ketik nama atau NIP..." style="padding:12px 16px; font-size:16px;" onkeypress="if(event.key === 'Enter') executeMainSearch()">
-        <button onclick="executeMainSearch()" class="btn btn-primary" style="padding:12px 24px; font-size:16px; font-weight:600;">Cari</button>
+    <div style="position:relative; width:100%; max-width:600px;">
+        <div style="display:flex; gap:10px; width:100%;">
+            <input type="text" id="main-search-input" class="form-control" placeholder="Ketik nama atau NIP..." autocomplete="off" style="padding:12px 16px; font-size:16px; width:100%;" oninput="handleMainSearchInput()" onfocus="handleMainSearchInput()">
+        </div>
+        <div id="main-search-results" style="display:none; position:absolute; top:100%; left:0; width:100%; background:var(--bg-card); border:1px solid rgba(255,255,255,0.1); border-radius:6px; margin-top:4px; max-height:300px; overflow-y:auto; z-index:100; box-shadow:0 10px 15px -3px rgba(0,0,0,0.5);">
+        </div>
     </div>
 </div>
 
 <script>
-    function executeMainSearch() {
-        const q = document.getElementById('main-search-input').value.toLowerCase().trim();
-        if (!q) return;
-        
-        const employees = @json($employees->map(function($e){ return ['id'=>$e->id, 'name'=>$e->name]; }));
-        const match = employees.find(e => e.name.toLowerCase().includes(q) || e.id.toLowerCase().includes(q));
-        
-        if (match) {
-            window.location.href = '?emp_id=' + match.id + '&q=' + encodeURIComponent(q);
-        } else {
-            alert('Pegawai tidak ditemukan.');
-        }
+    const employeesData = @json($employees->map(function($e){ return ['id'=>$e->id, 'name'=>$e->name, 'role'=>$e->role]; })->values()->all());
+
+    function matchPrefix(text, qWords) {
+        const textWords = text.toLowerCase().split(/\s+/);
+        return qWords.every(qw => textWords.some(tw => tw.startsWith(qw)));
     }
+
+    function renderResults(query, resultsContainerId) {
+        const q = query.toLowerCase().trim();
+        const container = document.getElementById(resultsContainerId);
+        
+        if (!q) {
+            container.style.display = 'none';
+            return;
+        }
+        
+        const qWords = q.split(/\s+/);
+        
+        const matches = employeesData.filter(e => {
+            const nipMatch = e.id.toLowerCase().startsWith(q);
+            const nameMatch = matchPrefix(e.name, qWords);
+            return nipMatch || nameMatch;
+        }).slice(0, 10); // Limit to 10 results
+        
+        if (matches.length === 0) {
+            container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Pegawai tidak ditemukan</div>';
+            container.style.display = 'block';
+            return;
+        }
+        
+        let html = '';
+        matches.forEach(e => {
+            html += `
+                <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
+                    <div style="font-weight:600;">${e.name}</div>
+                    <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role}</div>
+                </a>
+            `;
+        });
+        container.innerHTML = html;
+        container.style.display = 'block';
+    }
+
+    function handleMainSearchInput() {
+        const q = document.getElementById('main-search-input').value;
+        renderResults(q, 'main-search-results');
+    }
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('#main-search-input') && !e.target.closest('#main-search-results')) {
+            const el = document.getElementById('main-search-results');
+            if(el) el.style.display = 'none';
+        }
+    });
 </script>
 
 @else
@@ -35,29 +79,70 @@
 <div class="card" style="margin-bottom: 20px; padding: 15px 20px;">
     <div style="display:flex; gap:10px; width:100%; align-items:center;">
         <span style="font-size:20px;">🔍</span>
-        <input type="text" id="top-search-input" class="form-control" value="{{ request('q') }}" placeholder="Cari profil pegawai..." style="flex:1; padding:10px 14px; font-size:15px;" onkeypress="if(event.key === 'Enter') executeTopSearch()">
-        <button onclick="executeTopSearch()" class="btn btn-primary" style="padding:10px 20px; font-weight:600;">Cari</button>
+        <div style="position:relative; flex:1;">
+            <input type="text" id="top-search-input" class="form-control" value="{{ request('q') }}" placeholder="Cari profil pegawai..." autocomplete="off" style="width:100%; padding:10px 14px; font-size:15px;" oninput="handleTopSearchInput()" onfocus="handleTopSearchInput()">
+            <div id="top-search-results" style="display:none; position:absolute; top:100%; left:0; width:100%; background:var(--bg-card); border:1px solid rgba(255,255,255,0.1); border-radius:6px; margin-top:4px; max-height:300px; overflow-y:auto; z-index:100; box-shadow:0 10px 15px -3px rgba(0,0,0,0.5); text-align:left;">
+            </div>
+        </div>
         <a href="?" class="btn btn-neutral" style="padding:10px 20px; font-weight:600; text-decoration:none;">Reset</a>
     </div>
 </div>
 
 <script>
-    function executeTopSearch() {
-        const q = document.getElementById('top-search-input').value.toLowerCase().trim();
+    const employeesTopData = @json($employees->map(function($e){ return ['id'=>$e->id, 'name'=>$e->name, 'role'=>$e->role]; })->values()->all());
+
+    function matchPrefixTop(text, qWords) {
+        const textWords = text.toLowerCase().split(/\s+/);
+        return qWords.every(qw => textWords.some(tw => tw.startsWith(qw)));
+    }
+
+    function renderTopResults(query, resultsContainerId) {
+        const q = query.toLowerCase().trim();
+        const container = document.getElementById(resultsContainerId);
+        
         if (!q) {
-            window.location.href = '?';
+            container.style.display = 'none';
             return;
         }
         
-        const employees = @json($employees->map(function($e){ return ['id'=>$e->id, 'name'=>$e->name]; }));
-        const match = employees.find(e => e.name.toLowerCase().includes(q) || e.id.toLowerCase().includes(q));
+        const qWords = q.split(/\s+/);
         
-        if (match) {
-            window.location.href = '?emp_id=' + match.id + '&q=' + encodeURIComponent(q);
-        } else {
-            alert('Pegawai tidak ditemukan.');
+        const matches = employeesTopData.filter(e => {
+            const nipMatch = e.id.toLowerCase().startsWith(q);
+            const nameMatch = matchPrefixTop(e.name, qWords);
+            return nipMatch || nameMatch;
+        }).slice(0, 10);
+        
+        if (matches.length === 0) {
+            container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Pegawai tidak ditemukan</div>';
+            container.style.display = 'block';
+            return;
         }
+        
+        let html = '';
+        matches.forEach(e => {
+            html += `
+                <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
+                    <div style="font-weight:600;">${e.name}</div>
+                    <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role}</div>
+                </a>
+            `;
+        });
+        container.innerHTML = html;
+        container.style.display = 'block';
     }
+
+    function handleTopSearchInput() {
+        const q = document.getElementById('top-search-input').value;
+        renderTopResults(q, 'top-search-results');
+    }
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('#top-search-input') && !e.target.closest('#top-search-results')) {
+            const el = document.getElementById('top-search-results');
+            if(el) el.style.display = 'none';
+        }
+    });
 </script>
 
 

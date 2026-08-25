@@ -116,6 +116,9 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
         <div class="card-title" style="margin:0;">📋 Draft & Diajukan IDP Saya</div>
         <div style="display:flex;align-items:center;gap:10px;">
+            <button type="button" id="btn-batch-delete" class="btn btn-danger" style="display:none;font-size:12px;padding:6px 14px;border-radius:6px;gap:6px;align-items:center;" onclick="deleteBatchIdp()">
+                <span>🗑️</span> <span>Hapus Terpilih (<strong id="batch-delete-count">0</strong>)</span>
+            </button>
             <button type="button" id="btn-batch-submit" class="btn btn-primary" style="display:none;font-size:12px;padding:6px 14px;border-radius:6px;gap:6px;align-items:center;" onclick="submitBatchIdp()">
                 <span>🚀</span> <span>Ajukan Terpilih (<strong id="batch-selected-count">0</strong>)</span>
             </button>
@@ -436,15 +439,20 @@ window.updateBatchSubmitState = function() {
     const count = checked.length;
     const btnBatch = document.getElementById('btn-batch-submit');
     const txtCount = document.getElementById('batch-selected-count');
+    const btnBatchDelete = document.getElementById('btn-batch-delete');
+    const txtDeleteCount = document.getElementById('batch-delete-count');
     const checkAll = document.getElementById('check-all-idp');
 
     if (txtCount) txtCount.textContent = count;
+    if (txtDeleteCount) txtDeleteCount.textContent = count;
 
     if (btnBatch) {
         if (count > 0) {
             btnBatch.style.display = 'inline-flex';
+            if (btnBatchDelete) btnBatchDelete.style.display = 'inline-flex';
         } else {
             btnBatch.style.display = 'none';
+            if (btnBatchDelete) btnBatchDelete.style.display = 'none';
         }
     }
 
@@ -460,6 +468,40 @@ window.updateBatchSubmitState = function() {
             checkAll.indeterminate = true;
         }
     }
+};
+
+window.deleteBatchIdp = function() {
+    const checked = Array.from(document.querySelectorAll('.idp-row-checkbox:checked'));
+    const count = checked.length;
+    if (count === 0) return;
+
+    window.atlasConfirm({
+        title: 'Konfirmasi Hapus IDP Terpilih',
+        message: `Apakah Anda yakin ingin menghapus ${count} item IDP terpilih secara permanen?`,
+        confirmText: 'Ya, Hapus Semua',
+        confirmClass: 'btn btn-danger'
+    }).then((confirmed) => {
+        if (confirmed) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ route("pegawai.deleteIdpBatch") }}';
+            
+            const csrfToken = document.querySelector('meta[name="csrf-token"]') ? document.querySelector('meta[name="csrf-token"]').content : '{{ csrf_token() }}';
+            
+            form.innerHTML = `<input type="hidden" name="_token" value="${csrfToken}">
+                              <input type="hidden" name="_method" value="DELETE">`;
+            
+            checked.forEach(cb => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'ids[]';
+                input.value = cb.value;
+                form.appendChild(input);
+            });
+            document.body.appendChild(form);
+            form.submit();
+        }
+    });
 };
 
 window.submitBatchIdp = function() {

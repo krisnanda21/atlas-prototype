@@ -24,7 +24,7 @@ class Eselon3Controller extends Controller
             return $user->unit_eselon2;
         }
         
-        return $user->scope;
+        return \App\Helpers\UnitKerjaHelper::getSubUnits($user->scope, true);
     }
 
     /**
@@ -32,39 +32,39 @@ class Eselon3Controller extends Controller
      */
     public function dashboard(Request $request)
     {
-        $unit = $this->getUnitScope();
+        $units = $this->getUnitScope();
         $user = Auth::user();
-        $unitEselon2 = $user->unit_eselon2 ?? $unit; // using unit_eselon2 if available, else scope
+        $unitEselon2s = $user->unit_eselon2 ? [$user->unit_eselon2] : $units; // using unit_eselon2 if available, else scope
 
         // KPI 1: IDP Coverage (avg idp_coverage from employees)
-        $idpCoverage = DB::table('employees')->where('unit', $unit)->avg('idp_coverage') ?: 0;
+        $idpCoverage = DB::table('employees')->whereIn('unit', $units)->avg('idp_coverage') ?: 0;
         $idpCoverage = round($idpCoverage);
 
         // KPI 2: Rata-rata Nilai Kompetensi Teknis
         $rataNilaiTeknis = DB::table('compass_nilai_rata_rata')
             ->join('employees', 'compass_nilai_rata_rata.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->avg('compass_nilai_rata_rata.nilai_teknis') ?: 0;
         $rataNilaiTeknis = round($rataNilaiTeknis, 1);
 
         // KPI 3: Rata-rata Gap Kompetensi Teknis
         $rataGapTeknis = DB::table('competency_gaps')
             ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->where('competency_gaps.type', 'Teknis')
             ->avg('competency_gaps.gap') ?: 0;
         $rataGapTeknis = round($rataGapTeknis, 1);
 
         // KPI 4: Jumlah Diklat Diusulkan Unit
         $usulanDiklat = DB::table('interna_rencana_diklat')
-            ->where('unit_pengusul', $unitEselon2)
+            ->whereIn('unit_pengusul', $unitEselon2s)
             ->whereIn('status', ['approved', 'process'])
             ->count();
 
         // Penghitungan Pemenuhan JP Pegawai 2026
         // Total JP = employee_diklats.jumlah_jam + bangkom_unit.jp
         
-        $employees = DB::table('employees')->where('unit', $unit)->select('id', 'name', 'role')->get();
+        $employees = DB::table('employees')->whereIn('unit', $units)->select('id', 'name', 'role')->get();
         
         $employeeJpMap = [];
         foreach ($employees as $emp) {
@@ -78,7 +78,7 @@ class Eselon3Controller extends Controller
         // Get from employee_diklats
         $diklats = DB::table('employee_diklats')
             ->join('employees', 'employee_diklats.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->select('employee_diklats.employee_id', DB::raw('SUM(employee_diklats.jumlah_jam) as jp_diklat'))
             ->groupBy('employee_diklats.employee_id')
             ->get();
@@ -93,7 +93,7 @@ class Eselon3Controller extends Controller
         $bangkom = DB::table('bangkom_unit_realisasi')
             ->join('bangkom_unit', 'bangkom_unit_realisasi.bangkom_unit_id', '=', 'bangkom_unit.id')
             ->join('employees', 'bangkom_unit_realisasi.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->select('bangkom_unit_realisasi.employee_id', DB::raw('SUM(bangkom_unit.jp) as jp_bangkom'))
             ->groupBy('bangkom_unit_realisasi.employee_id')
             ->get();
@@ -135,7 +135,7 @@ class Eselon3Controller extends Controller
             ->join('bangkom_unit', 'bangkom_unit_realisasi.bangkom_unit_id', '=', 'bangkom_unit.id');
         
         $role = session('active_role', $user->role);
-        if ($unit && !in_array($role, ['bangkom', 'admin'])) {
+        if ($units && !in_array($role, ['bangkom', 'admin'])) {
             if (!empty($user->unit_eselon1) && preg_match('/^Deputi/i', $user->unit_eselon1)) {
                 $subUnits = DB::table('users')
                     ->where('unit_eselon1', $user->unit_eselon1)
@@ -150,8 +150,8 @@ class Eselon3Controller extends Controller
                 $bangkomQuery->whereIn('unit_pengusul', $subUnits);
                 $bangkomRealisationQuery->whereIn('bangkom_unit.unit_pengusul', $subUnits);
             } else {
-                $bangkomQuery->where('unit_pengusul', $unit);
-                $bangkomRealisationQuery->where('bangkom_unit.unit_pengusul', $unit);
+                $bangkomQuery->whereIn('unit_pengusul', $units);
+                $bangkomRealisationQuery->whereIn('bangkom_unit.unit_pengusul', $units);
             }
         }
 
@@ -179,7 +179,7 @@ class Eselon3Controller extends Controller
         // Gap Kompetensi (Existing)
         $competencyStats = DB::table('competency_gaps')
             ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->where('competency_gaps.type', 'Teknis')
             ->select('competency_gaps.competency_name', DB::raw('ROUND(AVG(competency_gaps.score), 1) as avg_score'), DB::raw('count(*) as gap_count'))
             ->groupBy('competency_gaps.competency_name')
@@ -189,14 +189,14 @@ class Eselon3Controller extends Controller
         // Jumlah Pengajuan IDP per Kompetensi Teknis
         $totalIdpTeknis = DB::table('idp_items')
             ->join('employees', 'idp_items.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->where('idp_items.competency_type', 'Teknis')
             ->where('idp_items.source', 'assessment-based')
             ->count();
 
         $pengajuanIdpTeknis = DB::table('idp_items')
             ->join('employees', 'idp_items.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->where('idp_items.competency_type', 'Teknis')
             ->where('idp_items.source', 'assessment-based')
             ->whereIn('idp_items.status', ['Diajukan', 'Perlu Perbaikan'])
@@ -218,8 +218,8 @@ class Eselon3Controller extends Controller
      */
     public function arahanStrategis(Request $request)
     {
-        $unit = $this->getUnitScope();
-        $directions = DB::table('strategic_directions')->where('unit', $unit)->get();
+        $units = $this->getUnitScope();
+        $directions = DB::table('strategic_directions')->whereIn('unit', $units)->paginate(10);
         
         $bangkomStatuses = DB::table('bangkom_unit')
             ->whereNotNull('strategic_direction_id')
@@ -283,24 +283,27 @@ class Eselon3Controller extends Controller
             'period' => 'required|string'
         ]);
 
-        $unit = $this->getUnitScope();
-        $id = 'D' . substr(time(), -5);
+        $units = $this->getUnitScope();
+        
+        foreach ($units as $u) {
+            $id = 'D' . substr(time(), -5) . rand(10, 99);
 
-        DB::table('strategic_directions')->insert([
-            'id' => $id,
-            'title' => $request->title,
-            'sasaran_pegawai' => $request->sasaran_pegawai,
-            'basis' => $request->basis,
-            'context' => $request->context,
-            'competency' => $request->competency,
-            'priority' => $request->priority,
-            'period' => $request->period,
-            'status' => 'Masuk Demand Pool',
-            'follow_up' => 'Belum',
-            'unit' => $unit,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+            DB::table('strategic_directions')->insert([
+                'id' => $id,
+                'title' => $request->title,
+                'sasaran_pegawai' => $request->sasaran_pegawai,
+                'basis' => $request->basis,
+                'context' => $request->context,
+                'competency' => $request->competency,
+                'priority' => $request->priority,
+                'period' => $request->period,
+                'status' => 'Masuk Demand Pool',
+                'follow_up' => 'Belum',
+                'unit' => $u,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
 
         // Audit Trail
         DB::table('audit_trails')->insert([
@@ -320,14 +323,14 @@ class Eselon3Controller extends Controller
      */
     public function reviewIdp(Request $request)
     {
-        $unit = $this->getUnitScope();
+        $units = $this->getUnitScope();
         $user = \Illuminate\Support\Facades\Auth::user();
         
         $search = $request->query('q');
         
         $query = DB::table('idp_items')
             ->join('employees', 'idp_items.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->where('idp_items.status', '!=', 'Draft')
             ->select('idp_items.*', 'employees.id as emp_id', 'employees.name as employee_name', 'employees.jabatan', 'employees.unit_kerja_2', 'employees.category as employee_category', 'employees.role as employee_role');
 
@@ -422,11 +425,11 @@ class Eselon3Controller extends Controller
             return back()->with('error', 'Pilih minimal satu IDP untuk disepakati.');
         }
 
-        $unit = $this->getUnitScope();
+        $units = $this->getUnitScope();
         
         $idpRecords = DB::table('idp_items')
             ->join('employees', 'idp_items.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->where('idp_items.status', 'Diajukan')
             ->whereIn('idp_items.id', $ids)
             ->select('idp_items.id', 'idp_items.employee_id', 'idp_items.need')
@@ -466,11 +469,11 @@ class Eselon3Controller extends Controller
      */
     public function agreeAllIdp()
     {
-        $unit = $this->getUnitScope();
+        $units = $this->getUnitScope();
         
         $idpRecords = DB::table('idp_items')
             ->join('employees', 'idp_items.employee_id', '=', 'employees.id')
-            ->where('employees.unit', $unit)
+            ->whereIn('employees.unit', $units)
             ->where('idp_items.status', 'Diajukan')
             ->select('idp_items.id', 'idp_items.employee_id')
             ->get();
@@ -541,13 +544,13 @@ class Eselon3Controller extends Controller
      */
     public function penetapanBangkom(Request $request)
     {
-        $unit = $this->getUnitScope();
+        $units = $this->getUnitScope();
         $user = Auth::user();
         $role = session('active_role', $user->role);
 
         $query = DB::table('bangkom_unit');
         
-        if ($unit && !in_array($role, ['bangkom', 'admin'])) {
+        if ($units && !in_array($role, ['bangkom', 'admin'])) {
             if (!empty($user->unit_eselon1) && preg_match('/^Deputi/i', $user->unit_eselon1)) {
                 $subUnits = DB::table('users')
                     ->where('unit_eselon1', $user->unit_eselon1)
@@ -561,7 +564,7 @@ class Eselon3Controller extends Controller
                 $subUnits[] = $user->unit_eselon1;
                 $query->whereIn('unit_pengusul', $subUnits);
             } else {
-                $query->where('unit_pengusul', $unit);
+                $query->whereIn('unit_pengusul', $units);
             }
         }
 
@@ -701,13 +704,13 @@ class Eselon3Controller extends Controller
      */
     public function pembatalanBangkom(Request $request)
     {
-        $unit = $this->getUnitScope();
+        $units = $this->getUnitScope();
         $user = Auth::user();
         $role = session('active_role', $user->role);
         
         $query = DB::table('bangkom_unit');
         
-        if ($unit && !in_array($role, ['bangkom', 'admin'])) {
+        if ($units && !in_array($role, ['bangkom', 'admin'])) {
             if (!empty($user->unit_eselon1) && preg_match('/^Deputi/i', $user->unit_eselon1)) {
                 $subUnits = DB::table('users')
                     ->where('unit_eselon1', $user->unit_eselon1)
@@ -721,7 +724,7 @@ class Eselon3Controller extends Controller
                 $subUnits[] = $user->unit_eselon1;
                 $query->whereIn('unit_pengusul', $subUnits);
             } else {
-                $query->where('unit_pengusul', $unit);
+                $query->whereIn('unit_pengusul', $units);
             }
         }
         
@@ -788,7 +791,7 @@ class Eselon3Controller extends Controller
      */
     public function talentFinder(Request $request)
     {
-        $unitScope = $this->getUnitScope();
+        $unitsScope = $this->getUnitScope();
         $user = Auth::user();
         
         $type = $request->query('type');
@@ -852,7 +855,7 @@ class Eselon3Controller extends Controller
             if ($isKedeputian && in_array($role, ['eselon2', 'eselon3'])) {
                 $query->where('unit_kerja_1', $user->unit_eselon1);
             } else {
-                $query->where('unit', $unitScope);
+                $query->whereIn('unit', $unitsScope);
             }
             
             if ($showEselon1 && !empty($eselon1List) && !in_array('All Eselon 1', $eselon1List)) {
@@ -940,16 +943,16 @@ class Eselon3Controller extends Controller
      */
     public function profil360(Request $request)
     {
-        $unit = $this->getUnitScope();
+        $units = $this->getUnitScope();
         $search = $request->query('q');
         
-        $employeesQuery = DB::table('employees')->where('unit', $unit);
+        $employeesQuery = DB::table('employees')->whereIn('unit', $units);
         $employees = $employeesQuery->get();
         $employee = $employees->first();
 
         $activeEmpId = $request->query('emp_id');
         if ($activeEmpId) {
-            $employee = DB::table('employees')->where('id', $activeEmpId)->where('unit', $unit)->first();
+            $employee = DB::table('employees')->where('id', $activeEmpId)->whereIn('unit', $units)->first();
         }
 
         $needs = [];

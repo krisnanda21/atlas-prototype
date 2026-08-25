@@ -42,6 +42,7 @@ Route::middleware(['auth', 'atlas.permission:pegawai'])->group(function () {
     Route::get('/susun-idp',              [PegawaiController::class, 'susunIdp'])->name('pegawai.susunIdp');
     Route::post('/susun-idp/store',       [PegawaiController::class, 'storeIdp'])->name('pegawai.storeIdp');
     Route::post('/susun-idp/submit-batch', [PegawaiController::class, 'submitIdpBatch'])->name('pegawai.submitIdpBatch');
+    Route::delete('/susun-idp/delete-batch', [PegawaiController::class, 'deleteIdpBatch'])->name('pegawai.deleteIdpBatch');
     Route::post('/susun-idp/{id}/submit', [PegawaiController::class, 'submitIdp'])->name('pegawai.submitIdp');
     Route::delete('/susun-idp/{id}', [PegawaiController::class, 'deleteIdp'])->name('pegawai.deleteIdp');
     Route::put('/susun-idp/{id}', [PegawaiController::class, 'updateIdp'])->name('pegawai.updateIdp');

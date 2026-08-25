@@ -114,6 +114,27 @@
         <form method="POST" id="realisasi-form" enctype="multipart/form-data" style="text-align:left;">
             @csrf
             
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+                <div class="form-group">
+                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Realisasi JP *</label>
+                    <input type="number" name="realisasi_jp" class="form-control" max="99" min="0" required style="background:#1a2e45;color:#fff;width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                    <div id="info-rencana-jp" style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Dirancang: - JP</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Total Realisasi Anggaran *</label>
+                    <div style="position:relative;">
+                        <span style="position:absolute;left:10px;top:8px;color:#94a3b8;font-size:13px;">Rp</span>
+                        <input type="text" id="realisasi_anggaran_display" class="form-control" required style="background:#1a2e45;color:#fff;width:100%;padding:8px 8px 8px 30px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" onkeyup="formatCurrency(this, 'realisasi_anggaran_val')">
+                        <input type="hidden" name="realisasi_anggaran" id="realisasi_anggaran_val">
+                    </div>
+                    <div id="info-rencana-anggaran" style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Dirancang: Rp -</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jumlah Peserta</label>
+                    <input type="number" name="realisasi_peserta" id="realisasi_peserta" class="form-control" readonly style="background:#1a2e45;color:#94a3b8;width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                </div>
+            </div>
+            
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
                 <div class="form-group">
                     <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Upload Daftar Hadir * (PDF, max 2MB)</label>
@@ -141,7 +162,6 @@
                             📤 Import Nilai
                             <input type="file" id="import-excel-file" accept=".xls,.xlsx" style="display:none;" onchange="handleExcelImport(event)">
                         </label>
-                        <button type="button" onclick="addParticipantRow()" style="background:var(--primary);color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600;">+ Tambah Peserta</button>
                     </div>
                 </div>
                 
@@ -346,14 +366,16 @@ function openRealisasiModal(plan) {
 
     // Reset rows container
     const container = document.getElementById('participant-rows-container');
-    container.innerHTML = '';
+    container.innerHTML = `<tr><td colspan="${isLevel2 ? 6 : 4}" id="empty-participant-row" style="text-align:center; padding:16px; color:var(--text-secondary);">Silakan unduh template XLS dan impor nilai untuk mengisi daftar peserta.</td></tr>`;
     rowIndex = 0;
 
-    // Add first row
-    addParticipantRow();
+    // Set info rencana
+    document.getElementById('info-rencana-jp').textContent = `Dirancang: ${plan.jp || '-'} JP`;
+    document.getElementById('info-rencana-anggaran').textContent = `Dirancang: Rp ${plan.nilai_anggaran ? parseInt(plan.nilai_anggaran).toLocaleString('id-ID') : '-'}`;
 
     // Show Modal
     document.getElementById('modal-realisasi').style.display = 'flex';
+    updateParticipantCount();
 }
 
 function addParticipantRow() {
@@ -369,9 +391,8 @@ function addParticipantRow() {
     tdEmployee.style.padding = '8px 4px';
     tdEmployee.innerHTML = `
         <div style="position:relative;">
-            <input type="text" class="form-control emp-search-input" placeholder="Cari NIP / Nama..." required style="background:#1a2e45;color:#fff;width:100%;padding:6px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);font-size:12px;" oninput="onEmpSearchInput(this)" onfocus="onEmpSearchFocus(this)" onblur="onEmpSearchBlur(this)" onkeydown="onEmpSearchKeydown(this, event)" onpaste="onEmpSearchPaste(this)">
+            <input type="text" class="form-control emp-search-input" readonly style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;outline:none;">
             <input type="hidden" name="participants[${rowIndex}][employee_id]" class="emp-id-hidden">
-            <div class="emp-search-results" style="display:none; position:absolute; left:0; right:0; top:100%; background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:6px; max-height:200px; overflow-y:auto; z-index:9999; box-shadow:0 10px 15px -3px rgba(0,0,0,0.3); padding:4px 0;"></div>
         </div>
     `;
     tr.appendChild(tdEmployee);
@@ -380,7 +401,7 @@ function addParticipantRow() {
     const tdPenyelenggara = document.createElement('td');
     tdPenyelenggara.style.padding = '8px 4px';
     tdPenyelenggara.innerHTML = `
-        <input type="number" name="participants[${rowIndex}][skor_penyelenggara]" class="form-control" min="1" max="100" required style="background:#1a2e45;color:#fff;width:100%;padding:6px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);font-size:12px;text-align:center;">
+        <input type="text" name="participants[${rowIndex}][skor_penyelenggara]" class="form-control" readonly required style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdPenyelenggara);
 
@@ -388,7 +409,7 @@ function addParticipantRow() {
     const tdMateri = document.createElement('td');
     tdMateri.style.padding = '8px 4px';
     tdMateri.innerHTML = `
-        <input type="number" name="participants[${rowIndex}][skor_materi]" class="form-control" min="1" max="100" required style="background:#1a2e45;color:#fff;width:100%;padding:6px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);font-size:12px;text-align:center;">
+        <input type="text" name="participants[${rowIndex}][skor_materi]" class="form-control" readonly required style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdMateri);
 
@@ -396,7 +417,7 @@ function addParticipantRow() {
     const tdFasilitator = document.createElement('td');
     tdFasilitator.style.padding = '8px 4px';
     tdFasilitator.innerHTML = `
-        <input type="number" name="participants[${rowIndex}][skor_fasilitator]" class="form-control" min="1" max="100" required style="background:#1a2e45;color:#fff;width:100%;padding:6px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);font-size:12px;text-align:center;">
+        <input type="text" name="participants[${rowIndex}][skor_fasilitator]" class="form-control" readonly required style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdFasilitator);
 
@@ -406,7 +427,7 @@ function addParticipantRow() {
     tdPre.style.padding = '8px 4px';
     tdPre.style.display = isLevel2 ? 'table-cell' : 'none';
     tdPre.innerHTML = `
-        <input type="number" name="participants[${rowIndex}][skor_pre]" class="form-control" min="1" max="100" ${isLevel2 ? 'required' : ''} style="background:#1a2e45;color:#fff;width:100%;padding:6px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);font-size:12px;text-align:center;">
+        <input type="text" name="participants[${rowIndex}][skor_pre]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdPre);
 
@@ -416,7 +437,7 @@ function addParticipantRow() {
     tdPost.style.padding = '8px 4px';
     tdPost.style.display = isLevel2 ? 'table-cell' : 'none';
     tdPost.innerHTML = `
-        <input type="number" name="participants[${rowIndex}][skor_post]" class="form-control" min="1" max="100" ${isLevel2 ? 'required' : ''} style="background:#1a2e45;color:#fff;width:100%;padding:6px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);font-size:12px;text-align:center;">
+        <input type="text" name="participants[${rowIndex}][skor_post]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdPost);
 
@@ -425,20 +446,33 @@ function addParticipantRow() {
     tdAction.style.padding = '8px 4px';
     tdAction.style.textAlign = 'center';
     
-    // Do not show delete button on the very first row
-    if (rowIndex > 0) {
-        tdAction.innerHTML = `
-            <button type="button" onclick="document.getElementById('${rowId}').remove()" style="background:rgba(239,68,68,0.2);color:var(--danger);border:none;border-radius:4px;padding:4px 8px;cursor:pointer;font-weight:bold;">✕</button>
-        `;
-    } else {
-        tdAction.innerHTML = '-';
-    }
+    tdAction.innerHTML = '-';
     tr.appendChild(tdAction);
 
     container.appendChild(tr);
     rowIndex++;
+    updateParticipantCount();
 }
 
+function updateParticipantCount() {
+    const container = document.getElementById('participant-rows-container');
+    let count = container.querySelectorAll('tr').length;
+    if (document.getElementById('empty-participant-row')) {
+        count = 0;
+    }
+    document.getElementById('realisasi_peserta').value = count;
+}
+
+function formatCurrency(el, hiddenId) {
+    let val = el.value.replace(/[^0-9]/g, '');
+    if (val) {
+        document.getElementById(hiddenId).value = val;
+        el.value = parseInt(val).toLocaleString('id-ID');
+    } else {
+        document.getElementById(hiddenId).value = '';
+        el.value = '';
+    }
+}
 function onEmpSearchInput(input) {
     const container = input.parentElement.querySelector('.emp-search-results');
     const query = input.value.toLowerCase().trim();
