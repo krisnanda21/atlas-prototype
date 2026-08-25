@@ -9,41 +9,40 @@
 
 
 @if($employee)
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
     {{-- Employee Summary --}}
-    <div class="card">
+    <div class="card" style="margin-bottom:20px;">
         <div class="card-title">👤 Profil Pegawai</div>
-        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
-            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">Nama</span>
-                <strong>{{ $employee->name }}</strong>
+        <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:20px;font-size:13px;padding-top:8px;">
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Nama</div>
+                <strong style="font-size:14px;">{{ $employee->name }}</strong>
             </div>
-            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">NIP</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">NIP</div>
                 <strong>{{ $employee->id }}</strong>
             </div>
-            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">Jabatan</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Jabatan</div>
                 <strong>{{ $employee->role }}</strong>
             </div>
-            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">Unit</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Unit</div>
                 <strong>{{ $employee->unit }}</strong>
             </div>
-            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">Kategori</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Kategori</div>
                 <strong>{{ $employee->category }}</strong>
             </div>
-            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">Pangkat</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Pangkat</div>
                 <strong>{{ $employee->pangkat ?? '-' }}</strong>
             </div>
-            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">Pendidikan</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Pendidikan</div>
                 <strong>{{ $employee->strata ?? '-' }} {{ $employee->jurusan ? '- ' . $employee->jurusan : '' }}</strong>
             </div>
-            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">Sertifikasi Bahasa</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Sertifikasi Bahasa</div>
                 <strong>
                     @if($employee->toefl || $employee->ielts)
                         {{ $employee->toefl ? 'TOEFL: ' . $employee->toefl : '' }}
@@ -54,69 +53,102 @@
                     @endif
                 </strong>
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-                <span style="color:var(--text-secondary);">Assessment</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Assessment</div>
                 @if($employee->assessment)
                 <span class="badge badge-success">✓ COMPASS</span>
                 @else
                 <span class="badge badge-neutral">Non-Assessment</span>
                 @endif
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;">
-                <span style="color:var(--text-secondary);">IDP Gap Coverage</span>
+            <div>
+                <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">IDP Gap Coverage</div>
                 @php
                     $cov = $employee->idp_coverage ?? ($coverageDetail['coverage_percent'] ?? 0);
                     $badgeClass = $cov >= 75 ? 'badge-success' : ($cov >= 50 ? 'badge-warning' : 'badge-danger');
                 @endphp
-                <div style="text-align:right;">
+                <div style="display:flex;align-items:center;gap:8px;">
                     <span class="badge {{ $badgeClass }}" style="font-weight:700;">{{ $cov }}%</span>
                     @if(isset($coverageDetail) && $coverageDetail['total_target'] > 0)
-                    <div style="font-size:10.5px;color:var(--text-secondary);margin-top:2px;">{{ $coverageDetail['matched_count'] }}/{{ $coverageDetail['total_target'] }} gap tertutupi</div>
+                    <span style="font-size:11px;color:var(--text-secondary);">{{ $coverageDetail['matched_count'] }}/{{ $coverageDetail['total_target'] }} gap tertutupi</span>
                     @endif
                 </div>
             </div>
         </div>
     </div>
 
-    {{-- Competency Gaps --}}
-    <div class="card">
-        <div class="card-title">📊 Kebutuhan Kompetensi / Gap</div>
-        
-        {{-- Toggle buttons: Teknis / Mansoskul --}}
-        <div style="display:flex;gap:8px;margin-bottom:16px;">
-            <button id="btn-show-teknis" class="btn btn-primary" style="flex:1;font-size:12px;padding:8px 12px;cursor:pointer;">📐 Kompetensi Teknis</button>
-            <button id="btn-show-mansoskul" class="btn btn-neutral" style="flex:1;font-size:12px;padding:8px 12px;cursor:pointer;">🤝 Kompetensi Mansoskul</button>
+    {{-- Competency Gaps Side-by-Side --}}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+        {{-- Teknis --}}
+        <div class="card">
+            <div class="card-title">📐 Kompetensi Teknis</div>
+            @php
+                $teknisNeeds = $needs->where('type', 'Teknis');
+            @endphp
+            @if($teknisNeeds->count())
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                @foreach($teknisNeeds as $need)
+                @php
+                    $color = match($need->level) {
+                        'Tidak optimal' => 'var(--danger)',
+                        'Kurang optimal' => 'var(--warning)',
+                        'Cukup optimal' => '#eab308',
+                        default => 'var(--success)'
+                    };
+                    $pct = $need->score;
+                @endphp
+                <div class="gap-item" style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px 12px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font-size:13px;font-weight:600;">{{ $need->competency_name }}</span>
+                        <span style="font-size:13px;font-weight:700;color:{{ $color }}">{{ $need->score }}</span>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.08);border-radius:4px;height:6px;margin-top:6px;overflow:hidden;">
+                        <div style="height:100%;width:{{ $pct }}%;background:{{ $color }};"></div>
+                    </div>
+                    <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Standard: {{ $need->standard }} | Gap: {{ $need->gap ?? '-' }} | Level: {{ $need->level ?? '-' }}</div>
+                </div>
+                @endforeach
+            </div>
+            @else
+            <p class="text-muted text-sm">Tidak ada data kompetensi teknis.</p>
+            @endif
         </div>
 
-        @if($needs->count())
-        <div style="display:flex;flex-direction:column;gap:8px;">
-            @foreach($needs as $need)
+        {{-- Mansoskul --}}
+        <div class="card">
+            <div class="card-title">🤝 Kompetensi Mansoskul</div>
             @php
-                $color = match($need->level) {
-                    'Tidak optimal' => 'var(--danger)',
-                    'Kurang optimal' => 'var(--warning)',
-                    'Cukup optimal' => '#eab308', // Amber/Yellow
-                    default => 'var(--success)'
-                };
-                $pct = $need->type === 'Teknis' ? $need->score : ($need->score / 5) * 100;
+                $mansoskulNeeds = $needs->where('type', 'Mansoskul');
             @endphp
-            <div class="gap-item" data-type="{{ $need->type }}" style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px 12px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <span style="font-size:13px;font-weight:600;">{{ $need->competency_name }}</span>
-                    <span style="font-size:13px;font-weight:700;color:{{ $color }}">{{ $need->score }}</span>
+            @if($mansoskulNeeds->count())
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                @foreach($mansoskulNeeds as $need)
+                @php
+                    $color = match($need->level) {
+                        'Tidak optimal' => 'var(--danger)',
+                        'Kurang optimal' => 'var(--warning)',
+                        'Cukup optimal' => '#eab308',
+                        default => 'var(--success)'
+                    };
+                    $pct = ($need->score / 5) * 100;
+                @endphp
+                <div class="gap-item" style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px 12px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font-size:13px;font-weight:600;">{{ $need->competency_name }}</span>
+                        <span style="font-size:13px;font-weight:700;color:{{ $color }}">{{ $need->score }}</span>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.08);border-radius:4px;height:6px;margin-top:6px;overflow:hidden;">
+                        <div style="height:100%;width:{{ $pct }}%;background:{{ $color }};"></div>
+                    </div>
+                    <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Standard: {{ $need->standard }} | Gap: {{ $need->gap ?? '-' }} | Level: {{ $need->level ?? '-' }}</div>
                 </div>
-                <div style="background:rgba(255,255,255,0.08);border-radius:4px;height:6px;margin-top:6px;overflow:hidden;">
-                    <div style="height:100%;width:{{ $pct }}%;background:{{ $color }};"></div>
-                </div>
-                <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Standard: {{ $need->standard }} | Gap: {{ $need->gap ?? '-' }} | Level: {{ $need->level ?? '-' }}</div>
+                @endforeach
             </div>
-            @endforeach
+            @else
+            <p class="text-muted text-sm">Tidak ada data kompetensi mansoskul.</p>
+            @endif
         </div>
-        @else
-        <p class="text-muted text-sm">Tidak ada data gap kompetensi.</p>
-        @endif
     </div>
-</div>
 
 {{-- IDP Items --}}
 <div class="card" style="margin-top:20px;">
@@ -156,6 +188,44 @@
         <button id="btn-idp-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">← Prev</button>
         <span id="idp-page-info" style="font-size:11px;color:var(--text-secondary);font-weight:600;">Halaman 1</span>
         <button id="btn-idp-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">Next →</button>
+    </div>
+    @endif
+</div>
+
+{{-- Riwayat Bangkom Unit --}}
+<div class="card" style="margin-top:20px;">
+    <div class="card-title">🏆 Riwayat Bangkom Unit</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nama Kegiatan</th>
+                <th>Jenis Kompetensi</th>
+                <th>Unit Pengusul</th>
+                <th>Jenis Pembelajaran</th>
+                <th>JP</th>
+            </tr>
+        </thead>
+        <tbody id="bangkom-table-body">
+            @forelse($riwayatBangkom as $rb)
+            <tr>
+                <td><strong>{{ $rb->nama_kegiatan }}</strong><br><small style="color:var(--text-secondary);">Selesai: {{ $rb->tanggal_selesai ? \Carbon\Carbon::parse($rb->tanggal_selesai)->format('d M Y') : '-' }}</small></td>
+                <td>{{ $rb->kompetensi_dasar }}</td>
+                <td>{{ $rb->unit_pengusul }}</td>
+                <td>{{ $rb->jalur_pembelajaran ?? '-' }}</td>
+                <td>{{ $rb->jp }} JP</td>
+            </tr>
+            @empty
+            <tr><td colspan="5" class="text-muted text-sm" style="text-align:center;padding:20px;">Belum ada riwayat Bangkom Unit.</td></tr>
+            @endforelse
+        </tbody>
+    </table>
+    
+    {{-- Pagination controls for Riwayat Bangkom --}}
+    @if(count($riwayatBangkom) > 0)
+    <div id="bangkom-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;">
+        <button id="btn-bangkom-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">← Prev</button>
+        <span id="bangkom-page-info" style="font-size:11px;color:var(--text-secondary);font-weight:600;">Halaman 1</span>
+        <button id="btn-bangkom-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">Next →</button>
     </div>
     @endif
 </div>
@@ -252,41 +322,6 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const btnTeknis = document.getElementById('btn-show-teknis');
-    const btnMansoskul = document.getElementById('btn-show-mansoskul');
-    const gapItems = document.querySelectorAll('.gap-item');
-
-    function showType(type) {
-        if (type === 'Teknis') {
-            btnTeknis.className = 'btn btn-primary';
-            btnMansoskul.className = 'btn btn-neutral';
-            btnTeknis.style.pointerEvents = 'none'; // prevent redundant clicks
-            btnMansoskul.style.pointerEvents = 'auto';
-        } else {
-            btnTeknis.className = 'btn btn-neutral';
-            btnMansoskul.className = 'btn btn-primary';
-            btnTeknis.style.pointerEvents = 'auto';
-            btnMansoskul.style.pointerEvents = 'none'; // prevent redundant clicks
-        }
-
-        gapItems.forEach(item => {
-            const targetType = type === 'Teknis' ? 'Teknis' : 'Mansoskul';
-            if (item.getAttribute('data-type') === targetType) {
-                item.style.display = '';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }
-
-    if (btnTeknis && btnMansoskul) {
-        btnTeknis.addEventListener('click', () => showType('Teknis'));
-        btnMansoskul.addEventListener('click', () => showType('Mansoskul'));
-
-        // Default: show Teknis first
-        showType('Teknis');
-    }
-
     // Client-side pagination helper for tables
     function paginateTable(tbodyId, controlsId, prevBtnId, nextBtnId, infoId, pageSize = 5) {
         const tbody = document.getElementById(tbodyId);
@@ -350,6 +385,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize pagination
     paginateTable('idp-table-body', 'idp-pagination-controls', 'btn-idp-prev', 'btn-idp-next', 'idp-page-info');
+    paginateTable('bangkom-table-body', 'bangkom-pagination-controls', 'btn-bangkom-prev', 'btn-bangkom-next', 'bangkom-page-info');
     paginateTable('diklat-table-body', 'diklat-pagination-controls', 'btn-diklat-prev', 'btn-diklat-next', 'diklat-page-info');
     paginateTable('sert-table-body', 'sert-pagination-controls', 'btn-sert-prev', 'btn-sert-next', 'sert-page-info');
 });

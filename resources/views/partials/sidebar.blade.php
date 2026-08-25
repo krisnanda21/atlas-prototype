@@ -105,9 +105,7 @@
     <a href="{{ route('pegawai.kalender') }}" class="nav-item {{ request()->routeIs('pegawai.kalender') ? 'active' : '' }}">
         <span class="nav-icon">📅</span> Kalender Saya
     </a>
-    <a href="{{ route('pegawai.riwayat') }}" class="nav-item {{ request()->routeIs('pegawai.riwayat') ? 'active' : '' }}">
-        <span class="nav-icon">📜</span> Riwayat Pengembangan
-    </a>
+
 
 {{-- ══════════════════════════════════════════
      PENGAMPU SDM UNIT (Eselon IV - Subkoor Kepegawaian / Kasubbag)

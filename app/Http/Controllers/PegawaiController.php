@@ -116,9 +116,24 @@ class PegawaiController extends Controller
         $diklats = $employee ? DB::table('employee_diklats')->where('employee_id', $employee->id)->get() : collect();
         $sertifikasis = $employee ? DB::table('employee_sertifikasis')->where('employee_id', $employee->id)->get() : collect();
         $coverageDetail = $employee ? \App\Helpers\IdpCoverageHelper::getEmployeeCoverageDetail($employee->id) : null;
+        
+        $riwayatBangkom = $employee ? DB::table('bangkom_unit_realisasi')
+            ->join('bangkom_unit', 'bangkom_unit_realisasi.bangkom_unit_id', '=', 'bangkom_unit.id')
+            ->where('bangkom_unit_realisasi.employee_id', $employee->id)
+            ->select(
+                'bangkom_unit.nama_kegiatan', 
+                'bangkom_unit.kompetensi_dasar', 
+                'bangkom_unit.unit_pengusul', 
+                'bangkom_unit.jalur_pembelajaran', 
+                'bangkom_unit.jp',
+                'bangkom_unit.tanggal_selesai'
+            )
+            ->orderBy('bangkom_unit.tanggal_selesai', 'desc')
+            ->get() : collect();
+
         $search = null;
 
-        return view('pegawai.profil_360', compact('employee', 'needs', 'idpItems', 'search', 'diklats', 'sertifikasis', 'coverageDetail'));
+        return view('pegawai.profil_360', compact('employee', 'needs', 'idpItems', 'search', 'diklats', 'sertifikasis', 'coverageDetail', 'riwayatBangkom'));
     }
 
     /**
@@ -511,22 +526,6 @@ class PegawaiController extends Controller
         }
         
         return view('pegawai.kalender', compact('employee', 'events'));
-    }
-
-    /**
-     * Riwayat Pengembangan.
-     */
-    public function riwayat(Request $request)
-    {
-        $employee = $this->getActiveEmployee($request);
-        
-        $riwayats = [
-            ['tahun' => '2025', 'kegiatan' => 'Audit PBJ', 'jenis' => 'Pelatihan formal', 'jp' => '32', 'status' => 'Lulus'],
-            ['tahun' => '2026', 'kegiatan' => 'Library Cafe Data', 'jenis' => 'Bangkom Unit', 'jp' => '3', 'status' => 'Selesai'],
-            ['tahun' => '2026', 'kegiatan' => 'KMS Manajemen ASN', 'jenis' => 'Mandiri', 'jp' => '3', 'status' => 'Berjalan']
-        ];
-
-        return view('pegawai.riwayat', compact('employee', 'riwayats'));
     }
 
     /**

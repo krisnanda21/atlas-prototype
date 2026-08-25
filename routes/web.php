@@ -46,7 +46,7 @@ Route::middleware(['auth', 'atlas.permission:pegawai'])->group(function () {
     Route::delete('/susun-idp/{id}', [PegawaiController::class, 'deleteIdp'])->name('pegawai.deleteIdp');
     Route::put('/susun-idp/{id}', [PegawaiController::class, 'updateIdp'])->name('pegawai.updateIdp');
     Route::get('/kalender',               [PegawaiController::class, 'kalender'])->name('pegawai.kalender');
-    Route::get('/riwayat',                [PegawaiController::class, 'riwayat'])->name('pegawai.riwayat');
+
 });
 
 // ── Protected: Pengampu SDM ──
