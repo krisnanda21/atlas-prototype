@@ -148,9 +148,11 @@ class ExecutiveController extends Controller
         $suboptimalEmpCount = DB::table('competency_gaps')
             ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
             ->whereIn('employees.unit', $units)
-            ->whereIn('competency_gaps.level', ['Tidak optimal', 'Kurang optimal'])
-            ->distinct('competency_gaps.employee_id')
-            ->count('competency_gaps.employee_id');
+            ->select('competency_gaps.employee_id')
+            ->groupBy('competency_gaps.employee_id')
+            ->havingRaw('AVG(competency_gaps.score) < AVG(competency_gaps.standard)')
+            ->get()
+            ->count();
         $suboptimalPercent = $totalEmp > 0 ? round(($suboptimalEmpCount / $totalEmp) * 100) : 0;
 
         // Card 3: Jenis Kompetensi Teknis dengan Gap Terbesar
@@ -158,7 +160,7 @@ class ExecutiveController extends Controller
             ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
             ->whereIn('employees.unit', $units)
             ->where('competency_gaps.type', 'Teknis')
-            ->select('competency_gaps.competency_name', DB::raw('ROUND(AVG(competency_gaps.gap), 1) as avg_gap'))
+            ->select('competency_gaps.competency_name', DB::raw('ROUND(GREATEST(0, AVG(competency_gaps.standard) - AVG(competency_gaps.score)), 1) as avg_gap'))
             ->groupBy('competency_gaps.competency_name')
             ->orderByDesc('avg_gap')
             ->first();
@@ -183,9 +185,11 @@ class ExecutiveController extends Controller
             $suboptimalEmpCountU = DB::table('competency_gaps')
                 ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
                 ->where('employees.unit', $u)
-                ->whereIn('competency_gaps.level', ['Tidak optimal', 'Kurang optimal'])
-                ->distinct('competency_gaps.employee_id')
-                ->count('competency_gaps.employee_id');
+                ->select('competency_gaps.employee_id')
+                ->groupBy('competency_gaps.employee_id')
+                ->havingRaw('AVG(competency_gaps.score) < AVG(competency_gaps.standard)')
+                ->get()
+                ->count();
             $val = $totalEmpU > 0 ? round(($suboptimalEmpCountU / $totalEmpU) * 100) : 0;
             
             $code = $this->getUnitCode($u);
@@ -239,9 +243,11 @@ class ExecutiveController extends Controller
                     $suboptimalEmpCountU = DB::table('competency_gaps')
                         ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
                         ->where('employees.unit', $childName)
-                        ->whereIn('competency_gaps.level', ['Tidak optimal', 'Kurang optimal'])
-                        ->distinct('competency_gaps.employee_id')
-                        ->count('competency_gaps.employee_id');
+                        ->select('competency_gaps.employee_id')
+                        ->groupBy('competency_gaps.employee_id')
+                        ->havingRaw('AVG(competency_gaps.score) < AVG(competency_gaps.standard)')
+                        ->get()
+                        ->count();
                     $val = $totalEmpU > 0 ? round(($suboptimalEmpCountU / $totalEmpU) * 100) : 0;
                     $risk = $val > 50 ? 'Tinggi' : ($val > 20 ? 'Sedang' : 'Rendah');
                     $childStat = ['unit' => $childName, 'code' => $childCode, 'type' => 'pusat', 'value' => $val, 'risk' => $risk];
@@ -327,9 +333,11 @@ class ExecutiveController extends Controller
                     $suboptimalEmpCountU = DB::table('competency_gaps')
                         ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
                         ->where('employees.unit', $pwUnitName)
-                        ->whereIn('competency_gaps.level', ['Tidak optimal', 'Kurang optimal'])
-                        ->distinct('competency_gaps.employee_id')
-                        ->count('competency_gaps.employee_id');
+                        ->select('competency_gaps.employee_id')
+                        ->groupBy('competency_gaps.employee_id')
+                        ->havingRaw('AVG(competency_gaps.score) < AVG(competency_gaps.standard)')
+                        ->get()
+                        ->count();
                     $val = $totalEmpU > 0 ? round(($suboptimalEmpCountU / $totalEmpU) * 100) : 0;
                     
                     $risk = $val > 50 ? 'Tinggi' : ($val > 20 ? 'Sedang' : 'Rendah');
@@ -381,7 +389,7 @@ class ExecutiveController extends Controller
             ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
             ->whereIn('employees.unit', $units)
             ->where('competency_gaps.type', 'Teknis')
-            ->select('competency_gaps.competency_name', DB::raw('ROUND(AVG(competency_gaps.gap), 1) as avg_gap'))
+            ->select('competency_gaps.competency_name', DB::raw('ROUND(GREATEST(0, AVG(competency_gaps.standard) - AVG(competency_gaps.score)), 1) as avg_gap'))
             ->groupBy('competency_gaps.competency_name')
             ->orderByDesc('avg_gap')
             ->get();
@@ -441,9 +449,11 @@ class ExecutiveController extends Controller
                     $suboptimalEmpCountU = DB::table('competency_gaps')
                         ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
                         ->where('employees.unit', $uName)
-                        ->whereIn('competency_gaps.level', ['Tidak optimal', 'Kurang optimal'])
-                        ->distinct('competency_gaps.employee_id')
-                        ->count('competency_gaps.employee_id');
+                        ->select('competency_gaps.employee_id')
+                        ->groupBy('competency_gaps.employee_id')
+                        ->havingRaw('AVG(competency_gaps.score) < AVG(competency_gaps.standard)')
+                        ->get()
+                        ->count();
                     
                     $val = $totalEmpU > 0 ? round(($suboptimalEmpCountU / $totalEmpU) * 100) : 0;
                     $risk = $val > 50 ? 'Tinggi' : ($val > 20 ? 'Sedang' : 'Rendah');
@@ -1303,11 +1313,17 @@ class ExecutiveController extends Controller
             $eselon2Options = \App\Helpers\UnitKerjaHelper::getSubUnits($scopeToUse);
         }
         
-        $allCompetencies = [
-            'Manajemen Pengawasan Intern', 'Standar Audit', 'Analisis Data', 'Audit PBJ', 'Fraud Risk Management',
-            'Manajemen ASN', 'Literasi Digital', 'Keamanan Data Dasar', 'Akuntansi dan Pelaporan Keuangan',
-            'Manajemen Risiko', 'Audit Kinerja', 'Audit Investigatif', 'Sistem Informasi'
-        ];
+        $allCompetencies = \Illuminate\Support\Facades\DB::table('compass_nilai_teknis')->distinct()->pluck('kompetensi')->toArray();
+        if (empty($allCompetencies)) {
+            $allCompetencies = [
+                'Analisis Data', 'Analisis Kebijakan Publik', 'Analisis Proses Bisnis', 
+                'Fraud Risk Management', 'Governance, Risk, Control, and Compliance',
+                'Keuangan Negara/Daerah dan Kekayaan yang Dipisahkan', 'Literasi Digital',
+                'Manajemen dan Analisis Keuangan', 'Manajemen Penugasan Pengawasan Intern',
+                'Manajemen Strategis Pemerintah', 'Metode dan Teknik Pengawasan Intern',
+                'Pelaksanaan Pengawasan Intern', 'Standar Audit dan Kode Etik'
+            ];
+        }
 
         $certifications = DB::table('interna_rencana_diklat')
             ->where('jenis_pembelajaran', 'like', 'Sertifikasi%')
@@ -1329,7 +1345,7 @@ class ExecutiveController extends Controller
             }
 
             if (!empty($jabatanList) && !in_array('All Jabatan', $jabatanList)) {
-                $query->whereIn('role', $jabatanList);
+                $query->whereIn('jabatan', $jabatanList);
             }
             
             if ($type === 'Kompetensi' && !empty($kompetensiList)) {
@@ -1396,6 +1412,17 @@ class ExecutiveController extends Controller
                 })->values();
             }
         }
+
+        $employees = collect($employees);
+        $page = \Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1;
+        $perPage = 25;
+        $items = $employees->forPage($page, $perPage);
+        $employeesPaginated = new \Illuminate\Pagination\LengthAwarePaginator($items, $employees->count(), $perPage, $page, [
+            'path' => \Illuminate\Pagination\Paginator::resolveCurrentPath(),
+            'pageName' => 'page',
+        ]);
+        $employeesPaginated->withQueryString();
+        $employees = $employeesPaginated;
 
         return view('executive.talent_finder', compact('employees', 'type', 'allCompetencies', 'certifications', 'availableUnits', 'showEselon1', 'showEselon2', 'eselon1Options', 'eselon2Options'));
     }
@@ -1700,12 +1727,16 @@ class ExecutiveController extends Controller
         if ($search) {
             $employeesQuery->where(function($query) use ($search) {
                 $query->where('name', 'LIKE', '%' . $search . '%')
-                    ->orWhere('id', 'LIKE', '%' . $search . '%');
+                    ->orWhere('id', 'LIKE', '%' . $search . '%')
+                    ->orWhere('jabatan', 'LIKE', '%' . $search . '%')
+                    ->orWhere('unit', 'LIKE', '%' . $search . '%');
             });
         }
         
+        $employeesQuery->limit(100);
         $employees = $employeesQuery->get();
         $employee = $employees->first();
+
 
         $activeEmpId = $request->query('emp_id');
         if ($activeEmpId) {

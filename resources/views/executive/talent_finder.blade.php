@@ -217,6 +217,9 @@
             </tbody>
         </table>
     </div>
+    <div style="margin-top: 16px; display: flex; justify-content: center;">
+        {{ $employees->links('pagination::bootstrap-4') }}
+    </div>
     @else
     <div style="text-align:center; padding: 48px 24px;">
         <div style="font-size: 48px; margin-bottom: 16px; opacity: 0.3;">🔍</div>
@@ -391,43 +394,55 @@
         }
     });
 
+    function refreshGroupChips(group) {
+        const containerId = group + '-chips';
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        
+        const allCheckbox = document.querySelector(`input[name="${group}[]"][value^="All "]`);
+        if (allCheckbox && allCheckbox.checked) {
+            renderChip(containerId, allCheckbox.value);
+        } else {
+            const itemCheckboxes = document.querySelectorAll(`.${group}-item input:checked`);
+            itemCheckboxes.forEach(cb => {
+                renderChip(containerId, cb.value);
+            });
+        }
+    }
+
     function toggleAllDropdown(group, allValueOverride) {
         const allValue = allValueOverride || "All " + group.charAt(0).toUpperCase() + group.slice(1);
         const allCheckbox = document.querySelector(`input[name="${group}[]"][value="${allValue}"]`);
         const itemCheckboxes = document.querySelectorAll(`.${group}-item input`);
         
         if (allCheckbox && allCheckbox.checked) {
-            itemCheckboxes.forEach(cb => {
-                cb.checked = true;
-                renderChip(group + '-chips', cb.value);
-            });
+            itemCheckboxes.forEach(cb => cb.checked = true);
         } else {
-            itemCheckboxes.forEach(cb => {
-                cb.checked = false;
-                removeChip(group + '-chips', cb.value);
-            });
+            itemCheckboxes.forEach(cb => cb.checked = false);
         }
+        refreshGroupChips(group);
     }
 
     function updateChips(containerId, checkbox) {
-        if (checkbox.checked) {
-            renderChip(containerId, checkbox.value);
-        } else {
-            removeChip(containerId, checkbox.value);
+        const group = containerId.replace('-chips', '');
+        const allCheckbox = document.querySelector(`input[name="${group}[]"][value^="All "]`);
+        
+        if (allCheckbox && allCheckbox.checked && !checkbox.value.startsWith('All ')) {
+            allCheckbox.checked = false;
         }
+        refreshGroupChips(group);
     }
 
     function updateRadioChips(containerId, radio, label) {
         const container = document.getElementById(containerId);
-        container.innerHTML = '';
+        if (container) container.innerHTML = '';
         if (radio.checked) {
             renderChip(containerId, label, radio.value);
         }
     }
 
     function renderChip(containerId, value, actualValue = null) {
-        if(value === "All Kompetensi" || value === "All Jabatan") return;
-        
         const container = document.getElementById(containerId);
         if(!container || container.querySelector(`[data-value="${value}"]`)) return;
 
@@ -449,13 +464,14 @@
     }
 
     function removeChipAndUncheck(containerId, value) {
-        // Find inputs that might be associated with this container
-        // Go up to the dropdown container to find the matching checkbox/radio
         const card = document.getElementById(containerId).closest('div').querySelector('.dropdown-menu');
-        
         if (card) {
             const checkbox = Array.from(card.querySelectorAll('input[type="checkbox"]')).find(cb => cb.value === value);
-            if (checkbox) checkbox.checked = false;
+            if (checkbox) {
+                checkbox.checked = false;
+                const group = containerId.replace('-chips', '');
+                refreshGroupChips(group);
+            }
 
             const radio = Array.from(card.querySelectorAll('input[type="radio"]')).find(r => r.value === value || r.nextElementSibling.innerText.trim() === value);
             if (radio) {
@@ -465,15 +481,11 @@
                     defaultRadio.checked = true;
                     renderChip(containerId, 'Semua Unit Kerja', '');
                 }
+                const container = document.getElementById(containerId);
+                const chip = container.querySelector(`[data-value="${value}"]`);
+                if (chip) container.removeChild(chip);
             }
         }
-        removeChip(containerId, value);
-    }
-
-    function removeChip(containerId, value) {
-        const container = document.getElementById(containerId);
-        const chip = container.querySelector(`[data-value="${value}"]`);
-        if (chip) container.removeChild(chip);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -481,9 +493,7 @@
             const dropdown = document.getElementById(prefix + '-dropdown');
             const chipsContainer = prefix + '-chips';
             if (dropdown) {
-                dropdown.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                    if(cb.checked && !cb.value.startsWith('All ')) renderChip(chipsContainer, cb.value);
-                });
+                refreshGroupChips(prefix);
                 
                 dropdown.querySelectorAll('input[type="radio"]').forEach(r => {
                     if(r.checked) {

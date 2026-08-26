@@ -18,52 +18,46 @@
 </div>
 
 <script>
-    const employeesData = @json($employees->map(function($e){ return ['id'=>$e->id, 'name'=>$e->name, 'role'=>$e->role]; })->values()->all());
+    let searchTimeoutMain;
 
-    function matchPrefix(text, qWords) {
-        const textWords = text.toLowerCase().split(/\s+/);
-        return qWords.every(qw => textWords.some(tw => tw.startsWith(qw)));
-    }
-
-    function renderResults(query, resultsContainerId) {
-        const q = query.toLowerCase().trim();
-        const container = document.getElementById(resultsContainerId);
+    function handleMainSearchInput() {
+        const q = document.getElementById('main-search-input').value.trim();
+        const container = document.getElementById('main-search-results');
         
-        if (!q) {
+        if (q.length < 2) {
             container.style.display = 'none';
             return;
         }
-        
-        const qWords = q.split(/\s+/);
-        
-        const matches = employeesData.filter(e => {
-            const nipMatch = e.id.toLowerCase().startsWith(q);
-            const nameMatch = matchPrefix(e.name, qWords);
-            return nipMatch || nameMatch;
-        }).slice(0, 10); // Limit to 10 results
-        
-        if (matches.length === 0) {
-            container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Pegawai tidak ditemukan</div>';
-            container.style.display = 'block';
-            return;
-        }
-        
-        let html = '';
-        matches.forEach(e => {
-            html += `
-                <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
-                    <div style="font-weight:600;">${e.name}</div>
-                    <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role}</div>
-                </a>
-            `;
-        });
-        container.innerHTML = html;
-        container.style.display = 'block';
-    }
 
-    function handleMainSearchInput() {
-        const q = document.getElementById('main-search-input').value;
-        renderResults(q, 'main-search-results');
+        container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Mencari...</div>';
+        container.style.display = 'block';
+
+        clearTimeout(searchTimeoutMain);
+        searchTimeoutMain = setTimeout(() => {
+            fetch(`/api/employees/search?q=${encodeURIComponent(q)}`)
+                .then(res => res.json())
+                .then(matches => {
+                    if (matches.length === 0) {
+                        container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Pegawai tidak ditemukan</div>';
+                        return;
+                    }
+                    
+                    let html = '';
+                    matches.forEach(e => {
+                        html += `
+                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
+                                <div style="font-weight:600;">${e.name}</div>
+                                <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role || '-'}</div>
+                            </a>
+                        `;
+                    });
+                    container.innerHTML = html;
+                })
+                .catch(err => {
+                    console.error('Search error:', err);
+                    container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Terjadi kesalahan saat mencari</div>';
+                });
+        }, 300);
     }
 
     document.addEventListener('click', function(e) {
@@ -89,52 +83,46 @@
 </div>
 
 <script>
-    const employeesTopData = @json($employees->map(function($e){ return ['id'=>$e->id, 'name'=>$e->name, 'role'=>$e->role]; })->values()->all());
+    let searchTimeoutTop;
 
-    function matchPrefixTop(text, qWords) {
-        const textWords = text.toLowerCase().split(/\s+/);
-        return qWords.every(qw => textWords.some(tw => tw.startsWith(qw)));
-    }
-
-    function renderTopResults(query, resultsContainerId) {
-        const q = query.toLowerCase().trim();
-        const container = document.getElementById(resultsContainerId);
+    function handleTopSearchInput() {
+        const q = document.getElementById('top-search-input').value.trim();
+        const container = document.getElementById('top-search-results');
         
-        if (!q) {
+        if (q.length < 2) {
             container.style.display = 'none';
             return;
         }
-        
-        const qWords = q.split(/\s+/);
-        
-        const matches = employeesTopData.filter(e => {
-            const nipMatch = e.id.toLowerCase().startsWith(q);
-            const nameMatch = matchPrefixTop(e.name, qWords);
-            return nipMatch || nameMatch;
-        }).slice(0, 10);
-        
-        if (matches.length === 0) {
-            container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Pegawai tidak ditemukan</div>';
-            container.style.display = 'block';
-            return;
-        }
-        
-        let html = '';
-        matches.forEach(e => {
-            html += `
-                <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
-                    <div style="font-weight:600;">${e.name}</div>
-                    <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role}</div>
-                </a>
-            `;
-        });
-        container.innerHTML = html;
-        container.style.display = 'block';
-    }
 
-    function handleTopSearchInput() {
-        const q = document.getElementById('top-search-input').value;
-        renderTopResults(q, 'top-search-results');
+        container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Mencari...</div>';
+        container.style.display = 'block';
+
+        clearTimeout(searchTimeoutTop);
+        searchTimeoutTop = setTimeout(() => {
+            fetch(`/api/employees/search?q=${encodeURIComponent(q)}`)
+                .then(res => res.json())
+                .then(matches => {
+                    if (matches.length === 0) {
+                        container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Pegawai tidak ditemukan</div>';
+                        return;
+                    }
+                    
+                    let html = '';
+                    matches.forEach(e => {
+                        html += `
+                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
+                                <div style="font-weight:600;">${e.name}</div>
+                                <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role || '-'}</div>
+                            </a>
+                        `;
+                    });
+                    container.innerHTML = html;
+                })
+                .catch(err => {
+                    console.error('Search error:', err);
+                    container.innerHTML = '<div style="padding:12px 16px; color:var(--text-secondary); text-align:center;">Terjadi kesalahan saat mencari</div>';
+                });
+        }, 300);
     }
 
     document.addEventListener('click', function(e) {

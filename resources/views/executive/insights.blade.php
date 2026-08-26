@@ -78,7 +78,7 @@
         <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:16px;border-left:4px solid {{ $sa['risk'] === 'Tinggi' ? 'var(--danger)' : ($sa['risk'] === 'Sedang' ? 'var(--warning)' : 'var(--success)') }};">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
                 <span style="font-weight:700;font-size:14px;color:var(--text-primary);">{{ $sa['demand'] }}</span>
-                <span class="badge {{ $sa['risk'] === 'Tinggi' ? 'badge-danger' : ($sa['risk'] === 'Sedang' ? 'badge-warning' : 'badge-success') }}" style="font-size:11px;">{{ $sa['count'] }} item · Risiko {{ $sa['risk'] }}</span>
+                <span class="badge {{ $sa['risk'] === 'Tinggi' ? 'badge-danger' : ($sa['risk'] === 'Sedang' ? 'badge-warning' : 'badge-success') }}" style="font-size:11px;">Risiko {{ $sa['risk'] }}</span>
             </div>
             <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5;">{{ $sa['decision'] }}</p>
         </div>

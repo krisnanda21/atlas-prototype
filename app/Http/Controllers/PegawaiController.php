@@ -10,6 +10,47 @@ use Illuminate\Support\Facades\DB;
 class PegawaiController extends Controller
 {
     /**
+     * API Endpoint for Profil 360 Autocomplete.
+     */
+    public function searchAjax(Request $request)
+    {
+        $q = trim($request->query('q', ''));
+        if (strlen($q) < 2) {
+            return response()->json([]);
+        }
+
+        $user = Auth::user();
+        $activeRole = session('active_role', $user->role);
+
+        $query = DB::table('employees');
+
+        if (!in_array($activeRole, ['karoSDM', 'kombinasi', 'sesma', 'admin', 'bangkom'])) {
+            if ($activeRole === 'eselon2') {
+                $units = $user->scope === 'Kantor Perwakilan' ? [$user->unit_eselon2] : (\App\Helpers\UnitKerjaHelper::getSubUnits($user->scope, true) ?: [$user->scope]);
+                $units = is_array($units) ? $units : [$units];
+                $query->whereIn('unit', $units);
+            } elseif (in_array($activeRole, ['eselon3', 'pengampuSDM', 'deputi'])) {
+                $units = \App\Helpers\UnitKerjaHelper::getSubUnits($user->scope) ?: [$user->scope];
+                $units = is_array($units) ? $units : [$units];
+                $query->whereIn('unit', $units);
+            } else {
+                $query->where('unit', $user->unit_eselon2 ?? '');
+            }
+        }
+
+        $results = $query->where(function($sub) use ($q) {
+            $sub->where('name', 'LIKE', $q . '%') // Prefix matching for first name
+                ->orWhere('name', 'LIKE', '% ' . $q . '%') // Prefix matching for other words
+                ->orWhere('id', 'LIKE', $q . '%'); // Prefix matching for NIP
+        })
+        ->select('id', 'name', 'role', 'unit')
+        ->limit(10)
+        ->get();
+
+        return response()->json($results);
+    }
+
+    /**
      * Get active employee instance.
      */
     private function getActiveEmployee($request)

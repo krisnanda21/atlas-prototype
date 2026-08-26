@@ -17,14 +17,15 @@ class Eselon3Controller extends Controller
         $role = session('active_role', $user->role);
         
         if (in_array($role, ['kombinasi', 'karoSDM'])) {
-            return 'Biro Sumber Daya Manusia';
+            return ['Biro Sumber Daya Manusia'];
         }
         
         if ($user->scope === 'Kantor Perwakilan') {
-            return $user->unit_eselon2;
+            return [$user->unit_eselon2];
         }
         
-        return \App\Helpers\UnitKerjaHelper::getSubUnits($user->scope, true);
+        $units = \App\Helpers\UnitKerjaHelper::getSubUnits($user->scope, true);
+        return is_array($units) ? $units : [$units];
     }
 
     /**
@@ -335,7 +336,7 @@ class Eselon3Controller extends Controller
             ->select('idp_items.*', 'employees.id as emp_id', 'employees.name as employee_name', 'employees.jabatan', 'employees.unit_kerja_2', 'employees.category as employee_category', 'employees.role as employee_role');
 
         $activeRole = session('active_role', $user->role);
-        if ($activeRole === 'eselon2') {
+        if (in_array($activeRole, ['eselon2', 'karoSDM', 'kombinasi'])) {
             $query->where(function($q) {
                 $q->where('employees.jabatan', 'LIKE', 'Koordinator%')
                   ->orWhere('employees.jabatan', 'LIKE', 'Kepala Bagian%');
@@ -821,25 +822,17 @@ class Eselon3Controller extends Controller
             $eselon2Options = \App\Helpers\UnitKerjaHelper::getSubUnits($scopeToUse);
         }
         
-        // 13 Technical Competencies
-        $allCompetencies = [
-            'Manajemen Pengawasan Intern', 'Standar Audit', 'Analisis Data', 'Audit PBJ', 'Fraud Risk Management',
-            'Manajemen ASN', 'Literasi Digital', 'Keamanan Data Dasar', 'Integritas', 'Kerja Sama', 'Komunikasi',
-            'Orientasi pada Hasil', 'Pelayanan Publik' // Adjusting to the list of 13 as previously defined, using generic names if exact 13 is not fully known, but the ones listed are from the previous array
-        ];
-        
-        // Overriding the exact 13 based on known ATLAS data
-        $allCompetencies = [
-            'Manajemen Pengawasan Intern', 'Standar Audit', 'Analisis Data', 'Audit PBJ', 'Fraud Risk Management',
-            'Manajemen ASN', 'Literasi Digital', 'Keamanan Data Dasar'
-        ];
-        // Wait, from previous query the allCompetencies list was 17 items. The prompt mentioned "13 Kompetensi teknis". I will include the known ones and let the view handle "All Kompetensi".
-        // Actually, let me put the 13 competencies here:
-        $allCompetencies = [
-            'Manajemen Pengawasan Intern', 'Standar Audit', 'Analisis Data', 'Audit PBJ', 'Fraud Risk Management',
-            'Manajemen ASN', 'Literasi Digital', 'Keamanan Data Dasar', 'Akuntansi dan Pelaporan Keuangan',
-            'Manajemen Risiko', 'Audit Kinerja', 'Audit Investigatif', 'Sistem Informasi'
-        ];
+        $allCompetencies = \Illuminate\Support\Facades\DB::table('compass_nilai_teknis')->distinct()->pluck('kompetensi')->toArray();
+        if (empty($allCompetencies)) {
+            $allCompetencies = [
+                'Analisis Data', 'Analisis Kebijakan Publik', 'Analisis Proses Bisnis', 
+                'Fraud Risk Management', 'Governance, Risk, Control, and Compliance',
+                'Keuangan Negara/Daerah dan Kekayaan yang Dipisahkan', 'Literasi Digital',
+                'Manajemen dan Analisis Keuangan', 'Manajemen Penugasan Pengawasan Intern',
+                'Manajemen Strategis Pemerintah', 'Metode dan Teknik Pengawasan Intern',
+                'Pelaksanaan Pengawasan Intern', 'Standar Audit dan Kode Etik'
+            ];
+        }
 
         $certifications = DB::table('interna_rencana_diklat')
             ->where('jenis_pembelajaran', 'like', 'Sertifikasi%')
@@ -867,7 +860,7 @@ class Eselon3Controller extends Controller
             }
 
             if (!empty($jabatanList) && !in_array('All Jabatan', $jabatanList)) {
-                $query->whereIn('role', $jabatanList);
+                $query->whereIn('jabatan', $jabatanList);
             }
             
             if ($type === 'Kompetensi' && !empty($kompetensiList)) {
@@ -935,6 +928,17 @@ class Eselon3Controller extends Controller
             }
         }
 
+        $employees = collect($employees);
+        $page = \Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1;
+        $perPage = 25;
+        $items = $employees->forPage($page, $perPage);
+        $employeesPaginated = new \Illuminate\Pagination\LengthAwarePaginator($items, $employees->count(), $perPage, $page, [
+            'path' => \Illuminate\Pagination\Paginator::resolveCurrentPath(),
+            'pageName' => 'page',
+        ]);
+        $employeesPaginated->withQueryString();
+        $employees = $employeesPaginated;
+
         return view('eselon3.talent_finder', compact('employees', 'type', 'allCompetencies', 'certifications', 'availableUnits', 'showEselon1', 'showEselon2', 'eselon1Options', 'eselon2Options'));
     }
 
@@ -945,14 +949,34 @@ class Eselon3Controller extends Controller
     {
         $units = $this->getUnitScope();
         $search = $request->query('q');
+        $user = Auth::user();
+        $activeRole = session('active_role', $user->role);
         
-        $employeesQuery = DB::table('employees')->whereIn('unit', $units);
+        $employeesQuery = DB::table('employees');
+        if (!in_array($activeRole, ['karoSDM', 'kombinasi', 'sesma', 'admin', 'bangkom'])) {
+            $employeesQuery->whereIn('unit', $units);
+        }
+        
+        if ($search) {
+            $employeesQuery->where(function($q) use ($search) {
+                $q->where('name', 'LIKE', '%' . $search . '%')
+                  ->orWhere('id', 'LIKE', '%' . $search . '%')
+                  ->orWhere('jabatan', 'LIKE', '%' . $search . '%')
+                  ->orWhere('unit', 'LIKE', '%' . $search . '%');
+            });
+        }
+        
+        $employeesQuery->limit(100);
         $employees = $employeesQuery->get();
         $employee = $employees->first();
 
         $activeEmpId = $request->query('emp_id');
         if ($activeEmpId) {
-            $employee = DB::table('employees')->where('id', $activeEmpId)->whereIn('unit', $units)->first();
+            $empQuery = DB::table('employees')->where('id', $activeEmpId);
+            if (!in_array($activeRole, ['karoSDM', 'kombinasi', 'sesma', 'admin', 'bangkom'])) {
+                $empQuery->whereIn('unit', $units);
+            }
+            $employee = $empQuery->first();
         }
 
         $needs = [];

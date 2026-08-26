@@ -13,73 +13,133 @@ class AiAnalyticsService
      */
     public function generateStrategicAnalytics()
     {
-        $apiKey = env('GEMINI_API_KEY');
+        $apiKey = env('OPENROUTER_API_KEY');
         if (!$apiKey) {
-            Log::error('AI Analytics Service Error: GEMINI_API_KEY is not set in .env');
+            Log::error('AI Analytics Service Error: OPENROUTER_API_KEY is not set in .env');
             return;
         }
 
         // 1. Gather raw data from database
-        $totalCompassGaps = DB::table('competency_gaps')->count();
-        $gapsByCompetency = DB::table('competency_gaps')
-            ->select('competency_name', DB::raw('COUNT(id) as total_pegawai'), DB::raw('AVG(gap) as avg_gap'))
+        $avgIdp = DB::table('employees')->avg('idp_coverage') ?: 0;
+        
+        $totalEmp = DB::table('employees')->count();
+        $suboptimalEmpCount = DB::table('competency_gaps')
+            ->select('employee_id')
+            ->groupBy('employee_id')
+            ->havingRaw('AVG(score) < AVG(standard)')
+            ->get()
+            ->count();
+        $suboptimalPercent = $totalEmp > 0 ? round(($suboptimalEmpCount / $totalEmp) * 100) : 0;
+
+        $largestGap = DB::table('competency_gaps')
+            ->select('competency_name', DB::raw('ROUND(GREATEST(0, AVG(standard) - AVG(score)), 1) as avg_gap'))
             ->groupBy('competency_name')
             ->orderByDesc('avg_gap')
-            ->limit(3)
+            ->first();
+
+        $totalBangkom = DB::table('bangkom_unit')->count();
+        $realisedBangkom = DB::table('bangkom_unit')
+            ->whereIn('status', ['realisasi', 'persetujuan realisasi', 'realisasi disetujui', 'selesai'])
+            ->count();
+        $realisasiPercent = $totalBangkom > 0 ? round(($realisedBangkom / $totalBangkom) * 100) : 0;
+
+        $eselon1Stats = [];
+        $eselon1Units = DB::table('employees')->whereNotNull('unit_kerja_1')->where('unit_kerja_1', '!=', '')->where('unit_kerja_1', '!=', 'Kantor Perwakilan')->distinct()->pluck('unit_kerja_1');
+        foreach($eselon1Units as $e1) {
+            $e1Total = DB::table('employees')->where('unit_kerja_1', $e1)->count();
+            $e1Sub = DB::table('competency_gaps')
+                ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
+                ->where('employees.unit_kerja_1', $e1)
+                ->select('competency_gaps.employee_id')
+                ->groupBy('competency_gaps.employee_id')
+                ->havingRaw('AVG(competency_gaps.score) < AVG(competency_gaps.standard)')
+                ->get()
+                ->count();
+            $pct = $e1Total > 0 ? round(($e1Sub / $e1Total) * 100) : 0;
+            $eselon1Stats[] = ['unit' => $e1, 'percent' => $pct];
+        }
+        usort($eselon1Stats, function($a, $b) { return $b['percent'] <=> $a['percent']; });
+
+        $perwakilanStats = [];
+        $perwakilanUnits = DB::table('employees')->where('unit_kerja_1', 'Kantor Perwakilan')->whereNotNull('unit_kerja_2')->where('unit_kerja_2', '!=', '')->distinct()->pluck('unit_kerja_2');
+        foreach($perwakilanUnits as $pw) {
+            $pwTotal = DB::table('employees')->where('unit_kerja_2', $pw)->count();
+            $pwSub = DB::table('competency_gaps')
+                ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
+                ->where('employees.unit_kerja_2', $pw)
+                ->select('competency_gaps.employee_id')
+                ->groupBy('competency_gaps.employee_id')
+                ->havingRaw('AVG(competency_gaps.score) < AVG(competency_gaps.standard)')
+                ->get()
+                ->count();
+            $pct = $pwTotal > 0 ? round(($pwSub / $pwTotal) * 100) : 0;
+            $perwakilanStats[] = ['unit' => $pw, 'percent' => $pct];
+        }
+        usort($perwakilanStats, function($a, $b) { return $b['percent'] <=> $a['percent']; });
+
+        $techGaps = DB::table('competency_gaps')
+            ->where('type', 'Teknis')
+            ->select('competency_name', DB::raw('ROUND(GREATEST(0, AVG(standard) - AVG(score)), 1) as avg_gap'))
+            ->groupBy('competency_name')
+            ->orderByDesc('avg_gap')
             ->get();
-            
-        $idpItems = DB::table('idp_items')->select('source', DB::raw('COUNT(id) as total'))->groupBy('source')->get();
-        $bangkomPlans = DB::table('bangkom_unit')->select('status', DB::raw('COUNT(id) as total'))->groupBy('status')->get();
         
-        $promptContext = "Data BPKP saat ini:\n";
-        $promptContext .= "- Total kesenjangan kompetensi (gap COMPASS) yang ditemukan: $totalCompassGaps pegawai.\n";
-        $promptContext .= "- 3 Kompetensi dengan gap rata-rata tertinggi: \n";
-        foreach ($gapsByCompetency as $gap) {
-            $promptContext .= "  * {$gap->competency_name} (Gap Rata-rata: " . round($gap->avg_gap, 2) . ", pada {$gap->total_pegawai} pegawai)\n";
+        $promptContext = "1. % IDP Coverage: " . round($avgIdp) . "%\n";
+        $promptContext .= "2. % Pegawai Kompetensi Rendah: $suboptimalPercent%\n";
+        $promptContext .= "3. Gap Kompetensi Terbesar: " . ($largestGap ? "{$largestGap->competency_name} (Gap: {$largestGap->avg_gap})" : "-") . "\n";
+        $promptContext .= "4. % Realisasi Bangkom Unit: $realisasiPercent%\n";
+        $promptContext .= "5. % Pegawai dengan Kompetensi Rendah per Unit Kerja ESELON 1 (Top 5):\n";
+        foreach(array_slice($eselon1Stats, 0, 5) as $e1) {
+            $promptContext .= "   - {$e1['unit']}: {$e1['percent']}%\n";
         }
-        $promptContext .= "- Usulan IDP berdasarkan sumber:\n";
-        foreach ($idpItems as $idp) {
-            $promptContext .= "  * {$idp->source}: {$idp->total} usulan\n";
+        $promptContext .= "6. % Pegawai dengan Kompetensi Rendah per Kantor Perwakilan (Top 5):\n";
+        foreach(array_slice($perwakilanStats, 0, 5) as $pw) {
+            $promptContext .= "   - {$pw['unit']}: {$pw['percent']}%\n";
         }
-        $promptContext .= "- Status Kegiatan Bangkom Unit:\n";
-        foreach ($bangkomPlans as $plan) {
-            $promptContext .= "  * {$plan->status}: {$plan->total} kegiatan\n";
+        $promptContext .= "7. Gap Kompetensi Teknis per Jenis Kompetensi (Top 5):\n";
+        foreach($techGaps->take(5) as $tg) {
+            $promptContext .= "   - {$tg->competency_name}: {$tg->avg_gap} poin\n";
         }
 
-        $prompt = "Anda adalah Konsultan SDM (Human Capital) Eksekutif di BPKP. Berikut adalah ringkasan data kompetensi dan pelatihan dari sistem ATLAS (Aplikasi Terpadu Layanan SDM):\n\n";
+        $prompt = "Anda adalah tangan kanan Pimpinan BPKP yang memegang urusan SDM di lingkungan BPKP. Kondisi SDM BPKP saat ini adalah seperti ini:\n\n";
         $prompt .= $promptContext . "\n";
-        $prompt .= "Berikan persis 3 poin rekomendasi analisis strategis (Strategic Analytics) berdasarkan data di atas. Format balasan HARUS berupa JSON array persis seperti ini (tanpa markdown tambahan seperti ```json):\n";
+        $prompt .= "Dari data tersebut, berikan 3 poin rekomendasi strategis paling urgent dan penting kepada pimpinan BPKP saat ini. Format balasan HARUS berupa JSON array persis seperti ini (tanpa markdown tambahan seperti ```json):\n";
         $prompt .= "[\n";
         $prompt .= "  {\n";
         $prompt .= "    \"demand\": \"(Judul Singkat Isu/Kebutuhan)\",\n";
-        $prompt .= "    \"count\": (Angka jumlah estimasi pegawai atau kegiatan terkait),\n";
         $prompt .= "    \"risk\": \"(Pilih salah satu: Tinggi, Sedang, atau Rendah)\",\n";
         $prompt .= "    \"decision\": \"(Analisis dan Rekomendasi Eksekutif yang solutif max 3 kalimat)\"\n";
         $prompt .= "  }\n";
         $prompt .= "]";
 
-        // 2. Call Gemini API
+        // 2. Call OpenRouter API
         $response = Http::withHeaders([
+            'Authorization' => "Bearer {$apiKey}",
             'Content-Type' => 'application/json',
-        ])->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={$apiKey}", [
-            'contents' => [
+            'HTTP-Referer' => env('APP_URL', 'http://localhost'), // required by OpenRouter
+            'X-Title' => 'ATLAS BPKP' // optional
+        ])->post("https://openrouter.ai/api/v1/chat/completions", [
+            'model' => env('OPENROUTER_MODEL', 'openai/o1-preview'), // fallback to o1-preview if Ox Alpha is not defined
+            'messages' => [
                 [
-                    'parts' => [
-                        ['text' => $prompt]
-                    ]
+                    'role' => 'user',
+                    'content' => $prompt
                 ]
             ],
-            'generationConfig' => [
-                'temperature' => 0.4,
-                'responseMimeType' => 'application/json',
-            ]
+            // Note: O1 models might not support temperature parameter, we rely on defaults
         ]);
 
         if ($response->successful()) {
             $jsonResponse = $response->json();
             
             try {
-                $textResult = $jsonResponse['candidates'][0]['content']['parts'][0]['text'];
+                $textResult = $jsonResponse['choices'][0]['message']['content'];
+                
+                // Sometimes AI returns markdown codeblocks, let's clean it up
+                $textResult = preg_replace('/```json\s*/', '', $textResult);
+                $textResult = preg_replace('/```\s*/', '', $textResult);
+                $textResult = trim($textResult);
+                
                 $analytics = json_decode($textResult, true);
                 
                 if (is_array($analytics) && count($analytics) > 0) {
@@ -89,7 +149,7 @@ class AiAnalyticsService
                     foreach ($analytics as $item) {
                         DB::table('ai_strategic_analytics')->insert([
                             'demand' => $item['demand'] ?? 'Unknown Demand',
-                            'count' => (int)($item['count'] ?? 0),
+                            'count' => 0,
                             'risk' => $item['risk'] ?? 'Sedang',
                             'decision' => $item['decision'] ?? '-',
                             'created_at' => now(),

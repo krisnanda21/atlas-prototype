@@ -72,7 +72,7 @@
                     type="text"
                     name="username"
                     class="form-input"
-                    placeholder="contoh: dedi.pratama"
+                    placeholder="Masukkan Username"
                     value="{{ old('username') }}"
                     autocomplete="username"
                     autofocus

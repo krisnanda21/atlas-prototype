@@ -35,6 +35,11 @@ Route::get('/', function () {
     };
 })->name('home')->middleware('auth');
 
+// 🔒 API Endpoint for Autocomplete
+Route::middleware(['auth'])->group(function () {
+    Route::get('/api/employees/search', [App\Http\Controllers\PegawaiController::class, 'searchAjax'])->name('api.employees.search');
+});
+
 // ── Protected: Pegawai ──
 Route::middleware(['auth', 'atlas.permission:pegawai'])->group(function () {
     Route::get('/dashboard',              [PegawaiController::class, 'dashboard'])->name('pegawai.dashboard');
