@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>❌ Konfirmasi Pembatalan Bangkom</h1>
+    <h1 style="font-size:30px">❌ Konfirmasi Pembatalan Bangkom</h1>
 </div>
 
 @if(session('success'))
@@ -15,7 +15,7 @@
 @endif
 
 <div class="card">
-    <div class="card-title">Pengajuan Pembatalan dari Pengampu SDM</div>
+    <div class="card-title" style="font-size:18px">Pengajuan Pembatalan dari Pengampu SDM</div>
     
     {{-- Filter & Sort Bar --}}
     <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">

@@ -4,12 +4,12 @@
 
 @section('content')
 <div class="page-header">
-    <h1>🏛️ Brading Rapat Pimpinan (Sestama Brief)</h1>
+    <h1 style="font-size:30px;">🏛️ Brading Rapat Pimpinan (Sestama Brief)</h1>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
     <div class="card">
-        <div class="card-title">⚡ Generate Sestama Brief</div>
+        <div class="card-title" style="font-size:18px;">⚡ Generate Sestama Brief</div>
         <p class="text-sm text-muted" style="margin-bottom:20px;">Generate dokumen ringkasan kondisi pengembangan SDM nasional untuk kebutuhan Rapat Pimpinan Sestama.</p>
         <form method="POST" action="{{ route('executive.generateSestamaBrief') }}">
             @csrf
@@ -26,7 +26,7 @@
     </div>
 
     <div class="card">
-        <div class="card-title">📄 Dokumen Brief</div>
+        <div class="card-title" style="font-size:18px;">📄 Dokumen Brief</div>
         @if($briefContent)
         <div style="background:rgba(0,0,0,0.2);border-radius:8px;padding:16px;font-size:13px;line-height:1.8;color:var(--text-primary);white-space:pre-wrap;font-family:monospace;max-height:460px;overflow-y:auto;">{{ $briefContent }}</div>
         <div style="margin-top:12px;">

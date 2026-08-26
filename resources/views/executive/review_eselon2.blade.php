@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>📝 Review IDP Pejabat Eselon II</h1>
+    <h1 style="font-size:30px;">📝 Review IDP Pejabat Eselon II</h1>
 </div>
 
 @if(session('success'))
@@ -18,7 +18,7 @@
 <div class="card mb-4" style="padding:16px;">
     <form method="GET" style="display:flex;gap:10px;align-items:flex-end;">
         <div class="form-group" style="margin-bottom:0;flex:1;">
-            <label class="form-label">Cari Pejabat (Nama, NIP, Jabatan, Unit Kerja)</label>
+            <label class="form-label" style="font-size:12px; color:var(--text-primary);">Cari Pejabat Eselon II</label>
             <input type="text" name="q" class="form-control" value="{{ $search }}" placeholder="Ketik kata kunci pencarian...">
         </div>
         <button type="submit" class="btn btn-primary" style="height:40px;">Cari</button>
@@ -27,7 +27,7 @@
 </div>
 
 <div class="card">
-    <div class="card-title">Daftar Pejabat & IDP</div>
+    <div class="card-title" style="font-size:18px;">Daftar Pejabat & IDP</div>
     
     {{-- Filter & Sort Bar --}}
     <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">

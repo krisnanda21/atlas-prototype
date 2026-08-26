@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>📝 Susun IDP Saya</h1>
+    <h1 style="font-size:30px">📝 Susun IDP Saya</h1>
 </div>
 
 @if(session('success'))
@@ -17,7 +17,7 @@
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
     {{-- Rekomendasi Sistem --}}
     <div class="card">
-        <div class="card-title">💡 Rekomendasi Sistem</div>
+        <div class="card-title" style="font-size:18px;">💡 Rekomendasi Sistem</div>
         <p class="text-sm text-muted" style="margin-bottom:12px;">Berdasarkan gap COMPASS, jabatan, dan arahan strategis unit Anda.</p>
         @forelse($recommendations as $rec)
         <div class="rec-item" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;margin-bottom:8px;">
@@ -65,7 +65,7 @@
 
     {{-- Tambah Manual --}}
     <div class="card">
-        <div class="card-title">✍️ Tambah IDP Manual</div>
+        <div class="card-title" style="font-size:18px;">✍️ Tambah IDP Manual</div>
         <form method="POST" action="{{ route('pegawai.storeIdp') }}">
             @csrf
             <div class="form-group">
@@ -114,7 +114,7 @@
 {{-- Draft IDP List --}}
 <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
-        <div class="card-title" style="margin:0;">📋 Draft & Diajukan IDP Saya</div>
+        <div class="card-title" style="margin:0;font-size:18px;">📋 Draft & Diajukan IDP Saya</div>
         <div style="display:flex;align-items:center;gap:10px;">
             <button type="button" id="btn-batch-delete" class="btn btn-danger" style="display:none;font-size:12px;padding:6px 14px;border-radius:6px;gap:6px;align-items:center;" onclick="deleteBatchIdp()">
                 <span>🗑️</span> <span>Hapus Terpilih (<strong id="batch-delete-count">0</strong>)</span>

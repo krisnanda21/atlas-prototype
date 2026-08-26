@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>📥 IDP Demand Pool</h1>
+    <h1 style="font-size:30px">📥 IDP Demand Pool</h1>
     <span class="badge badge-neutral">Unit: 
         @if(session('active_role', auth()->user()->role ?? '') === 'bangkom')
             Biro Sumber Daya Manusia
@@ -43,7 +43,7 @@
 {{-- Kanban Work Board --}}
 <div class="card mb-4">
     <div class="card-title" style="display:flex; justify-content:space-between; align-items:center;">
-        <span>🗂️ Papan Kerja Bangkom (Pipeline Status)</span>
+        <span style="font-size:18px;">🗂️ Papan Kerja Bangkom (Pipeline Status)</span>
         <span style="font-size:11px; font-weight:normal; color:var(--text-secondary);">Pantau progres dari arahan strategis hingga realisasi</span>
     </div>
     <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; overflow-x:auto;">
@@ -170,7 +170,7 @@
 <div class="card">
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:20px;">
         <div>
-            <div class="card-title" style="margin-bottom:4px;">📋 Demand Pool Multi-Source</div>
+            <div class="card-title" style="margin-bottom:4px;font-size:18px">📋 Demand Pool Multi-Source</div>
             <div style="font-size:12px; color:var(--text-secondary);">Daftar kebutuhan bangkom terkelompok secara hierarkis (Teknis & Mansoskul)</div>
         </div>
         

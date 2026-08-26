@@ -4,29 +4,29 @@
 
 @section('content')
 <div class="page-header">
-    <h1>🏠 Dashboard Kepala Unit</h1>
+    <h1 style="font-size:30px">🏠 Dashboard Kepala Unit</h1>
     <span class="badge badge-neutral">Unit: {{ auth()->user()->scope }}</span>
 </div>
 
 {{-- KPI Cards --}}
 <div class="grid-4 mb-4">
     <div class="stat-card">
-        <div class="stat-icon" style="font-size:14px; font-weight:bold; margin-bottom:10px;">🎯 IDP Coverage</div>
+        <div class="stat-icon" style="font-size:16px; font-weight:bold; margin-bottom:10px;">🎯 IDP Coverage</div>
         <div class="stat-value" style="color:{{ $idpCoverage >= 75 ? 'var(--success)' : ($idpCoverage >= 50 ? 'var(--warning)' : 'var(--danger)') }};">{{ $idpCoverage }}%</div>
         <div class="stat-label" style="font-size:11px; white-space:normal; line-height:1.4; margin-top:8px;">Seberapa besar gap kompetensi pegawai yang sudah ditutup melalui Individual Development Plan (IDP)</div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon" style="font-size:14px; font-weight:bold; margin-bottom:10px;">🧠 Rata-Rata Nilai Teknis</div>
+        <div class="stat-icon" style="font-size:16px; font-weight:bold; margin-bottom:10px;">🧠 Rata-Rata Nilai Teknis</div>
         <div class="stat-value" style="color:var(--info);">{{ $rataNilaiTeknis }}</div>
         <div class="stat-label" style="font-size:11px; white-space:normal; line-height:1.4; margin-top:8px;">Nilai rata-rata hasil penilaian kompetensi teknis pegawai di {{ auth()->user()->unit_eselon2 ?? auth()->user()->scope }}</div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon" style="font-size:14px; font-weight:bold; margin-bottom:10px;">📉 Rata-rata Gap Kompetensi</div>
+        <div class="stat-icon" style="font-size:16px; font-weight:bold; margin-bottom:10px;">📉 Rata-rata Gap Kompetensi</div>
         <div class="stat-value" style="color:var(--danger);">{{ $rataGapTeknis }}</div>
         <div class="stat-label" style="font-size:11px; white-space:normal; line-height:1.4; margin-top:8px;">Rata-rata gap kompetensi teknis pegawai di {{ auth()->user()->unit_eselon2 ?? auth()->user()->scope }}</div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon" style="font-size:14px; font-weight:bold; margin-bottom:10px;">📚 Jumlah Diklat Diusulkan</div>
+        <div class="stat-icon" style="font-size:16px; font-weight:bold; margin-bottom:10px;">📚 Jumlah Diklat Diusulkan</div>
         <div class="stat-value" style="color:var(--success);">{{ $usulanDiklat }}</div>
         <div class="stat-label" style="font-size:11px; white-space:normal; line-height:1.4; margin-top:8px;">Jumlah Kegiatan Diklat yang diusulkan oleh {{ auth()->user()->unit_eselon2 ?? auth()->user()->scope }}</div>
     </div>
@@ -68,7 +68,7 @@
             $yRendah = $center + $radius * sin($radRendah);
         @endphp
         <div class="card" style="padding:24px; display:flex; flex-direction:column; align-items:center; overflow:visible;">
-            <div class="card-title" style="align-self:flex-start; margin-bottom:16px;">📊 Pemenuhan JP Pegawai 2026</div>
+            <div class="card-title" style="align-self:flex-start; margin-bottom:16px; font-size:18px;">📊 Pemenuhan JP Pegawai 2026</div>
             @if($totalPegawai > 0)
                 <div style="position:relative; width:220px; height:220px; border-radius:50%; margin-top:20px; margin-bottom:34px; background: conic-gradient(
                     var(--success) 0deg {{ $degTinggi }}deg,
@@ -104,7 +104,7 @@
         {{-- Card Rekap Rencana & Realisasi --}}
         <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; padding:24px;">
             <div>
-                <div class="card-title">📅 Rekap Rencana & Realisasi Kegiatan Unit</div>
+                <div class="card-title" style="font-size:18px;">📅 Rekap Rencana & Realisasi Kegiatan Unit</div>
                 @php
                     $totalKegiatan = array_sum($planSummary);
                     $cDraft = $planSummary['draft'] ?? 0;
@@ -153,7 +153,7 @@
 
         {{-- Card Jumlah Pengajuan IDP per Kompetensi Teknis --}}
         <div class="card" style="padding:24px; flex-grow:1;">
-            <div class="card-title">📝 Jumlah Pengajuan IDP per Kompetensi Teknis</div>
+            <div class="card-title" style="font-size:18px;">📝 Jumlah Pengajuan IDP per Kompetensi Teknis</div>
             @if($pengajuanIdpTeknis->isNotEmpty())
                 <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; max-height:280px; overflow-y:auto; padding-right:6px;">
                     @foreach($pengajuanIdpTeknis as $idp)
@@ -182,12 +182,12 @@
         
         {{-- Leaderboard Block --}}
         <div class="card" style="padding:24px;">
-            <div class="card-title">🏆 Leaderboard Pemenuhan JP</div>
+            <div class="card-title" style="font-size:18px;">🏆 Leaderboard Pemenuhan JP</div>
             <div style="display:flex; flex-direction:column; gap:24px; margin-top:16px;">
                 
                 <!-- Top 5 -->
                 <div>
-                    <div style="font-size:13px; font-weight:600; color:var(--success); margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+                    <div style="font-size:15px; font-weight:600; color:var(--success); margin-bottom:12px; display:flex; align-items:center; gap:6px;">
                         <span>⭐</span> Top 5 JP Tertinggi
                     </div>
                     @if(count($top5Jp) > 0)
@@ -212,7 +212,7 @@
                 
                 <!-- Bottom 5 -->
                 <div>
-                    <div style="font-size:13px; font-weight:600; color:var(--danger); margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+                    <div style="font-size:15px; font-weight:600; color:var(--danger); margin-bottom:12px; display:flex; align-items:center; gap:6px;">
                         <span>⚠️</span> Bottom 5 JP Terendah
                     </div>
                     @if(count($bottom5Jp) > 0)
@@ -240,7 +240,7 @@
 
         {{-- Card Deskriptif Kompetensi --}}
         <div class="card" style="padding:24px; flex-grow:1;">
-            <div class="card-title">📉 Gap Kompetensi Terbanyak di Unit Kerja</div>
+            <div class="card-title" style="font-size:18px;">📉 Gap Kompetensi Terbanyak di Unit Kerja</div>
             @if($competencyStats->isNotEmpty())
                 <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; max-height:280px; overflow-y:auto; padding-right:6px;">
                     @foreach($competencyStats as $stat)

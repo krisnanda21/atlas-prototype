@@ -4,26 +4,26 @@
 
 @section('content')
 <div class="page-header">
-    <h1>👋 Selamat Datang, {{ $employee->name ?? auth()->user()->name }}</h1>
+    <h1 style="font-size:25px">👋 Selamat Datang, {{ $employee->name ?? auth()->user()->name }}</h1>
 </div>
 
 {{-- KPI Cards --}}
 <div class="grid-4 mb-4">
     <div class="stat-card">
-        <div style="font-size:14px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">📋 IDP Draft</div>
+        <div style="font-size:18px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">📋 IDP Draft</div>
         <div class="stat-value">{{ $draftCount }}</div>
     </div>
     <div class="stat-card">
-        <div style="font-size:14px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">✅ IDP Approved</div>
+        <div style="font-size:18px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">✅ IDP Approved</div>
         <div class="stat-value">{{ $agreedCount }}</div>
     </div>
     <div class="stat-card">
-        <div style="font-size:14px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">🎯 IDP Coverage</div>
+        <div style="font-size:18px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">🎯 IDP Coverage</div>
         <div class="stat-value" style="color:{{ $idpCoverage >= 75 ? 'var(--success)' : ($idpCoverage >= 50 ? 'var(--warning)' : 'var(--danger)') }};">{{ $idpCoverage }}%</div>
         <div style="font-size:10px; color:var(--text-secondary); margin-top:2px;">{{ $coverageDetail['matched_count'] }} dari {{ $coverageDetail['total_target'] }} gap terpenuhi</div>
     </div>
     <div class="stat-card">
-        <div style="font-size:14px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">📐 Gap Kompetensi Teknis</div>
+        <div style="font-size:18px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">📐 Gap Kompetensi Teknis</div>
         @php
             $colorClass = '';
             if ($compassAverage && $compassAverage->nilai_teknis !== null) {
@@ -47,7 +47,7 @@
 {{-- Competency Radar (Static Visual) --}}
 <div style="margin-bottom:20px;">
     <div class="card">
-        <div class="card-title">📊 Profil Kompetensi Saya</div>
+        <div class="card-title" style="font-size:18px;">📊 Profil Kompetensi Saya</div>
         @php
             $hasAnyScore = $compassAverage && ($compassAverage->nilai_teknis !== null || $compassAverage->nilai_mansoskul !== null || $compassAverage->nilai_potensi !== null);
             $hasKompetensi = $compassAverage && ($compassAverage->nilai_teknis !== null || $compassAverage->nilai_mansoskul !== null);

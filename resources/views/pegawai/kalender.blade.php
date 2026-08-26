@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="page-header">
-    <h1>📅 Kalender Kegiatan Bangkom</h1>
+    <h1 style="font-size:30px">📅 Kalender Kegiatan Bangkom</h1>
 </div>
 
 <div class="card">
-    <div class="card-title">Jadwal Kegiatan Bangkom Saya</div>
+    <div class="card-title" style="font-size:18px;">Jadwal Kegiatan Bangkom Saya</div>
     
     {{-- Legend --}}
     <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">

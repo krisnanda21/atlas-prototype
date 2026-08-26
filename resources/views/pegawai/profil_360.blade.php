@@ -4,14 +4,14 @@
 
 @section('content')
 <div class="page-header">
-    <h1>🔮 Profil 360° Kompetensi & IDP</h1>
+    <h1 style="font-size:30px">🔮 Profil 360° Kompetensi & IDP</h1>
 </div>
 
 
 @if($employee)
     {{-- Employee Summary --}}
     <div class="card" style="margin-bottom:20px;">
-        <div class="card-title">👤 Profil Pegawai</div>
+        <div class="card-title" style="font-size:18px;">👤 Profil Pegawai</div>
         <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:20px;font-size:13px;padding-top:8px;">
             <div>
                 <div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">Nama</div>
@@ -81,7 +81,7 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
         {{-- Teknis --}}
         <div class="card">
-            <div class="card-title">📐 Kompetensi Teknis</div>
+            <div class="card-title" style="font-size:18px;">📐 Kompetensi Teknis</div>
             @php
                 $teknisNeeds = $needs->where('type', 'Teknis');
             @endphp
@@ -116,7 +116,7 @@
 
         {{-- Mansoskul --}}
         <div class="card">
-            <div class="card-title">🤝 Kompetensi Mansoskul</div>
+            <div class="card-title" style="font-size:18px;">🤝 Kompetensi Mansoskul</div>
             @php
                 $mansoskulNeeds = $needs->where('type', 'Mansoskul');
             @endphp
@@ -152,7 +152,7 @@
 
 {{-- IDP Items --}}
 <div class="card" style="margin-top:20px;">
-    <div class="card-title">📋 Daftar Item IDP</div>
+    <div class="card-title" style="font-size:18px;">📋 Daftar Item IDP</div>
     <table>
         <thead>
             <tr><th>Kebutuhan</th><th>Sumber</th><th>Basis</th><th>Prioritas</th><th>Status</th></tr>
@@ -194,7 +194,7 @@
 
 {{-- Riwayat Bangkom Unit --}}
 <div class="card" style="margin-top:20px;">
-    <div class="card-title">🏆 Riwayat Bangkom Unit</div>
+    <div class="card-title" style="font-size:18px;">🏆 Riwayat Bangkom Unit</div>
     <table>
         <thead>
             <tr>
@@ -232,7 +232,7 @@
 
 {{-- Riwayat Pelatihan / Diklat --}}
 <div class="card" style="margin-top:20px;">
-    <div class="card-title">📚 Riwayat Pelatihan / Diklat (SMILE)</div>
+    <div class="card-title" style="font-size:18px;">📚 Riwayat Pelatihan / Diklat (SMILE)</div>
     <table>
         <thead>
             <tr>
@@ -274,7 +274,7 @@
 
 {{-- Riwayat Sertifikasi Profesional --}}
 <div class="card" style="margin-top:20px;">
-    <div class="card-title">🏅 Riwayat Sertifikasi Profesional (SMILE)</div>
+    <div class="card-title" style="font-size:18px;">🏅 Riwayat Sertifikasi Profesional (SMILE)</div>
     <table>
         <thead>
             <tr>

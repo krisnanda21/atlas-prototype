@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>✅ Penetapan Bangkom Unit</h1>
+    <h1 style="font-size:30px;">✅ Penetapan Bangkom Unit</h1>
 </div>
 
 @if(session('success'))
@@ -26,7 +26,7 @@
 
 {{-- Combined plans table card --}}
 <div class="card">
-    <div class="card-title">📋 Daftar Rencana & Penetapan Bangkom Unit</div>
+    <div class="card-title" style="font-size:18px;">📋 Daftar Rencana & Penetapan Bangkom Unit</div>
 
     {{-- Filter & Sort Bar --}}
     <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">

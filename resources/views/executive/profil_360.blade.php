@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>🔮 Profil 360° Nasional</h1>
+    <h1 style="font-size:30px;">🔮 Profil 360° Nasional</h1>
 </div>
 
 @php

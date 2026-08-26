@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>🏛️ National Control Centre</h1>
+    <h1 style="font-size:30px">🏛️ National Control Centre</h1>
     <div style="display:flex;gap:8px;align-items:center;">
         <span style="font-size:12px;color:var(--text-secondary);">Komposisi IDP Nasional:</span>
         <span class="badge badge-info">Assessment {{ $assessmentPercent }}%</span>
@@ -16,9 +16,9 @@
 {{-- Alert: Lowest Unit --}}
 @if($lowestUnit !== '-')
 <div style="padding:14px 16px;border-radius:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);margin-bottom:20px;display:flex;align-items:center;gap:12px;">
-    <span style="font-size:20px;">⚠️</span>
+    <span style="font-size:23px;">⚠️</span>
     <div>
-        <div style="font-weight:600;font-size:13px;color:var(--danger);">Unit dengan Coverage Terendah</div>
+        <div style="font-weight:600;font-size:16px;color:var(--danger);">Unit dengan Coverage Terendah</div>
         <div style="font-size:12px;color:var(--text-secondary);">{{ $lowestUnit }}</div>
     </div>
 </div>
@@ -30,7 +30,7 @@
     {{-- Header --}}
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:16px;">
         <div>
-            <div class="card-title" style="margin-bottom:4px;">📊 Persentase IDP Coverage per Unit Kerja</div>
+            <div class="card-title" style="margin-bottom:4px;font-size:18px;">📊 Persentase IDP Coverage per Unit Kerja</div>
         </div>
     </div>
 
@@ -288,7 +288,7 @@
 <div class="card mb-4" style="padding:20px;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:16px;">
         <div>
-            <div class="card-title" style="margin-bottom:4px;">📊 Persentase IDP Coverage per Unit Kerja</div>
+            <div class="card-title" style="margin-bottom:4px; font-size:18px;">📊 Persentase IDP Coverage per Unit Kerja</div>
         </div>
     </div>
 
@@ -351,7 +351,7 @@
 {{-- Data Table Section --}}
 <div class="card">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
-        <div class="card-title" style="margin-bottom:0;">📋 Tabel Ringkas Nasional</div>
+        <div class="card-title" style="margin-bottom:0;font-size:18px">📋 Tabel Ringkas Nasional</div>
     </div>
 
     <div style="overflow-x:auto;">

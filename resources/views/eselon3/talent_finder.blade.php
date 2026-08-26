@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>🔍 Talent Finder</h1>
+    <h1 style="font-size:30px">🔍 Talent Finder</h1>
     <p class="text-muted" style="margin-top: 8px;">Cari pegawai unggulan berdasarkan kriteria kompetensi atau sertifikasi.</p>
 </div>
 
@@ -28,7 +28,7 @@
     <input type="hidden" name="type" id="type-input" value="{{ request('type', 'Kompetensi') }}">
 
     <div class="card mb-4" style="position: relative; z-index: 100;">
-        <div class="card-title" style="margin-bottom: 20px;">Kriteria Pencarian</div>
+        <div class="card-title" style="margin-bottom: 20px; font-size:18px">Kriteria Pencarian</div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
             <!-- Dynamic Filter (Kompetensi OR Sertifikasi) -->

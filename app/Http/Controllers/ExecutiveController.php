@@ -384,12 +384,17 @@ class ExecutiveController extends Controller
         $avgPusatVal = count($unitStatsPusatEselon1) > 0 ? round(collect($unitStatsPusatEselon1)->avg('value')) : 0;
         $avgPerwakilanVal = count($unitStatsPerwakilanWilayah) > 0 ? round(collect($unitStatsPerwakilanWilayah)->avg('value')) : 0;
 
-        // Gap Kompetensi (Side-Bar Chart)
+        // Gap Kompetensi (Spider Chart)
         $techGaps = DB::table('competency_gaps')
             ->join('employees', 'competency_gaps.employee_id', '=', 'employees.id')
             ->whereIn('employees.unit', $units)
             ->where('competency_gaps.type', 'Teknis')
-            ->select('competency_gaps.competency_name', DB::raw('ROUND(GREATEST(0, AVG(competency_gaps.standard) - AVG(competency_gaps.score)), 1) as avg_gap'))
+            ->select(
+                'competency_gaps.competency_name',
+                DB::raw('ROUND(GREATEST(0, AVG(competency_gaps.standard) - AVG(competency_gaps.score)), 1) as avg_gap'),
+                DB::raw('ROUND(AVG(competency_gaps.score), 1) as avg_score'),
+                DB::raw('ROUND(AVG(competency_gaps.standard), 1) as avg_standard')
+            )
             ->groupBy('competency_gaps.competency_name')
             ->orderByDesc('avg_gap')
             ->get();

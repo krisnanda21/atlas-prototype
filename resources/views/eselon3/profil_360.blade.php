@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header">
-    <h1>🔮 Profil 360° Kompetensi Pegawai Unit</h1>
+    <h1 style="font-size:30px">🔮 Profil 360° Kompetensi Pegawai Unit</h1>
 </div>
 
 @include('components.profil_360_content')

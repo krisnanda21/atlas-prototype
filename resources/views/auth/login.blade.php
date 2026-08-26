@@ -55,7 +55,7 @@
             <div class="logo-sub">Aplikasi Talent &amp; Learning Analytic System</div>
         </div>
 
-        <h2>Masuk ke Sistem</h2>
+        <h2>Login User</h2>
 
         @if(session('error'))
             <div class="alert alert-danger">⚠️ {{ session('error') }}</div>
@@ -66,7 +66,7 @@
 
             {{-- Username --}}
             <div class="form-group">
-                <label class="form-label" for="username">Username</label>
+                <label class="form-label" for="username" style="color:var(--text-primary)">Username</label>
                 <input
                     id="username"
                     type="text"
@@ -83,7 +83,7 @@
 
             {{-- Password --}}
             <div class="form-group">
-                <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="password" style="color:var(--text-primary)">Password</label>
                 <input
                     id="password"
                     type="password"
