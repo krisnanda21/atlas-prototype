@@ -155,8 +155,3 @@ Route::middleware(['auth', 'atlas.permission:admin'])->group(function () {
     // Uji Coba API SMILE
     Route::get('/admin/test-api-smile',                [AdminController::class, 'testApiSmile'])->name('admin.testApiSmile');
 });
-
-
-
-
-

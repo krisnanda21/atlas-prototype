@@ -578,8 +578,16 @@ class PegawaiController extends Controller
             }
         }
         
-        // Load SIMPEL Diklat events
-        $diklats = DB::table('simpel_t_diklat')->get();
+        // Load SIMPEL Diklat events where user is participant
+        $diklats = DB::table('simpel_t_diklat')
+            ->whereExists(function ($query) use ($employee) {
+                $query->select(DB::raw(1))
+                      ->from('simpel_t_pendaftar')
+                      ->whereColumn('simpel_t_pendaftar.kode_pelatihan', 'simpel_t_diklat.kode_pelatihan')
+                      ->where('simpel_t_pendaftar.employee_id', $employee->id);
+            })
+            ->get();
+            
         foreach ($diklats as $diklat) {
             $endDate = date('Y-m-d', strtotime($diklat->tanggal_selesai . ' +1 day'));
             

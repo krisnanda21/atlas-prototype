@@ -17,26 +17,22 @@
 </div>
 
 {{-- KPI Cards --}}
-<div class="grid-4 mb-4">
-    <div class="stat-card">
-        <div class="stat-icon">📊</div>
-        <div class="stat-value">{{ $totalDemand }}</div>
-        <div class="stat-label">Total IDP Demand</div>
+<div class="grid-4 mb-4" >
+    <div class="stat-card" style="display:flex; flex-direction:column; height:120px;">
+        <div style="font-size:16px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">📋 IDP Demand</div>
+        <div class="stat-value" style="font-size:35px">{{ $totalDemand }}</div>
     </div>
-    <div class="stat-card">
-        <div class="stat-icon">✅</div>
-        <div class="stat-value">{{ $executedPercent }}%</div>
-        <div class="stat-label">IDP Executed (%)</div>
+    <div class="stat-card" style="display:flex; flex-direction:column; height:120px;">
+        <div style="font-size:16px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">✅ IDP Approved</div>
+        <div class="stat-value" style="font-size:35px">{{ $executedPercent }}%</div>
     </div>
-    <div class="stat-card">
-        <div class="stat-icon">🏆</div>
-        <div class="stat-value" style="font-size:14px;padding-top:4px;">{{ $mostNeededLabel }}</div>
-        <div class="stat-label">Most Needed IDP</div>
+    <div class="stat-card" style="display:flex; flex-direction:column; height:120px;">
+        <div style="font-size:16px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">🚀 Bangkom Submit</div>
+        <div class="stat-value" style="font-size:35px">{{ $bangkomSubmitPercent }}%</div>
     </div>
-    <div class="stat-card">
-        <div class="stat-icon">⚠️</div>
-        <div class="stat-value">{{ $nonJfaWithoutIdp }}</div>
-        <div class="stat-label">Non-JFA Tanpa IDP</div>
+    <div class="stat-card" style="display:flex; flex-direction:column; height:120px;">
+        <div style="font-size:16px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">📈 Bangkom Realisasi</div>
+        <div class="stat-value" style="font-size:35px">{{ $bangkomRealisasiPercent }}%</div>
     </div>
 </div>
 

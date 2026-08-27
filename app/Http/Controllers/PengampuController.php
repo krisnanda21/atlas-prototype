@@ -49,26 +49,20 @@ class PengampuController extends Controller
             ->whereIn('idp_items.status', ['Disepakati', 'Realisasi'])->count();
         $executedPercent = $totalDemand > 0 ? round(($agreedCount / $totalDemand) * 100) : 0;
 
-        // Most Needed IDP
-        $mostNeeded = DB::table('idp_items')
-            ->join('employees', 'idp_items.employee_id', '=', 'employees.id')
-            ->whereIn('employees.unit', $units)
-            ->select('idp_items.need', DB::raw('count(*) as total'))
-            ->groupBy('idp_items.need')
-            ->orderByDesc('total')
-            ->first();
-        $mostNeededLabel = $mostNeeded ? $mostNeeded->need . ' (' . $mostNeeded->total . ')' : '-';
-
-        // Non-JFA tanpa IDP
-        $nonJfaWithoutIdp = DB::table('employees')
-            ->whereIn('unit', $units)
-            ->where('category', 'Non-JFA')
-            ->whereNotExists(function ($query) {
-                $query->select(DB::raw(1))
-                    ->from('idp_items')
-                    ->whereColumn('idp_items.employee_id', 'employees.id');
-            })
+        // Bangkom Submit
+        $totalBangkom = DB::table('bangkom_unit')->whereIn('unit_pengusul', $units)->count();
+        $submitBangkomCount = DB::table('bangkom_unit')
+            ->whereIn('unit_pengusul', $units)
+            ->where('status', '!=', 'draft')
             ->count();
+        $bangkomSubmitPercent = $totalBangkom > 0 ? round(($submitBangkomCount / $totalBangkom) * 100) : 0;
+
+        // Bangkom Realisasi
+        $realisasiBangkomCount = DB::table('bangkom_unit')
+            ->whereIn('unit_pengusul', $units)
+            ->whereIn('status', ['realisasi', 'realisasi diajukan', 'selesai'])
+            ->count();
+        $bangkomRealisasiPercent = $totalBangkom > 0 ? round(($realisasiBangkomCount / $totalBangkom) * 100) : 0;
 
         // 2. Kanban Work Board
         $kanbanStrategic = DB::table('strategic_directions')->whereIn('unit', $units)->get();
@@ -301,7 +295,7 @@ class PengampuController extends Controller
             ->pluck('unit_eselon2');
 
         return view('pengampu.demand_pool', compact(
-            'totalDemand', 'executedPercent', 'mostNeededLabel', 'nonJfaWithoutIdp',
+            'totalDemand', 'executedPercent', 'bangkomSubmitPercent', 'bangkomRealisasiPercent',
             'kanbanStrategic', 'kanbanNeeds', 'kanbanPlans', 'kanbanEvidence',
             'demands', 'demandsTeknis', 'demandsMansoskul', 'scopeUnit', 'allEselon2Units', 'units'
         ));

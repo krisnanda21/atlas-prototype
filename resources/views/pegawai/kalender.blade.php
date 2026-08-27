@@ -10,12 +10,11 @@
 <div class="card">
     <div class="card-title" style="font-size:18px;">Jadwal Kegiatan Bangkom Saya</div>
     
-    {{-- Legend --}}
-    <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><div style="width:12px;height:12px;border-radius:2px;background:#f59e0b;"></div>Pelatihan Formal</div>
-        <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><div style="width:12px;height:12px;border-radius:2px;background:#3b82f6;"></div>Bangkom Unit</div>
-        <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><div style="width:12px;height:12px;border-radius:2px;background:#10b981;"></div>Mandiri / KMS</div>
-        <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><div style="width:12px;height:12px;border-radius:2px;background:#8b5cf6;"></div>Diklat SIMPEL</div>
+    {{-- Filter Buttons --}}
+    <div style="display:flex;gap:10px;margin-bottom:20px;">
+        <button class="btn btn-primary filter-btn active" data-filter="all" style="border-radius:20px; padding:6px 16px; font-size:14px; font-weight:500;">Semua</button>
+        <button class="btn btn-outline-primary filter-btn" data-filter="diklat" style="border-radius:20px; padding:6px 16px; font-size:14px; font-weight:500; border-color:rgba(255,255,255,0.2); font-color:rgba(255, 255, 255, 0.2);">Diklat</button>
+        <button class="btn btn-outline-primary filter-btn" data-filter="bangkom" style="border-radius:20px; padding:6px 16px; font-size:14px; font-weight:500; border-color:rgba(255,255,255,0.2); font-color:rgba(255, 255, 255, 0.2);">Bangkom</button>
     </div>
 
     {{-- Calendar Container --}}
@@ -24,47 +23,50 @@
     </div>
 </div>
 
-{{-- Event Detail Modal --}}
-<div class="modal fade" id="eventDetailModal" tabindex="-1" aria-labelledby="eventDetailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" style="background-color: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
-            <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                <h5 class="modal-title" id="eventDetailModalLabel" style="color: var(--text-primary); font-weight: 600;">Detail Kegiatan</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="color: var(--text-secondary); padding: 24px;">
-                <h4 id="modalEventTitle" style="color: var(--text-primary); margin-bottom: 20px; font-weight: 700;">-</h4>
+{{-- Event Detail Modal (Custom Vanilla) --}}
+<div id="eventDetailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.8); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center; opacity:0; transition:opacity 0.2s ease-in-out;">
+    <div style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.1); border-radius:12px; width:90%; max-width:500px; transform:scale(0.95); transition:transform 0.2s ease-in-out;">
+        {{-- Header --}}
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <h5 style="margin:0; color:var(--text-primary); font-weight:600; font-size:18px;">Detail Kegiatan</h5>
+            <button type="button" onclick="closeEventModal()" style="background:transparent; border:none; color:var(--text-secondary); font-size:28px; cursor:pointer; line-height:1; padding:0;">&times;</button>
+        </div>
+        
+        {{-- Body --}}
+        <div style="color:var(--text-secondary); padding:24px;">
+            <h4 id="modalEventTitle" style="color:var(--text-primary); margin:0 0 20px 0; font-weight:700;">-</h4>
+            
+            <div style="display:grid; grid-template-columns:140px 1fr; gap:12px; margin-bottom:16px; font-size:14px;">
+                <div style="font-weight:500;">Jenis Kegiatan</div>
+                <div>: <span id="modalEventJenis" class="badge" style="background:rgba(255,255,255,0.1); color:var(--text-primary); font-weight:normal; padding:4px 8px; border-radius:4px;">-</span></div>
                 
-                <div style="display: grid; grid-template-columns: 140px 1fr; gap: 12px; margin-bottom: 16px;">
-                    <div style="font-weight: 500;">Jenis Kegiatan</div>
-                    <div>: <span id="modalEventJenis" class="badge" style="background: rgba(255,255,255,0.1); color: var(--text-primary); font-weight: normal;">-</span></div>
-                    
-                    <div style="font-weight: 500;">Status</div>
-                    <div>: <span id="modalEventStatus" style="color: var(--text-primary);">-</span></div>
-                    
-                    <div style="font-weight: 500;">Pelaksanaan</div>
-                    <div>: <span id="modalEventTanggal" style="color: var(--text-primary);">-</span></div>
-                    
-                    <div style="font-weight: 500;">Metode</div>
-                    <div>: <span id="modalEventMetode" style="color: var(--text-primary);">-</span></div>
-                    
-                    <div style="font-weight: 500;">Jam Pelajaran</div>
-                    <div>: <span id="modalEventJp" style="color: var(--text-primary);">-</span></div>
-                </div>
+                <div style="font-weight:500;">Status</div>
+                <div>: <span id="modalEventStatus" style="color:var(--text-primary);">-</span></div>
                 
-                <div id="modalExtraFields" style="display: none; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
-                    <div style="display: grid; grid-template-columns: 140px 1fr; gap: 12px;">
-                        <div style="font-weight: 500;">Kuota Tersedia</div>
-                        <div>: <span id="modalEventKuota" style="color: var(--text-primary);">-</span></div>
-                        
-                        <div style="font-weight: 500;">Syarat Jabatan</div>
-                        <div>: <span id="modalEventSyarat" style="color: var(--text-primary);">-</span></div>
-                    </div>
+                <div style="font-weight:500;">Pelaksanaan</div>
+                <div>: <span id="modalEventTanggal" style="color:var(--text-primary);">-</span></div>
+                
+                <div style="font-weight:500;">Metode</div>
+                <div>: <span id="modalEventMetode" style="color:var(--text-primary);">-</span></div>
+                
+                <div style="font-weight:500;">Jam Pelajaran</div>
+                <div>: <span id="modalEventJp" style="color:var(--text-primary);">-</span></div>
+            </div>
+            
+            <div id="modalExtraFields" style="display:none; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05); font-size:14px;">
+                <div style="display:grid; grid-template-columns:140px 1fr; gap:12px;">
+                    <div style="font-weight:500;">Kuota Tersedia</div>
+                    <div>: <span id="modalEventKuota" style="color:var(--text-primary);">-</span></div>
+                    
+                    <div style="font-weight:500;">Syarat Jabatan</div>
+                    <div>: <span id="modalEventSyarat" style="color:var(--text-primary);">-</span></div>
                 </div>
             </div>
-            <div class="modal-footer" style="border-top: none; padding: 0 24px 24px;">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: rgba(255,255,255,0.1); border: none;">Tutup</button>
-            </div>
+        </div>
+        
+        {{-- Footer --}}
+        <div style="padding:16px 24px; text-align:right; border-top:1px solid rgba(255,255,255,0.05);">
+            <button type="button" onclick="closeEventModal()" class="btn" style="background:rgba(255,255,255,0.1); color:var(--text-primary); border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:500;">Tutup</button>
         </div>
     </div>
 </div>
@@ -108,7 +110,15 @@
         color: #ffffff !important;
     }
     .fc .fc-daygrid-day.fc-day-today {
-        background-color: rgba(45, 140, 240, 0.05) !important;
+        background-color: rgba(45, 140, 240, 0.15) !important;
+        border: 1px solid rgba(45, 140, 240, 0.5) !important;
+    }
+    .fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+        background-color: var(--primary, #2d8cf0);
+        color: #ffffff !important;
+        border-radius: 4px;
+        padding: 2px 8px !important;
+        margin: 4px;
     }
     .fc .fc-daygrid-day-number {
         font-size: 12px;
@@ -181,6 +191,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     if (typeof FullCalendar !== 'undefined') {
+        var allEvents = @json($events);
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'id',
@@ -195,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 week: 'Minggu',
                 list: 'Agenda'
             },
-            events: @json($events),
+            events: allEvents,
             eventDidMount: function(info) {
                 if (info.event.extendedProps.description) {
                     info.el.setAttribute('title', info.event.extendedProps.description);
@@ -222,12 +233,57 @@ document.addEventListener('DOMContentLoaded', function() {
                     extraFields.style.display = 'none';
                 }
                 
-                // Show Modal
-                var eventModal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
-                eventModal.show();
+                // Show Modal using vanilla JS
+                var modal = document.getElementById('eventDetailModal');
+                modal.style.display = 'flex';
+                // Trigger reflow for animation
+                void modal.offsetWidth;
+                modal.style.opacity = '1';
+                modal.children[0].style.transform = 'scale(1)';
             }
         });
         calendar.render();
+
+        // Custom Modal Close Function
+        window.closeEventModal = function() {
+            var modal = document.getElementById('eventDetailModal');
+            modal.style.opacity = '0';
+            modal.children[0].style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 200);
+        };
+
+        // Filter functionality
+        var filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Update active state
+                filterBtns.forEach(b => {
+                    b.classList.remove('btn-primary', 'active');
+                    b.classList.add('btn-outline-primary');
+                    b.style.borderColor = 'rgba(255,255,255,0.2)';
+                });
+                this.classList.remove('btn-outline-primary');
+                this.classList.add('btn-primary', 'active');
+                this.style.borderColor = '';
+
+                var filter = this.getAttribute('data-filter');
+                var filteredEvents = [];
+
+                if (filter === 'all') {
+                    filteredEvents = allEvents;
+                } else if (filter === 'diklat') {
+                    filteredEvents = allEvents.filter(e => e.extendedProps.jenis === 'Diklat SIMPEL');
+                } else if (filter === 'bangkom') {
+                    filteredEvents = allEvents.filter(e => e.extendedProps.jenis !== 'Diklat SIMPEL');
+                }
+
+                // Remove and re-add events
+                calendar.removeAllEvents();
+                calendar.addEventSource(filteredEvents);
+            });
+        });
     } else {
         console.error('FullCalendar library is not loaded.');
         calendarEl.innerHTML = '<p class="text-danger">Gagal memuat library Kalender. Hubungi Administrator.</p>';
