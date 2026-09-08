@@ -184,7 +184,7 @@
     
     {{-- Pagination controls for IDP --}}
     @if(count($idpItems) > 0)
-    <div id="idp-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;">
+    <div id="idp-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
         <button id="btn-idp-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">← Prev</button>
         <span id="idp-page-info" style="font-size:11px;color:var(--text-secondary);font-weight:600;">Halaman 1</span>
         <button id="btn-idp-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">Next →</button>
@@ -222,7 +222,7 @@
     
     {{-- Pagination controls for Riwayat Bangkom --}}
     @if(count($riwayatBangkom) > 0)
-    <div id="bangkom-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;">
+    <div id="bangkom-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
         <button id="btn-bangkom-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">← Prev</button>
         <span id="bangkom-page-info" style="font-size:11px;color:var(--text-secondary);font-weight:600;">Halaman 1</span>
         <button id="btn-bangkom-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">Next →</button>
@@ -264,7 +264,7 @@
     
     {{-- Pagination controls for Diklat --}}
     @if(count($diklats) > 0)
-    <div id="diklat-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;">
+    <div id="diklat-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
         <button id="btn-diklat-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">← Prev</button>
         <span id="diklat-page-info" style="font-size:11px;color:var(--text-secondary);font-weight:600;">Halaman 1</span>
         <button id="btn-diklat-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">Next →</button>
@@ -304,7 +304,7 @@
     
     {{-- Pagination controls for Sertifikasi --}}
     @if(count($sertifikasis) > 0)
-    <div id="sert-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;">
+    <div id="sert-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
         <button id="btn-sert-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">← Prev</button>
         <span id="sert-page-info" style="font-size:11px;color:var(--text-secondary);font-weight:600;">Halaman 1</span>
         <button id="btn-sert-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">Next →</button>

@@ -16,7 +16,7 @@
     <div class="card-title" style="font-size:18px;">Daftar Arahan Strategis Kompetensi Unit</div>
     
     {{-- Filter & Sort Bar --}}
-    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
         <div style="font-weight:600; color:var(--text-secondary);">🔍 Cari:</div>
         <input type="text" id="search-title" class="form-control" style="width:200px; height:32px; padding:0 8px; font-size:12px;" placeholder="Cari nama arahan..." onkeyup="filterAndSortArahan()">
         <div style="font-weight:600; color:var(--text-secondary); margin-left:8px;">Filter:</div>

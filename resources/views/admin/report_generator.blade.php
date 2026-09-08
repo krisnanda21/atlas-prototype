@@ -60,7 +60,7 @@
                         </span>
                         <span style="font-size:11px; color:var(--text-secondary);">🎯 {{ $dir->period ?? '2026' }}</span>
                     </div>
-                    <div style="margin-top:6px; pt:4px; border-top:1px dashed rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+                    <div style="margin-top:6px; pt:4px; border-top:1px dashed #E2E8F0; display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-size:10px; color:var(--text-secondary);">Status Tindak Lanjut:</span>
                         @if($dir->is_followed_up)
                             <span class="badge badge-success" style="font-size:9px; padding:2px 5px;">✓ Masuk Rencana</span>

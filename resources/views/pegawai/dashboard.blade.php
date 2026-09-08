@@ -54,16 +54,16 @@
         @endphp
 
         @if(!$hasAnyScore)
-            <div style="padding:20px; text-align:center; background:#F8FAFC; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+            <div style="padding:20px; text-align:center; background:#F8FAFC; border-radius:8px; border:1px solid #E2E8F0;">
                 <p class="text-muted text-sm" style="margin:0;">Anda belum melakukan Penilaian Kompetensi dan Potensi</p>
             </div>
         @else
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;background:#F8FAFC;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);text-align:center;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;background:#F8FAFC;padding:10px;border-radius:8px;border:1px solid #E2E8F0;text-align:center;">
                 <div style="padding:4px;">
                     <div style="font-size:14px;color:var(--text-primary);margin-bottom:4px;line-height:1.2;height:24px;">Hasil Penilaian Kompetensi Teknis</div>
                     <div style="font-size:16px;font-weight:700;color:var(--success);">{{ $compassAverage->nilai_teknis !== null ? number_format($compassAverage->nilai_teknis, 1) : '-' }}</div>
                 </div>
-                <div style="padding:4px;border-left:1px solid rgba(255,255,255,0.08);border-right:1px solid rgba(255,255,255,0.08);">
+                <div style="padding:4px;border-left:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">
                     <div style="font-size:14px;color:var(--text-primary);margin-bottom:4px;line-height:1.2;height:24px;">Hasil Penilaian Kompetensi Mansoskul</div>
                     <div style="font-size:16px;font-weight:700;color:var(--warning);">{{ $compassAverage->nilai_mansoskul !== null ? number_format($compassAverage->nilai_mansoskul, 1) : '-' }}</div>
                 </div>
@@ -74,7 +74,7 @@
             </div>
 
             @if(!$hasKompetensi)
-                <div style="padding:40px 20px; text-align:center; background:#F8FAFC; border-radius:8px; border:1px solid rgba(255,255,255,0.05); margin-top:20px;">
+                <div style="padding:40px 20px; text-align:center; background:#F8FAFC; border-radius:8px; border:1px solid #E2E8F0; margin-top:20px;">
                     <p class="text-muted text-sm" style="margin:0;">Anda belum melakukan Penilaian Kompetensi</p>
                 </div>
             @else

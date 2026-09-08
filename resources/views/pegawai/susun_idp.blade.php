@@ -20,7 +20,7 @@
         <div class="card-title" style="font-size:18px;">💡 Rekomendasi Sistem</div>
         <p class="text-sm text-muted" style="margin-bottom:12px;">Berdasarkan gap COMPASS, jabatan, dan arahan strategis unit Anda.</p>
         @forelse($recommendations as $rec)
-        <div class="rec-item" style="background:#F8FAFC;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;margin-bottom:8px;">
+        <div class="rec-item" style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 12px;margin-bottom:8px;">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
                 <div style="font-weight:600;font-size:13px;">{{ $rec['need'] }}</div>
                 @if(($rec['competency_type'] ?? '') === 'Manajerial')
@@ -55,7 +55,7 @@
 
         {{-- Pagination controls for recommendations --}}
         @if(count($recommendations) > 0)
-        <div id="rec-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;">
+        <div id="rec-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
             <button id="btn-rec-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">← Prev</button>
             <span id="rec-page-info" style="font-size:11px;color:var(--text-secondary);font-weight:600;">Halaman 1</span>
             <button id="btn-rec-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">Next →</button>
@@ -221,7 +221,7 @@
     
     {{-- Pagination controls for Draft IDP --}}
     @if(count($myIdps) > 0)
-    <div id="draft-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;">
+    <div id="draft-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
         <button id="btn-draft-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">← Prev</button>
         <span id="draft-page-info" style="font-size:11px;color:var(--text-secondary);font-weight:600;">Halaman 1</span>
         <button id="btn-draft-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 8px;cursor:pointer;">Next →</button>

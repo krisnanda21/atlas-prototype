@@ -13,7 +13,7 @@
         <div class="card-title" style="font-size:18px">🔗 Daftar Kegiatan Pelatihan Sertifikasi</div>
 
         {{-- Filter & Search --}}
-        <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
             <form action="{{ route('pengampu.certification') }}" method="GET" style="display:flex; gap:10px; width:100%; align-items:center;">
                 <div style="font-weight:600; color:var(--text-secondary);">🔍 Cari:</div>
                 <input type="text" name="q" value="{{ request('q') }}" class="form-control" style="width:300px; height:32px; padding:0 8px; font-size:12px;" placeholder="Nama Pelatihan / Sertifikasi">
@@ -92,7 +92,7 @@
         <div style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse;">
                 <thead>
-                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--text-secondary); font-size:12px;">
+                    <tr style="border-bottom:1px solid #E2E8F0; color:var(--text-secondary); font-size:12px;">
                         <th style="padding:8px 10px; text-align:left; width:120px;">NIP</th>
                         <th style="padding:8px 10px; text-align:left;">Nama Pegawai</th>
                         <th style="padding:8px 10px; text-align:left; width:250px;">Status Sertifikat (SMILE)</th>
@@ -125,7 +125,7 @@
             
             <div style="margin-bottom:16px;">
                 <label style="display:block; font-size:12px; color:var(--text-secondary); margin-bottom:4px;">Pelatihan dari SIMPEL</label>
-                <div id="map-simpel-name" style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:6px; padding:10px; color:#fff; font-size:13px; font-weight:600;"></div>
+                <div id="map-simpel-name" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:10px; color:#fff; font-size:13px; font-weight:600;"></div>
             </div>
 
             <div style="margin-bottom:16px;">
@@ -191,7 +191,7 @@ function openPesertaModal(kode, namaPelatihan) {
                 }
                 
                 rows += `
-                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05); font-size:13px;">
+                    <tr style="border-bottom:1px solid #E2E8F0; font-size:13px;">
                         <td style="padding:10px;"><code>${p.employee_id}</code></td>
                         <td style="padding:10px;">
                             <strong>${p.nama_pegawai}</strong>

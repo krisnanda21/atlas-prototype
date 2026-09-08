@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 @section('title', 'Kalender Saya')
 @section('header_title', 'Kalender Kegiatan Bangkom')
 
@@ -13,21 +13,21 @@
     {{-- Filter Buttons --}}
     <div style="display:flex;gap:10px;margin-bottom:20px;">
         <button class="btn btn-primary filter-btn active" data-filter="all" style="border-radius:20px; padding:6px 16px; font-size:14px; font-weight:500;">Semua</button>
-        <button class="btn btn-outline-primary filter-btn" data-filter="diklat" style="border-radius:20px; padding:6px 16px; font-size:14px; font-weight:500; border-color:rgba(255,255,255,0.2); font-color:rgba(255, 255, 255, 0.2);">Diklat</button>
-        <button class="btn btn-outline-primary filter-btn" data-filter="bangkom" style="border-radius:20px; padding:6px 16px; font-size:14px; font-weight:500; border-color:rgba(255,255,255,0.2); font-color:rgba(255, 255, 255, 0.2);">Bangkom</button>
+        <button class="btn btn-outline filter-btn" data-filter="diklat" style="border-radius:20px; padding:6px 16px; font-size:14px; font-weight:500;">Diklat</button>
+        <button class="btn btn-outline filter-btn" data-filter="bangkom" style="border-radius:20px; padding:6px 16px; font-size:14px; font-weight:500;">Bangkom</button>
     </div>
 
     {{-- Calendar Container --}}
-    <div id="calendar-wrapper" style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:20px; min-height:500px;">
+    <div id="calendar-wrapper" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:20px; min-height:500px;">
         <div id="calendar"></div>
     </div>
 </div>
 
 {{-- Event Detail Modal (Custom Vanilla) --}}
 <div id="eventDetailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.8); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center; opacity:0; transition:opacity 0.2s ease-in-out;">
-    <div style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.1); border-radius:12px; width:90%; max-width:500px; transform:scale(0.95); transition:transform 0.2s ease-in-out;">
+    <div style="background:var(--card-bg); border:1px solid #E2E8F0; border-radius:12px; width:90%; max-width:500px; transform:scale(0.95); transition:transform 0.2s ease-in-out;">
         {{-- Header --}}
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid #E2E8F0;">
             <h5 style="margin:0; color:var(--text-primary); font-weight:600; font-size:18px;">Detail Kegiatan</h5>
             <button type="button" onclick="closeEventModal()" style="background:transparent; border:none; color:var(--text-secondary); font-size:28px; cursor:pointer; line-height:1; padding:0;">&times;</button>
         </div>
@@ -53,7 +53,7 @@
                 <div>: <span id="modalEventJp" style="color:var(--text-primary);">-</span></div>
             </div>
             
-            <div id="modalExtraFields" style="display:none; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05); font-size:14px;">
+            <div id="modalExtraFields" style="display:none; padding-top:16px; border-top:1px solid #E2E8F0; font-size:14px;">
                 <div style="display:grid; grid-template-columns:140px 1fr; gap:12px;">
                     <div style="font-weight:500;">Kuota Tersedia</div>
                     <div>: <span id="modalEventKuota" style="color:var(--text-primary);">-</span></div>
@@ -65,7 +65,7 @@
         </div>
         
         {{-- Footer --}}
-        <div style="padding:16px 24px; text-align:right; border-top:1px solid rgba(255,255,255,0.05);">
+        <div style="padding:16px 24px; text-align:right; border-top:1px solid #E2E8F0;">
             <button type="button" onclick="closeEventModal()" class="btn" style="background:#F1F5F9; color:var(--text-primary); border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:500;">Tutup</button>
         </div>
     </div>
@@ -78,10 +78,10 @@
         color: var(--text-primary) !important;
     }
     .fc-theme-standard td, .fc-theme-standard th {
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid #E2E8F0 !important;
     }
     .fc-theme-standard .fc-scrollgrid {
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid #E2E8F0 !important;
         border-radius: 8px;
         overflow: hidden;
     }
@@ -92,7 +92,7 @@
     }
     .fc .fc-button {
         background-color: #F8FAFC !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid #E2E8F0 !important;
         color: var(--text-primary) !important;
         font-weight: 500 !important;
         font-size: 13px !important;
@@ -150,7 +150,7 @@
     
     /* Agenda / List View Improvements */
     .fc-theme-standard .fc-list {
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid #E2E8F0 !important;
         border-radius: 8px;
         overflow: hidden;
     }
@@ -168,7 +168,7 @@
     }
     .fc .fc-list-event td {
         padding: 12px 16px !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+        border-bottom:1px solid #E2E8F0 !important;
         color: var(--text-secondary);
     }
     .fc .fc-list-event-title {

@@ -158,7 +158,7 @@
             @endif
         </div>
         
-        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px;">
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; border-top:1px solid #E2E8F0; padding-top: 16px;">
             <a href="{{ route('executive.talentFinder') }}" class="btn btn-neutral">Reset</a>
             <button type="submit" class="btn btn-primary">🔍 Cari Talenta</button>
         </div>
@@ -177,19 +177,19 @@
         <table class="table" style="width: 100%;">
             <thead>
                 <tr>
-                    <th style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1);">Pegawai</th>
-                    <th style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1);">Jabatan</th>
-                    <th style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1);">Unit Kerja</th>
+                    <th style="padding: 12px 16px; border-bottom: 1px solid #E2E8F0;">Pegawai</th>
+                    <th style="padding: 12px 16px; border-bottom: 1px solid #E2E8F0;">Jabatan</th>
+                    <th style="padding: 12px 16px; border-bottom: 1px solid #E2E8F0;">Unit Kerja</th>
                     @if(request('type') === 'Kompetensi')
-                    <th style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: center;">Rata-rata Nilai</th>
+                    <th style="padding: 12px 16px; border-bottom: 1px solid #E2E8F0; text-align: center;">Rata-rata Nilai</th>
                     @endif
-                    <th style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); width: 100px; text-align: center;">Aksi</th>
+                    <th style="padding: 12px 16px; border-bottom: 1px solid #E2E8F0; width: 100px; text-align: center;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($employees as $emp)
                 <tr>
-                    <td style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 16px; border-bottom: 1px solid #F1F5F9;">
                         <div style="display: flex; align-items: center; gap: 14px;">
                             <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(59,130,246,0.15); color: #60a5fa; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">
                                 {{ $emp->initial ?? substr($emp->name, 0, 2) }}
@@ -200,14 +200,14 @@
                             </div>
                         </div>
                     </td>
-                    <td style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);"><span style="font-size: 13px; color: #ddd;">{{ $emp->role }}</span></td>
-                    <td style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);"><span style="font-size: 13px; color: #ddd;">{{ $emp->unit }}</span></td>
+                    <td style="padding: 16px; border-bottom: 1px solid #F1F5F9;"><span style="font-size: 13px; color: #ddd;">{{ $emp->role }}</span></td>
+                    <td style="padding: 16px; border-bottom: 1px solid #F1F5F9;"><span style="font-size: 13px; color: #ddd;">{{ $emp->unit }}</span></td>
                     @if(request('type') === 'Kompetensi')
-                    <td style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                    <td style="padding: 16px; border-bottom: 1px solid #F1F5F9; text-align: center;">
                         <span style="font-weight: 700; color: #4ade80; font-size: 15px;">{{ $emp->rata_rata_nilai ? number_format($emp->rata_rata_nilai, 2, ',', '.') : '-' }}</span>
                     </td>
                     @endif
-                    <td style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                    <td style="padding: 16px; border-bottom: 1px solid #F1F5F9; text-align: center;">
                         <a href="{{ route('executive.profil360', ['q' => $emp->id]) }}" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; padding: 6px 14px; border-radius: 6px; box-shadow: 0 2px 4px rgba(59,130,246,0.2);">
                             <span style="font-size: 13px;">👤</span> Lihat Profil
                         </a>
@@ -258,7 +258,7 @@
         z-index: 50;
         margin-top: 4px;
         background: var(--modal-bg);
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid #E2E8F0;
         border-radius: 6px;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
     }

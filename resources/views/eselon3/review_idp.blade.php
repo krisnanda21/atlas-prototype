@@ -89,7 +89,7 @@
 
     {{-- Pagination Controls (Main) --}}
     @if(count($groupedIdps) > 0)
-    <div id="idp-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;">
+    <div id="idp-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
         <div style="font-size:12px;color:var(--text-secondary);" id="idp-record-info">
             Menampilkan 1-10 dari {{ count($groupedIdps) }} data
         </div>
@@ -137,7 +137,7 @@
             </table>
         </div>
         
-        <div id="detail-pagination" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:8px;flex-shrink:0;">
+        <div id="detail-pagination" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;flex-shrink:0;">
             <div style="font-size:12px;color:var(--text-secondary);" id="detail-record-info">Menampilkan 0 data</div>
             <div style="display:flex;align-items:center;gap:6px;">
                 <button type="button" id="btn-detail-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 10px;cursor:pointer;" onclick="changeDetailPage(-1)">← Prev</button>

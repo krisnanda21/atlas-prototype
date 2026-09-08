@@ -303,7 +303,7 @@ function showDetailRealisasi(plan) {
     if (plan.participants && plan.participants.length > 0) {
         plan.participants.forEach((p, idx) => {
             participantsRows += `
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.05); font-size:12px;">
+                <tr style="border-bottom:1px solid #E2E8F0; font-size:12px;">
                     <td style="padding:8px 10px; color:#fff;">
                         <div style="font-weight:600;">${p.employee_name || p.employee_id}</div>
                         <div style="font-size:11px; color:var(--text-secondary);">${p.employee_nip || p.employee_id} ${p.employee_unit ? '• ' + p.employee_unit : ''}</div>
@@ -383,7 +383,7 @@ function showDetailRealisasi(plan) {
             <div style="max-height:260px; overflow-y:auto;">
                 <table style="width:100%; border-collapse:collapse;">
                     <thead>
-                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--text-secondary); font-size:11px; text-align:center;">
+                        <tr style="border-bottom:1px solid #E2E8F0; color:var(--text-secondary); font-size:11px; text-align:center;">
                             <th style="padding:6px 10px; text-align:left;">Nama Pegawai</th>
                             <th style="padding:6px 10px; width:90px;">Penyelenggara</th>
                             <th style="padding:6px 10px; width:90px;">Materi</th>

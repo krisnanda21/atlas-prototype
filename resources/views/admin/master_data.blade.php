@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Master Data - Admin')
 @section('header_title', 'Kelola Master Data')
 
@@ -8,7 +8,7 @@
 </div>
 
 {{-- Tabs --}}
-<div style="display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:20px;">
+<div style="display:flex;gap:0;border-bottom:1px solid #E2E8F0;margin-bottom:20px;">
     @foreach(['Kompetensi' => 'tab-comp', 'Unit Kerja' => 'tab-unit', 'Jabatan' => 'tab-jab'] as $label => $tabId)
     <button onclick="switchTab('{{ $tabId }}')" id="btn-{{ $tabId }}" 
         style="padding:10px 20px;background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:13px;border-bottom:2px solid transparent;transition:all .2s;"

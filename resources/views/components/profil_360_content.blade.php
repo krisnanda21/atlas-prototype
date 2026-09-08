@@ -12,7 +12,7 @@
         <div style="display:flex; gap:10px; width:100%;">
             <input type="text" id="main-search-input" class="form-control" placeholder="Ketik nama atau NIP..." autocomplete="off" style="padding:12px 16px; font-size:16px; width:100%;" oninput="handleMainSearchInput()" onfocus="handleMainSearchInput()">
         </div>
-        <div id="main-search-results" style="display:none; position:absolute; top:100%; left:0; width:100%; background:var(--bg-card); border:1px solid rgba(255,255,255,0.1); border-radius:6px; margin-top:4px; max-height:300px; overflow-y:auto; z-index:100; box-shadow:0 10px 15px -3px rgba(0,0,0,0.5);">
+        <div id="main-search-results" style="display:none; position:absolute; top:100%; left:0; width:100%; background:var(--bg-card); border:1px solid #E2E8F0; border-radius:6px; margin-top:4px; max-height:300px; overflow-y:auto; z-index:100; box-shadow:0 10px 15px -3px rgba(0,0,0,0.5);">
         </div>
     </div>
 </div>
@@ -45,7 +45,7 @@
                     let html = '';
                     matches.forEach(e => {
                         html += `
-                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
+                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid #E2E8F0; text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
                                 <div style="font-weight:600;">${e.name}</div>
                                 <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role || '-'}</div>
                             </a>
@@ -75,7 +75,7 @@
         <span style="font-size:20px;">🔍</span>
         <div style="position:relative; flex:1;">
             <input type="text" id="top-search-input" class="form-control" value="{{ request('q') }}" placeholder="Cari profil pegawai..." autocomplete="off" style="width:100%; padding:10px 14px; font-size:15px;" oninput="handleTopSearchInput()" onfocus="handleTopSearchInput()">
-            <div id="top-search-results" style="display:none; position:absolute; top:100%; left:0; width:100%; background:var(--bg-card); border:1px solid rgba(255,255,255,0.1); border-radius:6px; margin-top:4px; max-height:300px; overflow-y:auto; z-index:100; box-shadow:0 10px 15px -3px rgba(0,0,0,0.5); text-align:left;">
+            <div id="top-search-results" style="display:none; position:absolute; top:100%; left:0; width:100%; background:var(--bg-card); border:1px solid #E2E8F0; border-radius:6px; margin-top:4px; max-height:300px; overflow-y:auto; z-index:100; box-shadow:0 10px 15px -3px rgba(0,0,0,0.5); text-align:left;">
             </div>
         </div>
         <a href="?" class="btn btn-neutral" style="padding:10px 20px; font-weight:600; text-decoration:none;">Reset</a>
@@ -110,7 +110,7 @@
                     let html = '';
                     matches.forEach(e => {
                         html += `
-                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
+                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid #E2E8F0; text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
                                 <div style="font-weight:600;">${e.name}</div>
                                 <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role || '-'}</div>
                             </a>
@@ -151,7 +151,7 @@
                     @if($employee->assessment) <span class="badge badge-success" style="font-size:10px;">✓ COMPASS</span> @else <span class="badge badge-neutral" style="font-size:10px;">Non-Assessment</span> @endif
                 </div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;border-left:1px solid rgba(255,255,255,0.1);padding-left:20px;min-width:240px;">
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;border-left:1px solid #E2E8F0;padding-left:20px;min-width:240px;">
                 <div><span style="color:var(--text-secondary);">Pangkat:</span> <strong>{{ $employee->pangkat ?? '-' }}</strong></div>
                 <div><span style="color:var(--text-secondary);">Pendidikan:</span> <strong>{{ $employee->strata ?? '-' }} {{ $employee->jurusan ? '- ' . $employee->jurusan : '' }}</strong></div>
                 <div><span style="color:var(--text-secondary);">Bahasa:</span> <strong>
@@ -164,7 +164,7 @@
                     @endif
                 </strong></div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;border-left:1px solid rgba(255,255,255,0.1);padding-left:20px;min-width:200px;">
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;border-left:1px solid #E2E8F0;padding-left:20px;min-width:200px;">
                 <div><span style="color:var(--text-secondary);">Rata-Rata Teknis:</span> <strong>{{ $nilaiRata ? $nilaiRata->nilai_teknis : '-' }}</strong></div>
                 <div><span style="color:var(--text-secondary);">Rata-Rata Mansoskul:</span> <strong>{{ $nilaiRata ? $nilaiRata->nilai_mansoskul : '-' }}</strong></div>
                 <div><span style="color:var(--text-secondary);">Nilai Potensi:</span> <strong>{{ $nilaiRata ? $nilaiRata->nilai_potensi : '-' }}</strong></div>
@@ -180,7 +180,7 @@
                 $needsMansoskul = $needs->filter(fn($n) => isset($n->type) && strtolower($n->type) === 'mansoskul')->sortBy('score');
             @endphp
             
-            <details style="margin-bottom:8px; border:1px solid rgba(255,255,255,0.1); border-radius:6px; overflow:hidden;" open>
+            <details style="margin-bottom:8px; border:1px solid #E2E8F0; border-radius:6px; overflow:hidden;" open>
                 <summary style="background:#F8FAFC; padding:10px 14px; cursor:pointer; font-weight:600; font-size:13px; list-style:none; display:flex; justify-content:space-between; align-items:center;">
                     <span>Kompetensi Teknis ({{ $needsTeknis->count() }})</span>
                     <span style="font-size:10px;">▼</span>
@@ -203,7 +203,7 @@
                 </div>
             </details>
 
-            <details style="margin-bottom:8px; border:1px solid rgba(255,255,255,0.1); border-radius:6px; overflow:hidden;">
+            <details style="margin-bottom:8px; border:1px solid #E2E8F0; border-radius:6px; overflow:hidden;">
                 <summary style="background:#F8FAFC; padding:10px 14px; cursor:pointer; font-weight:600; font-size:13px; list-style:none; display:flex; justify-content:space-between; align-items:center;">
                     <span>Kompetensi Manajerial & Sosial Kultural ({{ $needsMansoskul->count() }})</span>
                     <span style="font-size:10px;">▼</span>
@@ -403,7 +403,7 @@ function initPagination(tableId, paginationId) {
 
         const prevBtn = document.createElement('button');
         prevBtn.textContent = '«';
-        prevBtn.style.cssText = `background:var(--bg-card); color:var(--text-primary); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:2px 8px; cursor:${currentPage === 1 ? 'not-allowed' : 'pointer'}; opacity:${currentPage === 1 ? '0.5' : '1'}`;
+        prevBtn.style.cssText = `background:var(--bg-card); color:var(--text-primary); border:1px solid #E2E8F0; border-radius:4px; padding:2px 8px; cursor:${currentPage === 1 ? 'not-allowed' : 'pointer'}; opacity:${currentPage === 1 ? '0.5' : '1'}`;
         prevBtn.disabled = currentPage === 1;
         prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderTable(); } };
         paginationContainer.appendChild(prevBtn);
@@ -415,7 +415,7 @@ function initPagination(tableId, paginationId) {
 
         const nextBtn = document.createElement('button');
         nextBtn.textContent = '»';
-        nextBtn.style.cssText = `background:var(--bg-card); color:var(--text-primary); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:2px 8px; cursor:${currentPage === totalPages ? 'not-allowed' : 'pointer'}; opacity:${currentPage === totalPages ? '0.5' : '1'}`;
+        nextBtn.style.cssText = `background:var(--bg-card); color:var(--text-primary); border:1px solid #E2E8F0; border-radius:4px; padding:2px 8px; cursor:${currentPage === totalPages ? 'not-allowed' : 'pointer'}; opacity:${currentPage === totalPages ? '0.5' : '1'}`;
         nextBtn.disabled = currentPage === totalPages;
         nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderTable(); } };
         paginationContainer.appendChild(nextBtn);

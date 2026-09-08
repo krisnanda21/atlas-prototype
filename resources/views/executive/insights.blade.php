@@ -43,22 +43,22 @@
 {{-- KPI Narasi Interpretasi --}}
 <div class="grid-4 mb-4" style="align-items:stretch;">
     {{-- Narasi Card 1 --}}
-    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
         <div>Di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong>, dari Total Gap Kompetensi yang dimiliki oleh keseluruhan pegawai, <strong style="color:#ffffff;">{{ $averageCoverage }}%</strong> sudah terdapat IDP untuk ditindaklanjuti oleh unit kerja.</div>
     </div>
 
     {{-- Narasi Card 2 --}}
-    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
         <div><strong style="color:#ffffff;">{{ $suboptimalPercent }}%</strong> pegawai <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> memiliki nilai rata-rata kompetensi teknis dibawah 78.</div>
     </div>
 
     {{-- Narasi Card 3 --}}
-    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
         <div>Gap Kompetensi terbesar di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> ada pada Kompetensi <strong style="color:#ffffff;">{{ $largestGapName }}</strong> dengan nilai gap sebesar <strong style="color:var(--danger);">{{ $largestGapValue > 0 ? '-' . $largestGapValue : '0' }} poin</strong>.</div>
     </div>
 
     {{-- Narasi Card 4 --}}
-    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center; min-width:0;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center; min-width:0;">
         <div>Sebesar <strong style="color:#ffffff;">{{ $realisasiPercent }}%</strong> Kegiatan Bangkom di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> sudah terealisasi.</div>
     </div>
 </div>
@@ -68,7 +68,7 @@
 
     {{-- Card Gap Kompetensi Teknis (Spider Chart) --}}
     <div class="card" style="padding:20px; margin-bottom:0; display:flex; flex-direction:column; min-width:0;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:14px; flex-shrink:0;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid #E2E8F0; padding-bottom:14px; flex-shrink:0;">
             <div class="card-title" style="margin-bottom:0;font-size:18px">📉 Gap Kompetensi Teknis</div>
         </div>
 
@@ -93,7 +93,7 @@
 
     {{-- Card Strategic Analytics --}}
     <div class="card" style="padding:20px; margin-bottom:0; min-width:0;">
-        <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:12px;">
+        <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px; border-bottom:1px solid #E2E8F0; padding-bottom:12px;">
             <div class="card-title" style="margin-bottom:0;font-size:18px">🎯 Analisis Strategis & Rekomendasi</div>
             @if($lastAiUpdate)
             <div style="font-size:12px; color:var(--text-secondary); display:flex; align-items:center; gap:4px;">
@@ -119,7 +119,7 @@
 {{-- Unit Performance Chart (visual bars) - Cascading --}}
 @if(in_array($activeRole, ['sesma', 'admin', 'karoSDM', 'kombinasi', 'bangkom']))
 <div class="card mb-4" style="padding:20px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:16px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid #E2E8F0; padding-bottom:16px;">
         <div>
             <div class="card-title" style="margin-bottom:4px; font-size:18px;">📊 Persentase Pegawai dengan Kompetensi Rendah per Unit Kerja</div>
         </div>
@@ -146,8 +146,8 @@
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
 
         {{-- Kolom Kiri: Unit Kerja Pusat --}}
-        <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:18px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #E2E8F0; flex-wrap:wrap; gap:8px;">
                 <div style="font-size:13px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
                     <span>🏢 Unit Kerja Pusat</span>
                 </div>
@@ -175,7 +175,7 @@
                     <div style="display:flex; flex-direction:column; gap:3px;">
                         <div onclick="toggleUnit('{{ $e1['code'] }}')"
                              title="{{ $e1['name'] }} ({{ $e1['value'] }}%)"
-                             style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer;">
+                             style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; cursor:pointer;">
                             <div style="width:88px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:11.5px; font-weight:800; color:var(--text-primary); text-align:right;">
                                 <span id="chevron-{{ $e1['code'] }}" style="font-size:9px; color:var(--text-secondary); transition:transform 0.2s ease;">▶</span>
                                 <span>{{ $e1['code'] }}</span>
@@ -188,14 +188,14 @@
                             </div>
                             <div style="width:42px; font-size:11.5px; font-weight:800; color:{{ $e1RiskColor }}; text-align:right;">{{ $e1['value'] }}%</div>
                         </div>
-                        <div id="children-{{ $e1['code'] }}" class="ncc-unit-children" style="display:none; flex-direction:column; gap:4px; padding-left:12px; margin-left:8px; border-left:2px dashed rgba(255,255,255,0.12); margin-top:2px; margin-bottom:3px;">
+                        <div id="children-{{ $e1['code'] }}" class="ncc-unit-children" style="display:none; flex-direction:column; gap:4px; padding-left:12px; margin-left:8px; border-left:2px dashed #CBD5E10.12); margin-top:2px; margin-bottom:3px;">
                             @foreach($e1['children'] as $child)
                             @php
                                 $childRiskColor = $child['risk'] === 'Tinggi' ? 'var(--danger)' : ($child['risk'] === 'Sedang' ? 'var(--warning)' : 'var(--success)');
                                 $childRiskGradient = $child['risk'] === 'Tinggi' ? 'linear-gradient(90deg, #ef4444, #f87171)' : ($child['risk'] === 'Sedang' ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #10b981, #34d399)');
                             @endphp
                             <div title="{{ $child['unit'] }} ({{ $child['value'] }}%)"
-                                 style="display:flex; align-items:center; gap:8px; padding:4px 6px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.03); border-radius:5px;">
+                                 style="display:flex; align-items:center; gap:8px; padding:4px 6px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:5px;">
                                 <div style="width:74px; font-size:10px; font-weight:700; color:var(--text-secondary); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:help;">{{ $child['code'] }}</div>
                                 <div style="flex:1; background:#F8FAFC; border-radius:3px; height:10px; position:relative; overflow:hidden;">
                                     <div style="position:absolute; left:25%; width:1px; height:100%; background:#F1F5F9;"></div>
@@ -216,8 +216,8 @@
         </div>
 
         {{-- Kolom Kanan: Kantor Perwakilan --}}
-        <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:18px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #E2E8F0; flex-wrap:wrap; gap:8px;">
                 <div style="font-size:13px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
                     <span>📍 Kantor Perwakilan</span>
                 </div>
@@ -245,7 +245,7 @@
                     <div style="display:flex; flex-direction:column; gap:3px;">
                         <div onclick="toggleUnit('{{ $w['code'] }}')"
                              title="{{ $w['name'] }} ({{ $w['value'] }}%)"
-                             style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer;">
+                             style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; cursor:pointer;">
                             <div style="width:88px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:11px; font-weight:800; color:var(--text-primary); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
                                 <span id="chevron-{{ $w['code'] }}" style="font-size:9px; color:var(--text-secondary); transition:transform 0.2s ease;">▶</span>
                                 <span>{{ $w['short'] }}</span>
@@ -258,14 +258,14 @@
                             </div>
                             <div style="width:42px; font-size:11.5px; font-weight:800; color:{{ $wRiskColor }}; text-align:right;">{{ $w['value'] }}%</div>
                         </div>
-                        <div id="children-{{ $w['code'] }}" class="ncc-unit-children" style="display:none; flex-direction:column; gap:4px; padding-left:12px; margin-left:8px; border-left:2px dashed rgba(255,255,255,0.12); margin-top:2px; margin-bottom:3px;">
+                        <div id="children-{{ $w['code'] }}" class="ncc-unit-children" style="display:none; flex-direction:column; gap:4px; padding-left:12px; margin-left:8px; border-left:2px dashed #CBD5E10.12); margin-top:2px; margin-bottom:3px;">
                             @foreach($w['children'] as $child)
                             @php
                                 $pwRiskColor = $child['risk'] === 'Tinggi' ? 'var(--danger)' : ($child['risk'] === 'Sedang' ? 'var(--warning)' : 'var(--success)');
                                 $pwRiskGradient = $child['risk'] === 'Tinggi' ? 'linear-gradient(90deg, #ef4444, #f87171)' : ($child['risk'] === 'Sedang' ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #10b981, #34d399)');
                             @endphp
                             <div title="{{ $child['unit'] }} ({{ $child['value'] }}%)"
-                                 style="display:flex; align-items:center; gap:8px; padding:4px 6px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.03); border-radius:5px;">
+                                 style="display:flex; align-items:center; gap:8px; padding:4px 6px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:5px;">
                                 <div style="width:74px; font-size:10px; font-weight:700; color:var(--text-secondary); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:help;">{{ $child['code'] }}</div>
                                 <div style="flex:1; background:#F8FAFC; border-radius:3px; height:10px; position:relative; overflow:hidden;">
                                     <div style="position:absolute; left:25%; width:1px; height:100%; background:#F1F5F9;"></div>
@@ -290,14 +290,14 @@
 @elseif($activeRole === 'deputi')
 {{-- Unit Performance Chart Deputi --}}
 <div class="card mb-4" style="padding:20px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:16px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid #E2E8F0; padding-bottom:16px;">
         <div>
             <div class="card-title" style="margin-bottom:4px; font-size:18px;">📊 Persentase Pegawai dengan Kompetensi Rendah per Unit Kerja</div>
         </div>
     </div>
 
-    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #E2E8F0; flex-wrap:wrap; gap:8px;">
             <div>
                 <div style="font-size:14px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
                     <span>🏢 Unit Kerja Eselon 2 (Scope Deputi)</span>
@@ -337,7 +337,7 @@
                     $childRiskGradient = $child['risk'] === 'Tinggi' ? 'linear-gradient(90deg, #ef4444, #f87171)' : ($child['risk'] === 'Sedang' ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #10b981, #34d399)');
                 @endphp
                 <div title="{{ $child['unit'] }} ({{ $child['value'] }}%)"
-                     style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; margin-bottom:4px;">
+                     style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; margin-bottom:4px;">
                     <div style="width:100px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:12px; font-weight:800; color:var(--text-primary); text-align:right;">
                         <span>{{ $child['code'] }}</span>
                     </div>

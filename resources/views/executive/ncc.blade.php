@@ -28,7 +28,7 @@
 @if(in_array($activeRole, ['sesma', 'admin', 'karoSDM', 'kombinasi', 'bangkom']))
 <div class="card mb-4" style="padding:20px;">
     {{-- Header --}}
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:16px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid #E2E8F0; padding-bottom:16px;">
         <div>
             <div class="card-title" style="margin-bottom:4px;font-size:18px;">📊 Persentase IDP Coverage per Unit Kerja</div>
         </div>
@@ -38,7 +38,7 @@
         
         {{-- SEBELAH KIRI: Unit Kerja Pusat (Eselon 1 & Cascading Eselon 2) --}}
         <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #E2E8F0; flex-wrap:wrap; gap:8px;">
                 <div>
                     <div style="font-size:14px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
                         <span>🏢 Pusat</span>
@@ -86,7 +86,7 @@
                     <div class="ncc-eselon1-row" 
                          onclick="toggleEselon1('{{ $e1['code'] }}')"
                          title="{{ $e1['name'] }} ({{ $e1['coverage'] }}% IDP Coverage · {{ count($e1['children']) }} Unit Eselon II) - Klik untuk cascading"
-                         style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer; transition: all 0.2s ease;">
+                         style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; cursor:pointer; transition: all 0.2s ease;">
                         
                         {{-- Sumbu Y: Toggle Chevron & Kode Eselon 1 --}}
                         <div style="width:100px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:12px; font-weight:800; color:var(--text-primary); text-align:right; flex-shrink:0;">
@@ -114,7 +114,7 @@
                     {{-- Cascading Children Container (Eselon 2) --}}
                     <div id="children-{{ $e1['code'] }}" 
                          class="ncc-eselon2-children" 
-                         style="display:none; flex-direction:column; gap:5px; padding-left:14px; margin-left:10px; border-left:2px dashed rgba(255,255,255,0.12); margin-top:2px; margin-bottom:4px;">
+                         style="display:none; flex-direction:column; gap:5px; padding-left:14px; margin-left:10px; border-left:2px dashed #CBD5E10.12); margin-top:2px; margin-bottom:4px;">
                         
                         @foreach($e1['children'] as $child)
                         @php
@@ -127,7 +127,7 @@
                              data-coverage="{{ $child['coverage'] }}" 
                              data-risk="{{ $child['risk'] }}"
                              title="{{ $child['unit'] }} ({{ $child['coverage'] }}% IDP Coverage · {{ $child['non_jfa_path'] }} Non-JFA · {{ $child['strategic_direction'] }} Arahan)"
-                             style="display:flex; align-items:center; gap:10px; padding:5px 8px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.03); border-radius:5px; transition: all 0.2s ease;">
+                             style="display:flex; align-items:center; gap:10px; padding:5px 8px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:5px; transition: all 0.2s ease;">
                             
                             {{-- Sumbu Y: Kode Eselon 2 --}}
                             <div style="width:86px; font-size:10.5px; font-weight:700; color:var(--text-secondary); text-align:right; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:help;" title="{{ $child['unit'] }}">
@@ -161,7 +161,7 @@
 
         {{-- SEBELAH KANAN: Unit Kerja Kantor Perwakilan (Per Wilayah / Pulau & Cascading) --}}
         <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #E2E8F0; flex-wrap:wrap; gap:8px;">
                 <div>
                     <div style="font-size:14px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
                         <span>📍 Perwakilan</span>
@@ -209,7 +209,7 @@
                     <div class="ncc-wilayah-row" 
                          onclick="toggleWilayah('{{ $w['code'] }}')"
                          title="{{ $w['name'] }} ({{ $w['coverage'] }}% IDP Coverage · {{ count($w['children']) }} Unit Perwakilan) - Klik untuk cascading"
-                         style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer; transition: all 0.2s ease;">
+                         style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; cursor:pointer; transition: all 0.2s ease;">
                         
                         {{-- Sumbu Y: Toggle Chevron & Nama Wilayah --}}
                         <div style="width:100px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:11.5px; font-weight:800; color:var(--text-primary); text-align:right; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
@@ -235,7 +235,7 @@
                     {{-- Cascading Children Container (PW Units) --}}
                     <div id="children-w-{{ $w['code'] }}" 
                          class="ncc-pw-children" 
-                         style="display:none; flex-direction:column; gap:5px; padding-left:14px; margin-left:10px; border-left:2px dashed rgba(255,255,255,0.12); margin-top:2px; margin-bottom:4px;">
+                         style="display:none; flex-direction:column; gap:5px; padding-left:14px; margin-left:10px; border-left:2px dashed #CBD5E10.12); margin-top:2px; margin-bottom:4px;">
                         
                         @foreach($w['children'] as $child)
                         @php
@@ -248,7 +248,7 @@
                              data-coverage="{{ $child['coverage'] }}" 
                              data-risk="{{ $child['risk'] }}"
                              title="{{ $child['unit'] }} ({{ $child['coverage'] }}% IDP Coverage · {{ $child['non_jfa_path'] }} Non-JFA · {{ $child['strategic_direction'] }} Arahan)"
-                             style="display:flex; align-items:center; gap:10px; padding:5px 8px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.03); border-radius:5px; transition: all 0.2s ease;">
+                             style="display:flex; align-items:center; gap:10px; padding:5px 8px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:5px; transition: all 0.2s ease;">
                             
                             {{-- Sumbu Y: Kode Perwakilan --}}
                             <div style="width:86px; font-size:10.5px; font-weight:700; color:var(--text-secondary); text-align:right; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:help;" title="{{ $child['unit'] }}">
@@ -286,13 +286,13 @@
 @elseif($activeRole === 'deputi')
 {{-- Grafik Coverage IDP Deputi --}}
 <div class="card mb-4" style="padding:20px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:16px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:16px; border-bottom:1px solid #E2E8F0; padding-bottom:16px;">
         <div>
             <div class="card-title" style="margin-bottom:4px; font-size:18px;">📊 Persentase IDP Coverage per Unit Kerja</div>
         </div>
     </div>
 
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #E2E8F0; flex-wrap:wrap; gap:8px;">
         <div style="display:flex; align-items:center; gap:12px;">
             <div style="text-align:right;">
                 @php
@@ -326,7 +326,7 @@
                 $childRiskGradient = $child['risk'] === 'Tinggi' ? 'linear-gradient(90deg, #ef4444, #f87171)' : ($child['risk'] === 'Sedang' ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #10b981, #34d399)');
             @endphp
             <div title="{{ $child['unit'] }} ({{ $child['coverage'] }}%)"
-                 style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; margin-bottom:4px;">
+                 style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; margin-bottom:4px;">
                 <div style="width:100px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:12px; font-weight:800; color:var(--text-primary); text-align:right;">
                     <span>{{ $child['code'] }}</span>
                 </div>
@@ -357,7 +357,7 @@
     <div style="overflow-x:auto;">
         <table style="width:100%; border-collapse:collapse;">
             <thead>
-                <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                <tr style="border-bottom:1px solid #E2E8F0;">
                     <th style="width:90px; text-align:left; padding:10px 8px;">Kode</th>
                     <th style="text-align:left; padding:10px 8px;">Unit Kerja</th>
                     <th style="width:170px; text-align:left; padding:10px 8px;">% IDP Coverage</th>
@@ -371,7 +371,7 @@
                 @foreach($tableCategories as $catKey => $cat)
                 @if(!empty($cat['groups']))
                 {{-- Category Header Row --}}
-                <tr class="ncc-cat-header-row" data-cat="{{ $catKey }}" style="background:#F8FAFC; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);">
+                <tr class="ncc-cat-header-row" data-cat="{{ $catKey }}" style="background:#F8FAFC; border-top:1px solid #E2E8F0; border-bottom:1px solid #E2E8F0;">
                     <td colspan="6" style="padding:8px 12px; font-weight:800; font-size:11.5px; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-primary);">
                         <span class="badge {{ $cat['badge_class'] }}" style="font-size:10px; margin-right:6px;">{{ $cat['badge'] }}</span>
                         {{ $cat['title'] }}
@@ -391,7 +391,7 @@
                     data-name="{{ $group['name'] }}"
                     data-coverage="{{ $group['coverage'] }}"
                     onclick="toggleTableParent('{{ $groupId }}')"
-                    style="cursor:pointer; background:#F8FAFC; border-bottom:1px solid rgba(255,255,255,0.04); font-weight:600;">
+                    style="cursor:pointer; background:#F8FAFC; border-bottom:1px solid #F1F5F9; font-weight:600;">
                     
                     <td style="padding:9px 8px;">
                         <div style="display:flex; align-items:center; gap:6px;">
@@ -433,7 +433,7 @@
                     data-code="{{ $child['code'] }}"
                     data-name="{{ $child['unit'] }}"
                     data-coverage="{{ $child['coverage'] }}"
-                    style="display:none; background:#F8FAFC; border-bottom:1px solid rgba(255,255,255,0.025); font-size:12px;">
+                    style="display:none; background:#F8FAFC; border-bottom:1px solid #F1F5F9; font-size:12px;">
                     
                     <td style="padding:7px 8px 7px 22px;">
                         <span class="badge badge-neutral" style="font-size:10px; font-weight:700;">{{ $child['code'] }}</span>
@@ -471,7 +471,7 @@
                     $cRiskColor = $child['risk'] === 'Tinggi' ? 'var(--danger)' : ($child['risk'] === 'Sedang' ? 'var(--warning)' : 'var(--success)');
                 @endphp
                 <tr class="ncc-table-child-row" 
-                    style="background:#F8FAFC; border-bottom:1px solid rgba(255,255,255,0.025); font-size:12px;">
+                    style="background:#F8FAFC; border-bottom:1px solid #F1F5F9; font-size:12px;">
                     
                     <td style="padding:7px 8px 7px 22px;">
                         <span class="badge badge-neutral" style="font-size:10px; font-weight:700;">{{ $child['code'] }}</span>
