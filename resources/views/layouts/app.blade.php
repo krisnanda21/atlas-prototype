@@ -46,14 +46,14 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
 {{-- Custom Confirmation Modal --}}
-<div id="atlas-confirm-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,23,42,0.8);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s ease-in-out;">
-    <div class="atlas-modal-content" style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;width:90%;max-width:400px;padding:24px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.5), 0 10px 10px -5px rgba(0,0,0,0.5);transform:scale(0.95);transition:transform 0.2s ease-in-out;text-align:center;font-family:'Inter', sans-serif;">
-        <div style="font-size:48px;margin-bottom:16px;color:#eab308;">⚠️</div>
-        <h3 id="atlas-confirm-title" style="margin:0 0 8px 0;font-size:18px;font-weight:700;color:#fff;">Konfirmasi</h3>
-        <p id="atlas-confirm-message" style="margin:0 0 24px 0;font-size:14px;color:rgba(255,255,255,0.7);line-height:1.5;">Apakah Anda yakin?</p>
+<div id="atlas-confirm-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,23,42,0.55);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s ease-in-out;">
+    <div class="atlas-modal-content" style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;width:90%;max-width:400px;padding:24px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.12), 0 10px 10px -5px rgba(0,0,0,0.06);transform:scale(0.95);transition:transform 0.2s ease-in-out;text-align:center;font-family:'Inter', sans-serif;">
+        <div style="font-size:48px;margin-bottom:16px;color:var(--warning);">⚠️</div>
+        <h3 id="atlas-confirm-title" style="margin:0 0 8px 0;font-size:18px;font-weight:700;color:var(--text-primary);">Konfirmasi</h3>
+        <p id="atlas-confirm-message" style="margin:0 0 24px 0;font-size:14px;color:var(--text-secondary);line-height:1.5;">Apakah Anda yakin?</p>
         <div style="display:flex;gap:12px;justify-content:center;">
-            <button id="atlas-confirm-btn-cancel" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;min-width:100px;cursor:pointer;border-radius:6px;border:none;background:rgba(255,255,255,0.1);color:#fff;">Batal</button>
-            <button id="atlas-confirm-btn-confirm" class="btn btn-primary" style="padding:10px 20px;font-weight:600;min-width:100px;cursor:pointer;border-radius:6px;border:none;background:var(--primary);color:#fff;">Ya</button>
+            <button id="atlas-confirm-btn-cancel" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;min-width:100px;">Batal</button>
+            <button id="atlas-confirm-btn-confirm" class="btn btn-primary" style="padding:10px 20px;font-weight:600;min-width:100px;">Ya</button>
         </div>
     </div>
 </div>
