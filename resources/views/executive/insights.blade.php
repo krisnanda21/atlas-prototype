@@ -12,19 +12,19 @@
 <div class="grid-4" style="margin-bottom: 12px;">
     {{-- Card 1: % IDP Coverage --}}
     <div class="stat-card" style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 16px; min-height:135px;">
-        <div style="font-size:15px; font-weight:700; color:#ffffff; margin-bottom:8px; line-height:1.2; text-align:center;">% IDP Coverage</div>
+        <div style="font-size:15px; font-weight:700; color:var(--text-secondary); margin-bottom:8px; line-height:1.2; text-align:center;">% IDP Coverage</div>
         <div class="stat-value" style="color:{{ $averageCoverage >= 75 ? 'var(--success)' : ($averageCoverage >= 50 ? 'var(--warning)' : 'var(--danger)') }}; font-size:30px; font-weight:800; line-height:1; margin:0; text-align:center;">{{ $averageCoverage }}%</div>
     </div>
 
     {{-- Card 2: % Pegawai Kompetensi Rendah --}}
     <div class="stat-card" style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 16px; min-height:135px;">
-        <div style="font-size:15px; font-weight:700; color:#ffffff; margin-bottom:8px; line-height:1.2; text-align:center;">% Pegawai Kompetensi Rendah</div>
+        <div style="font-size:15px; font-weight:700; color:var(--text-secondary); margin-bottom:8px; line-height:1.2; text-align:center;">% Pegawai Kompetensi Rendah</div>
         <div class="stat-value" style="color:{{ $suboptimalPercent > 50 ? 'var(--danger)' : ($suboptimalPercent > 20 ? 'var(--warning)' : 'var(--success)') }}; font-size:30px; font-weight:800; line-height:1; margin:0; text-align:center;">{{ $suboptimalPercent }}%</div>
     </div>
 
     {{-- Card 3: Gap Kompetensi Terbesar --}}
     <div class="stat-card" style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 16px; min-height:135px;">
-        <div style="font-size:15px; font-weight:700; color:#ffffff; margin-bottom:8px; line-height:1.2; text-align:center;">Gap Kompetensi Terbesar</div>
+        <div style="font-size:15px; font-weight:700; color:var(--text-secondary); margin-bottom:8px; line-height:1.2; text-align:center;">Gap Kompetensi Terbesar</div>
         <div class="stat-value" style="color:var(--danger); font-size:30px; font-weight:800; line-height:1; margin:0; text-align:center;">
             {{ $largestGapValue > 0 ? '-' . $largestGapValue : '0' }} <span style="font-size:14px; font-weight:600; color:var(--text-secondary);">poin</span>
         </div>
@@ -35,7 +35,7 @@
 
     {{-- Card 4: % Realisasi Bangkom Unit --}}
     <div class="stat-card" style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 16px; min-height:135px;">
-        <div style="font-size:15px; font-weight:700; color:#ffffff; margin-bottom:8px; line-height:1.2; text-align:center;">% Realisasi Bangkom Unit</div>
+        <div style="font-size:15px; font-weight:700; color:var(--text-secondary); margin-bottom:8px; line-height:1.2; text-align:center;">% Realisasi Bangkom Unit</div>
         <div class="stat-value" style="color:{{ $realisasiPercent >= 75 ? 'var(--success)' : ($realisasiPercent >= 50 ? 'var(--warning)' : 'var(--info)') }}; font-size:30px; font-weight:800; line-height:1; margin:0; text-align:center;">{{ $realisasiPercent }}%</div>
     </div>
 </div>
@@ -44,22 +44,22 @@
 <div class="grid-4 mb-4" style="align-items:stretch;">
     {{-- Narasi Card 1 --}}
     <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
-        <div>Di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong>, dari Total Gap Kompetensi yang dimiliki oleh keseluruhan pegawai, <strong style="color:#ffffff;">{{ $averageCoverage }}%</strong> sudah terdapat IDP untuk ditindaklanjuti oleh unit kerja.</div>
+        <div>Di <strong style="color:var(--text-primary);">{{ $scopeLabel }}</strong>, dari Total Gap Kompetensi yang dimiliki oleh keseluruhan pegawai, <strong style="color:var(--text-primary);">{{ $averageCoverage }}%</strong> sudah terdapat IDP untuk ditindaklanjuti oleh unit kerja.</div>
     </div>
 
     {{-- Narasi Card 2 --}}
     <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
-        <div><strong style="color:#ffffff;">{{ $suboptimalPercent }}%</strong> pegawai <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> memiliki nilai rata-rata kompetensi teknis dibawah 78.</div>
+        <div><strong style="color:var(--text-primary);">{{ $suboptimalPercent }}%</strong> pegawai <strong style="color:var(--text-primary);">{{ $scopeLabel }}</strong> memiliki nilai rata-rata kompetensi teknis dibawah 78.</div>
     </div>
 
     {{-- Narasi Card 3 --}}
     <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
-        <div>Gap Kompetensi terbesar di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> ada pada Kompetensi <strong style="color:#ffffff;">{{ $largestGapName }}</strong> dengan nilai gap sebesar <strong style="color:var(--danger);">{{ $largestGapValue > 0 ? '-' . $largestGapValue : '0' }} poin</strong>.</div>
+        <div>Gap Kompetensi terbesar di <strong style="color:var(--text-primary);">{{ $scopeLabel }}</strong> ada pada Kompetensi <strong style="color:var(--text-primary);">{{ $largestGapName }}</strong> dengan nilai gap sebesar <strong style="color:var(--danger);">{{ $largestGapValue > 0 ? '-' . $largestGapValue : '0' }} poin</strong>.</div>
     </div>
 
     {{-- Narasi Card 4 --}}
     <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center; min-width:0;">
-        <div>Sebesar <strong style="color:#ffffff;">{{ $realisasiPercent }}%</strong> Kegiatan Bangkom di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> sudah terealisasi.</div>
+        <div>Sebesar <strong style="color:var(--text-primary);">{{ $realisasiPercent }}%</strong> Kegiatan Bangkom di <strong style="color:var(--text-primary);">{{ $scopeLabel }}</strong> sudah terealisasi.</div>
     </div>
 </div>
 

@@ -232,7 +232,7 @@
 {{-- Custom Edit IDP Modal --}}
 <div id="atlas-edit-idp-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,23,42,0.8);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s ease-in-out;">
     <div class="atlas-modal-content" style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;width:95%;max-width:500px;padding:24px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.5), 0 10px 10px -5px rgba(0,0,0,0.5);transform:scale(0.95);transition:transform 0.2s ease-in-out;font-family:'Inter', sans-serif;">
-        <h3 style="margin:0 0 16px 0;font-size:18px;font-weight:700;color:#fff;text-align:left;">✍️ Edit Item IDP</h3>
+        <h3 style="margin:0 0 16px 0;font-size:18px;font-weight:700;color:var(--text-primary);text-align:left;">✍️ Edit Item IDP</h3>
         
         {{-- Revision note banner --}}
         <div id="edit-revision-note-container" style="padding:12px 14px;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);border-radius:8px;margin-bottom:20px;color:var(--danger);font-size:13px;text-align:left;line-height:1.4;">
@@ -287,7 +287,7 @@
             </div>
 
             <div style="display:flex;gap:12px;justify-content:flex-end;">
-                <button type="button" id="btn-close-edit-modal" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:#F1F5F9;color:#fff;">Batal</button>
+                <button type="button" id="btn-close-edit-modal" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:#F1F5F9;color:var(--text-primary);">Batal</button>
                 <button type="submit" class="btn btn-primary" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:var(--primary);color:#fff;">💾 Simpan Perubahan</button>
             </div>
         </form>

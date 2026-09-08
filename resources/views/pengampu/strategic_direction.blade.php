@@ -207,21 +207,33 @@
             </div>
 
             {{-- 8. Indikator Keberhasilan (Repeater) --}}
-            <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
-                    <span>Indikator Keberhasilan (Minimal 1) *</span>
+            <div class="form-group" style="margin-bottom:14px; text-align:left;justifiy-content:space-between; align-items:center">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
+                        <span>Indikator Keberhasilan (Minimal 1) *</span>
+                    </label>
                     <button type="button" onclick="addRepeaterRow('repeater-keberhasilan', 'indikator_keberhasilan')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
-                </label>
-                <div id="repeater-keberhasilan" style="display:flex;flex-direction:column;gap:8px;"></div>
+                </div>
+
+                <div 
+                    id="repeater-keberhasilan" 
+                    style="display:flex;flex-direction:column;gap:8px;">
+                </div>
             </div>
 
             {{-- 9. Penugasan Terkait (Repeater) --}}
             <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
-                    <span>Penugasan Terkait (Minimal 1) *</span>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
+                        <span>Penugasan Terkait (Minimal 1) *</span>
+                    </label>
                     <button type="button" onclick="addRepeaterRow('repeater-penugasan', 'penugasan_terkait')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
-                </label>
-                <div id="repeater-penugasan" style="display:flex;flex-direction:column;gap:8px;"></div>
+                </div>
+                
+                <div 
+                    id="repeater-penugasan" 
+                    style="display:flex;flex-direction:column;gap:8px;">
+                </div>
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
@@ -293,11 +305,17 @@
 
             {{-- 17. Kriteria Peserta (Repeater) --}}
             <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
-                    <span>Kriteria Peserta (Minimal 1) *</span>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
+                        <span>Kriteria Peserta (Minimal 1) *</span>
+                    </label>
                     <button type="button" onclick="addRepeaterRow('repeater-kriteria', 'kriteria_peserta')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
-                </label>
-                <div id="repeater-kriteria" style="display:flex;flex-direction:column;gap:8px;"></div>
+                </div>
+                
+                <div 
+                    id="repeater-kriteria" 
+                    style="display:flex;flex-direction:column;gap:8px;">
+                </div>
             </div>
 
             <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin-bottom:20px;">
@@ -325,7 +343,7 @@
             </div>
 
             <div style="display:flex;gap:12px;justify-content:flex-end;border-top:1px solid var(--divider);padding-top:16px;">
-                <button type="button" onclick="closeAddModal()" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:#F1F5F9;color:#fff;">Batal</button>
+                <button type="button" onclick="closeAddModal()" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:#F1F5F9;color:var(--text-primary);">Batal</button>
                 <button type="submit" class="btn btn-primary" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:var(--primary);color:#fff;">💾 Simpan Rencana</button>
             </div>
         </form>

@@ -123,7 +123,7 @@
                 <div class="form-group">
                     <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Total Realisasi Anggaran *</label>
                     <div style="position:relative;">
-                        <span style="position:absolute;left:10px;top:8px;color:#94a3b8;font-size:13px;">Rp</span>
+                        <span style="position:absolute;left:10px;top:8px;color:var(--text-secondary);font-size:13px;">Rp</span>
                         <input type="text" id="realisasi_anggaran_display" class="form-control" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:8px 8px 8px 30px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" onkeyup="formatCurrency(this, 'realisasi_anggaran_val')">
                         <input type="hidden" name="realisasi_anggaran" id="realisasi_anggaran_val">
                     </div>
@@ -157,7 +157,7 @@
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
                     <h3 style="font-size:14px;font-weight:600;color:var(--text-primary);margin:0;">👥 Daftar Peserta & Skor Penilaian</h3>
                     <div style="display:flex;gap:8px;align-items:center;">
-                        <a href="/template_evaluasi_bangkom.xls" download class="btn" style="padding:6px 12px;font-size:12px;font-weight:600;border-radius:6px;background:#F1F5F9;color:#fff;text-decoration:none;border:1px solid #E2E8F0;display:inline-flex;align-items:center;gap:4px;cursor:pointer;">📥 Download XLS</a>
+                        <a href="/template_evaluasi_bangkom.xls" download class="btn" style="padding:6px 12px;font-size:12px;font-weight:600;border-radius:6px;background:#F1F5F9;color:var(--text-primary);text-decoration:none;border:1px solid #E2E8F0;display:inline-flex;align-items:center;gap:4px;cursor:pointer;">📥 Download XLS</a>
                         <label class="btn" style="padding:6px 12px;font-size:12px;font-weight:600;border-radius:6px;background:#2563eb;color:#fff;display:inline-flex;align-items:center;gap:4px;cursor:pointer;margin:0;border:none;">
                             📤 Import Nilai
                             <input type="file" id="import-excel-file" accept=".xls,.xlsx" style="display:none;" onchange="handleExcelImport(event)">
@@ -391,7 +391,7 @@ function addParticipantRow() {
     tdEmployee.style.padding = '8px 4px';
     tdEmployee.innerHTML = `
         <div style="position:relative;">
-            <input type="text" class="form-control emp-search-input" readonly style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;outline:none;">
+            <input type="text" class="form-control emp-search-input" readonly style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;outline:none;">
             <input type="hidden" name="participants[${rowIndex}][employee_id]" class="emp-id-hidden">
         </div>
     `;
@@ -401,7 +401,7 @@ function addParticipantRow() {
     const tdPenyelenggara = document.createElement('td');
     tdPenyelenggara.style.padding = '8px 4px';
     tdPenyelenggara.innerHTML = `
-        <input type="text" name="participants[${rowIndex}][skor_penyelenggara]" class="form-control" readonly required style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
+        <input type="text" name="participants[${rowIndex}][skor_penyelenggara]" class="form-control" readonly required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdPenyelenggara);
 
@@ -409,7 +409,7 @@ function addParticipantRow() {
     const tdMateri = document.createElement('td');
     tdMateri.style.padding = '8px 4px';
     tdMateri.innerHTML = `
-        <input type="text" name="participants[${rowIndex}][skor_materi]" class="form-control" readonly required style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
+        <input type="text" name="participants[${rowIndex}][skor_materi]" class="form-control" readonly required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdMateri);
 
@@ -417,7 +417,7 @@ function addParticipantRow() {
     const tdFasilitator = document.createElement('td');
     tdFasilitator.style.padding = '8px 4px';
     tdFasilitator.innerHTML = `
-        <input type="text" name="participants[${rowIndex}][skor_fasilitator]" class="form-control" readonly required style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
+        <input type="text" name="participants[${rowIndex}][skor_fasilitator]" class="form-control" readonly required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdFasilitator);
 
@@ -427,7 +427,7 @@ function addParticipantRow() {
     tdPre.style.padding = '8px 4px';
     tdPre.style.display = isLevel2 ? 'table-cell' : 'none';
     tdPre.innerHTML = `
-        <input type="text" name="participants[${rowIndex}][skor_pre]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
+        <input type="text" name="participants[${rowIndex}][skor_pre]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdPre);
 
@@ -437,7 +437,7 @@ function addParticipantRow() {
     tdPost.style.padding = '8px 4px';
     tdPost.style.display = isLevel2 ? 'table-cell' : 'none';
     tdPost.innerHTML = `
-        <input type="text" name="participants[${rowIndex}][skor_post]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:transparent;color:#fff;width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
+        <input type="text" name="participants[${rowIndex}][skor_post]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
     tr.appendChild(tdPost);
 
@@ -681,7 +681,7 @@ function showDetailRealisasi(plan) {
         plan.participants.forEach((p, idx) => {
             participantsRows += `
                 <tr style="border-bottom:1px solid #E2E8F0; font-size:12px;">
-                    <td style="padding:8px 10px; color:#fff;">
+                    <td style="padding:8px 10px; color:var(--text-primary);">
                         <div style="font-weight:600;">${p.employee_name || p.employee_id}</div>
                         <div style="font-size:11px; color:var(--text-secondary);">${p.employee_nip || p.employee_id} ${p.employee_unit ? '• ' + p.employee_unit : ''}</div>
                     </td>
@@ -703,29 +703,29 @@ function showDetailRealisasi(plan) {
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px; font-size:13px;">
             <div>
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">ID & Nama Kegiatan</div>
-                <div style="font-weight:700; color:#fff; font-size:14px; margin-bottom:10px;">${plan.id} - ${plan.nama_kegiatan}</div>
+                <div style="font-weight:700; color:var(--text-primary); font-size:14px; margin-bottom:10px;">${plan.id} - ${plan.nama_kegiatan}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Unit Pengusul</div>
-                <div style="color:#fff; margin-bottom:10px;">${plan.unit_pengusul || '-'}</div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.unit_pengusul || '-'}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Kompetensi Dasar</div>
-                <div style="color:#fff; margin-bottom:10px;">${plan.kompetensi_dasar || '-'}</div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.kompetensi_dasar || '-'}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Jalur & Metode</div>
-                <div style="color:#fff;">${plan.jalur_pembelajaran || '-'} (${plan.metode || '-'})</div>
+                <div style="color:var(--text-primary);">${plan.jalur_pembelajaran || '-'} (${plan.metode || '-'})</div>
             </div>
             <div>
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Status Realisasi</div>
                 <div style="margin-bottom:10px;">${statusBadge}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Waktu Pelaksanaan & JP</div>
-                <div style="color:#fff; margin-bottom:10px;">${plan.tanggal_mulai} s/d ${plan.tanggal_selesai} • <strong>${plan.jp} JP</strong></div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.tanggal_mulai} s/d ${plan.tanggal_selesai} • <strong>${plan.jp} JP</strong></div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Fasilitator</div>
-                <div style="color:#fff; margin-bottom:10px;">${plan.fasilitator || '-'}</div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.fasilitator || '-'}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Jenis Evaluasi</div>
-                <div style="color:#fff;">${isLevel2Plan ? 'Level 2 (Reaksi & Pre/Post Test)' : 'Level 1 (Reaksi Penyelenggaraan)'}</div>
+                <div style="color:var(--text-primary);">${isLevel2Plan ? 'Level 2 (Reaksi & Pre/Post Test)' : 'Level 1 (Reaksi Penyelenggaraan)'}</div>
             </div>
         </div>
 
@@ -749,7 +749,7 @@ function showDetailRealisasi(plan) {
 
         <div style="background:#F8FAFC; border:1px solid var(--card-border); border-radius:8px; padding:14px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div style="font-weight:600; color:#fff; font-size:13px;">👥 Daftar Peserta & Skor (${plan.participants ? plan.participants.length : 0} Pegawai)</div>
+                <div style="font-weight:600; color:var(--text-primary); font-size:13px;">👥 Daftar Peserta & Skor (${plan.participants ? plan.participants.length : 0} Pegawai)</div>
             </div>
             <div style="max-height:260px; overflow-y:auto;">
                 <table style="width:100%; border-collapse:collapse;">

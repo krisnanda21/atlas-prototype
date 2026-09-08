@@ -86,7 +86,7 @@
         
         <div style="margin-bottom:16px;">
             <div style="font-size:12px; color:var(--text-secondary);">Kegiatan:</div>
-            <div id="peserta-nama-pelatihan" style="font-size:15px; font-weight:600; color:#fff;"></div>
+            <div id="peserta-nama-pelatihan" style="font-size:15px; font-weight:600; color:var(--text-primary);"></div>
         </div>
 
         <div style="overflow-x:auto;">
@@ -125,12 +125,12 @@
             
             <div style="margin-bottom:16px;">
                 <label style="display:block; font-size:12px; color:var(--text-secondary); margin-bottom:4px;">Pelatihan dari SIMPEL</label>
-                <div id="map-simpel-name" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:10px; color:#fff; font-size:13px; font-weight:600;"></div>
+                <div id="map-simpel-name" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:10px; color:var(--text-primary); font-size:13px; font-weight:600;"></div>
             </div>
 
             <div style="margin-bottom:16px;">
                 <label style="display:block; font-size:12px; color:var(--text-secondary); margin-bottom:4px;">Nama Pegawai</label>
-                <div id="map-emp-name" style="color:#fff; font-size:13px; font-weight:600;"></div>
+                <div id="map-emp-name" style="color:var(--text-primary); font-size:13px; font-weight:600;"></div>
             </div>
 
             <div style="margin-bottom:20px;">

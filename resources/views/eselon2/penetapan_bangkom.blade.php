@@ -304,7 +304,7 @@ function showDetailRealisasi(plan) {
         plan.participants.forEach((p, idx) => {
             participantsRows += `
                 <tr style="border-bottom:1px solid #E2E8F0; font-size:12px;">
-                    <td style="padding:8px 10px; color:#fff;">
+                    <td style="padding:8px 10px; color:var(--text-primary);">
                         <div style="font-weight:600;">${p.employee_name || p.employee_id}</div>
                         <div style="font-size:11px; color:var(--text-secondary);">${p.employee_nip || p.employee_id} ${p.employee_unit ? '• ' + p.employee_unit : ''}</div>
                     </td>
@@ -326,29 +326,29 @@ function showDetailRealisasi(plan) {
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px; font-size:13px;">
             <div>
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">ID & Nama Kegiatan</div>
-                <div style="font-weight:700; color:#fff; font-size:14px; margin-bottom:10px;">${plan.id} - ${plan.nama_kegiatan}</div>
+                <div style="font-weight:700; color:var(--text-primary); font-size:14px; margin-bottom:10px;">${plan.id} - ${plan.nama_kegiatan}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Unit Pengusul</div>
-                <div style="color:#fff; margin-bottom:10px;">${plan.unit_pengusul || '-'}</div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.unit_pengusul || '-'}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Kompetensi Dasar</div>
-                <div style="color:#fff; margin-bottom:10px;">${plan.kompetensi_dasar || '-'}</div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.kompetensi_dasar || '-'}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Jalur & Metode</div>
-                <div style="color:#fff;">${plan.jalur_pembelajaran || '-'} (${plan.metode || '-'})</div>
+                <div style="color:var(--text-primary);">${plan.jalur_pembelajaran || '-'} (${plan.metode || '-'})</div>
             </div>
             <div>
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Status Realisasi</div>
                 <div style="margin-bottom:10px;">${statusBadge}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Waktu Pelaksanaan & JP</div>
-                <div style="color:#fff; margin-bottom:10px;">${plan.tanggal_mulai} s/d ${plan.tanggal_selesai} • <strong>${plan.jp} JP</strong></div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.tanggal_mulai} s/d ${plan.tanggal_selesai} • <strong>${plan.jp} JP</strong></div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Fasilitator</div>
-                <div style="color:#fff; margin-bottom:10px;">${plan.fasilitator || '-'}</div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.fasilitator || '-'}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Jenis Evaluasi</div>
-                <div style="color:#fff;">${isLevel2Plan ? 'Level 2 (Reaksi & Pre/Post Test)' : 'Level 1 (Reaksi Penyelenggaraan)'}</div>
+                <div style="color:var(--text-primary);">${isLevel2Plan ? 'Level 2 (Reaksi & Pre/Post Test)' : 'Level 1 (Reaksi Penyelenggaraan)'}</div>
             </div>
         </div>
 
@@ -358,19 +358,19 @@ function showDetailRealisasi(plan) {
                 <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">1. Daftar Hadir</div>
                     <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">
-                        📄 ${plan.dok_daftar_hadir ? `<a href="/storage/${plan.dok_daftar_hadir}" target="_blank" style="color:#38bdf8; text-decoration:none;">${plan.dok_daftar_hadir}</a>` : '<span class="text-muted">Belum ada</span>'}
+                        📄 ${plan.dok_daftar_hadir ? `<a href="/storage/${plan.dok_daftar_hadir}" target="_blank" style="color:var(--accent); text-decoration:none;">${plan.dok_daftar_hadir}</a>` : '<span class="text-muted">Belum ada</span>'}
                     </div>
                 </div>
                 <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">2. Notulen Kegiatan</div>
                     <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">
-                        📄 ${plan.dok_notulen ? `<a href="/storage/${plan.dok_notulen}" target="_blank" style="color:#38bdf8; text-decoration:none;">${plan.dok_notulen}</a>` : '<span class="text-muted">Belum ada</span>'}
+                        📄 ${plan.dok_notulen ? `<a href="/storage/${plan.dok_notulen}" target="_blank" style="color:var(--accent); text-decoration:none;">${plan.dok_notulen}</a>` : '<span class="text-muted">Belum ada</span>'}
                     </div>
                 </div>
                 <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">3. Foto Dokumentasi</div>
                     <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">
-                        🖼️ ${plan.dok_dokumentasi ? `<a href="/storage/${plan.dok_dokumentasi}" target="_blank" style="color:#38bdf8; text-decoration:none;">${plan.dok_dokumentasi}</a>` : '<span class="text-muted">Belum ada</span>'}
+                        🖼️ ${plan.dok_dokumentasi ? `<a href="/storage/${plan.dok_dokumentasi}" target="_blank" style="color:var(--accent); text-decoration:none;">${plan.dok_dokumentasi}</a>` : '<span class="text-muted">Belum ada</span>'}
                     </div>
                 </div>
             </div>
@@ -378,7 +378,7 @@ function showDetailRealisasi(plan) {
 
         <div style="background:#F8FAFC; border:1px solid var(--card-border); border-radius:8px; padding:14px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div style="font-weight:600; color:#fff; font-size:13px;">👥 Daftar Peserta & Skor (${plan.participants ? plan.participants.length : 0} Pegawai)</div>
+                <div style="font-weight:600; color:var(--text-primary); font-size:13px;">👥 Daftar Peserta & Skor (${plan.participants ? plan.participants.length : 0} Pegawai)</div>
             </div>
             <div style="max-height:260px; overflow-y:auto;">
                 <table style="width:100%; border-collapse:collapse;">
@@ -433,7 +433,7 @@ function showDetail(plan) {
     const formattedAnggaran = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(plan.nilai_anggaran);
 
     const html = `
-        <table style="width:100%;font-size:13px;border-collapse:collapse;color:#fff;">
+        <table style="width:100%;font-size:13px;border-collapse:collapse;color:var(--text-primary);">
             <tr><td style="color:var(--text-secondary);padding:6px 0;width:40%;">ID Kegiatan</td><td><strong>${plan.id}</strong></td></tr>
             <tr><td style="color:var(--text-secondary);padding:6px 0;">Nama Kegiatan</td><td><strong>${plan.nama_kegiatan}</strong></td></tr>
             <tr><td style="color:var(--text-secondary);padding:6px 0;">Kompetensi Dasar</td><td>${plan.kompetensi_dasar}</td></tr>
