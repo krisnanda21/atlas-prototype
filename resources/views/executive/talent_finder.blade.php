@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Talent Finder - Executive')
 @section('header_title', 'Talent Finder Nasional')
 
@@ -257,7 +257,7 @@
         overflow-y: auto;
         z-index: 50;
         margin-top: 4px;
-        background: #1e293b;
+        background: var(--modal-bg);
         border: 1px solid rgba(255,255,255,0.1);
         border-radius: 6px;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Bangkom Nasional')
 @section('header_title', 'Bangkom Nasional (Seluruh Unit Kerja)')
 
@@ -112,8 +112,8 @@
 </div>
 
 {{-- Modal Detail Rencana --}}
-<div id="modal-detail" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;">
-    <div style="background:#1a2e45;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:540px;max-height:80vh;overflow-y:auto;">
+<div id="modal-detail" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:1000;align-items:center;justify-content:center;">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:540px;max-height:80vh;overflow-y:auto;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
             <h2 style="font-size:16px;font-weight:600;">📋 Detail Rencana Kegiatan</h2>
             <button onclick="document.getElementById('modal-detail').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer;">✕</button>
@@ -124,13 +124,13 @@
 
 {{-- Modal Detail Realisasi --}}
 <div id="modal-detail-realisasi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:850px;max-height:85vh;overflow-y:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:18px;font-weight:700;color:#fff;margin:0;">📋 Detail Realisasi Kegiatan Bangkom</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:850px;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.12);font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">📋 Detail Realisasi Kegiatan Bangkom</h2>
             <button onclick="document.getElementById('modal-detail-realisasi').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         <div id="detail-realisasi-content"></div>
-        <div id="detail-realisasi-actions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;">
+        <div id="detail-realisasi-actions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;border-top:1px solid var(--divider);padding-top:16px;">
             <button type="button" onclick="document.getElementById('modal-detail-realisasi').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Tutup</button>
         </div>
     </div>
@@ -248,25 +248,25 @@ function showDetailRealisasi(plan) {
             </div>
         </div>
 
-        <div style="margin-bottom:20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:14px;">
-            <div style="font-weight:600; color:#fff; font-size:13px; margin-bottom:10px;">📁 Dokumen Bukti Realisasi</div>
+        <div style="margin-bottom:20px; background:#F8FAFC; border:1px solid var(--card-border); border-radius:8px; padding:14px;">
+            <div style="font-weight:600; color:var(--text-primary); font-size:13px; margin-bottom:10px;">📁 Dokumen Bukti Realisasi</div>
             <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; font-size:12px;">
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">1. Daftar Hadir</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">📄 ${plan.dok_daftar_hadir || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">📄 ${plan.dok_daftar_hadir || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">2. Notulen Kegiatan</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">📄 ${plan.dok_notulen || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">📄 ${plan.dok_notulen || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">3. Foto Dokumentasi</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">🖼️ ${plan.dok_dokumentasi || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">🖼️ ${plan.dok_dokumentasi || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
             </div>
         </div>
 
-        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:14px;">
+        <div style="background:#F8FAFC; border:1px solid var(--card-border); border-radius:8px; padding:14px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <div style="font-weight:600; color:#fff; font-size:13px;">👥 Daftar Peserta & Skor (${plan.participants ? plan.participants.length : 0} Pegawai)</div>
             </div>

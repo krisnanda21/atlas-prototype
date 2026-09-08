@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Pembatalan Bangkom - Kepala Unit')
 @section('header_title', 'Konfirmasi Pembatalan Bangkom')
 
@@ -81,12 +81,12 @@
 
 {{-- Custom Confirm Approve Delete Modal --}}
 <div id="modal-confirm-delete" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);text-align:left;font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,0.12);text-align:left;font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
             <h2 style="font-size:16px;font-weight:700;color:var(--danger);margin:0;">⚠️ Konfirmasi Setujui Pembatalan</h2>
             <button onclick="document.getElementById('modal-confirm-delete').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="confirm-delete-plan-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="confirm-delete-plan-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:10px;background:#F1F5F9;border-radius:6px;"></p>
         <p class="text-sm text-muted" style="margin-bottom:20px;line-height:1.5;">Apakah Anda yakin ingin menyetujui pembatalan rencana kegiatan ini? Tindakan ini akan membatalkan kegiatan secara resmi.</p>
         <div style="display:flex;gap:10px;justify-content:flex-end;">
             <button type="button" onclick="document.getElementById('modal-confirm-delete').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Kembali</button>
@@ -97,12 +97,12 @@
 
 {{-- Custom Confirm Reject Cancel Modal --}}
 <div id="modal-confirm-reject-cancel" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);text-align:left;font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:16px;font-weight:700;color:#fff;margin:0;">↩️ Tolak Pembatalan (Tetapkan Kembali)</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,0.12);text-align:left;font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">↩️ Tolak Pembatalan (Tetapkan Kembali)</h2>
             <button onclick="document.getElementById('modal-confirm-reject-cancel').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="confirm-reject-plan-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="confirm-reject-plan-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:10px;background:#F1F5F9;border-radius:6px;"></p>
         <p class="text-sm text-muted" style="margin-bottom:20px;line-height:1.5;">Apakah Anda ingin menolak pembatalan ini dan mengembalikan status kegiatan menjadi <strong>Ditetapkan</strong>?</p>
         <div style="display:flex;gap:10px;justify-content:flex-end;">
             <button type="button" onclick="document.getElementById('modal-confirm-reject-cancel').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Batal</button>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Penetapan Bangkom Unit')
 @section('header_title', 'Penetapan Rencana Bangkom Unit')
 
@@ -154,8 +154,8 @@
 </div>
 
 {{-- Modal Detail --}}
-<div id="modal-detail" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;">
-    <div style="background:#1a2e45;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:600px;max-width:95%;max-height:90vh;overflow-y:auto;">
+<div id="modal-detail" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:1000;align-items:center;justify-content:center;">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:600px;max-width:95%;max-height:90vh;overflow-y:auto;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
             <h2 style="font-size:16px;font-weight:600;">📋 Detail Rencana Kegiatan</h2>
             <button onclick="document.getElementById('modal-detail').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer;">✕</button>
@@ -169,17 +169,17 @@
 
 {{-- Modal Reject / Revisi Plan --}}
 <div id="modal-reject-plan" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:500px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:16px;font-weight:700;color:#fff;margin:0;">❌ Pengembalian / Revisi Rencana Bangkom</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:500px;box-shadow:0 8px 32px rgba(0,0,0,0.12);font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">❌ Pengembalian / Revisi Rencana Bangkom</h2>
             <button onclick="document.getElementById('modal-reject-plan').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="reject-plan-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="reject-plan-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:8px;background:#F1F5F9;border-radius:6px;"></p>
         <form method="POST" id="form-reject-plan" style="text-align:left;">
             @csrf
             <div class="form-group" style="margin-bottom:16px;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Alasan Penolakan / Catatan Perbaikan *</label>
-                <textarea name="reject_reason" class="form-control" rows="4" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;resize:vertical;" required placeholder="Tuliskan catatan perbaikan atau alasan penolakan..."></textarea>
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Alasan Penolakan / Catatan Perbaikan *</label>
+                <textarea name="reject_reason" class="form-control" rows="4" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;resize:vertical;" required placeholder="Tuliskan catatan perbaikan atau alasan penolakan..."></textarea>
             </div>
             <div style="display:flex;gap:10px;justify-content:flex-end;">
                 <button type="button" onclick="document.getElementById('modal-reject-plan').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Batal</button>
@@ -191,12 +191,12 @@
 
 {{-- Modal Konfirmasi Tetapkan Rencana --}}
 <div id="modal-confirm-approve-plan" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);text-align:left;font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:16px;font-weight:700;color:#fff;margin:0;">✅ Konfirmasi Penetapan Rencana Bangkom</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,0.12);text-align:left;font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">✅ Konfirmasi Penetapan Rencana Bangkom</h2>
             <button onclick="document.getElementById('modal-confirm-approve-plan').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="approve-plan-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="approve-plan-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:10px;background:#F1F5F9;border-radius:6px;"></p>
         <p class="text-sm text-muted" style="margin-bottom:20px;line-height:1.5;">Apakah Anda yakin ingin menetapkan rencana kegiatan bangkom ini? Status kegiatan akan berubah menjadi <strong>Ditetapkan</strong> dan email verifikator Anda akan tercatat.</p>
         <form method="POST" id="form-approve-plan" style="display:flex;gap:10px;justify-content:flex-end;">
             @csrf
@@ -207,13 +207,13 @@
 </div>
 {{-- Modal Detail Realisasi --}}
 <div id="modal-detail-realisasi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:850px;max-height:85vh;overflow-y:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:18px;font-weight:700;color:#fff;margin:0;">📋 Detail Realisasi Kegiatan Bangkom</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:850px;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.12);font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">📋 Detail Realisasi Kegiatan Bangkom</h2>
             <button onclick="document.getElementById('modal-detail-realisasi').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         <div id="detail-realisasi-content"></div>
-        <div id="detail-realisasi-actions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;">
+        <div id="detail-realisasi-actions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;border-top:1px solid var(--divider);padding-top:16px;">
             <button type="button" onclick="document.getElementById('modal-detail-realisasi').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Tutup</button>
         </div>
     </div>
@@ -221,12 +221,12 @@
 
 {{-- Modal Konfirmasi Approve Realisasi --}}
 <div id="modal-confirm-approve-realisasi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:10001;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);text-align:left;font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:16px;font-weight:700;color:#fff;margin:0;">✅ Konfirmasi Persetujuan Realisasi</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,0.12);text-align:left;font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">✅ Konfirmasi Persetujuan Realisasi</h2>
             <button onclick="document.getElementById('modal-confirm-approve-realisasi').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="approve-realisasi-plan-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="approve-realisasi-plan-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:10px;background:#F1F5F9;border-radius:6px;"></p>
         <p class="text-sm text-muted" style="margin-bottom:20px;line-height:1.5;">Apakah Anda yakin ingin menyetujui realisasi kegiatan bangkom ini sebagai <strong>Verifikator Level 2</strong>? Status akan berubah menjadi <strong>Realisasi Disetujui</strong> dan email verifikator Anda akan tercatat.</p>
         <form method="POST" id="form-approve-realisasi" style="display:flex;gap:10px;justify-content:flex-end;">
             @csrf
@@ -238,17 +238,17 @@
 
 {{-- Modal Reject / Kembalikan Realisasi --}}
 <div id="modal-reject-realisasi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:10000;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:500px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:16px;font-weight:700;color:#fff;margin:0;">↩️ Kembalikan Realisasi Kegiatan</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:500px;box-shadow:0 8px 32px rgba(0,0,0,0.12);font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">↩️ Kembalikan Realisasi Kegiatan</h2>
             <button onclick="document.getElementById('modal-reject-realisasi').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="reject-realisasi-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="reject-realisasi-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:8px;background:#F1F5F9;border-radius:6px;"></p>
         <form method="POST" id="form-reject-realisasi" style="text-align:left;">
             @csrf
             <div class="form-group" style="margin-bottom:16px;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Alasan Pengembalian / Catatan Perbaikan *</label>
-                <textarea name="reject_reason" class="form-control" rows="4" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;resize:vertical;" required placeholder="Tuliskan catatan perbaikan atau alasan pengembalian ke pengampu..."></textarea>
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Alasan Pengembalian / Catatan Perbaikan *</label>
+                <textarea name="reject_reason" class="form-control" rows="4" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;resize:vertical;" required placeholder="Tuliskan catatan perbaikan atau alasan pengembalian ke pengampu..."></textarea>
             </div>
             <div style="display:flex;gap:10px;justify-content:flex-end;">
                 <button type="button" onclick="document.getElementById('modal-reject-realisasi').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Batal</button>
@@ -352,31 +352,31 @@ function showDetailRealisasi(plan) {
             </div>
         </div>
 
-        <div style="margin-bottom:20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:14px;">
-            <div style="font-weight:600; color:#fff; font-size:13px; margin-bottom:10px;">📁 Dokumen Bukti Realisasi</div>
+        <div style="margin-bottom:20px; background:#F8FAFC; border:1px solid var(--card-border); border-radius:8px; padding:14px;">
+            <div style="font-weight:600; color:var(--text-primary); font-size:13px; margin-bottom:10px;">📁 Dokumen Bukti Realisasi</div>
             <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; font-size:12px;">
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">1. Daftar Hadir</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">
                         📄 ${plan.dok_daftar_hadir ? `<a href="/storage/${plan.dok_daftar_hadir}" target="_blank" style="color:#38bdf8; text-decoration:none;">${plan.dok_daftar_hadir}</a>` : '<span class="text-muted">Belum ada</span>'}
                     </div>
                 </div>
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">2. Notulen Kegiatan</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">
                         📄 ${plan.dok_notulen ? `<a href="/storage/${plan.dok_notulen}" target="_blank" style="color:#38bdf8; text-decoration:none;">${plan.dok_notulen}</a>` : '<span class="text-muted">Belum ada</span>'}
                     </div>
                 </div>
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">3. Foto Dokumentasi</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">
                         🖼️ ${plan.dok_dokumentasi ? `<a href="/storage/${plan.dok_dokumentasi}" target="_blank" style="color:#38bdf8; text-decoration:none;">${plan.dok_dokumentasi}</a>` : '<span class="text-muted">Belum ada</span>'}
                     </div>
                 </div>
             </div>
         </div>
 
-        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:14px;">
+        <div style="background:#F8FAFC; border:1px solid var(--card-border); border-radius:8px; padding:14px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <div style="font-weight:600; color:#fff; font-size:13px;">👥 Daftar Peserta & Skor (${plan.participants ? plan.participants.length : 0} Pegawai)</div>
             </div>

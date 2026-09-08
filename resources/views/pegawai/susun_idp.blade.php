@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Susun IDP Saya')
 @section('header_title', 'Susun IDP Saya')
 
@@ -70,7 +70,7 @@
             @csrf
             <div class="form-group">
                 <label class="form-label">Jenis Kompetensi / Kebutuhan *</label>
-                <select name="need" class="form-control" required style="background:#1a2e45;color:#fff;">
+                <select name="need" class="form-control" required style="background:#F8FAFC;color:var(--text-primary);">
                     <option value="">-- Pilih --</option>
                     <optgroup label="Kompetensi Teknis">
                         @foreach($competenciesTeknis as $comp)
@@ -86,7 +86,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Sumber *</label>
-                <select name="source" class="form-control" required style="background:#1a2e45;color:#fff;">
+                <select name="source" class="form-control" required style="background:#F8FAFC;color:var(--text-primary);">
                     <option value="assessment-based">Gap Compass</option>
                     <option value="role-based">Role Based</option>
                     <option value="mandatory-based">Mandatory Learning</option>
@@ -231,7 +231,7 @@
 
 {{-- Custom Edit IDP Modal --}}
 <div id="atlas-edit-idp-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,23,42,0.8);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s ease-in-out;">
-    <div class="atlas-modal-content" style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;width:95%;max-width:500px;padding:24px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.5), 0 10px 10px -5px rgba(0,0,0,0.5);transform:scale(0.95);transition:transform 0.2s ease-in-out;font-family:'Inter', sans-serif;">
+    <div class="atlas-modal-content" style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;width:95%;max-width:500px;padding:24px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.5), 0 10px 10px -5px rgba(0,0,0,0.5);transform:scale(0.95);transition:transform 0.2s ease-in-out;font-family:'Inter', sans-serif;">
         <h3 style="margin:0 0 16px 0;font-size:18px;font-weight:700;color:#fff;text-align:left;">✍️ Edit Item IDP</h3>
         
         {{-- Revision note banner --}}
@@ -245,8 +245,8 @@
             @method('PUT')
             
             <div class="form-group" style="text-align:left;margin-bottom:14px;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jenis Kompetensi / Kebutuhan *</label>
-                <select name="need" id="edit-idp-need" class="form-control" required style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jenis Kompetensi / Kebutuhan *</label>
+                <select name="need" id="edit-idp-need" class="form-control" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                     <option value="">-- Pilih --</option>
                     <optgroup label="Kompetensi Teknis">
                         @foreach($competenciesTeknis as $comp)
@@ -262,8 +262,8 @@
             </div>
             
             <div class="form-group" style="text-align:left;margin-bottom:14px;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Sumber *</label>
-                <select name="source" id="edit-idp-source" class="form-control" required style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Sumber *</label>
+                <select name="source" id="edit-idp-source" class="form-control" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                     <option value="assessment-based">Gap Compass</option>
                     <option value="role-based">Role Based</option>
                     <option value="mandatory-based">Mandatory Learning</option>
@@ -273,13 +273,13 @@
             </div>
 
             <div class="form-group" style="text-align:left;margin-bottom:14px;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Basis / Alasan *</label>
-                <textarea name="basis" id="edit-idp-basis" class="form-control" rows="3" required style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);resize:vertical;font-size:13px;"></textarea>
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Basis / Alasan *</label>
+                <textarea name="basis" id="edit-idp-basis" class="form-control" rows="3" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;resize:vertical;font-size:13px;"></textarea>
             </div>
 
             <div class="form-group" style="text-align:left;margin-bottom:20px;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Prioritas *</label>
-                <select name="priority" id="edit-idp-priority" class="form-control" required style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Prioritas *</label>
+                <select name="priority" id="edit-idp-priority" class="form-control" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                     <option value="Tinggi">Tinggi</option>
                     <option value="Sedang">Sedang</option>
                     <option value="Rendah">Rendah</option>

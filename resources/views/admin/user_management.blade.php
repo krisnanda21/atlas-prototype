@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'User Management')
 @section('header_title', 'Manajemen Pengguna')
 
@@ -45,8 +45,8 @@
 </div>
 
 {{-- Modal Add --}}
-<div id="modal-add" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;">
-    <div style="background:#1a2e45;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:480px;max-height:90vh;overflow-y:auto;">
+<div id="modal-add" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:1000;align-items:center;justify-content:center;">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:480px;max-height:90vh;overflow-y:auto;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
             <h2 style="font-size:16px;font-weight:600;">+ Tambah Pengguna</h2>
             <button onclick="document.getElementById('modal-add').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer;">✕</button>
@@ -86,8 +86,8 @@
 </div>
 
 {{-- Modal Edit --}}
-<div id="modal-edit" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;">
-    <div style="background:#1a2e45;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:480px;">
+<div id="modal-edit" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:1000;align-items:center;justify-content:center;">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:480px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
             <h2 style="font-size:16px;font-weight:600;">✏️ Edit Pengguna</h2>
             <button onclick="document.getElementById('modal-edit').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer;">✕</button>

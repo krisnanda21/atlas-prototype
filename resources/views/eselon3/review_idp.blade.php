@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Review IDP Pegawai')
 @section('header_title', 'Review IDP Pegawai Unit')
 
@@ -104,9 +104,9 @@
 
 {{-- Modal Detail IDP Pegawai --}}
 <div id="modal-detail-idp" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9990;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;width:950px;max-width:95vw;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 25px -5px rgba(0,0,0,0.5);">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;width:950px;max-width:95vw;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-shrink:0;">
-            <h3 style="font-size:18px;font-weight:700;color:#fff;margin:0;">📋 Detail IDP - <span id="detail-employee-name"></span></h3>
+            <h3 style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">📋 Detail IDP - <span id="detail-employee-name"></span></h3>
             <button onclick="document.getElementById('modal-detail-idp').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         
@@ -116,9 +116,9 @@
             </button>
         </div>
 
-        <div style="overflow-y:auto;flex:1;border:1px solid rgba(255,255,255,0.1);border-radius:8px;">
+        <div style="overflow-y:auto;flex:1;border:1px solid var(--card-border);border-radius:8px;">
             <table id="table-detail-idp" style="width:100%;font-size:13px;text-align:left;border-collapse:collapse;margin:0;">
-                <thead style="background:#334155;position:sticky;top:0;z-index:2;box-shadow:0 1px 0 rgba(255,255,255,0.1);">
+                <thead style="background:#334155;position:sticky;top:0;z-index:2;box-shadow:0 1px 0 var(--divider);">
                     <tr>
                         <th style="padding:10px;width:40px;text-align:center;">
                             <input type="checkbox" id="check-all-detail-idp" onchange="toggleCheckAllDetail(this)" title="Pilih Semua IDP Diajukan" style="cursor:pointer;accent-color:var(--success);width:16px;height:16px;">
@@ -160,9 +160,9 @@
 
 {{-- Modal Konfirmasi Single Agree --}}
 <div id="modal-confirm-agree-single" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;width:440px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.5);">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;width:440px;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <h3 style="font-size:16px;font-weight:700;color:#fff;margin:0;">✅ Konfirmasi Kesepakatan IDP</h3>
+            <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">✅ Konfirmasi Kesepakatan IDP</h3>
             <button onclick="document.getElementById('modal-confirm-agree-single').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px;" id="text-single-agree-confirm">
@@ -177,9 +177,9 @@
 
 {{-- Modal Konfirmasi Batch Agree --}}
 <div id="modal-confirm-agree-batch" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;width:440px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.5);">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;width:440px;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <h3 style="font-size:16px;font-weight:700;color:#fff;margin:0;">✅ Konfirmasi Kesepakatan IDP Terpilih</h3>
+            <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">✅ Konfirmasi Kesepakatan IDP Terpilih</h3>
             <button onclick="document.getElementById('modal-confirm-agree-batch').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px;" id="text-batch-agree-confirm">
@@ -193,8 +193,8 @@
 </div>
 
 {{-- Modal Revisi --}}
-<div id="modal-revisi" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;align-items:center;justify-content:center;">
-    <div style="background:#1a2e45;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:460px;">
+<div id="modal-revisi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:10000;align-items:center;justify-content:center;">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:460px;">
         <h2 style="font-size:16px;margin-bottom:12px;">✏️ Minta Perbaikan IDP</h2>
         <p class="text-sm text-muted" id="revisi-idp-name" style="margin-bottom:14px;"></p>
         <form method="POST" id="revisi-form">

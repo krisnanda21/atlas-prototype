@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'IDP Demand Pool')
 @section('header_title', 'IDP Demand Pool')
 
@@ -283,8 +283,8 @@
 </div>
 
 {{-- Modal Detail Demand --}}
-<div id="modal-demand" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;">
-    <div style="background:#1a2e45;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:780px;max-height:85vh;overflow-y:auto;">
+<div id="modal-demand" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:1000;align-items:center;justify-content:center;">
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:780px;max-height:85vh;overflow-y:auto;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
             <h2 id="demand-modal-title" style="font-size:16px;font-weight:600;">📋 Detail Pengajuan IDP</h2>
             <button onclick="document.getElementById('modal-demand').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer;">✕</button>
@@ -310,9 +310,9 @@
 
 {{-- Modal Add Kegiatan --}}
 <div id="modal-add" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s ease-in-out;">
-    <div class="atlas-modal-content" style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:700px;max-height:85vh;overflow-y:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);transform:scale(0.95);transition:transform 0.2s ease-in-out;font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 id="modal-title" style="font-size:18px;font-weight:700;color:#fff;margin:0;">📅 + Tambah Kegiatan Bangkom Unit</h2>
+    <div class="atlas-modal-content" style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:700px;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.12);transform:scale(0.95);transition:transform 0.2s ease-in-out;font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 id="modal-title" style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">📅 + Tambah Kegiatan Bangkom Unit</h2>
             <button onclick="closeAddModal()" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         <form method="POST" action="{{ route('pengampu.storeRencanaBangkom') }}" id="form-kegiatan">
@@ -321,16 +321,16 @@
 
             {{-- 1. Nama Kegiatan --}}
             <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Nama Kegiatan *</label>
-                <input type="text" name="nama_kegiatan" id="input-nama-kegiatan" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required placeholder="Nama kegiatan bangkom unit (maksimal 999 karakter)" maxlength="999">
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Nama Kegiatan *</label>
+                <input type="text" name="nama_kegiatan" id="input-nama-kegiatan" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required placeholder="Nama kegiatan bangkom unit (maksimal 999 karakter)" maxlength="999">
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;">
                 {{-- 2. Unit Pengusul --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Unit Pengusul *</label>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Unit Pengusul *</label>
                     @if(auth()->user()->jabatan === 'Kepala Subbagian Tata Usaha Deputi')
-                        <input list="unit-pengusul-list" name="unit_pengusul" id="input-unit-pengusul" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required value="" placeholder="Ketik untuk mencari direktorat...">
+                        <input list="unit-pengusul-list" name="unit_pengusul" id="input-unit-pengusul" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required value="" placeholder="Ketik untuk mencari direktorat...">
                         <datalist id="unit-pengusul-list">
                             @foreach($units as $unit)
                                 @if(!str_contains(strtolower($unit), 'perwakilan'))
@@ -339,27 +339,27 @@
                             @endforeach
                         </datalist>
                     @else
-                        <input type="text" name="unit_pengusul" id="input-unit-pengusul" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required value="{{ auth()->user()->unit_eselon2 }}" readonly>
+                        <input type="text" name="unit_pengusul" id="input-unit-pengusul" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required value="{{ auth()->user()->unit_eselon2 }}" readonly>
                     @endif
                 </div>
                 {{-- 3. Kompetensi Dasar --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Kompetensi Dasar *</label>
-                    <input type="text" name="kompetensi_dasar" id="input-kompetensi-dasar" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required readonly>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Kompetensi Dasar *</label>
+                    <input type="text" name="kompetensi_dasar" id="input-kompetensi-dasar" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required readonly>
                 </div>
             </div>
 
             {{-- 4. Indikator Kinerja --}}
             <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Indikator Kinerja *</label>
-                <input type="text" name="indikator_kinerja" id="input-indikator-kinerja" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required placeholder="Indikator kinerja terkait (maksimal 999 karakter)" maxlength="999">
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Indikator Kinerja *</label>
+                <input type="text" name="indikator_kinerja" id="input-indikator-kinerja" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required placeholder="Indikator kinerja terkait (maksimal 999 karakter)" maxlength="999">
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:16px;margin-bottom:14px;">
                 {{-- 5. Jenis Latar Belakang --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jenis Latar Belakang *</label>
-                    <select name="jenis_latar_belakang" id="input-jenis-latar-belakang" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jenis Latar Belakang *</label>
+                    <select name="jenis_latar_belakang" id="input-jenis-latar-belakang" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
                         <option value="assessment-based">Gap Compass</option>
                         <option value="role-based">Role Based</option>
                         <option value="mandatory-based">Mandatory Learning</option>
@@ -369,20 +369,20 @@
                 </div>
                 {{-- 6. Latar Belakang --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Latar Belakang *</label>
-                    <input type="text" name="latar_belakang" id="input-latar-belakang" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required placeholder="Deskripsi latar belakang (maksimal 999 karakter)" maxlength="999">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Latar Belakang *</label>
+                    <input type="text" name="latar_belakang" id="input-latar-belakang" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required placeholder="Deskripsi latar belakang (maksimal 999 karakter)" maxlength="999">
                 </div>
             </div>
 
             {{-- 7. Tujuan Kegiatan --}}
             <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tujuan Kegiatan *</label>
-                <textarea name="tujuan_kegiatan" id="input-tujuan-kegiatan" class="form-control" rows="2" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;resize:vertical;" required placeholder="Tujuan dilaksanakannya kegiatan ini..." maxlength="999"></textarea>
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tujuan Kegiatan *</label>
+                <textarea name="tujuan_kegiatan" id="input-tujuan-kegiatan" class="form-control" rows="2" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;resize:vertical;" required placeholder="Tujuan dilaksanakannya kegiatan ini..." maxlength="999"></textarea>
             </div>
 
             {{-- 8. Indikator Keberhasilan (Repeater) --}}
             <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
                     <span>Indikator Keberhasilan (Minimal 1) *</span>
                     <button type="button" onclick="addRepeaterRow('repeater-keberhasilan', 'indikator_keberhasilan')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
                 </label>
@@ -393,7 +393,7 @@
 
             {{-- 9. Penugasan Terkait (Repeater) --}}
             <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
                     <span>Penugasan Terkait (Minimal 1) *</span>
                     <button type="button" onclick="addRepeaterRow('repeater-penugasan', 'penugasan_terkait')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
                 </label>
@@ -405,8 +405,8 @@
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
                 {{-- 10. Metode --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Metode *</label>
-                    <select name="metode" id="input-metode" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Metode *</label>
+                    <select name="metode" id="input-metode" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
                         <option value="Full Tatap Muka">Full Tatap Muka</option>
                         <option value="Hybrid">Hybrid</option>
                         <option value="PJJ">PJJ</option>
@@ -414,8 +414,8 @@
                 </div>
                 {{-- 11. Jalur Pembelajaran --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jalur Pembelajaran *</label>
-                    <select name="jalur_pembelajaran" id="input-jalur-pembelajaran" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jalur Pembelajaran *</label>
+                    <select name="jalur_pembelajaran" id="input-jalur-pembelajaran" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
                         <option value="Pelatihan">Pelatihan</option>
                         <option value="Seminar/konferensi/sarasehan">Seminar/konferensi/sarasehan</option>
                         <option value="Kursus">Kursus</option>
@@ -438,40 +438,40 @@
                 </div>
                 {{-- 12. JP --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Total JP *</label>
-                    <input type="number" name="jp" id="input-jp" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" min="1" max="99" required placeholder="e.g. 10">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Total JP *</label>
+                    <input type="number" name="jp" id="input-jp" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" min="1" max="99" required placeholder="e.g. 10">
                 </div>
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;">
                 {{-- 13. Tanggal Mulai --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tanggal Mulai *</label>
-                    <input type="date" name="tanggal_mulai" id="input-tanggal-mulai" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tanggal Mulai *</label>
+                    <input type="date" name="tanggal_mulai" id="input-tanggal-mulai" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
                 </div>
                 {{-- 14. Tanggal Selesai --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tanggal Selesai *</label>
-                    <input type="date" name="tanggal_selesai" id="input-tanggal-selesai" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tanggal Selesai *</label>
+                    <input type="date" name="tanggal_selesai" id="input-tanggal-selesai" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
                 </div>
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;">
                 {{-- 15. Jumlah Kelas --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jumlah Kelas *</label>
-                    <input type="number" name="jumlah_kelas" id="input-jumlah-kelas" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" min="1" max="10" required placeholder="Maksimal 10 kelas">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jumlah Kelas *</label>
+                    <input type="number" name="jumlah_kelas" id="input-jumlah-kelas" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" min="1" max="10" required placeholder="Maksimal 10 kelas">
                 </div>
                 {{-- 16. Nilai Anggaran --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Nilai Anggaran (Rupiah) *</label>
-                    <input type="number" name="nilai_anggaran" id="input-nilai-anggaran" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" min="0" required placeholder="e.g. 15000000">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Nilai Anggaran (Rupiah) *</label>
+                    <input type="number" name="nilai_anggaran" id="input-nilai-anggaran" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" min="0" required placeholder="e.g. 15000000">
                 </div>
             </div>
 
             {{-- 17. Kriteria Peserta (Repeater) --}}
             <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
                     <span>Kriteria Peserta (Minimal 1) *</span>
                     <button type="button" onclick="addRepeaterRow('repeater-kriteria', 'kriteria_peserta')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
                 </label>
@@ -483,28 +483,28 @@
             <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin-bottom:20px;">
                 {{-- 18. Fasilitator --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Fasilitator *</label>
-                    <input type="text" name="fasilitator" id="input-fasilitator" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" required placeholder="Nama / lembaga fasilitator" maxlength="100">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Fasilitator *</label>
+                    <input type="text" name="fasilitator" id="input-fasilitator" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required placeholder="Nama / lembaga fasilitator" maxlength="100">
                 </div>
                 {{-- 19. Evaluasi --}}
                 <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Evaluasi *</label>
-                    <select name="evaluasi" id="input-evaluasi" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" onchange="toggleEvaluasiType()" required>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Evaluasi *</label>
+                    <select name="evaluasi" id="input-evaluasi" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" onchange="toggleEvaluasiType()" required>
                         <option value="Ya">Ya</option>
                         <option value="Tidak">Tidak</option>
                     </select>
                 </div>
                 {{-- 20. Jenis Evaluasi --}}
                 <div class="form-group" id="jenis-evaluasi-group" style="text-align:left;">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jenis Evaluasi *</label>
-                    <select name="jenis_evaluasi" id="input-jenis-evaluasi" class="form-control" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jenis Evaluasi *</label>
+                    <select name="jenis_evaluasi" id="input-jenis-evaluasi" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                         <option value="1">Level 1 (Penyelenggara, Materi, Fasilitator)</option>
                         <option value="2">Level 2 (Pre-test & Post-test)</option>
                     </select>
                 </div>
             </div>
 
-            <div style="display:flex;gap:12px;justify-content:flex-end;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;">
+            <div style="display:flex;gap:12px;justify-content:flex-end;border-top:1px solid var(--divider);padding-top:16px;">
                 <button type="button" onclick="closeAddModal()" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:rgba(255,255,255,0.1);color:#fff;">Batal</button>
                 <button type="submit" class="btn btn-primary" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:var(--primary);color:#fff;">💾 Simpan Rencana</button>
             </div>

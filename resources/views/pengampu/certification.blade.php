@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Certification & Diklat Control')
 @section('header_title', 'Certification & Diklat Control')
 
@@ -78,9 +78,9 @@
 
 {{-- Modal Daftar Peserta --}}
 <div id="modal-peserta" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9998;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:1000px;max-height:85vh;overflow-y:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:18px;font-weight:700;color:#fff;margin:0;">👥 Daftar Peserta & Pencocokan Sertifikat</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:1000px;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">👥 Daftar Peserta & Pencocokan Sertifikat</h2>
             <button onclick="document.getElementById('modal-peserta').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         
@@ -105,7 +105,7 @@
             </table>
         </div>
         
-        <div style="display:flex;justify-content:flex-end;gap:10px;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px; margin-top:20px;">
+        <div style="display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--divider);padding-top:16px; margin-top:20px;">
             <button type="button" onclick="document.getElementById('modal-peserta').style.display='none'" class="btn btn-neutral" style="padding:8px 18px;">Tutup</button>
         </div>
     </div>
@@ -113,9 +113,9 @@
 
 {{-- Modal Tautkan Manual (Diatas Modal Peserta) --}}
 <div id="modal-map" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.9);backdrop-filter:blur(2px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:500px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:18px;font-weight:700;color:#fff;margin:0;">🔗 Tautkan Sertifikasi Manual</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:500px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">🔗 Tautkan Sertifikasi Manual</h2>
             <button onclick="document.getElementById('modal-map').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         
@@ -143,7 +143,7 @@
                 </div>
             </div>
 
-            <div style="display:flex;justify-content:flex-end;gap:10px;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;">
+            <div style="display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--divider);padding-top:16px;">
                 <button type="button" onclick="document.getElementById('modal-map').style.display='none'" class="btn btn-neutral" style="padding:8px 18px;">Batal</button>
                 <button type="submit" class="btn btn-primary" style="padding:8px 18px;">Simpan Tautan</button>
             </div>

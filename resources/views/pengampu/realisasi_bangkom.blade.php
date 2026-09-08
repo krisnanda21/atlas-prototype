@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Realisasi Bangkom Unit')
 @section('header_title', 'Realisasi Bangkom Unit')
 
@@ -105,57 +105,57 @@
 
 {{-- Modal Input Realisasi --}}
 <div id="modal-realisasi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:800px;max-height:85vh;overflow-y:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:18px;font-weight:700;color:#fff;margin:0;">📋 Input Realisasi Kegiatan</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:800px;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">📋 Input Realisasi Kegiatan</h2>
             <button onclick="document.getElementById('modal-realisasi').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;">✕</button>
         </div>
-        <p class="text-sm" id="realisasi-plan-name" style="margin-bottom:20px;color:#fff;font-weight:600;padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="realisasi-plan-name" style="margin-bottom:20px;color:var(--text-primary);font-weight:600;padding:8px;background:#F1F5F9;border-radius:6px;"></p>
         <form method="POST" id="realisasi-form" enctype="multipart/form-data" style="text-align:left;">
             @csrf
             
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
                 <div class="form-group">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Realisasi JP *</label>
-                    <input type="number" name="realisasi_jp" class="form-control" max="99" min="0" required style="background:#1a2e45;color:#fff;width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Realisasi JP *</label>
+                    <input type="number" name="realisasi_jp" class="form-control" max="99" min="0" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:8px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                     <div id="info-rencana-jp" style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Dirancang: - JP</div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Total Realisasi Anggaran *</label>
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Total Realisasi Anggaran *</label>
                     <div style="position:relative;">
                         <span style="position:absolute;left:10px;top:8px;color:#94a3b8;font-size:13px;">Rp</span>
-                        <input type="text" id="realisasi_anggaran_display" class="form-control" required style="background:#1a2e45;color:#fff;width:100%;padding:8px 8px 8px 30px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;" onkeyup="formatCurrency(this, 'realisasi_anggaran_val')">
+                        <input type="text" id="realisasi_anggaran_display" class="form-control" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:8px 8px 8px 30px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" onkeyup="formatCurrency(this, 'realisasi_anggaran_val')">
                         <input type="hidden" name="realisasi_anggaran" id="realisasi_anggaran_val">
                     </div>
                     <div id="info-rencana-anggaran" style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Dirancang: Rp -</div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jumlah Peserta</label>
-                    <input type="number" name="realisasi_peserta" id="realisasi_peserta" class="form-control" readonly style="background:#1a2e45;color:#94a3b8;width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jumlah Peserta</label>
+                    <input type="number" name="realisasi_peserta" id="realisasi_peserta" class="form-control" readonly style="background:#F8FAFC;color:var(--text-secondary);width:100%;padding:8px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                 </div>
             </div>
             
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
                 <div class="form-group">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Upload Daftar Hadir * (PDF, max 2MB)</label>
-                    <input type="file" name="file_daftar_hadir" class="form-control" accept=".pdf" required style="background:#1a2e45;color:#fff;width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Upload Daftar Hadir * (PDF, max 2MB)</label>
+                    <input type="file" name="file_daftar_hadir" class="form-control" accept=".pdf" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:8px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Upload Notulen * (PDF, max 2MB)</label>
-                    <input type="file" name="file_notulen" class="form-control" accept=".pdf" required style="background:#1a2e45;color:#fff;width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Upload Notulen * (PDF, max 2MB)</label>
+                    <input type="file" name="file_notulen" class="form-control" accept=".pdf" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:8px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                 </div>
             </div>
             <div style="margin-bottom:20px;">
                 <div class="form-group">
-                    <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Upload Dokumentasi * (JPG/PNG, max 2MB)</label>
-                    <input type="file" name="file_dokumentasi" class="form-control" accept=".jpg,.jpeg,.png" required style="background:#1a2e45;color:#fff;width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;">
+                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Upload Dokumentasi * (JPG/PNG, max 2MB)</label>
+                    <input type="file" name="file_dokumentasi" class="form-control" accept=".jpg,.jpeg,.png" required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:8px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                 </div>
             </div>
 
             {{-- Participant list inputs --}}
             <div style="margin-bottom:20px;">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
-                    <h3 style="font-size:14px;font-weight:600;color:#fff;margin:0;">👥 Daftar Peserta & Skor Penilaian</h3>
+                    <h3 style="font-size:14px;font-weight:600;color:var(--text-primary);margin:0;">👥 Daftar Peserta & Skor Penilaian</h3>
                     <div style="display:flex;gap:8px;align-items:center;">
                         <a href="/template_evaluasi_bangkom.xls" download class="btn" style="padding:6px 12px;font-size:12px;font-weight:600;border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.1);display:inline-flex;align-items:center;gap:4px;cursor:pointer;">📥 Download XLS</a>
                         <label class="btn" style="padding:6px 12px;font-size:12px;font-weight:600;border-radius:6px;background:#2563eb;color:#fff;display:inline-flex;align-items:center;gap:4px;cursor:pointer;margin:0;border:none;">
@@ -165,10 +165,10 @@
                     </div>
                 </div>
                 
-                <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:12px;overflow:visible;">
+                <div style="background:#F8FAFC;border:1px solid var(--card-border);border-radius:8px;padding:12px;overflow:visible;">
                     <table style="width:100%;border-collapse:collapse;font-size:12px;">
                         <thead>
-                            <tr style="border-bottom:1px solid rgba(255,255,255,0.1);text-align:left;color:var(--text-secondary);">
+                            <tr style="border-bottom:1px solid var(--divider);text-align:left;color:var(--text-secondary);">
                                 <th style="padding:8px;">Nama Pegawai</th>
                                 <th style="padding:8px;width:100px;">Penyelenggara</th>
                                 <th style="padding:8px;width:100px;">Materi</th>
@@ -185,8 +185,8 @@
                 </div>
             </div>
 
-            <div style="display:flex;gap:12px;justify-content:flex-end;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;">
-                <button type="button" onclick="document.getElementById('modal-realisasi').style.display='none'" class="btn btn-neutral" style="padding:10px 20px;border-radius:6px;border:none;background:rgba(255,255,255,0.1);color:#fff;cursor:pointer;font-weight:600;">Batal</button>
+            <div style="display:flex;gap:12px;justify-content:flex-end;border-top:1px solid var(--divider);padding-top:16px;">
+                <button type="button" onclick="document.getElementById('modal-realisasi').style.display='none'" class="btn btn-neutral" style="padding:10px 20px;border-radius:6px;border:none;cursor:pointer;font-weight:600;">Batal</button>
                 <button type="submit" class="btn btn-primary" style="padding:10px 20px;border-radius:6px;border:none;background:var(--primary);color:#fff;cursor:pointer;font-weight:600;">💾 Simpan Realisasi</button>
             </div>
         </form>
@@ -195,13 +195,13 @@
 
 {{-- Modal Detail Realisasi --}}
 <div id="modal-detail-realisasi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:850px;max-height:85vh;overflow-y:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:18px;font-weight:700;color:#fff;margin:0;">📋 Detail Realisasi Kegiatan Bangkom</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:850px;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.12);font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">📋 Detail Realisasi Kegiatan Bangkom</h2>
             <button onclick="document.getElementById('modal-detail-realisasi').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
         <div id="detail-realisasi-content"></div>
-        <div id="detail-realisasi-actions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;">
+        <div id="detail-realisasi-actions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;border-top:1px solid var(--divider);padding-top:16px;">
             <button type="button" onclick="document.getElementById('modal-detail-realisasi').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Tutup</button>
         </div>
     </div>
@@ -209,17 +209,17 @@
 
 {{-- Modal Reject / Kembalikan Realisasi --}}
 <div id="modal-reject-realisasi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:10000;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:500px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:16px;font-weight:700;color:#fff;margin:0;">↩️ Kembalikan Realisasi Kegiatan</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:500px;box-shadow:0 8px 32px rgba(0,0,0,0.12);font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">↩️ Kembalikan Realisasi Kegiatan</h2>
             <button onclick="document.getElementById('modal-reject-realisasi').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="reject-realisasi-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="reject-realisasi-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:8px;background:#F1F5F9;border-radius:6px;"></p>
         <form method="POST" id="form-reject-realisasi" style="text-align:left;">
             @csrf
             <div class="form-group" style="margin-bottom:16px;">
-                <label class="form-label" style="color:#fff;font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Alasan Pengembalian / Catatan Perbaikan *</label>
-                <textarea name="reject_reason" class="form-control" rows="4" style="background:#1a2e45;color:#fff;width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);font-size:13px;resize:vertical;" required placeholder="Tuliskan catatan perbaikan atau alasan pengembalian ke pengampu..."></textarea>
+                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Alasan Pengembalian / Catatan Perbaikan *</label>
+                <textarea name="reject_reason" class="form-control" rows="4" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;resize:vertical;" required placeholder="Tuliskan catatan perbaikan atau alasan pengembalian ke pengampu..."></textarea>
             </div>
             <div style="display:flex;gap:10px;justify-content:flex-end;">
                 <button type="button" onclick="document.getElementById('modal-reject-realisasi').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Batal</button>
@@ -231,12 +231,12 @@
 
 {{-- Modal Konfirmasi Ajukan Persetujuan Realisasi --}}
 <div id="modal-confirm-ajukan-persetujuan" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);text-align:left;font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:16px;font-weight:700;color:#fff;margin:0;">📤 Konfirmasi Pengajuan Persetujuan Realisasi</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,0.12);text-align:left;font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">📤 Konfirmasi Pengajuan Persetujuan Realisasi</h2>
             <button onclick="document.getElementById('modal-confirm-ajukan-persetujuan').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="ajukan-persetujuan-plan-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="ajukan-persetujuan-plan-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:10px;background:#F1F5F9;border-radius:6px;"></p>
         <p class="text-sm text-muted" style="margin-bottom:20px;line-height:1.5;">Apakah Anda yakin ingin mengajukan data realisasi ini untuk diverifikasi oleh <strong>Verifikator Level 2</strong>? Status akan berubah menjadi <strong>Persetujuan Realisasi</strong>.</p>
         <form method="POST" id="form-ajukan-persetujuan" style="display:flex;gap:10px;justify-content:flex-end;">
             @csrf
@@ -248,12 +248,12 @@
 
 {{-- Modal Konfirmasi Approve Realisasi --}}
 <div id="modal-confirm-approve-realisasi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:10001;align-items:center;justify-content:center;">
-    <div style="background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);text-align:left;font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:12px;">
-            <h2 style="font-size:16px;font-weight:700;color:#fff;margin:0;">✅ Konfirmasi Persetujuan Realisasi</h2>
+    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,0.12);text-align:left;font-family:'Inter', sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">✅ Konfirmasi Persetujuan Realisasi</h2>
             <button onclick="document.getElementById('modal-confirm-approve-realisasi').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
         </div>
-        <p class="text-sm" id="approve-realisasi-plan-name" style="margin-bottom:16px;color:#fff;font-weight:600;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;"></p>
+        <p class="text-sm" id="approve-realisasi-plan-name" style="margin-bottom:16px;color:var(--text-primary);font-weight:600;padding:10px;background:#F1F5F9;border-radius:6px;"></p>
         <p class="text-sm text-muted" style="margin-bottom:20px;line-height:1.5;">Apakah Anda yakin ingin menyetujui realisasi kegiatan bangkom ini sebagai <strong>Verifikator Level 2</strong>? Status akan berubah menjadi <strong>Realisasi Disetujui</strong> dan email verifikator Anda akan tercatat.</p>
         <form method="POST" id="form-approve-realisasi" style="display:flex;gap:10px;justify-content:flex-end;">
             @csrf
@@ -729,25 +729,25 @@ function showDetailRealisasi(plan) {
             </div>
         </div>
 
-        <div style="margin-bottom:20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:14px;">
-            <div style="font-weight:600; color:#fff; font-size:13px; margin-bottom:10px;">📁 Dokumen Bukti Realisasi</div>
+        <div style="margin-bottom:20px; background:#F8FAFC; border:1px solid var(--card-border); border-radius:8px; padding:14px;">
+            <div style="font-weight:600; color:var(--text-primary); font-size:13px; margin-bottom:10px;">📁 Dokumen Bukti Realisasi</div>
             <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; font-size:12px;">
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">1. Daftar Hadir</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">📄 ${plan.dok_daftar_hadir || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">📄 ${plan.dok_daftar_hadir || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">2. Notulen Kegiatan</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">📄 ${plan.dok_notulen || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">📄 ${plan.dok_notulen || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
-                <div style="background:#1a2e45; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.05);">
+                <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">3. Foto Dokumentasi</div>
-                    <div style="color:#fff; font-weight:600; word-break:break-all;">🖼️ ${plan.dok_dokumentasi || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">🖼️ ${plan.dok_dokumentasi || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
             </div>
         </div>
 
-        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:14px;">
+        <div style="background:#F8FAFC; border:1px solid var(--card-border); border-radius:8px; padding:14px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <div style="font-weight:600; color:#fff; font-size:13px;">👥 Daftar Peserta & Skor (${plan.participants ? plan.participants.length : 0} Pegawai)</div>
             </div>
