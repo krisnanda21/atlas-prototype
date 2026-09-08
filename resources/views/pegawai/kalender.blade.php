@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Kalender Saya')
 @section('header_title', 'Kalender Kegiatan Bangkom')
 
@@ -18,7 +18,7 @@
     </div>
 
     {{-- Calendar Container --}}
-    <div id="calendar-wrapper" style="background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:20px; min-height:500px;">
+    <div id="calendar-wrapper" style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:20px; min-height:500px;">
         <div id="calendar"></div>
     </div>
 </div>
@@ -38,7 +38,7 @@
             
             <div style="display:grid; grid-template-columns:140px 1fr; gap:12px; margin-bottom:16px; font-size:14px;">
                 <div style="font-weight:500;">Jenis Kegiatan</div>
-                <div>: <span id="modalEventJenis" class="badge" style="background:rgba(255,255,255,0.1); color:var(--text-primary); font-weight:normal; padding:4px 8px; border-radius:4px;">-</span></div>
+                <div>: <span id="modalEventJenis" class="badge" style="background:#F1F5F9; color:var(--text-primary); font-weight:normal; padding:4px 8px; border-radius:4px;">-</span></div>
                 
                 <div style="font-weight:500;">Status</div>
                 <div>: <span id="modalEventStatus" style="color:var(--text-primary);">-</span></div>
@@ -66,7 +66,7 @@
         
         {{-- Footer --}}
         <div style="padding:16px 24px; text-align:right; border-top:1px solid rgba(255,255,255,0.05);">
-            <button type="button" onclick="closeEventModal()" class="btn" style="background:rgba(255,255,255,0.1); color:var(--text-primary); border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:500;">Tutup</button>
+            <button type="button" onclick="closeEventModal()" class="btn" style="background:#F1F5F9; color:var(--text-primary); border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:500;">Tutup</button>
         </div>
     </div>
 </div>
@@ -91,7 +91,7 @@
         color: var(--text-primary);
     }
     .fc .fc-button {
-        background-color: rgba(255, 255, 255, 0.05) !important;
+        background-color: #F8FAFC !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         color: var(--text-primary) !important;
         font-weight: 500 !important;
@@ -110,8 +110,8 @@
         color: #ffffff !important;
     }
     .fc .fc-daygrid-day.fc-day-today {
-        background-color: rgba(45, 140, 240, 0.15) !important;
-        border: 1px solid rgba(45, 140, 240, 0.5) !important;
+        background-color: rgba(14, 165, 233, 0.15) !important;
+        border: 1px solid rgba(14, 165, 233, 0.50) !important;
     }
     .fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
         background-color: var(--primary, #2d8cf0);
@@ -145,7 +145,7 @@
         transform: scale(1.02);
     }
     .fc .fc-list-event:hover td {
-        background-color: rgba(255, 255, 255, 0.03) !important;
+        background-color: #F8FAFC !important;
     }
     
     /* Agenda / List View Improvements */
@@ -161,7 +161,7 @@
         font-size: 14px;
     }
     .fc .fc-list-day-cushion {
-        background-color: rgba(255, 255, 255, 0.02) !important;
+        background-color: #F8FAFC !important;
         padding: 10px 16px !important;
         color: var(--text-primary);
         font-weight: 600;

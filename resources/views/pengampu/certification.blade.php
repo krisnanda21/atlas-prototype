@@ -13,7 +13,7 @@
         <div class="card-title" style="font-size:18px">🔗 Daftar Kegiatan Pelatihan Sertifikasi</div>
 
         {{-- Filter & Search --}}
-        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
+        <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
             <form action="{{ route('pengampu.certification') }}" method="GET" style="display:flex; gap:10px; width:100%; align-items:center;">
                 <div style="font-weight:600; color:var(--text-secondary);">🔍 Cari:</div>
                 <input type="text" name="q" value="{{ request('q') }}" class="form-control" style="width:300px; height:32px; padding:0 8px; font-size:12px;" placeholder="Nama Pelatihan / Sertifikasi">
@@ -125,7 +125,7 @@
             
             <div style="margin-bottom:16px;">
                 <label style="display:block; font-size:12px; color:var(--text-secondary); margin-bottom:4px;">Pelatihan dari SIMPEL</label>
-                <div id="map-simpel-name" style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:6px; padding:10px; color:#fff; font-size:13px; font-weight:600;"></div>
+                <div id="map-simpel-name" style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:6px; padding:10px; color:#fff; font-size:13px; font-weight:600;"></div>
             </div>
 
             <div style="margin-bottom:16px;">

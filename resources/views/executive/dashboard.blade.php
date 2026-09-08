@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Executive Dashboard')
 @section('header_title', 'Executive Dashboard - ATLAS')
 
@@ -52,7 +52,7 @@
                     </span>
                 </td>
                 <td style="min-width:120px;">
-                    <div style="background:rgba(255,255,255,0.1);border-radius:10px;height:6px;overflow:hidden;">
+                    <div style="background:#E2E8F0;border-radius:10px;height:6px;overflow:hidden;">
                         <div style="background:{{ $up['rate'] >= 80 ? 'var(--success)' : ($up['rate'] >= 50 ? 'var(--warning)' : 'var(--danger)') }};height:100%;width:{{ min($up['rate'], 100) }}%;transition:width .4s;"></div>
                     </div>
                 </td>
@@ -71,9 +71,9 @@
         @foreach($competencyDemand as $cd)
         @php
             $intensity = min(1, $cd['count'] / max(collect($competencyDemand)->pluck('count')->max(), 1));
-            $bg = "rgba(45, 140, 240, " . (0.1 + $intensity * 0.4) . ")";
+            $bg = "rgba(14, 165, 233, " . (0.1 + $intensity * 0.4) . ")";
         @endphp
-        <div style="background:{{ $bg }};border:1px solid rgba(45,140,240,{{ 0.2 + $intensity * 0.3 }});border-radius:8px;padding:12px 14px;">
+        <div style="background:{{ $bg }};border:1px solid rgba(14,165,233,{{ 0.2 + $intensity * 0.3 }});border-radius:8px;padding:12px 14px;">
             <div style="font-weight:600;font-size:13px;color:var(--text-primary);">{{ $cd['competency'] }}</div>
             <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">{{ $cd['count'] }} demand · {{ $cd['jp'] }} JP</div>
         </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Executive Insights')
 @section('header_title', 'Executive Insights Dashboard')
 
@@ -43,22 +43,22 @@
 {{-- KPI Narasi Interpretasi --}}
 <div class="grid-4 mb-4" style="align-items:stretch;">
     {{-- Narasi Card 1 --}}
-    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
+    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
         <div>Di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong>, dari Total Gap Kompetensi yang dimiliki oleh keseluruhan pegawai, <strong style="color:#ffffff;">{{ $averageCoverage }}%</strong> sudah terdapat IDP untuk ditindaklanjuti oleh unit kerja.</div>
     </div>
 
     {{-- Narasi Card 2 --}}
-    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
+    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
         <div><strong style="color:#ffffff;">{{ $suboptimalPercent }}%</strong> pegawai <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> memiliki nilai rata-rata kompetensi teknis dibawah 78.</div>
     </div>
 
     {{-- Narasi Card 3 --}}
-    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
+    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center;">
         <div>Gap Kompetensi terbesar di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> ada pada Kompetensi <strong style="color:#ffffff;">{{ $largestGapName }}</strong> dengan nilai gap sebesar <strong style="color:var(--danger);">{{ $largestGapValue > 0 ? '-' . $largestGapValue : '0' }} poin</strong>.</div>
     </div>
 
     {{-- Narasi Card 4 --}}
-    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center; min-width:0;">
+    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:14px 16px; font-size:12.5px; color:var(--text-secondary); line-height:1.5; text-align:center; display:flex; align-items:center; justify-content:center; min-width:0;">
         <div>Sebesar <strong style="color:#ffffff;">{{ $realisasiPercent }}%</strong> Kegiatan Bangkom di <strong style="color:#ffffff;">{{ $scopeLabel }}</strong> sudah terealisasi.</div>
     </div>
 </div>
@@ -103,7 +103,7 @@
         </div>
         <div style="display:flex; flex-direction:column; gap:10px;">
             @foreach($strategicAnalytics as $sa)
-            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:14px 16px;border-left:4px solid {{ $sa['risk'] === 'Tinggi' ? 'var(--danger)' : ($sa['risk'] === 'Sedang' ? 'var(--warning)' : 'var(--success)') }};">
+            <div style="background:#F8FAFC;border-radius:8px;padding:14px 16px;border-left:4px solid {{ $sa['risk'] === 'Tinggi' ? 'var(--danger)' : ($sa['risk'] === 'Sedang' ? 'var(--warning)' : 'var(--success)') }};">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:8px;">
                     <span style="font-weight:700;font-size:13px;color:var(--text-primary); line-height:1.3;">{{ $sa['demand'] }}</span>
                     <span class="badge {{ $sa['risk'] === 'Tinggi' ? 'badge-danger' : ($sa['risk'] === 'Sedang' ? 'badge-warning' : 'badge-success') }}" style="font-size:10px; white-space:nowrap; flex-shrink:0;">Risiko {{ $sa['risk'] }}</span>
@@ -146,7 +146,7 @@
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
 
         {{-- Kolom Kiri: Unit Kerja Pusat --}}
-        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
+        <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
                 <div style="font-size:13px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
                     <span>🏢 Unit Kerja Pusat</span>
@@ -175,15 +175,15 @@
                     <div style="display:flex; flex-direction:column; gap:3px;">
                         <div onclick="toggleUnit('{{ $e1['code'] }}')"
                              title="{{ $e1['name'] }} ({{ $e1['value'] }}%)"
-                             style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer;">
+                             style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer;">
                             <div style="width:88px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:11.5px; font-weight:800; color:var(--text-primary); text-align:right;">
                                 <span id="chevron-{{ $e1['code'] }}" style="font-size:9px; color:var(--text-secondary); transition:transform 0.2s ease;">▶</span>
                                 <span>{{ $e1['code'] }}</span>
                             </div>
-                            <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:4px; height:14px; position:relative; overflow:hidden;">
-                                <div style="position:absolute; left:25%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
-                                <div style="position:absolute; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
-                                <div style="position:absolute; left:75%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
+                            <div style="flex:1; background:#F1F5F9; border-radius:4px; height:14px; position:relative; overflow:hidden;">
+                                <div style="position:absolute; left:25%; width:1px; height:100%; background:#F1F5F9;"></div>
+                                <div style="position:absolute; left:50%; width:1px; height:100%; background:#F1F5F9;"></div>
+                                <div style="position:absolute; left:75%; width:1px; height:100%; background:#F1F5F9;"></div>
                                 <div style="height:100%; width:{{ min($e1['value'], 100) }}%; background:{{ $e1RiskGradient }}; border-radius:4px;"></div>
                             </div>
                             <div style="width:42px; font-size:11.5px; font-weight:800; color:{{ $e1RiskColor }}; text-align:right;">{{ $e1['value'] }}%</div>
@@ -195,12 +195,12 @@
                                 $childRiskGradient = $child['risk'] === 'Tinggi' ? 'linear-gradient(90deg, #ef4444, #f87171)' : ($child['risk'] === 'Sedang' ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #10b981, #34d399)');
                             @endphp
                             <div title="{{ $child['unit'] }} ({{ $child['value'] }}%)"
-                                 style="display:flex; align-items:center; gap:8px; padding:4px 6px; background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.03); border-radius:5px;">
+                                 style="display:flex; align-items:center; gap:8px; padding:4px 6px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.03); border-radius:5px;">
                                 <div style="width:74px; font-size:10px; font-weight:700; color:var(--text-secondary); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:help;">{{ $child['code'] }}</div>
-                                <div style="flex:1; background:rgba(255,255,255,0.05); border-radius:3px; height:10px; position:relative; overflow:hidden;">
-                                    <div style="position:absolute; left:25%; width:1px; height:100%; background:rgba(255,255,255,0.06);"></div>
-                                    <div style="position:absolute; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.06);"></div>
-                                    <div style="position:absolute; left:75%; width:1px; height:100%; background:rgba(255,255,255,0.06);"></div>
+                                <div style="flex:1; background:#F8FAFC; border-radius:3px; height:10px; position:relative; overflow:hidden;">
+                                    <div style="position:absolute; left:25%; width:1px; height:100%; background:#F1F5F9;"></div>
+                                    <div style="position:absolute; left:50%; width:1px; height:100%; background:#F1F5F9;"></div>
+                                    <div style="position:absolute; left:75%; width:1px; height:100%; background:#F1F5F9;"></div>
                                     <div style="height:100%; width:{{ min($child['value'], 100) }}%; background:{{ $childRiskGradient }}; border-radius:3px;"></div>
                                 </div>
                                 <div style="width:38px; font-size:10px; font-weight:700; color:{{ $childRiskColor }}; text-align:right;">{{ $child['value'] }}%</div>
@@ -216,7 +216,7 @@
         </div>
 
         {{-- Kolom Kanan: Kantor Perwakilan --}}
-        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
+        <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
                 <div style="font-size:13px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
                     <span>📍 Kantor Perwakilan</span>
@@ -245,15 +245,15 @@
                     <div style="display:flex; flex-direction:column; gap:3px;">
                         <div onclick="toggleUnit('{{ $w['code'] }}')"
                              title="{{ $w['name'] }} ({{ $w['value'] }}%)"
-                             style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer;">
+                             style="display:flex; align-items:center; gap:8px; padding:7px 8px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer;">
                             <div style="width:88px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:11px; font-weight:800; color:var(--text-primary); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
                                 <span id="chevron-{{ $w['code'] }}" style="font-size:9px; color:var(--text-secondary); transition:transform 0.2s ease;">▶</span>
                                 <span>{{ $w['short'] }}</span>
                             </div>
-                            <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:4px; height:14px; position:relative; overflow:hidden;">
-                                <div style="position:absolute; left:25%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
-                                <div style="position:absolute; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
-                                <div style="position:absolute; left:75%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
+                            <div style="flex:1; background:#F1F5F9; border-radius:4px; height:14px; position:relative; overflow:hidden;">
+                                <div style="position:absolute; left:25%; width:1px; height:100%; background:#F1F5F9;"></div>
+                                <div style="position:absolute; left:50%; width:1px; height:100%; background:#F1F5F9;"></div>
+                                <div style="position:absolute; left:75%; width:1px; height:100%; background:#F1F5F9;"></div>
                                 <div style="height:100%; width:{{ min($w['value'], 100) }}%; background:{{ $wRiskGradient }}; border-radius:4px;"></div>
                             </div>
                             <div style="width:42px; font-size:11.5px; font-weight:800; color:{{ $wRiskColor }}; text-align:right;">{{ $w['value'] }}%</div>
@@ -265,12 +265,12 @@
                                 $pwRiskGradient = $child['risk'] === 'Tinggi' ? 'linear-gradient(90deg, #ef4444, #f87171)' : ($child['risk'] === 'Sedang' ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #10b981, #34d399)');
                             @endphp
                             <div title="{{ $child['unit'] }} ({{ $child['value'] }}%)"
-                                 style="display:flex; align-items:center; gap:8px; padding:4px 6px; background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.03); border-radius:5px;">
+                                 style="display:flex; align-items:center; gap:8px; padding:4px 6px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.03); border-radius:5px;">
                                 <div style="width:74px; font-size:10px; font-weight:700; color:var(--text-secondary); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:help;">{{ $child['code'] }}</div>
-                                <div style="flex:1; background:rgba(255,255,255,0.05); border-radius:3px; height:10px; position:relative; overflow:hidden;">
-                                    <div style="position:absolute; left:25%; width:1px; height:100%; background:rgba(255,255,255,0.06);"></div>
-                                    <div style="position:absolute; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.06);"></div>
-                                    <div style="position:absolute; left:75%; width:1px; height:100%; background:rgba(255,255,255,0.06);"></div>
+                                <div style="flex:1; background:#F8FAFC; border-radius:3px; height:10px; position:relative; overflow:hidden;">
+                                    <div style="position:absolute; left:25%; width:1px; height:100%; background:#F1F5F9;"></div>
+                                    <div style="position:absolute; left:50%; width:1px; height:100%; background:#F1F5F9;"></div>
+                                    <div style="position:absolute; left:75%; width:1px; height:100%; background:#F1F5F9;"></div>
                                     <div style="height:100%; width:{{ min($child['value'], 100) }}%; background:{{ $pwRiskGradient }}; border-radius:3px;"></div>
                                 </div>
                                 <div style="width:38px; font-size:10px; font-weight:700; color:{{ $pwRiskColor }}; text-align:right;">{{ $child['value'] }}%</div>
@@ -296,7 +296,7 @@
         </div>
     </div>
 
-    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
+    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:18px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:8px;">
             <div>
                 <div style="font-size:14px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
@@ -337,14 +337,14 @@
                     $childRiskGradient = $child['risk'] === 'Tinggi' ? 'linear-gradient(90deg, #ef4444, #f87171)' : ($child['risk'] === 'Sedang' ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #10b981, #34d399)');
                 @endphp
                 <div title="{{ $child['unit'] }} ({{ $child['value'] }}%)"
-                     style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:6px; margin-bottom:4px;">
+                     style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; margin-bottom:4px;">
                     <div style="width:100px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:12px; font-weight:800; color:var(--text-primary); text-align:right;">
                         <span>{{ $child['code'] }}</span>
                     </div>
-                    <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:4px; height:16px; position:relative; overflow:hidden;">
-                        <div style="position:absolute; left:25%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
-                        <div style="position:absolute; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
-                        <div style="position:absolute; left:75%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
+                    <div style="flex:1; background:#F1F5F9; border-radius:4px; height:16px; position:relative; overflow:hidden;">
+                        <div style="position:absolute; left:25%; width:1px; height:100%; background:#F1F5F9;"></div>
+                        <div style="position:absolute; left:50%; width:1px; height:100%; background:#F1F5F9;"></div>
+                        <div style="position:absolute; left:75%; width:1px; height:100%; background:#F1F5F9;"></div>
                         <div style="height:100%; width:{{ min($child['value'], 100) }}%; background:{{ $childRiskGradient }}; border-radius:4px;"></div>
                     </div>
                     <div style="width:55px; font-size:12px; font-weight:800; color:{{ $childRiskColor }}; text-align:right;">

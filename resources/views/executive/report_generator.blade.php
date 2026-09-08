@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Report Generator')
 @section('header_title', 'Report & Brief Generator')
 
@@ -24,8 +24,8 @@
                     ];
                 @endphp
                 @foreach($reportTypes as $val => $info)
-                <label style="display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);cursor:pointer;transition:all .2s;background:{{ $reportType === $val ? 'rgba(45,140,240,0.1)' : 'rgba(255,255,255,0.03)' }};"
-                    onmouseover="this.style.background='rgba(45,140,240,0.08)'" onmouseout="this.style.background='{{ $reportType === $val ? 'rgba(45,140,240,0.1)' : 'rgba(255,255,255,0.03)' }}'">
+                <label style="display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);cursor:pointer;transition:all .2s;background:{{ $reportType === $val ? 'rgba(14,165,233,0.1)' : 'rgba(255,255,255,0.03)' }};"
+                    onmouseover="this.style.background='rgba(14,165,233,0.08)'" onmouseout="this.style.background='{{ $reportType === $val ? 'rgba(14,165,233,0.1)' : 'rgba(255,255,255,0.03)' }}'">
                     <input type="radio" name="report_type" value="{{ $val }}" style="margin-top:3px;accent-color:var(--accent);" {{ $reportType === $val ? 'checked' : '' }}>
                     <div>
                         <div style="font-weight:600;font-size:13px;">{{ $info['icon'] }} {{ $info['label'] }}</div>

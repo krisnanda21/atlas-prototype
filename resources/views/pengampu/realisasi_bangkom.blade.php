@@ -11,7 +11,7 @@
     <div class="card-title" style="font-size:18px">Daftar Realisasi Kegiatan Bangkom</div>
 
     {{-- Filter & Sort Bar --}}
-    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
+    <div style="background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
         <div style="font-weight:600; color:var(--text-secondary);">🔍 Cari:</div>
         <input type="text" id="search-title" class="form-control" style="width:200px; height:32px; padding:0 8px; font-size:12px;" placeholder="Cari nama kegiatan..." onkeyup="filterAndSortRealisasi()">
         <div style="font-weight:600; color:var(--text-secondary); margin-left:8px;">Filter:</div>
@@ -97,7 +97,7 @@
             @endforelse
         </tbody>
     </table>
-    <div id="pagination-controls" style="display:flex; justify-content:space-between; align-items:center; padding:16px; background:rgba(255,255,255,0.02); border-top:1px solid rgba(255,255,255,0.05); border-radius:0 0 8px 8px;">
+    <div id="pagination-controls" style="display:flex; justify-content:space-between; align-items:center; padding:16px; background:#F8FAFC; border-top:1px solid rgba(255,255,255,0.05); border-radius:0 0 8px 8px;">
         <div id="pagination-info" style="font-size:12px; color:var(--text-secondary);">Showing 0 to 0 of 0 entries</div>
         <div style="display:flex; gap:4px;" id="pagination-buttons"></div>
     </div>
@@ -157,7 +157,7 @@
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
                     <h3 style="font-size:14px;font-weight:600;color:var(--text-primary);margin:0;">👥 Daftar Peserta & Skor Penilaian</h3>
                     <div style="display:flex;gap:8px;align-items:center;">
-                        <a href="/template_evaluasi_bangkom.xls" download class="btn" style="padding:6px 12px;font-size:12px;font-weight:600;border-radius:6px;background:rgba(255,255,255,0.08);color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.1);display:inline-flex;align-items:center;gap:4px;cursor:pointer;">📥 Download XLS</a>
+                        <a href="/template_evaluasi_bangkom.xls" download class="btn" style="padding:6px 12px;font-size:12px;font-weight:600;border-radius:6px;background:#F1F5F9;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.1);display:inline-flex;align-items:center;gap:4px;cursor:pointer;">📥 Download XLS</a>
                         <label class="btn" style="padding:6px 12px;font-size:12px;font-weight:600;border-radius:6px;background:#2563eb;color:#fff;display:inline-flex;align-items:center;gap:4px;cursor:pointer;margin:0;border:none;">
                             📤 Import Nilai
                             <input type="file" id="import-excel-file" accept=".xls,.xlsx" style="display:none;" onchange="handleExcelImport(event)">
@@ -700,7 +700,7 @@ function showDetailRealisasi(plan) {
     }
 
     content.innerHTML = `
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:16px; font-size:13px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:16px; font-size:13px;">
             <div>
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">ID & Nama Kegiatan</div>
                 <div style="font-weight:700; color:#fff; font-size:14px; margin-bottom:10px;">${plan.id} - ${plan.nama_kegiatan}</div>

@@ -30,7 +30,7 @@
     <div class="card-title" style="font-size:18px;">Daftar Pejabat & IDP</div>
     
     {{-- Filter & Sort Bar --}}
-    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
         <div style="font-weight:600; color:var(--text-secondary);">🔍 Filter:</div>
         <select id="filter-jabatan" class="form-control" style="width:160px; height:32px; padding:0 8px; font-size:12px;" onchange="filterAndSortIdp()">
             <option value="">Semua Jabatan</option>

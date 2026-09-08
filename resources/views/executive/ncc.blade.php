@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'National Control Centre')
 @section('header_title', 'National Control Centre (NCC)')
 
@@ -86,7 +86,7 @@
                     <div class="ncc-eselon1-row" 
                          onclick="toggleEselon1('{{ $e1['code'] }}')"
                          title="{{ $e1['name'] }} ({{ $e1['coverage'] }}% IDP Coverage · {{ count($e1['children']) }} Unit Eselon II) - Klik untuk cascading"
-                         style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer; transition: all 0.2s ease;">
+                         style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer; transition: all 0.2s ease;">
                         
                         {{-- Sumbu Y: Toggle Chevron & Kode Eselon 1 --}}
                         <div style="width:100px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:12px; font-weight:800; color:var(--text-primary); text-align:right; flex-shrink:0;">
@@ -95,11 +95,11 @@
                         </div>
 
                         {{-- Sumbu X: Bar IDP Coverage Eselon 1 --}}
-                        <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:4px; height:16px; position:relative; overflow:hidden;">
+                        <div style="flex:1; background:#F1F5F9; border-radius:4px; height:16px; position:relative; overflow:hidden;">
                             {{-- Subtle Grid markers at 25%, 50%, 75% --}}
-                            <div style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.08); z-index:1;"></div>
-                            <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.08); z-index:1;"></div>
-                            <div style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.08); z-index:1;"></div>
+                            <div style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
+                            <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
+                            <div style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
                             
                             {{-- Bar Fill --}}
                             <div style="height:100%; width:{{ min($e1['coverage'], 100) }}%; background:{{ $e1RiskGradient }}; border-radius:4px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); position:relative; z-index:2;"></div>
@@ -127,7 +127,7 @@
                              data-coverage="{{ $child['coverage'] }}" 
                              data-risk="{{ $child['risk'] }}"
                              title="{{ $child['unit'] }} ({{ $child['coverage'] }}% IDP Coverage · {{ $child['non_jfa_path'] }} Non-JFA · {{ $child['strategic_direction'] }} Arahan)"
-                             style="display:flex; align-items:center; gap:10px; padding:5px 8px; background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.03); border-radius:5px; transition: all 0.2s ease;">
+                             style="display:flex; align-items:center; gap:10px; padding:5px 8px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.03); border-radius:5px; transition: all 0.2s ease;">
                             
                             {{-- Sumbu Y: Kode Eselon 2 --}}
                             <div style="width:86px; font-size:10.5px; font-weight:700; color:var(--text-secondary); text-align:right; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:help;" title="{{ $child['unit'] }}">
@@ -135,10 +135,10 @@
                             </div>
 
                             {{-- Sumbu X: Bar IDP Coverage Eselon 2 --}}
-                            <div style="flex:1; background:rgba(255,255,255,0.05); border-radius:3px; height:11px; position:relative; overflow:hidden;">
-                                <div style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.06); z-index:1;"></div>
-                                <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.06); z-index:1;"></div>
-                                <div style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.06); z-index:1;"></div>
+                            <div style="flex:1; background:#F8FAFC; border-radius:3px; height:11px; position:relative; overflow:hidden;">
+                                <div style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
+                                <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
+                                <div style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
                                 
                                 <div style="height:100%; width:{{ min($child['coverage'], 100) }}%; background:{{ $childRiskGradient }}; border-radius:3px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); position:relative; z-index:2;"></div>
                             </div>
@@ -209,7 +209,7 @@
                     <div class="ncc-wilayah-row" 
                          onclick="toggleWilayah('{{ $w['code'] }}')"
                          title="{{ $w['name'] }} ({{ $w['coverage'] }}% IDP Coverage · {{ count($w['children']) }} Unit Perwakilan) - Klik untuk cascading"
-                         style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer; transition: all 0.2s ease;">
+                         style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; cursor:pointer; transition: all 0.2s ease;">
                         
                         {{-- Sumbu Y: Toggle Chevron & Nama Wilayah --}}
                         <div style="width:100px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:11.5px; font-weight:800; color:var(--text-primary); text-align:right; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
@@ -218,10 +218,10 @@
                         </div>
 
                         {{-- Sumbu X: Bar IDP Coverage Wilayah --}}
-                        <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:4px; height:16px; position:relative; overflow:hidden;">
-                            <div style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.08); z-index:1;"></div>
-                            <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.08); z-index:1;"></div>
-                            <div style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.08); z-index:1;"></div>
+                        <div style="flex:1; background:#F1F5F9; border-radius:4px; height:16px; position:relative; overflow:hidden;">
+                            <div style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
+                            <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
+                            <div style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
                             
                             <div style="height:100%; width:{{ min($w['coverage'], 100) }}%; background:{{ $wRiskGradient }}; border-radius:4px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); position:relative; z-index:2;"></div>
                         </div>
@@ -248,7 +248,7 @@
                              data-coverage="{{ $child['coverage'] }}" 
                              data-risk="{{ $child['risk'] }}"
                              title="{{ $child['unit'] }} ({{ $child['coverage'] }}% IDP Coverage · {{ $child['non_jfa_path'] }} Non-JFA · {{ $child['strategic_direction'] }} Arahan)"
-                             style="display:flex; align-items:center; gap:10px; padding:5px 8px; background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.03); border-radius:5px; transition: all 0.2s ease;">
+                             style="display:flex; align-items:center; gap:10px; padding:5px 8px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.03); border-radius:5px; transition: all 0.2s ease;">
                             
                             {{-- Sumbu Y: Kode Perwakilan --}}
                             <div style="width:86px; font-size:10.5px; font-weight:700; color:var(--text-secondary); text-align:right; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:help;" title="{{ $child['unit'] }}">
@@ -256,10 +256,10 @@
                             </div>
 
                             {{-- Sumbu X: Bar IDP Coverage PW --}}
-                            <div style="flex:1; background:rgba(255,255,255,0.05); border-radius:3px; height:11px; position:relative; overflow:hidden;">
-                                <div style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.06); z-index:1;"></div>
-                                <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.06); z-index:1;"></div>
-                                <div style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.06); z-index:1;"></div>
+                            <div style="flex:1; background:#F8FAFC; border-radius:3px; height:11px; position:relative; overflow:hidden;">
+                                <div style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
+                                <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
+                                <div style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:#F1F5F9; z-index:1;"></div>
                                 
                                 <div style="height:100%; width:{{ min($child['coverage'], 100) }}%; background:{{ $pwRiskGradient }}; border-radius:3px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); position:relative; z-index:2;"></div>
                             </div>
@@ -326,14 +326,14 @@
                 $childRiskGradient = $child['risk'] === 'Tinggi' ? 'linear-gradient(90deg, #ef4444, #f87171)' : ($child['risk'] === 'Sedang' ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #10b981, #34d399)');
             @endphp
             <div title="{{ $child['unit'] }} ({{ $child['coverage'] }}%)"
-                 style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:6px; margin-bottom:4px;">
+                 style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#F8FAFC; border:1px solid rgba(255,255,255,0.08); border-radius:6px; margin-bottom:4px;">
                 <div style="width:100px; display:flex; align-items:center; justify-content:flex-end; gap:4px; font-size:12px; font-weight:800; color:var(--text-primary); text-align:right;">
                     <span>{{ $child['code'] }}</span>
                 </div>
-                <div style="flex:1; background:rgba(255,255,255,0.08); border-radius:4px; height:16px; position:relative; overflow:hidden;">
-                    <div style="position:absolute; left:25%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
-                    <div style="position:absolute; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
-                    <div style="position:absolute; left:75%; width:1px; height:100%; background:rgba(255,255,255,0.08);"></div>
+                <div style="flex:1; background:#F1F5F9; border-radius:4px; height:16px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; left:25%; width:1px; height:100%; background:#F1F5F9;"></div>
+                    <div style="position:absolute; left:50%; width:1px; height:100%; background:#F1F5F9;"></div>
+                    <div style="position:absolute; left:75%; width:1px; height:100%; background:#F1F5F9;"></div>
                     <div style="height:100%; width:{{ min($child['coverage'], 100) }}%; background:{{ $childRiskGradient }}; border-radius:4px;"></div>
                 </div>
                 <div style="width:55px; font-size:12px; font-weight:800; color:{{ $childRiskColor }}; text-align:right;">
@@ -371,7 +371,7 @@
                 @foreach($tableCategories as $catKey => $cat)
                 @if(!empty($cat['groups']))
                 {{-- Category Header Row --}}
-                <tr class="ncc-cat-header-row" data-cat="{{ $catKey }}" style="background:rgba(255,255,255,0.04); border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);">
+                <tr class="ncc-cat-header-row" data-cat="{{ $catKey }}" style="background:#F8FAFC; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);">
                     <td colspan="6" style="padding:8px 12px; font-weight:800; font-size:11.5px; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-primary);">
                         <span class="badge {{ $cat['badge_class'] }}" style="font-size:10px; margin-right:6px;">{{ $cat['badge'] }}</span>
                         {{ $cat['title'] }}
@@ -391,7 +391,7 @@
                     data-name="{{ $group['name'] }}"
                     data-coverage="{{ $group['coverage'] }}"
                     onclick="toggleTableParent('{{ $groupId }}')"
-                    style="cursor:pointer; background:rgba(255,255,255,0.02); border-bottom:1px solid rgba(255,255,255,0.04); font-weight:600;">
+                    style="cursor:pointer; background:#F8FAFC; border-bottom:1px solid rgba(255,255,255,0.04); font-weight:600;">
                     
                     <td style="padding:9px 8px;">
                         <div style="display:flex; align-items:center; gap:6px;">
@@ -406,7 +406,7 @@
                     </td>
                     <td style="padding:9px 8px;">
                         <div style="display:flex; align-items:center; gap:8px;">
-                            <div style="background:rgba(255,255,255,0.08); border-radius:3px; height:7px; width:80px; overflow:hidden; flex-shrink:0;">
+                            <div style="background:#F1F5F9; border-radius:3px; height:7px; width:80px; overflow:hidden; flex-shrink:0;">
                                 <div style="height:100%; width:{{ min($group['coverage'],100) }}%; background:{{ $gRiskColor }};"></div>
                             </div>
                             <span style="font-size:12.5px; font-weight:700; color:{{ $gRiskColor }};">{{ $group['coverage'] }}%</span>
@@ -433,7 +433,7 @@
                     data-code="{{ $child['code'] }}"
                     data-name="{{ $child['unit'] }}"
                     data-coverage="{{ $child['coverage'] }}"
-                    style="display:none; background:rgba(255,255,255,0.008); border-bottom:1px solid rgba(255,255,255,0.025); font-size:12px;">
+                    style="display:none; background:#F8FAFC; border-bottom:1px solid rgba(255,255,255,0.025); font-size:12px;">
                     
                     <td style="padding:7px 8px 7px 22px;">
                         <span class="badge badge-neutral" style="font-size:10px; font-weight:700;">{{ $child['code'] }}</span>
@@ -443,7 +443,7 @@
                     </td>
                     <td style="padding:7px 8px;">
                         <div style="display:flex; align-items:center; gap:8px;">
-                            <div style="background:rgba(255,255,255,0.06); border-radius:3px; height:5px; width:70px; overflow:hidden; flex-shrink:0;">
+                            <div style="background:#F1F5F9; border-radius:3px; height:5px; width:70px; overflow:hidden; flex-shrink:0;">
                                 <div style="height:100%; width:{{ min($child['coverage'],100) }}%; background:{{ $cRiskColor }};"></div>
                             </div>
                             <span style="font-size:11.5px; font-weight:600; color:{{ $cRiskColor }};">{{ $child['coverage'] }}%</span>
@@ -471,7 +471,7 @@
                     $cRiskColor = $child['risk'] === 'Tinggi' ? 'var(--danger)' : ($child['risk'] === 'Sedang' ? 'var(--warning)' : 'var(--success)');
                 @endphp
                 <tr class="ncc-table-child-row" 
-                    style="background:rgba(255,255,255,0.008); border-bottom:1px solid rgba(255,255,255,0.025); font-size:12px;">
+                    style="background:#F8FAFC; border-bottom:1px solid rgba(255,255,255,0.025); font-size:12px;">
                     
                     <td style="padding:7px 8px 7px 22px;">
                         <span class="badge badge-neutral" style="font-size:10px; font-weight:700;">{{ $child['code'] }}</span>
@@ -481,7 +481,7 @@
                     </td>
                     <td style="padding:7px 8px;">
                         <div style="display:flex; align-items:center; gap:8px;">
-                            <div style="background:rgba(255,255,255,0.06); border-radius:3px; height:5px; width:70px; overflow:hidden; flex-shrink:0;">
+                            <div style="background:#F1F5F9; border-radius:3px; height:5px; width:70px; overflow:hidden; flex-shrink:0;">
                                 <div style="height:100%; width:{{ min($child['coverage'],100) }}%; background:{{ $cRiskColor }};"></div>
                             </div>
                             <span style="font-size:11.5px; font-weight:600; color:{{ $cRiskColor }};">{{ $child['coverage'] }}%</span>

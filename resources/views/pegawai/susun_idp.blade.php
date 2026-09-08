@@ -20,7 +20,7 @@
         <div class="card-title" style="font-size:18px;">💡 Rekomendasi Sistem</div>
         <p class="text-sm text-muted" style="margin-bottom:12px;">Berdasarkan gap COMPASS, jabatan, dan arahan strategis unit Anda.</p>
         @forelse($recommendations as $rec)
-        <div class="rec-item" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;margin-bottom:8px;">
+        <div class="rec-item" style="background:#F8FAFC;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;margin-bottom:8px;">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
                 <div style="font-weight:600;font-size:13px;">{{ $rec['need'] }}</div>
                 @if(($rec['competency_type'] ?? '') === 'Manajerial')
@@ -287,7 +287,7 @@
             </div>
 
             <div style="display:flex;gap:12px;justify-content:flex-end;">
-                <button type="button" id="btn-close-edit-modal" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:rgba(255,255,255,0.1);color:#fff;">Batal</button>
+                <button type="button" id="btn-close-edit-modal" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:#F1F5F9;color:#fff;">Batal</button>
                 <button type="submit" class="btn btn-primary" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:var(--primary);color:#fff;">💾 Simpan Perubahan</button>
             </div>
         </form>

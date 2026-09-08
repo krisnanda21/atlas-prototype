@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'SETARA Integration')
 @section('header_title', 'Monitor Integrasi SETARA')
 
@@ -13,7 +13,7 @@
 
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;">
     @foreach($datasets as $ds)
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba({{ $ds['status'] === 'Sehat' ? '34,197,94' : '239,68,68' }},0.25);border-radius:12px;padding:20px;">
+    <div style="background:#F8FAFC;border:1px solid rgba({{ $ds['status'] === 'Sehat' ? '34,197,94' : '239,68,68' }},0.25);border-radius:12px;padding:20px;">
         <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
             <div>
                 <div style="font-size:11px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">{{ $ds['app'] }}</div>

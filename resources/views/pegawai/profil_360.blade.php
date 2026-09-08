@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Profil 360 - Kompetensi & IDP')
 @section('header_title', 'Profil 360° Kompetensi & IDP')
 
@@ -97,12 +97,12 @@
                     };
                     $pct = $need->score;
                 @endphp
-                <div class="gap-item" style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px 12px;">
+                <div class="gap-item" style="background:#F8FAFC;border-radius:6px;padding:10px 12px;">
                     <div style="display:flex;justify-content:space-between;align-items:center;">
                         <span style="font-size:13px;font-weight:600;">{{ $need->competency_name }}</span>
                         <span style="font-size:13px;font-weight:700;color:{{ $color }}">{{ $need->score }}</span>
                     </div>
-                    <div style="background:rgba(255,255,255,0.08);border-radius:4px;height:6px;margin-top:6px;overflow:hidden;">
+                    <div style="background:#F1F5F9;border-radius:4px;height:6px;margin-top:6px;overflow:hidden;">
                         <div style="height:100%;width:{{ $pct }}%;background:{{ $color }};"></div>
                     </div>
                     <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Standard: {{ $need->standard }} | Gap: {{ $need->gap ?? '-' }} | Level: {{ $need->level ?? '-' }}</div>
@@ -132,12 +132,12 @@
                     };
                     $pct = ($need->score / 5) * 100;
                 @endphp
-                <div class="gap-item" style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px 12px;">
+                <div class="gap-item" style="background:#F8FAFC;border-radius:6px;padding:10px 12px;">
                     <div style="display:flex;justify-content:space-between;align-items:center;">
                         <span style="font-size:13px;font-weight:600;">{{ $need->competency_name }}</span>
                         <span style="font-size:13px;font-weight:700;color:{{ $color }}">{{ $need->score }}</span>
                     </div>
-                    <div style="background:rgba(255,255,255,0.08);border-radius:4px;height:6px;margin-top:6px;overflow:hidden;">
+                    <div style="background:#F1F5F9;border-radius:4px;height:6px;margin-top:6px;overflow:hidden;">
                         <div style="height:100%;width:{{ $pct }}%;background:{{ $color }};"></div>
                     </div>
                     <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">Standard: {{ $need->standard }} | Gap: {{ $need->gap ?? '-' }} | Level: {{ $need->level ?? '-' }}</div>

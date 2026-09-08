@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Dashboard Kepala Unit')
 @section('header_title', 'Dashboard Kepala Unit')
 
@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            <div style="background:rgba(255,255,255,0.02); border-radius:8px; padding:16px; margin-top:20px; border:1px solid rgba(255,255,255,0.05);">
+            <div style="background:#F8FAFC; border-radius:8px; padding:16px; margin-top:20px; border:1px solid rgba(255,255,255,0.05);">
                 <div style="font-weight:600; font-size:13px; margin-bottom:8px; color:var(--accent);">📈 Statistik Realisasi Akhir:</div>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:12px;">
                     <div>
@@ -160,7 +160,7 @@
                     @php
                         $pctIdp = $totalIdpTeknis > 0 ? round(($idp->count / $totalIdpTeknis) * 100) : 0;
                     @endphp
-                    <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="background:#F8FAFC; border-radius:8px; padding:12px; border:1px solid rgba(255,255,255,0.05);">
                         <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
                             <span style="font-size:13px; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1;" title="{{ $idp->need }}">{{ $idp->need }}</span>
                             <span class="badge badge-info" style="font-size:11px; background:rgba(var(--info-rgb), 0.15); color:var(--info); white-space:nowrap; flex-shrink:0;">{{ $idp->count }} IDP | {{ $pctIdp }}%</span>
@@ -193,7 +193,7 @@
                     @if(count($top5Jp) > 0)
                         <div style="display:flex; flex-direction:column; gap:8px;">
                             @foreach($top5Jp as $index => $emp)
-                            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:#F8FAFC; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
                                 <div style="display:flex; align-items:center; gap:12px;">
                                     <span style="font-weight:bold; color:var(--text-secondary); width:20px; text-align:center;">#{{ $index + 1 }}</span>
                                     <div style="display:flex; flex-direction:column;">
@@ -218,7 +218,7 @@
                     @if(count($bottom5Jp) > 0)
                         <div style="display:flex; flex-direction:column; gap:8px;">
                             @foreach($bottom5Jp as $index => $emp)
-                            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:#F8FAFC; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
                                 <div style="display:flex; align-items:center; gap:12px;">
                                     <span style="font-weight:bold; color:var(--text-secondary); width:20px; text-align:center;">#{{ $index + 1 }}</span>
                                     <div style="display:flex; flex-direction:column;">
@@ -244,7 +244,7 @@
             @if($competencyStats->isNotEmpty())
                 <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; max-height:280px; overflow-y:auto; padding-right:6px;">
                     @foreach($competencyStats as $stat)
-                    <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="background:#F8FAFC; border-radius:8px; padding:12px; border:1px solid rgba(255,255,255,0.05);">
                         <div style="display:flex; justify-content:space-between; align-items:center;">
                             <span style="font-size:13px; font-weight:600; color:var(--text-primary);">{{ $stat->competency_name }}</span>
                             <span class="badge badge-danger" style="font-size:11px;">{{ $stat->gap_count }} Pegawai</span>

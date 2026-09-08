@@ -1,4 +1,4 @@
-@php
+﻿@php
     $isSearching = request()->has('emp_id') || request()->has('q');
 @endphp
 
@@ -141,7 +141,7 @@
             $nilaiRata = DB::table('compass_nilai_rata_rata')->where('employee_id', $employee->id)->first();
         @endphp
         <div class="card mb-4" style="display:flex;align-items:center;gap:20px;padding:20px;">
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(45,140,240,0.2);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;flex-shrink:0;">{{ strtoupper(substr($employee->name, 0, 1)) }}</div>
+            <div style="width:64px;height:64px;border-radius:50%;background:rgba(14,165,233,0.15);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;flex-shrink:0;">{{ strtoupper(substr($employee->name, 0, 1)) }}</div>
             <div style="flex:1;">
                 <div style="font-size:18px;font-weight:700;color:var(--text-primary);">{{ $employee->name }}</div>
                 <div style="font-size:13px;color:var(--text-secondary);margin-top:2px;">NIP: {{ $employee->id }}</div>
@@ -181,7 +181,7 @@
             @endphp
             
             <details style="margin-bottom:8px; border:1px solid rgba(255,255,255,0.1); border-radius:6px; overflow:hidden;" open>
-                <summary style="background:rgba(255,255,255,0.05); padding:10px 14px; cursor:pointer; font-weight:600; font-size:13px; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+                <summary style="background:#F8FAFC; padding:10px 14px; cursor:pointer; font-weight:600; font-size:13px; list-style:none; display:flex; justify-content:space-between; align-items:center;">
                     <span>Kompetensi Teknis ({{ $needsTeknis->count() }})</span>
                     <span style="font-size:10px;">▼</span>
                 </summary>
@@ -192,7 +192,7 @@
                         @endphp
                         <div style="display:flex;align-items:center;gap:12px;">
                             <div style="width:200px;font-size:12px;color:var(--text-secondary);flex-shrink:0;">{{ $need->competency_name }}</div>
-                            <div style="flex:1;background:rgba(255,255,255,0.08);border-radius:4px;height:8px;overflow:hidden;">
+                            <div style="flex:1;background:#F1F5F9;border-radius:4px;height:8px;overflow:hidden;">
                                 <div style="height:100%;width:{{ $need->score }}%;background:{{ $scoreColor }};"></div>
                             </div>
                             <div style="font-size:12px;font-weight:700;width:30px;text-align:right;color:{{ $scoreColor }}">{{ $need->score }}</div>
@@ -204,7 +204,7 @@
             </details>
 
             <details style="margin-bottom:8px; border:1px solid rgba(255,255,255,0.1); border-radius:6px; overflow:hidden;">
-                <summary style="background:rgba(255,255,255,0.05); padding:10px 14px; cursor:pointer; font-weight:600; font-size:13px; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+                <summary style="background:#F8FAFC; padding:10px 14px; cursor:pointer; font-weight:600; font-size:13px; list-style:none; display:flex; justify-content:space-between; align-items:center;">
                     <span>Kompetensi Manajerial & Sosial Kultural ({{ $needsMansoskul->count() }})</span>
                     <span style="font-size:10px;">▼</span>
                 </summary>
@@ -216,7 +216,7 @@
                         @endphp
                         <div style="display:flex;align-items:center;gap:12px;">
                             <div style="width:200px;font-size:12px;color:var(--text-secondary);flex-shrink:0;">{{ $need->competency_name }}</div>
-                            <div style="flex:1;background:rgba(255,255,255,0.08);border-radius:4px;height:8px;overflow:hidden;">
+                            <div style="flex:1;background:#F1F5F9;border-radius:4px;height:8px;overflow:hidden;">
                                 <div style="height:100%;width:{{ $scoreWidth }}%;background:{{ $scoreColor }};"></div>
                             </div>
                             <div style="font-size:12px;font-weight:700;width:30px;text-align:right;color:{{ $scoreColor }}">{{ $need->score }}</div>

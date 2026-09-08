@@ -22,7 +22,7 @@
             @forelse($references as $ref)
             <tr>
                 <td><span class="badge badge-neutral" style="font-size:10px;">{{ $ref->category }}</span></td>
-                <td><code style="background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:4px;font-size:12px;">{{ $ref->key }}</code></td>
+                <td><code style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-size:12px;">{{ $ref->key }}</code></td>
                 <td>{{ $ref->value }}</td>
                 <td>{{ $ref->owner ?? '-' }}</td>
                 <td>

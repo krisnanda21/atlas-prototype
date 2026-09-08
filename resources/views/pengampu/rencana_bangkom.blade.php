@@ -12,7 +12,7 @@
     <div class="card-title" style="font-size:18px;">Daftar Rencana Kegiatan Bangkom</div>
 
     {{-- Filter & Sort Bar --}}
-    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
         <div style="font-weight:600; color:var(--text-secondary);">🔍 Cari:</div>
         <input type="text" id="search-title" class="form-control" style="width:200px; height:32px; padding:0 8px; font-size:12px;" placeholder="Cari nama kegiatan..." onkeyup="filterAndSortRencana()">
         <div style="font-weight:600; color:var(--text-secondary); margin-left:8px;">Filter:</div>
@@ -113,7 +113,7 @@
             @endforelse
         </tbody>
     </table>
-    <div id="pagination-controls" style="display:flex; justify-content:space-between; align-items:center; padding:16px; background:rgba(255,255,255,0.02); border-top:1px solid rgba(255,255,255,0.05); border-radius:0 0 8px 8px;">
+    <div id="pagination-controls" style="display:flex; justify-content:space-between; align-items:center; padding:16px; background:#F8FAFC; border-top:1px solid #E2E8F0; border-radius:0 0 8px 8px;">
         <div id="pagination-info" style="font-size:12px; color:var(--text-secondary);">Showing 0 to 0 of 0 entries</div>
         <div style="display:flex; gap:4px;" id="pagination-buttons"></div>
     </div>
@@ -347,7 +347,7 @@
             </div>
 
             <div style="display:flex;gap:12px;justify-content:flex-end;border-top:1px solid var(--divider);padding-top:16px;">
-                <button type="button" onclick="closeAddModal()" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:rgba(255,255,255,0.1);color:#fff;">Batal</button>
+                <button type="button" onclick="closeAddModal()" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:#F1F5F9;color:#fff;">Batal</button>
                 <button type="submit" class="btn btn-primary" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:var(--primary);color:#fff;">💾 Simpan Rencana</button>
             </div>
         </form>

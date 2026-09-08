@@ -29,7 +29,7 @@
     <div class="card-title" style="font-size:18px">📋 Daftar Rencana & Penetapan Bangkom Unit</div>
 
     {{-- Filter & Sort Bar --}}
-    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
         <div style="font-weight:600; color:var(--text-secondary);">🔍 Cari:</div>
         <input type="text" id="search-title" class="form-control" style="width:200px; height:32px; padding:0 8px; font-size:12px;" placeholder="Cari nama kegiatan..." onkeyup="filterAndSortPlans()">
         <div style="font-weight:600; color:var(--text-secondary); margin-left:8px;">Filter:</div>
@@ -147,7 +147,7 @@
             @endforelse
         </tbody>
     </table>
-    <div id="pagination-controls" style="display:flex; justify-content:space-between; align-items:center; padding:16px; background:rgba(255,255,255,0.02); border-top:1px solid rgba(255,255,255,0.05); border-radius:0 0 8px 8px;">
+    <div id="pagination-controls" style="display:flex; justify-content:space-between; align-items:center; padding:16px; background:#F8FAFC; border-top:1px solid #E2E8F0; border-radius:0 0 8px 8px;">
         <div id="pagination-info" style="font-size:12px; color:var(--text-secondary);">Showing 0 to 0 of 0 entries</div>
         <div style="display:flex; gap:4px;" id="pagination-buttons"></div>
     </div>
@@ -323,7 +323,7 @@ function showDetailRealisasi(plan) {
     }
 
     content.innerHTML = `
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:16px; font-size:13px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px; font-size:13px;">
             <div>
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">ID & Nama Kegiatan</div>
                 <div style="font-weight:700; color:#fff; font-size:14px; margin-bottom:10px;">${plan.id} - ${plan.nama_kegiatan}</div>
