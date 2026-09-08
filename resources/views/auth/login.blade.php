@@ -13,9 +13,9 @@
             width: 100%;
             box-sizing: border-box;
             background: rgba(255,255,255,.06);
-            border: 1px solid rgba(255,255,255,.12);
+            border: 1px solid #d1d5db;
             border-radius: 8px;
-            color: #e8edf2;
+            color: #2b2c2eff;
             font-size: 14px;
             padding: 10px 14px;
             outline: none;
