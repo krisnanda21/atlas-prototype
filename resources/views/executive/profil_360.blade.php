@@ -54,7 +54,7 @@
                     let html = '';
                     matches.forEach(e => {
                         html += `
-                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid #E2E8F0; text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
+                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid #E2E8F0; text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='#F1F5F9'" onmouseleave="this.style.background='transparent'">
                                 <div style="font-weight:600;">${e.name}</div>
                                 <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role || '-'}</div>
                             </a>
@@ -119,7 +119,7 @@
                     let html = '';
                     matches.forEach(e => {
                         html += `
-                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid #E2E8F0; text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'">
+                            <a href="?emp_id=${e.id}&q=${encodeURIComponent(e.name)}" style="display:block; padding:12px 16px; border-bottom:1px solid #E2E8F0; text-decoration:none; color:var(--text-primary); transition:background 0.2s;" onmouseenter="this.style.background='#F1F5F9'" onmouseleave="this.style.background='transparent'">
                                 <div style="font-weight:600;">${e.name}</div>
                                 <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">NIP: ${e.id} &bull; ${e.role || '-'}</div>
                             </a>

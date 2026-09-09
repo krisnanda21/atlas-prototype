@@ -195,7 +195,7 @@
                                 {{ $emp->initial ?? substr($emp->name, 0, 2) }}
                             </div>
                             <div>
-                                <div style="font-weight: 600; color: #fff; font-size: 14px;">{{ $emp->name }}</div>
+                                <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">{{ $emp->name }}</div>
                                 <div style="font-size: 12px; color: var(--text-secondary);">NIP: {{ $emp->id }}</div>
                             </div>
                         </div>
@@ -223,7 +223,7 @@
     @else
     <div style="text-align:center; padding: 48px 24px;">
         <div style="font-size: 48px; margin-bottom: 16px; opacity: 0.3;">🔍</div>
-        <h3 style="color: #fff; font-size: 16px; margin-bottom: 8px;">Tidak Ada Pegawai Ditemukan</h3>
+        <h3 style="color: var(--text-primary); font-size: 16px; margin-bottom: 8px;">Tidak Ada Pegawai Ditemukan</h3>
         <p style="color: var(--text-secondary); max-width: 420px; margin: 0 auto; font-size: 13px;">Coba sesuaikan kembali filter kompetensi, sertifikasi, atau jabatan Anda.</p>
     </div>
     @endif
@@ -243,9 +243,9 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        background: rgba(255,255,255,0.02);
+        background: #F8FAFC;
         padding: 8px 12px;
-        color: #e2e8f0;
+        color: var(--text-primary);
     }
     .dropdown-menu {
         display: none;
@@ -260,7 +260,7 @@
         background: var(--modal-bg);
         border: 1px solid #E2E8F0;
         border-radius: 6px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
     .dropdown-menu.active {
         display: block;
@@ -271,13 +271,13 @@
         padding: 10px 16px;
         cursor: pointer;
         transition: background-color 0.2s;
-        color: #e2e8f0;
+        color: var(--text-primary);
         font-size: 13px;
         margin: 0;
     }
     .dropdown-item:hover {
-        background: rgba(255,255,255,0.05);
-        color: #fff;
+        background: #F1F5F9;
+        color: var(--text-primary);
     }
 
     /* CUSTOM CHECKBOX */

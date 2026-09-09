@@ -456,7 +456,7 @@ function toggleAllUnits() {
                     backgroundColor: 'rgba(15,20,40,0.92)',
                     titleColor: '#e2e8f0',
                     bodyColor: '#94a3b8',
-                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderColor: '#E2E8F0',
                     borderWidth: 1,
                     callbacks: {
                         label: function(ctx) {
@@ -476,13 +476,13 @@ function toggleAllUnits() {
                         backdropColor: 'transparent',
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.08)',
+                        color: 'rgba(100,116,139,0.15)',
                     },
                     angleLines: {
-                        color: 'rgba(255,255,255,0.08)',
+                        color: 'rgba(100,116,139,0.15)',
                     },
                     pointLabels: {
-                        color: 'rgba(226,232,240,0.85)',
+                        color: 'rgba(71,85,105,0.9)',
                         font: { size: 10.5, weight: '600' },
                     }
                 }

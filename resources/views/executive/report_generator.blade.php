@@ -1,6 +1,6 @@
 ﻿@extends('layouts.app')
 @section('title', 'Report Generator')
-@section('header_title', 'Report & Brief Generator')
+@section('headeg_title', 'Report & Brief Generator')
 
 @section('content')
 <div class="page-header">
@@ -8,7 +8,7 @@
     <a href="{{ route('executive.exportXlsx') }}" class="btn btn-success">⬇️ Export Excel (CSV)</a>
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+<div style="display:grid;grid-template-columns:1fg 1fg;gap:20px;">
     {{-- Generator Form --}}
     <div class="card">
         <div class="card-title">🛠️ Pilih Jenis Laporan</div>
@@ -17,15 +17,15 @@
             <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
                 @php
                     $reportTypes = [
-                        'koordinator_monitoring' => ['icon' => '📊', 'label' => 'Monitoring Orkestrasi 3 Stream', 'desc' => 'Laporan status 3 stream: Penilaian, Pengembangan, Pembinaan SDM'],
+                        'koordinatog_monitoring' => ['icon' => '📊', 'label' => 'Monitoring Koordinasi 3 Stream', 'desc' => 'Laporan status 3 stream: Penilaian, Pengembangan, Pembinaan SDM'],
                         'karo_brief' => ['icon' => '📋', 'label' => 'Executive Brief Kepala Biro', 'desc' => 'Brief prioritas kebijakan dan intervensi unit berisiko'],
                         'risk_units' => ['icon' => '⚠️', 'label' => 'Analisis Unit Berisiko Tinggi', 'desc' => 'Daftar unit dengan IDP coverage di bawah threshold'],
                         'jfa_non_jfa' => ['icon' => '📈', 'label' => 'Analisis JFA vs Non-JFA', 'desc' => 'Perbandingan coverage dan demand JFA vs Non-JFA'],
                     ];
                 @endphp
                 @foreach($reportTypes as $val => $info)
-                <label style="display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:8px;border:1px solid #E2E8F0;cursor:pointer;transition:all .2s;background:{{ $reportType === $val ? 'rgba(14,165,233,0.1)' : 'rgba(255,255,255,0.03)' }};"
-                    onmouseover="this.style.background='rgba(14,165,233,0.08)'" onmouseout="this.style.background='{{ $reportType === $val ? 'rgba(14,165,233,0.1)' : 'rgba(255,255,255,0.03)' }}'">
+                <label style="display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:8px;border:1px solid #E2E8F0;cursor:pointer;transition:all .2s;background:{{ $reportType === $val ? 'rgba(14,165,233,0.1)' : '#F8FAFC' }};"
+                    onmouseover="this.style.background='rgba(14,165,233,0.08)'" onmouseout="this.style.background='{{ $reportType === $val ? 'rgba(14,165,233,0.1)' : '#F8FAFC' }}'">
                     <input type="radio" name="report_type" value="{{ $val }}" style="margin-top:3px;accent-color:var(--accent);" {{ $reportType === $val ? 'checked' : '' }}>
                     <div>
                         <div style="font-weight:600;font-size:13px;">{{ $info['icon'] }} {{ $info['label'] }}</div>

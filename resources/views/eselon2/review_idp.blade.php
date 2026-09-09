@@ -118,7 +118,7 @@
 
         <div style="overflow-y:auto;flex:1;border:1px solid var(--card-border);border-radius:8px;">
             <table id="table-detail-idp" style="width:100%;font-size:13px;text-align:left;border-collapse:collapse;margin:0;">
-                <thead style="background:#334155;position:sticky;top:0;z-index:2;box-shadow:0 1px 0 var(--divider);">
+                <thead style="background:#F1F5F9;position:sticky;top:0;z-index:2;box-shadow:0 1px 0 var(--divider);">
                     <tr>
                         <th style="padding:10px;width:40px;text-align:center;">
                             <input type="checkbox" id="check-all-detail-idp" onchange="toggleCheckAllDetail(this)" title="Pilih Semua IDP Diajukan" style="cursor:pointer;accent-color:var(--success);width:16px;height:16px;">
@@ -348,7 +348,7 @@ function openDetailModal(empId) {
     currentDetailItems = group.items;
     currentDetailPage = 1;
     
-    // reset check all
+    // Reset check all
     const checkAll = document.getElementById('check-all-detail-idp');
     if(checkAll) { checkAll.checked = false; checkAll.indeterminate = false; }
     
@@ -400,7 +400,7 @@ function renderDetailTable() {
             let noteHtml = idp.revision_note ? `<div style="font-size:11px;color:var(--warning);margin-top:4px;">📝 Catatan: ${idp.revision_note}</div>` : '';
 
             let tr = document.createElement('tr');
-            tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+            tr.style.borderBottom = '1px solid #F1F5F9';
             tr.innerHTML = `
                 <td style="text-align:center;padding:12px 10px;">${checkboxHtml}</td>
                 <td style="padding:12px 10px;"><strong>${idp.need}</strong>${noteHtml}</td>
@@ -437,7 +437,7 @@ function renderDetailTable() {
 
 function changeDetailPage(delta) {
     currentDetailPage += delta;
-    renderDetailTable();
+    renderDetailPage();
 }
 
 function toggleCheckAllDetail(el) {

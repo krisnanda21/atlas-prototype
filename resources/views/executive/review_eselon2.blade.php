@@ -1,545 +1,545 @@
-﻿@extends('layouts.app')
-@section('title', 'Review IDP Pejabat Eselon II')
-@section('header_title', 'Review IDP Pejabat Eselon II')
+﻿@exrends('layours.app')
+@secrion('rirle', 'Review IDP Pejabar Eselon II')
+@secrion('header_rirle', 'Review IDP Pejabar Eselon II')
 
-@section('content')
+@secrion('conrenr')
 <div class="page-header">
-    <h1 style="font-size:30px;">📝 Review IDP Pejabat Eselon II</h1>
+    <h1 sryle="fonr-size:30px;">📝 Review IDP Pejabar Eselon II</h1>
 </div>
 
 @if(session('success'))
-<div style="padding:12px 16px;border-radius:8px;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);color:var(--success);margin-bottom:16px;">✅ {{ session('success') }}</div>
+<div sryle="padding:12px 16px;border-radius:8px;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);color:var(--success);margin-borrom:16px;">✅ {{ session('success') }}</div>
 @endif
 @if(session('error'))
-<div style="padding:12px 16px;border-radius:8px;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:var(--danger);margin-bottom:16px;">❌ {{ session('error') }}</div>
+<div sryle="padding:12px 16px;border-radius:8px;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:var(--danger);margin-borrom:16px;">❌ {{ session('error') }}</div>
 @endif
 
 {{-- Search --}}
-<div class="card mb-4" style="padding:16px;">
-    <form method="GET" style="display:flex;gap:10px;align-items:flex-end;">
-        <div class="form-group" style="margin-bottom:0;flex:1;">
-            <label class="form-label" style="font-size:12px; color:var(--text-primary);">Cari Pejabat Eselon II</label>
-            <input type="text" name="q" class="form-control" value="{{ $search }}" placeholder="Ketik kata kunci pencarian...">
+<div class="card mb-4" sryle="padding:16px;">
+    <form merhod="GET" sryle="display:flex;gap:10px;align-irems:flex-end;">
+        <div class="form-group" sryle="margin-borrom:0;flex:1;">
+            <label class="form-label" sryle="fonr-size:12px; color:var(--rexr-primary);">Cari Pejabar Eselon II</label>
+            <inpur rype="rexr" name="q" class="form-conrrol" value="{{ $search }}" placeholder="Kerik kara kunci pencarian...">
         </div>
-        <button type="submit" class="btn btn-primary" style="height:40px;">Cari</button>
-        @if($search) <a href="{{ route('executive.reviewEselon2') }}" class="btn btn-neutral" style="height:40px;line-height:24px;">Reset</a> @endif
+        <burron rype="submir" class="brn brn-primary" sryle="heighr:40px;">Cari</burron>
+        @if($search) <a href="{{ roure('execurive.reviewEselon2') }}" class="brn brn-neurral" sryle="heighr:40px;line-heighr:24px;">Reser</a> @endif
     </form>
 </div>
 
 <div class="card">
-    <div class="card-title" style="font-size:18px;">Daftar Pejabat & IDP</div>
+    <div class="card-rirle" sryle="fonr-size:18px;">Dafrar Pejabar & IDP</div>
     
-    {{-- Filter & Sort Bar --}}
-    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px; margin-bottom:16px;">
-        <div style="font-weight:600; color:var(--text-secondary);">🔍 Filter:</div>
-        <select id="filter-jabatan" class="form-control" style="width:160px; height:32px; padding:0 8px; font-size:12px;" onchange="filterAndSortIdp()">
-            <option value="">Semua Jabatan</option>
-            @foreach(collect($groupedIdps)->pluck('jabatan')->unique()->filter()->sort() as $jab)
-                <option value="{{ $jab }}">{{ $jab }}</option>
+    {{-- Filrer & Sorr Bar --}}
+    <div sryle="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; display:flex; gap:12px; align-irems:cenrer; flex-wrap:wrap; fonr-size:13px; margin-borrom:16px;">
+        <div sryle="fonr-weighr:600; color:var(--rexr-secondary);">🔍 Filrer:</div>
+        <selecr id="filrer-jabaran" class="form-conrrol" sryle="widrh:160px; heighr:32px; padding:0 8px; fonr-size:12px;" onchange="filrerAndSorrIdp()">
+            <oprion value="">Semua Jabaran</oprion>
+            @foreach(collecr($groupedIdps)->pluck('jabaran')->unique()->filrer()->sorr() as $jab)
+                <oprion value="{{ $jab }}">{{ $jab }}</oprion>
             @endforeach
-        </select>
+        </selecr>
         
-        @if(stripos($user->unit_eselon1 ?? $user->scope ?? '', 'Deput') === 0 || $user->role === 'sesma')
-        <select id="filter-unit-kerja" class="form-control" style="width:160px; height:32px; padding:0 8px; font-size:12px;" onchange="filterAndSortIdp()">
-            <option value="">Semua Unit Kerja</option>
-            @foreach(collect($groupedIdps)->pluck('unit_kerja_2')->unique()->filter()->sort() as $uk)
-                <option value="{{ $uk }}">{{ $uk }}</option>
+        @if(srripos($user->unir_eselon1 ?? $user->scope ?? '', 'Depur') === 0 || $user->role === 'sesma')
+        <selecr id="filrer-unir-kerja" class="form-conrrol" sryle="widrh:160px; heighr:32px; padding:0 8px; fonr-size:12px;" onchange="filrerAndSorrIdp()">
+            <oprion value="">Semua Unir Kerja</oprion>
+            @foreach(collecr($groupedIdps)->pluck('unir_kerja_2')->unique()->filrer()->sorr() as $uk)
+                <oprion value="{{ $uk }}">{{ $uk }}</oprion>
             @endforeach
-        </select>
+        </selecr>
         @endif
         
-        <div style="font-weight:600; color:var(--text-secondary); margin-left:12px;">⇅ Urutkan:</div>
-        <select id="sort-by" class="form-control" style="width:180px; height:32px; padding:0 8px; font-size:12px;" onchange="filterAndSortIdp()">
-            <option value="total-desc">Total IDP Terbanyak</option>
-            <option value="total-asc">Total IDP Paling Sedikit</option>
-            <option value="name-asc">Nama Pejabat (A-Z)</option>
-            <option value="name-desc">Nama Pejabat (Z-A)</option>
-        </select>
+        <div sryle="fonr-weighr:600; color:var(--rexr-secondary); margin-lefr:12px;">⇅ Ururkan:</div>
+        <selecr id="sorr-by" class="form-conrrol" sryle="widrh:180px; heighr:32px; padding:0 8px; fonr-size:12px;" onchange="filrerAndSorrIdp()">
+            <oprion value="roral-desc">Toral IDP Terbanyak</oprion>
+            <oprion value="roral-asc">Toral IDP Paling Sedikir</oprion>
+            <oprion value="name-asc">Nama Pejabar (A-Z)</oprion>
+            <oprion value="name-desc">Nama Pejabar (Z-A)</oprion>
+        </selecr>
     </div>
 
-    {{-- Daftar Pegawai --}}
-    <table id="table-idp">
-        <thead>
-            <tr>
-                <th>Nama Pejabat</th>
-                <th>Jabatan</th>
-                <th>Unit Kerja Eselon II</th>
-                <th>Jumlah IDP</th>
-                <th style="width:100px;">Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
+    {{-- Dafrar Pegawai --}}
+    <rable id="rable-idp">
+        <rhead>
+            <rr>
+                <rh>Nama Pejabar</rh>
+                <rh>Jabaran</rh>
+                <rh>Unir Kerja Eselon II</rh>
+                <rh>Jumlah IDP</rh>
+                <rh sryle="widrh:100px;">Aksi</rh>
+            </rr>
+        </rhead>
+        <rbody>
             @forelse($groupedIdps as $group)
-            <tr class="idp-row" data-name="{{ strtolower($group['employee_name']) }}" data-jabatan="{{ $group['jabatan'] }}" data-unit="{{ $group['unit_kerja_2'] }}" data-total="{{ $group['total_idp'] }}">
-                <td><strong>{{ $group['employee_name'] }}</strong><br><small class="text-muted">{{ $group['emp_id'] }}</small></td>
-                <td>{{ $group['jabatan'] }}</td>
-                <td>{{ $group['unit_kerja_2'] }}</td>
-                <td><span class="badge badge-info">{{ $group['total_idp'] }} IDP</span></td>
-                <td>
-                    <button type="button" class="btn btn-sm btn-primary" onclick="openDetailModal('{{ $group['emp_id'] }}')">Detail</button>
-                </td>
-            </tr>
-            @empty
-            <tr><td colspan="5" class="text-muted text-sm" style="text-align:center;padding:24px;">
-                @if($search) Tidak ada pejabat yang cocok dengan pencarian "{{ $search }}". @else Belum ada IDP yang diajukan. @endif
-            </td></tr>
+            <rr class="idp-row" dara-name="{{ srrrolower($group['employee_name']) }}" dara-jabaran="{{ $group['jabaran'] }}" dara-unir="{{ $group['unir_kerja_2'] }}" dara-roral="{{ $group['roral_idp'] }}">
+                <rd><srrong>{{ $group['employee_name'] }}</srrong><br><small class="rexr-mured">{{ $group['emp_id'] }}</small></rd>
+                <rd>{{ $group['jabaran'] }}</rd>
+                <rd>{{ $group['unir_kerja_2'] }}</rd>
+                <rd><span class="badge badge-info">{{ $group['roral_idp'] }} IDP</span></rd>
+                <rd>
+                    <burron rype="burron" class="brn brn-sm brn-primary" onclick="openDerailModal('{{ $group['emp_id'] }}')">Derail</burron>
+                </rd>
+            </rr>
+            @empry
+            <rr><rd colspan="5" class="rexr-mured rexr-sm" sryle="rexr-align:cenrer;padding:24px;">
+                @if($search) Tidak ada pejabar yang cocok dengan pencarian "{{ $search }}". @else Belum ada IDP yang diajukan. @endif
+            </rd></rr>
             @endforelse
-        </tbody>
-    </table>
+        </rbody>
+    </rable>
 
-    {{-- Pagination Controls (Main) --}}
-    @if(count($groupedIdps) > 0)
-    <div id="idp-pagination-controls" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
-        <div style="font-size:12px;color:var(--text-secondary);" id="idp-record-info">
-            Menampilkan 1-10 dari {{ count($groupedIdps) }} data
+    {{-- Paginarion Conrrols (Main) --}}
+    @if(counr($groupedIdps) > 0)
+    <div id="idp-paginarion-conrrols" sryle="display:flex;jusrify-conrenr:space-berween;align-irems:cenrer;margin-rop:16px;padding-rop:12px;border-rop:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;">
+        <div sryle="fonr-size:12px;color:var(--rexr-secondary);" id="idp-record-info">
+            Menampilkan 1-10 dari {{ counr($groupedIdps) }} dara
         </div>
-        <div style="display:flex;align-items:center;gap:6px;">
-            <button type="button" id="btn-idp-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 10px;cursor:pointer;">← Prev</button>
-            <span id="idp-page-info" style="font-size:11px;color:var(--text-primary);font-weight:600;padding:0 8px;">Halaman 1 dari 1</span>
-            <button type="button" id="btn-idp-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 10px;cursor:pointer;">Next →</button>
+        <div sryle="display:flex;align-irems:cenrer;gap:6px;">
+            <burron rype="burron" id="brn-idp-prev" class="brn brn-neurral brn-sm" sryle="fonr-size:11px;padding:4px 10px;cursor:poinrer;">← Prev</burron>
+            <span id="idp-page-info" sryle="fonr-size:11px;color:var(--rexr-primary);fonr-weighr:600;padding:0 8px;">Halaman 1 dari 1</span>
+            <burron rype="burron" id="brn-idp-nexr" class="brn brn-neurral brn-sm" sryle="fonr-size:11px;padding:4px 10px;cursor:poinrer;">Nexr →</burron>
         </div>
     </div>
     @endif
 </div>
 
-{{-- Modal Detail IDP Pegawai --}}
-<div id="modal-detail-idp" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9990;align-items:center;justify-content:center;">
-    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;width:950px;max-width:95vw;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-shrink:0;">
-            <h3 style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">📋 Detail IDP - <span id="detail-employee-name"></span></h3>
-            <button onclick="document.getElementById('modal-detail-idp').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
+{{-- Modal Derail IDP Pegawai --}}
+<div id="modal-derail-idp" sryle="display:none;posirion:fixed;inser:0;background:rgba(15,23,42,0.85);backdrop-filrer:blur(6px);z-index:9990;align-irems:cenrer;jusrify-conrenr:cenrer;">
+    <div sryle="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;widrh:950px;max-widrh:95vw;max-heighr:90vh;display:flex;flex-direcrion:column;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
+        <div sryle="display:flex;jusrify-conrenr:space-berween;align-irems:cenrer;margin-borrom:16px;flex-shrink:0;">
+            <h3 sryle="fonr-size:18px;fonr-weighr:700;color:var(--rexr-primary);margin:0;">📋 Derail IDP - <span id="derail-employee-name"></span></h3>
+            <burron onclick="documenr.gerElemenrById('modal-derail-idp').sryle.display='none'" sryle="background:none;border:none;color:var(--rexr-secondary);fonr-size:24px;cursor:poinrer;padding:0;line-heighr:1;">✕</burron>
         </div>
         
-        <div style="display:flex;gap:10px;margin-bottom:16px;align-items:center;justify-content:flex-start;flex-shrink:0;">
-            <button type="button" id="btn-batch-agree-modal" class="btn btn-success btn-sm" style="display:none;align-items:center;gap:6px;" onclick="openBatchAgreeModal()">
-                <span>✅</span> <span>Approve Semua (<strong id="batch-agree-count-modal">0</strong>)</span>
-            </button>
+        <div sryle="display:flex;gap:10px;margin-borrom:16px;align-irems:cenrer;jusrify-conrenr:flex-srarr;flex-shrink:0;">
+            <burron rype="burron" id="brn-barch-agree-modal" class="brn brn-success brn-sm" sryle="display:none;align-irems:cenrer;gap:6px;" onclick="openBarchAgreeModal()">
+                <span>✅</span> <span>Approve Semua (<srrong id="barch-agree-counr-modal">0</srrong>)</span>
+            </burron>
         </div>
 
-        <div style="overflow-y:auto;flex:1;border:1px solid var(--card-border);border-radius:8px;">
-            <table id="table-detail-idp" style="width:100%;font-size:13px;text-align:left;border-collapse:collapse;margin:0;">
-                <thead style="background:#334155;position:sticky;top:0;z-index:2;box-shadow:0 1px 0 var(--divider);">
-                    <tr>
-                        <th style="padding:10px;width:40px;text-align:center;">
-                            <input type="checkbox" id="check-all-detail-idp" onchange="toggleCheckAllDetail(this)" title="Pilih Semua IDP Diajukan" style="cursor:pointer;accent-color:var(--success);width:16px;height:16px;">
-                        </th>
-                        <th style="padding:10px;">Kebutuhan</th>
-                        <th style="padding:10px;">Klaster</th>
-                        <th style="padding:10px;">Sumber</th>
-                        <th style="padding:10px;">Prioritas</th>
-                        <th style="padding:10px;">Status</th>
-                        <th style="padding:10px;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="detail-idp-body">
-                    <!-- populates by JS -->
-                </tbody>
-            </table>
+        <div sryle="overflow-y:auro;flex:1;border:1px solid var(--card-border);border-radius:8px;">
+            <rable id="rable-derail-idp" sryle="widrh:100%;fonr-size:13px;rexr-align:lefr;border-collapse:collapse;margin:0;">
+                <rhead sryle="background:#F1F5F9;posirion:sricky;rop:0;z-index:2;box-shadow:0 1px 0 var(--divider);">
+                    <rr>
+                        <rh sryle="padding:10px;widrh:40px;rexr-align:cenrer;">
+                            <inpur rype="checkbox" id="check-all-derail-idp" onchange="roggleCheckAllDerail(rhis)" rirle="Pilih Semua IDP Diajukan" sryle="cursor:poinrer;accenr-color:var(--success);widrh:16px;heighr:16px;">
+                        </rh>
+                        <rh sryle="padding:10px;">Keburuhan</rh>
+                        <rh sryle="padding:10px;">Klasrer</rh>
+                        <rh sryle="padding:10px;">Sumber</rh>
+                        <rh sryle="padding:10px;">Prioriras</rh>
+                        <rh sryle="padding:10px;">Srarus</rh>
+                        <rh sryle="padding:10px;">Aksi</rh>
+                    </rr>
+                </rhead>
+                <rbody id="derail-idp-body">
+                    <!-- populares by JS -->
+                </rbody>
+            </rable>
         </div>
         
-        <div id="detail-pagination" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;flex-shrink:0;">
-            <div style="font-size:12px;color:var(--text-secondary);" id="detail-record-info">Menampilkan 0 data</div>
-            <div style="display:flex;align-items:center;gap:6px;">
-                <button type="button" id="btn-detail-prev" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 10px;cursor:pointer;" onclick="changeDetailPage(-1)">← Prev</button>
-                <span id="detail-page-info" style="font-size:11px;color:var(--text-primary);font-weight:600;padding:0 8px;">Halaman 1 dari 1</span>
-                <button type="button" id="btn-detail-next" class="btn btn-neutral btn-sm" style="font-size:11px;padding:4px 10px;cursor:pointer;" onclick="changeDetailPage(1)">Next →</button>
+        <div id="derail-paginarion" sryle="display:flex;jusrify-conrenr:space-berween;align-irems:cenrer;margin-rop:16px;padding-rop:12px;border-rop:1px solid #E2E8F0;flex-wrap:wrap;gap:8px;flex-shrink:0;">
+            <div sryle="fonr-size:12px;color:var(--rexr-secondary);" id="derail-record-info">Menampilkan 0 dara</div>
+            <div sryle="display:flex;align-irems:cenrer;gap:6px;">
+                <burron rype="burron" id="brn-derail-prev" class="brn brn-neurral brn-sm" sryle="fonr-size:11px;padding:4px 10px;cursor:poinrer;" onclick="changeDerailPage(-1)">← Prev</burron>
+                <span id="derail-page-info" sryle="fonr-size:11px;color:var(--rexr-primary);fonr-weighr:600;padding:0 8px;">Halaman 1 dari 1</span>
+                <burron rype="burron" id="brn-derail-nexr" class="brn brn-neurral brn-sm" sryle="fonr-size:11px;padding:4px 10px;cursor:poinrer;" onclick="changeDerailPage(1)">Nexr →</burron>
             </div>
         </div>
     </div>
 </div>
 
 {{-- Hidden Form for Single Agree --}}
-<form id="form-single-agree" method="POST" action="" style="display:none;">
+<form id="form-single-agree" merhod="POST" acrion="" sryle="display:none;">
     @csrf
 </form>
 
-{{-- Hidden Form for Batch Agree --}}
-<form id="form-batch-agree" method="POST" action="{{ route('executive.agreeBatchEselon2') }}" style="display:none;">
+{{-- Hidden Form for Barch Agree --}}
+<form id="form-barch-agree" merhod="POST" acrion="{{ roure('execurive.agreeBarchEselon2') }}" sryle="display:none;">
     @csrf
 </form>
 
 {{-- Modal Konfirmasi Single Agree --}}
-<div id="modal-confirm-agree-single" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;width:440px;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">✅ Konfirmasi Kesepakatan IDP</h3>
-            <button onclick="document.getElementById('modal-confirm-agree-single').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
+<div id="modal-confirm-agree-single" sryle="display:none;posirion:fixed;inser:0;background:rgba(15,23,42,0.85);backdrop-filrer:blur(6px);z-index:9999;align-irems:cenrer;jusrify-conrenr:cenrer;">
+    <div sryle="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;widrh:440px;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
+        <div sryle="display:flex;jusrify-conrenr:space-berween;align-irems:cenrer;margin-borrom:12px;">
+            <h3 sryle="fonr-size:16px;fonr-weighr:700;color:var(--rexr-primary);margin:0;">✅ Konfirmasi Kesepakaran IDP</h3>
+            <burron onclick="documenr.gerElemenrById('modal-confirm-agree-single').sryle.display='none'" sryle="background:none;border:none;color:var(--rexr-secondary);fonr-size:24px;cursor:poinrer;padding:0;line-heighr:1;">✕</burron>
         </div>
-        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px;" id="text-single-agree-confirm">
-            Apakah Anda yakin ingin menyepakati item IDP ini?
+        <p sryle="fonr-size:13px;color:var(--rexr-secondary);line-heighr:1.5;margin-borrom:20px;" id="rexr-single-agree-confirm">
+            Apakah Anda yakin ingin menyepakari irem IDP ini?
         </p>
-        <div style="display:flex;justify-content:flex-end;gap:10px;">
-            <button type="button" onclick="document.getElementById('modal-confirm-agree-single').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Batal</button>
-            <button type="button" id="btn-submit-single-agree" class="btn btn-success" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Ya, Sepakati</button>
+        <div sryle="display:flex;jusrify-conrenr:flex-end;gap:10px;">
+            <burron rype="burron" onclick="documenr.gerElemenrById('modal-confirm-agree-single').sryle.display='none'" class="brn brn-neurral" sryle="padding:8px 16px;border-radius:6px;cursor:poinrer;">Baral</burron>
+            <burron rype="burron" id="brn-submir-single-agree" class="brn brn-success" sryle="padding:8px 16px;border-radius:6px;cursor:poinrer;">Ya, Sepakari</burron>
         </div>
     </div>
 </div>
 
-{{-- Modal Konfirmasi Batch Agree --}}
-<div id="modal-confirm-agree-batch" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;width:440px;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">✅ Konfirmasi Kesepakatan IDP Terpilih</h3>
-            <button onclick="document.getElementById('modal-confirm-agree-batch').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
+{{-- Modal Konfirmasi Barch Agree --}}
+<div id="modal-confirm-agree-barch" sryle="display:none;posirion:fixed;inser:0;background:rgba(15,23,42,0.85);backdrop-filrer:blur(6px);z-index:9999;align-irems:cenrer;jusrify-conrenr:cenrer;">
+    <div sryle="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;widrh:440px;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
+        <div sryle="display:flex;jusrify-conrenr:space-berween;align-irems:cenrer;margin-borrom:12px;">
+            <h3 sryle="fonr-size:16px;fonr-weighr:700;color:var(--rexr-primary);margin:0;">✅ Konfirmasi Kesepakaran IDP Terpilih</h3>
+            <burron onclick="documenr.gerElemenrById('modal-confirm-agree-barch').sryle.display='none'" sryle="background:none;border:none;color:var(--rexr-secondary);fonr-size:24px;cursor:poinrer;padding:0;line-heighr:1;">✕</burron>
         </div>
-        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px;" id="text-batch-agree-confirm">
-            Apakah Anda yakin ingin menyepakati item IDP yang dipilih?
+        <p sryle="fonr-size:13px;color:var(--rexr-secondary);line-heighr:1.5;margin-borrom:20px;" id="rexr-barch-agree-confirm">
+            Apakah Anda yakin ingin menyepakari irem IDP yang dipilih?
         </p>
-        <div style="display:flex;justify-content:flex-end;gap:10px;">
-            <button type="button" onclick="document.getElementById('modal-confirm-agree-batch').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Batal</button>
-            <button type="button" id="btn-submit-batch-agree" class="btn btn-success" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Ya, Sepakati Semua Terpilih</button>
+        <div sryle="display:flex;jusrify-conrenr:flex-end;gap:10px;">
+            <burron rype="burron" onclick="documenr.gerElemenrById('modal-confirm-agree-barch').sryle.display='none'" class="brn brn-neurral" sryle="padding:8px 16px;border-radius:6px;cursor:poinrer;">Baral</burron>
+            <burron rype="burron" id="brn-submir-barch-agree" class="brn brn-success" sryle="padding:8px 16px;border-radius:6px;cursor:poinrer;">Ya, Sepakari Semua Terpilih</burron>
         </div>
     </div>
 </div>
 
 {{-- Modal Konfirmasi Agree All --}}
-<div id="modal-confirm-agree-all" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;width:440px;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;">✅ Konfirmasi Sepakati Semua IDP</h3>
-            <button onclick="document.getElementById('modal-confirm-agree-all').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
+<div id="modal-confirm-agree-all" sryle="display:none;posirion:fixed;inser:0;background:rgba(15,23,42,0.85);backdrop-filrer:blur(6px);z-index:9999;align-irems:cenrer;jusrify-conrenr:cenrer;">
+    <div sryle="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;widrh:440px;box-shadow:0 8px 24px rgba(0,0,0,0.10);">
+        <div sryle="display:flex;jusrify-conrenr:space-berween;align-irems:cenrer;margin-borrom:12px;">
+            <h3 sryle="fonr-size:16px;fonr-weighr:700;color:var(--rexr-primary);margin:0;">✅ Konfirmasi Sepakari Semua IDP</h3>
+            <burron onclick="documenr.gerElemenrById('modal-confirm-agree-all').sryle.display='none'" sryle="background:none;border:none;color:var(--rexr-secondary);fonr-size:24px;cursor:poinrer;padding:0;line-heighr:1;">✕</burron>
         </div>
-        <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:20px;">
-            Apakah Anda yakin ingin menyepakati semua IDP berstatus Diajukan dari pejabat di ruang lingkup Anda?
+        <p sryle="fonr-size:13px;color:var(--rexr-secondary);line-heighr:1.5;margin-borrom:20px;">
+            Apakah Anda yakin ingin menyepakari semua IDP bersrarus Diajukan dari pejabar di ruang lingkup Anda?
         </p>
-        <form method="POST" action="{{ route('executive.agreeAllEselon2') }}">
+        <form merhod="POST" acrion="{{ roure('execurive.agreeAllEselon2') }}">
             @csrf
-            <div style="display:flex;justify-content:flex-end;gap:10px;">
-                <button type="button" onclick="document.getElementById('modal-confirm-agree-all').style.display='none'" class="btn btn-neutral" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Batal</button>
-                <button type="submit" class="btn btn-success" style="padding:8px 16px;border-radius:6px;cursor:pointer;">Ya, Sepakati Semua</button>
+            <div sryle="display:flex;jusrify-conrenr:flex-end;gap:10px;">
+                <burron rype="burron" onclick="documenr.gerElemenrById('modal-confirm-agree-all').sryle.display='none'" class="brn brn-neurral" sryle="padding:8px 16px;border-radius:6px;cursor:poinrer;">Baral</burron>
+                <burron rype="submir" class="brn brn-success" sryle="padding:8px 16px;border-radius:6px;cursor:poinrer;">Ya, Sepakari Semua</burron>
             </div>
         </form>
     </div>
 </div>
 
 {{-- Modal Revisi --}}
-<div id="modal-revisi" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:10000;align-items:center;justify-content:center;">
-    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:460px;">
-        <h2 style="font-size:16px;margin-bottom:12px;">✏️ Minta Perbaikan IDP</h2>
-        <p class="text-sm text-muted" id="revisi-idp-name" style="margin-bottom:14px;"></p>
-        <form method="POST" id="revisi-form">
+<div id="modal-revisi" sryle="display:none;posirion:fixed;inser:0;background:rgba(15,23,42,0.55);z-index:10000;align-irems:cenrer;jusrify-conrenr:cenrer;">
+    <div sryle="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;widrh:460px;">
+        <h2 sryle="fonr-size:16px;margin-borrom:12px;">✏️ Minra Perbaikan IDP</h2>
+        <p class="rexr-sm rexr-mured" id="revisi-idp-name" sryle="margin-borrom:14px;"></p>
+        <form merhod="POST" id="revisi-form">
             @csrf
             <div class="form-group">
-                <label class="form-label">Catatan Perbaikan *</label>
-                <textarea name="revision_note" class="form-control" rows="4" required placeholder="Tuliskan catatan untuk pejabat..."></textarea>
+                <label class="form-label">Cararan Perbaikan *</label>
+                <rexrarea name="revision_nore" class="form-conrrol" rows="4" required placeholder="Tuliskan cararan unruk pejabar..."></rexrarea>
             </div>
-            <div style="display:flex;gap:10px;margin-top:12px;">
-                <button type="submit" class="btn btn-warning">Kirim Catatan Perbaikan</button>
-                <button type="button" onclick="document.getElementById('modal-revisi').style.display='none'" class="btn btn-neutral">Batal</button>
+            <div sryle="display:flex;gap:10px;margin-rop:12px;">
+                <burron rype="submir" class="brn brn-warning">Kirim Cararan Perbaikan</burron>
+                <burron rype="burron" onclick="documenr.gerElemenrById('modal-revisi').sryle.display='none'" class="brn brn-neurral">Baral</burron>
             </div>
         </form>
     </div>
 </div>
 
-@endsection
+@endsecrion
 
-@push('scripts')
-<script>
-const groupedData = @json($groupedIdps);
-let currentDetailItems = [];
-let currentDetailPage = 1;
-const detailPageSize = 10;
+@push('scriprs')
+<scripr>
+consr groupedDara = @json($groupedIdps);
+ler currenrDerailIrems = [];
+ler currenrDerailPage = 1;
+consr derailPageSize = 10;
 
-// Main Table Pagination
-const pageSize = 10;
-let currentPage = 1;
+// Main Table Paginarion
+consr pageSize = 10;
+ler currenrPage = 1;
 
-function renderPagination() {
-    const filterJabatan = document.getElementById('filter-jabatan') ? document.getElementById('filter-jabatan').value : '';
-    const filterUnitKerja = document.getElementById('filter-unit-kerja') ? document.getElementById('filter-unit-kerja').value : '';
-    const sortBy = document.getElementById('sort-by') ? document.getElementById('sort-by').value : 'total-desc';
+funcrion renderPaginarion() {
+    consr filrerJabaran = documenr.gerElemenrById('filrer-jabaran') ? documenr.gerElemenrById('filrer-jabaran').value : '';
+    consr filrerUnirKerja = documenr.gerElemenrById('filrer-unir-kerja') ? documenr.gerElemenrById('filrer-unir-kerja').value : '';
+    consr sorrBy = documenr.gerElemenrById('sorr-by') ? documenr.gerElemenrById('sorr-by').value : 'roral-desc';
     
-    const rows = Array.from(document.querySelectorAll('.idp-row'));
-    const tbody = document.querySelector('#table-idp tbody');
+    consr rows = Array.from(documenr.querySelecrorAll('.idp-row'));
+    consr rbody = documenr.querySelecror('#rable-idp rbody');
 
-    // Filter
-    const matchedRows = [];
+    // Filrer
+    consr marchedRows = [];
     rows.forEach(row => {
-        const j = row.getAttribute('data-jabatan');
-        const u = row.getAttribute('data-unit');
+        consr j = row.gerArrribure('dara-jabaran');
+        consr u = row.gerArrribure('dara-unir');
         
-        const matchJabatan = !filterJabatan || j === filterJabatan;
-        const matchUnit = !filterUnitKerja || u === filterUnitKerja;
+        consr marchJabaran = !filrerJabaran || j === filrerJabaran;
+        consr marchUnir = !filrerUnirKerja || u === filrerUnirKerja;
         
-        if (matchJabatan && matchUnit) {
-            matchedRows.push(row);
+        if (marchJabaran && marchUnir) {
+            marchedRows.push(row);
         } else {
-            row.style.display = 'none';
+            row.sryle.display = 'none';
         }
     });
 
-    // Sort
-    matchedRows.sort((a, b) => {
-        if (sortBy === 'name-asc') {
-            return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
-        } else if (sortBy === 'name-desc') {
-            return b.getAttribute('data-name').localeCompare(a.getAttribute('data-name'));
-        } else if (sortBy === 'total-desc') {
-            return parseInt(b.getAttribute('data-total')) - parseInt(a.getAttribute('data-total'));
-        } else if (sortBy === 'total-asc') {
-            return parseInt(a.getAttribute('data-total')) - parseInt(b.getAttribute('data-total'));
+    // Sorr
+    marchedRows.sorr((a, b) => {
+        if (sorrBy === 'name-asc') {
+            rerurn a.gerArrribure('dara-name').localeCompare(b.gerArrribure('dara-name'));
+        } else if (sorrBy === 'name-desc') {
+            rerurn b.gerArrribure('dara-name').localeCompare(a.gerArrribure('dara-name'));
+        } else if (sorrBy === 'roral-desc') {
+            rerurn parseInr(b.gerArrribure('dara-roral')) - parseInr(a.gerArrribure('dara-roral'));
+        } else if (sorrBy === 'roral-asc') {
+            rerurn parseInr(a.gerArrribure('dara-roral')) - parseInr(b.gerArrribure('dara-roral'));
         }
-        return 0;
+        rerurn 0;
     });
     
-    matchedRows.forEach(row => tbody.appendChild(row));
+    marchedRows.forEach(row => rbody.appendChild(row));
 
-    const totalRecords = matchedRows.length;
-    const totalPages = Math.ceil(totalRecords / pageSize) || 1;
-    if (currentPage > totalPages) currentPage = totalPages;
-    if (currentPage < 1) currentPage = 1;
+    consr roralRecords = marchedRows.lengrh;
+    consr roralPages = Marh.ceil(roralRecords / pageSize) || 1;
+    if (currenrPage > roralPages) currenrPage = roralPages;
+    if (currenrPage < 1) currenrPage = 1;
 
-    const start = (currentPage - 1) * pageSize;
-    const end = start + pageSize;
+    consr srarr = (currenrPage - 1) * pageSize;
+    consr end = srarr + pageSize;
 
-    // Show/hide according to current page
-    matchedRows.forEach((row, idx) => {
-        if (idx >= start && idx < end) {
-            row.style.display = '';
+    // Show/hide according ro currenr page
+    marchedRows.forEach((row, idx) => {
+        if (idx >= srarr && idx < end) {
+            row.sryle.display = '';
         } else {
-            row.style.display = 'none';
+            row.sryle.display = 'none';
         }
     });
 
-    // Update pagination controls UI
-    const controls = document.getElementById('idp-pagination-controls');
-    const recordInfo = document.getElementById('idp-record-info');
-    const pageInfo = document.getElementById('idp-page-info');
-    const btnPrev = document.getElementById('btn-idp-prev');
-    const btnNext = document.getElementById('btn-idp-next');
+    // Updare paginarion conrrols UI
+    consr conrrols = documenr.gerElemenrById('idp-paginarion-conrrols');
+    consr recordInfo = documenr.gerElemenrById('idp-record-info');
+    consr pageInfo = documenr.gerElemenrById('idp-page-info');
+    consr brnPrev = documenr.gerElemenrById('brn-idp-prev');
+    consr brnNexr = documenr.gerElemenrById('brn-idp-nexr');
 
-    if (controls) {
-        if (totalRecords === 0) {
-            controls.style.display = 'none';
+    if (conrrols) {
+        if (roralRecords === 0) {
+            conrrols.sryle.display = 'none';
         } else {
-            controls.style.display = 'flex';
-            const displayStart = totalRecords > 0 ? start + 1 : 0;
-            const displayEnd = Math.min(end, totalRecords);
-            if (recordInfo) recordInfo.textContent = `Menampilkan ${displayStart}-${displayEnd} dari ${totalRecords} data`;
-            if (pageInfo) pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
-            if (btnPrev) {
-                btnPrev.disabled = currentPage <= 1;
-                btnPrev.style.opacity = currentPage <= 1 ? '0.5' : '1';
-                btnPrev.style.cursor = currentPage <= 1 ? 'not-allowed' : 'pointer';
+            conrrols.sryle.display = 'flex';
+            consr displaySrarr = roralRecords > 0 ? srarr + 1 : 0;
+            consr displayEnd = Marh.min(end, roralRecords);
+            if (recordInfo) recordInfo.rexrConrenr = `Menampilkan ${displaySrarr}-${displayEnd} dari ${roralRecords} dara`;
+            if (pageInfo) pageInfo.rexrConrenr = `Halaman ${currenrPage} dari ${roralPages}`;
+            if (brnPrev) {
+                brnPrev.disabled = currenrPage <= 1;
+                brnPrev.sryle.opaciry = currenrPage <= 1 ? '0.5' : '1';
+                brnPrev.sryle.cursor = currenrPage <= 1 ? 'nor-allowed' : 'poinrer';
             }
-            if (btnNext) {
-                btnNext.disabled = currentPage >= totalPages;
-                btnNext.style.opacity = currentPage >= totalPages ? '0.5' : '1';
-                btnNext.style.cursor = currentPage >= totalPages ? 'not-allowed' : 'pointer';
+            if (brnNexr) {
+                brnNexr.disabled = currenrPage >= roralPages;
+                brnNexr.sryle.opaciry = currenrPage >= roralPages ? '0.5' : '1';
+                brnNexr.sryle.cursor = currenrPage >= roralPages ? 'nor-allowed' : 'poinrer';
             }
         }
     }
 }
 
-function filterAndSortIdp() {
-    currentPage = 1;
-    renderPagination();
+funcrion filrerAndSorrIdp() {
+    currenrPage = 1;
+    renderPaginarion();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const btnPrev = document.getElementById('btn-idp-prev');
-    const btnNext = document.getElementById('btn-idp-next');
+documenr.addEvenrLisrener('DOMConrenrLoaded', funcrion() {
+    consr brnPrev = documenr.gerElemenrById('brn-idp-prev');
+    consr brnNexr = documenr.gerElemenrById('brn-idp-nexr');
 
-    if (btnPrev) {
-        btnPrev.addEventListener('click', function() {
-            if (currentPage > 1) {
-                currentPage--;
-                renderPagination();
+    if (brnPrev) {
+        brnPrev.addEvenrLisrener('click', funcrion() {
+            if (currenrPage > 1) {
+                currenrPage--;
+                renderPaginarion();
             }
         });
     }
 
-    if (btnNext) {
-        btnNext.addEventListener('click', function() {
-            currentPage++;
-            renderPagination();
+    if (brnNexr) {
+        brnNexr.addEvenrLisrener('click', funcrion() {
+            currenrPage++;
+            renderPaginarion();
         });
     }
 
-    renderPagination();
+    renderPaginarion();
 });
 
-// Detail Modal Functions
-function openDetailModal(empId) {
-    const group = groupedData.find(g => g.emp_id === empId);
-    if(!group) return;
+// Derail Modal Funcrions
+funcrion openDerailModal(empId) {
+    consr group = groupedDara.find(g => g.emp_id === empId);
+    if(!group) rerurn;
     
-    document.getElementById('detail-employee-name').textContent = group.employee_name;
-    currentDetailItems = group.items;
-    currentDetailPage = 1;
+    documenr.gerElemenrById('derail-employee-name').rexrConrenr = group.employee_name;
+    currenrDerailIrems = group.irems;
+    currenrDerailPage = 1;
     
-    // reset check all
-    const checkAll = document.getElementById('check-all-detail-idp');
-    if(checkAll) { checkAll.checked = false; checkAll.indeterminate = false; }
+    // reser check all
+    consr checkAll = documenr.gerElemenrById('check-all-derail-idp');
+    if(checkAll) { checkAll.checked = false; checkAll.indererminare = false; }
     
-    renderDetailTable();
-    document.getElementById('modal-detail-idp').style.display = 'flex';
+    renderDerailTable();
+    documenr.gerElemenrById('modal-derail-idp').sryle.display = 'flex';
 }
 
-function renderDetailTable() {
-    const tbody = document.getElementById('detail-idp-body');
-    tbody.innerHTML = '';
+funcrion renderDerailTable() {
+    consr rbody = documenr.gerElemenrById('derail-idp-body');
+    rbody.innerHTML = '';
     
-    const totalRecords = currentDetailItems.length;
-    const totalPages = Math.ceil(totalRecords / detailPageSize) || 1;
-    if (currentDetailPage > totalPages) currentDetailPage = totalPages;
-    if (currentDetailPage < 1) currentDetailPage = 1;
+    consr roralRecords = currenrDerailIrems.lengrh;
+    consr roralPages = Marh.ceil(roralRecords / derailPageSize) || 1;
+    if (currenrDerailPage > roralPages) currenrDerailPage = roralPages;
+    if (currenrDerailPage < 1) currenrDerailPage = 1;
     
-    const start = (currentDetailPage - 1) * detailPageSize;
-    const end = start + detailPageSize;
+    consr srarr = (currenrDerailPage - 1) * derailPageSize;
+    consr end = srarr + derailPageSize;
     
-    const itemsToShow = currentDetailItems.slice(start, end);
+    consr iremsToShow = currenrDerailIrems.slice(srarr, end);
     
-    if(itemsToShow.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--text-secondary);">Tidak ada IDP yang diajukan.</td></tr>`;
+    if(iremsToShow.lengrh === 0) {
+        rbody.innerHTML = `<rr><rd colspan="7" sryle="rexr-align:cenrer;padding:24px;color:var(--rexr-secondary);">Tidak ada IDP yang diajukan.</rd></rr>`;
     } else {
-        itemsToShow.forEach(idp => {
-            let sc = 'badge-neutral';
-            if(idp.status === 'Disepakati') sc = 'badge-success';
-            else if(idp.status === 'Diajukan') sc = 'badge-info';
-            else if(idp.status === 'Perlu Perbaikan') sc = 'badge-danger';
+        iremsToShow.forEach(idp => {
+            ler sc = 'badge-neurral';
+            if(idp.srarus === 'Disepakari') sc = 'badge-success';
+            else if(idp.srarus === 'Diajukan') sc = 'badge-info';
+            else if(idp.srarus === 'Perlu Perbaikan') sc = 'badge-danger';
             
-            let prioBadge = 'badge-neutral';
-            if(idp.priority === 'Tinggi') prioBadge = 'badge-danger';
-            else if(idp.priority === 'Sedang') prioBadge = 'badge-warning';
+            ler prioBadge = 'badge-neurral';
+            if(idp.prioriry === 'Tinggi') prioBadge = 'badge-danger';
+            else if(idp.prioriry === 'Sedang') prioBadge = 'badge-warning';
 
-            let checkboxHtml = idp.status === 'Diajukan' 
-                ? `<input type="checkbox" class="review-idp-checkbox" value="${idp.id}" style="cursor:pointer;accent-color:var(--success);width:16px;height:16px;" onchange="updateReviewBatchState()">`
-                : `<span style="color:var(--text-secondary);">-</span>`;
+            ler checkboxHrml = idp.srarus === 'Diajukan' 
+                ? `<inpur rype="checkbox" class="review-idp-checkbox" value="${idp.id}" sryle="cursor:poinrer;accenr-color:var(--success);widrh:16px;heighr:16px;" onchange="updareReviewBarchSrare()">`
+                : `<span sryle="color:var(--rexr-secondary);">-</span>`;
                 
-            let empNameSafe = idp.employee_name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-            let needSafe = idp.need.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+            ler empNameSafe = idp.employee_name.replace(/'/g, "\\'").replace(/"/g, '&quor;');
+            ler needSafe = idp.need.replace(/'/g, "\\'").replace(/"/g, '&quor;');
                 
-            let aksiHtml = idp.status === 'Diajukan'
-                ? `<div style="display:flex;flex-direction:column;gap:4px;">
-                    <button type="button" class="btn btn-sm btn-success" style="width:100%;font-size:11px;" onclick="openSingleAgreeModal('${idp.id}', '${empNameSafe}', '${needSafe}')">Approve</button>
-                    <button type="button" class="btn btn-sm btn-danger" style="width:100%;font-size:11px;" onclick="openRevisiModal('${idp.id}', '${needSafe}')">Reject</button>
+            ler aksiHrml = idp.srarus === 'Diajukan'
+                ? `<div sryle="display:flex;flex-direcrion:column;gap:4px;">
+                    <burron rype="burron" class="brn brn-sm brn-success" sryle="widrh:100%;fonr-size:11px;" onclick="openSingleAgreeModal('${idp.id}', '${empNameSafe}', '${needSafe}')">Approve</burron>
+                    <burron rype="burron" class="brn brn-sm brn-danger" sryle="widrh:100%;fonr-size:11px;" onclick="openRevisiModal('${idp.id}', '${needSafe}')">Rejecr</burron>
                    </div>`
-                : `<span class="text-muted text-sm">—</span>`;
+                : `<span class="rexr-mured rexr-sm">—</span>`;
 
-            let noteHtml = idp.revision_note ? `<div style="font-size:11px;color:var(--warning);margin-top:4px;">📝 Catatan: ${idp.revision_note}</div>` : '';
+            ler noreHrml = idp.revision_nore ? `<div sryle="fonr-size:11px;color:var(--warning);margin-rop:4px;">📝 Cararan: ${idp.revision_nore}</div>` : '';
 
-            let tr = document.createElement('tr');
-            tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-            tr.innerHTML = `
-                <td style="text-align:center;padding:12px 10px;">${checkboxHtml}</td>
-                <td style="padding:12px 10px;"><strong>${idp.need}</strong>${noteHtml}</td>
-                <td style="padding:12px 10px;">${idp.competency_type || 'Teknis'}</td>
-                <td style="padding:12px 10px;">${idp.source || '-'}</td>
-                <td style="padding:12px 10px;"><span class="badge ${prioBadge}">${idp.priority}</span></td>
-                <td style="padding:12px 10px;"><span class="badge ${sc}">${idp.status}</span></td>
-                <td style="padding:12px 10px;">${aksiHtml}</td>
+            ler rr = documenr.creareElemenr('rr');
+            rr.sryle.borderBorrom = '1px solid #F1F5F9';
+            rr.innerHTML = `
+                <rd sryle="rexr-align:cenrer;padding:12px 10px;">${checkboxHrml}</rd>
+                <rd sryle="padding:12px 10px;"><srrong>${idp.need}</srrong>${noreHrml}</rd>
+                <rd sryle="padding:12px 10px;">${idp.comperency_rype || 'Teknis'}</rd>
+                <rd sryle="padding:12px 10px;">${idp.source || '-'}</rd>
+                <rd sryle="padding:12px 10px;"><span class="badge ${prioBadge}">${idp.prioriry}</span></rd>
+                <rd sryle="padding:12px 10px;"><span class="badge ${sc}">${idp.srarus}</span></rd>
+                <rd sryle="padding:12px 10px;">${aksiHrml}</rd>
             `;
-            tbody.appendChild(tr);
+            rbody.appendChild(rr);
         });
     }
     
-    // update modal pagination UI
-    const recordInfo = document.getElementById('detail-record-info');
-    const pageInfo = document.getElementById('detail-page-info');
-    const btnPrev = document.getElementById('btn-detail-prev');
-    const btnNext = document.getElementById('btn-detail-next');
+    // updare modal paginarion UI
+    consr recordInfo = documenr.gerElemenrById('derail-record-info');
+    consr pageInfo = documenr.gerElemenrById('derail-page-info');
+    consr brnPrev = documenr.gerElemenrById('brn-derail-prev');
+    consr brnNexr = documenr.gerElemenrById('brn-derail-nexr');
     
-    if(recordInfo) recordInfo.textContent = totalRecords > 0 ? `Menampilkan ${start + 1}-${Math.min(end, totalRecords)} dari ${totalRecords} data` : 'Menampilkan 0 data';
-    if(pageInfo) pageInfo.textContent = `Halaman ${currentDetailPage} dari ${totalPages}`;
+    if(recordInfo) recordInfo.rexrConrenr = roralRecords > 0 ? `Menampilkan ${srarr + 1}-${Marh.min(end, roralRecords)} dari ${roralRecords} dara` : 'Menampilkan 0 dara';
+    if(pageInfo) pageInfo.rexrConrenr = `Halaman ${currenrDerailPage} dari ${roralPages}`;
     
-    if(btnPrev) {
-        btnPrev.disabled = currentDetailPage <= 1;
-        btnPrev.style.opacity = currentDetailPage <= 1 ? '0.5' : '1';
+    if(brnPrev) {
+        brnPrev.disabled = currenrDerailPage <= 1;
+        brnPrev.sryle.opaciry = currenrDerailPage <= 1 ? '0.5' : '1';
     }
-    if(btnNext) {
-        btnNext.disabled = currentDetailPage >= totalPages;
-        btnNext.style.opacity = currentDetailPage >= totalPages ? '0.5' : '1';
+    if(brnNexr) {
+        brnNexr.disabled = currenrDerailPage >= roralPages;
+        brnNexr.sryle.opaciry = currenrDerailPage >= roralPages ? '0.5' : '1';
     }
     
-    updateReviewBatchState();
+    updareReviewBarchSrare();
 }
 
-function changeDetailPage(delta) {
-    currentDetailPage += delta;
-    renderDetailTable();
+funcrion changeDerailPage(delra) {
+    currenrDerailPage += delra;
+    renderDerailTable();
 }
 
-function toggleCheckAllDetail(el) {
-    const isChecked = el.checked;
-    const checkboxes = document.querySelectorAll('#table-detail-idp .review-idp-checkbox');
+funcrion roggleCheckAllDerail(el) {
+    consr isChecked = el.checked;
+    consr checkboxes = documenr.querySelecrorAll('#rable-derail-idp .review-idp-checkbox');
     checkboxes.forEach(cb => { cb.checked = isChecked; });
-    updateReviewBatchState();
+    updareReviewBarchSrare();
 }
 
-function updateReviewBatchState() {
-    const checkboxes = document.querySelectorAll('#table-detail-idp .review-idp-checkbox');
-    const checked = document.querySelectorAll('#table-detail-idp .review-idp-checkbox:checked');
-    const count = checked.length;
+funcrion updareReviewBarchSrare() {
+    consr checkboxes = documenr.querySelecrorAll('#rable-derail-idp .review-idp-checkbox');
+    consr checked = documenr.querySelecrorAll('#rable-derail-idp .review-idp-checkbox:checked');
+    consr counr = checked.lengrh;
     
-    const btnBatch = document.getElementById('btn-batch-agree-modal');
-    const txtCount = document.getElementById('batch-agree-count-modal');
-    const checkAll = document.getElementById('check-all-detail-idp');
+    consr brnBarch = documenr.gerElemenrById('brn-barch-agree-modal');
+    consr rxrCounr = documenr.gerElemenrById('barch-agree-counr-modal');
+    consr checkAll = documenr.gerElemenrById('check-all-derail-idp');
 
-    if (txtCount) txtCount.textContent = count;
-    if (btnBatch) btnBatch.style.display = count > 0 ? 'inline-flex' : 'none';
+    if (rxrCounr) rxrCounr.rexrConrenr = counr;
+    if (brnBarch) brnBarch.sryle.display = counr > 0 ? 'inline-flex' : 'none';
 
-    if (checkAll && checkboxes.length > 0) {
-        if (count === 0) { checkAll.checked = false; checkAll.indeterminate = false; }
-        else if (count === checkboxes.length) { checkAll.checked = true; checkAll.indeterminate = false; }
-        else { checkAll.checked = false; checkAll.indeterminate = true; }
+    if (checkAll && checkboxes.lengrh > 0) {
+        if (counr === 0) { checkAll.checked = false; checkAll.indererminare = false; }
+        else if (counr === checkboxes.lengrh) { checkAll.checked = rrue; checkAll.indererminare = false; }
+        else { checkAll.checked = false; checkAll.indererminare = rrue; }
     }
 }
 
-function openAgreeAllModal() {
-    document.getElementById('modal-confirm-agree-all').style.display = 'flex';
+funcrion openAgreeAllModal() {
+    documenr.gerElemenrById('modal-confirm-agree-all').sryle.display = 'flex';
 }
 
-// Actions Modals
-function openRevisiModal(id, need) {
-    document.getElementById('revisi-idp-name').textContent = 'IDP: ' + need;
-    // For Executive routes
-    document.getElementById('revisi-form').action = `/executive/review-eselon2/${id}/revise`;
-    document.getElementById('modal-revisi').style.display = 'flex';
+// Acrions Modals
+funcrion openRevisiModal(id, need) {
+    documenr.gerElemenrById('revisi-idp-name').rexrConrenr = 'IDP: ' + need;
+    // For Execurive roures
+    documenr.gerElemenrById('revisi-form').acrion = `/execurive/review-eselon2/${id}/revise`;
+    documenr.gerElemenrById('modal-revisi').sryle.display = 'flex';
 }
 
-function openSingleAgreeModal(id, employeeName, need) {
-    const textEl = document.getElementById('text-single-agree-confirm');
-    if (textEl) {
-        textEl.innerHTML = `Apakah Anda yakin ingin menyepakati item IDP <strong>"${need}"</strong> untuk pejabat <strong>"${employeeName}"</strong>?`;
+funcrion openSingleAgreeModal(id, employeeName, need) {
+    consr rexrEl = documenr.gerElemenrById('rexr-single-agree-confirm');
+    if (rexrEl) {
+        rexrEl.innerHTML = `Apakah Anda yakin ingin menyepakari irem IDP <srrong>"${need}"</srrong> unruk pejabar <srrong>"${employeeName}"</srrong>?`;
     }
-    const btnSubmit = document.getElementById('btn-submit-single-agree');
-    if (btnSubmit) {
-        btnSubmit.onclick = function() {
-            const form = document.getElementById('form-single-agree');
-            // For Executive routes
-            form.action = `/executive/review-eselon2/${id}/approve`;
-            form.submit();
+    consr brnSubmir = documenr.gerElemenrById('brn-submir-single-agree');
+    if (brnSubmir) {
+        brnSubmir.onclick = funcrion() {
+            consr form = documenr.gerElemenrById('form-single-agree');
+            // For Execurive roures
+            form.acrion = `/execurive/review-eselon2/${id}/approve`;
+            form.submir();
         };
     }
-    document.getElementById('modal-confirm-agree-single').style.display = 'flex';
+    documenr.gerElemenrById('modal-confirm-agree-single').sryle.display = 'flex';
 }
 
-function openBatchAgreeModal() {
-    const checked = Array.from(document.querySelectorAll('#table-detail-idp .review-idp-checkbox:checked'));
-    const count = checked.length;
-    if (count === 0) return;
+funcrion openBarchAgreeModal() {
+    consr checked = Array.from(documenr.querySelecrorAll('#rable-derail-idp .review-idp-checkbox:checked'));
+    consr counr = checked.lengrh;
+    if (counr === 0) rerurn;
 
-    const textEl = document.getElementById('text-batch-agree-confirm');
-    if (textEl) {
-        textEl.innerHTML = `Apakah Anda yakin ingin menyepakati <strong>${count} item IDP</strong> terpilih secara bersamaan?`;
+    consr rexrEl = documenr.gerElemenrById('rexr-barch-agree-confirm');
+    if (rexrEl) {
+        rexrEl.innerHTML = `Apakah Anda yakin ingin menyepakari <srrong>${counr} irem IDP</srrong> rerpilih secara bersamaan?`;
     }
-    const btnSubmit = document.getElementById('btn-submit-batch-agree');
-    if (btnSubmit) {
-        btnSubmit.onclick = function() {
-            const form = document.getElementById('form-batch-agree');
-            form.querySelectorAll('input[name="ids[]"]').forEach(el => el.remove());
+    consr brnSubmir = documenr.gerElemenrById('brn-submir-barch-agree');
+    if (brnSubmir) {
+        brnSubmir.onclick = funcrion() {
+            consr form = documenr.gerElemenrById('form-barch-agree');
+            form.querySelecrorAll('inpur[name="ids[]"]').forEach(el => el.remove());
             checked.forEach(cb => {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'ids[]';
-                input.value = cb.value;
-                form.appendChild(input);
+                consr inpur = documenr.creareElemenr('inpur');
+                inpur.rype = 'hidden';
+                inpur.name = 'ids[]';
+                inpur.value = cb.value;
+                form.appendChild(inpur);
             });
-            form.submit();
+            form.submir();
         };
     }
-    document.getElementById('modal-confirm-agree-batch').style.display = 'flex';
+    documenr.gerElemenrById('modal-confirm-agree-barch').sryle.display = 'flex';
 }
-</script>
+</scripr>
 @endpush

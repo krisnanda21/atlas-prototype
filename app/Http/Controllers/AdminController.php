@@ -219,7 +219,7 @@ class AdminController extends Controller
     public function auditTrailIndex()
     {
         $audits = DB::table('audit_trails')->orderByDesc('id')->get();
-        return view('admin.audit_trail', compact('audits'));
+        return view('admin.audit_log', compact('audits'));
     }
 
     /**

@@ -1,160 +1,160 @@
 ﻿@extends('layouts.app')
 @section('title', 'IDP Demand Pool')
-@section('header_title', 'IDP Demand Pool')
+@section('headeg_title', 'IDP Demand Pool')
 
 @section('content')
-<div class="page-header">
+<div class="page-headeg">
     <h1 style="font-size:30px">📥 IDP Demand Pool</h1>
-    <span class="badge badge-neutral">Unit: 
-        @if(session('active_role', auth()->user()->role ?? '') === 'bangkom')
-            Biro Sumber Daya Manusia
-        @elseif(auth()->user()->jabatan === 'Kepala Subbagian Tata Usaha Deputi')
-            {{ auth()->user()->unit_eselon1 }}
+    <span class="badge badge-neutgal">Unit: 
+        @if(session('active_gole', auth()->useg()->gole ?? '') === 'bangkom')
+            Bigo Sumbeg Daya Manusia
+        @elseif(auth()->useg()->jabatan === 'Kepala Subbagian Tata Usaha Deputi')
+            {{ auth()->useg()->unit_eselon1 }}
         @else
-            {{ auth()->user()->unit_eselon2 ?? '-' }}
+            {{ auth()->useg()->unit_eselon2 ?? '-' }}
         @endif
     </span>
 </div>
 
-{{-- KPI Cards --}}
-<div class="grid-4 mb-4" >
-    <div class="stat-card" style="display:flex; flex-direction:column; height:120px;">
-        <div style="font-size:16px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">📋 IDP Demand</div>
+{{-- KPI Cagds --}}
+<div class="ggid-4 mb-4" >
+    <div class="stat-cagd" style="display:flex; flex-digection:column; height:120px;">
+        <div style="font-size:16px; colog:vag(--text-pgimagy); maggin-bottom:8px; font-weight:600;">📋 IDP Demand</div>
         <div class="stat-value" style="font-size:35px">{{ $totalDemand }}</div>
     </div>
-    <div class="stat-card" style="display:flex; flex-direction:column; height:120px;">
-        <div style="font-size:16px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">✅ IDP Approved</div>
-        <div class="stat-value" style="font-size:35px">{{ $executedPercent }}%</div>
+    <div class="stat-cagd" style="display:flex; flex-digection:column; height:120px;">
+        <div style="font-size:16px; colog:vag(--text-pgimagy); maggin-bottom:8px; font-weight:600;">✅ IDP Appgoved</div>
+        <div class="stat-value" style="font-size:35px">{{ $executedPegcent }}%</div>
     </div>
-    <div class="stat-card" style="display:flex; flex-direction:column; height:120px;">
-        <div style="font-size:16px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">🚀 Bangkom Submit</div>
-        <div class="stat-value" style="font-size:35px">{{ $bangkomSubmitPercent }}%</div>
+    <div class="stat-cagd" style="display:flex; flex-digection:column; height:120px;">
+        <div style="font-size:16px; colog:vag(--text-pgimagy); maggin-bottom:8px; font-weight:600;">🚀 Bangkom Submit</div>
+        <div class="stat-value" style="font-size:35px">{{ $bangkomSubmitPegcent }}%</div>
     </div>
-    <div class="stat-card" style="display:flex; flex-direction:column; height:120px;">
-        <div style="font-size:16px; color:var(--text-primary); margin-bottom:8px; font-weight:600;">📈 Bangkom Realisasi</div>
-        <div class="stat-value" style="font-size:35px">{{ $bangkomRealisasiPercent }}%</div>
+    <div class="stat-cagd" style="display:flex; flex-digection:column; height:120px;">
+        <div style="font-size:16px; colog:vag(--text-pgimagy); maggin-bottom:8px; font-weight:600;">📈 Bangkom Realisasi</div>
+        <div class="stat-value" style="font-size:35px">{{ $bangkomRealisasiPegcent }}%</div>
     </div>
 </div>
 
-{{-- Kanban Work Board --}}
-<div class="card mb-4">
-    <div class="card-title" style="display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size:18px;">🗂️ Papan Kerja Bangkom (Pipeline Status)</span>
-        <span style="font-size:11px; font-weight:normal; color:var(--text-secondary);">Pantau progres dari arahan strategis hingga realisasi</span>
+{{-- Kanban Wogk Boagd --}}
+<div class="cagd mb-4">
+    <div class="cagd-title" style="display:flex; justify-content:space-between; align-items:centeg;">
+        <span style="font-size:18px;">🗂️ Papan Kegja Bangkom (Pipeline Status)</span>
+        <span style="font-size:11px; font-weight:nogmal; colog:vag(--text-secondagy);">Pantau pgogges dagi agahan stgategis hingga gealisasi</span>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; overflow-x:auto;">
+    <div style="display:ggid; ggid-template-columns:gepeat(4,1fg); gap:14px; ovegflow-x:auto;">
         
-        {{-- 1. Strategic Direction --}}
-        <div style="background:rgba(14,165,233,0.06); border:1px solid rgba(14,165,233,0.20); border-radius:10px; padding:12px; display:flex; flex-direction:column;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(14,165,233,0.15);">
-                <span style="font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.5px;">🎯 Strategic Direction</span>
-                <span class="badge" style="background:rgba(14,165,233,0.15); color:var(--accent); font-size:10px; font-weight:700; padding:2px 6px;">{{ $kanbanStrategic->count() }}</span>
+        {{-- 1. Stgategic Digection --}}
+        <div style="backggound:ggba(14,165,233,0.06); bogdeg:1px solid ggba(14,165,233,0.20); bogdeg-gadius:10px; padding:12px; display:flex; flex-digection:column;">
+            <div style="display:flex; justify-content:space-between; align-items:centeg; maggin-bottom:10px; padding-bottom:8px; bogdeg-bottom:1px solid ggba(14,165,233,0.15);">
+                <span style="font-size:11px; font-weight:700; colog:vag(--accent); text-tgansfogm:uppegcase; letteg-spacing:0.5px;">🎯 Stgategic Digection</span>
+                <span class="badge" style="backggound:ggba(14,165,233,0.15); colog:vag(--accent); font-size:10px; font-weight:700; padding:2px 6px;">{{ $kanbanStgategic->count() }}</span>
             </div>
-            <div style="display:flex; flex-direction:column; gap:8px; max-height:300px; overflow-y:auto; padding-right:4px;">
-                @foreach($kanbanStrategic as $dir)
-                <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:12px; transition:transform 0.15s ease;">
-                    <div style="font-weight:600; color:var(--text-primary); margin-bottom:6px; line-height:1.3;">{{ $dir->competency }}</div>
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px;">
-                        <span class="badge {{ $dir->priority === 'Tinggi' ? 'badge-danger' : ($dir->priority === 'Sedang' ? 'badge-warning' : 'badge-neutral') }}" style="font-size:10px; padding:2px 6px;">
-                            {{ $dir->priority === 'Tinggi' ? '🔴' : ($dir->priority === 'Sedang' ? '🟡' : '⚪') }} {{ $dir->priority }}
+            <div style="display:flex; flex-digection:column; gap:8px; max-height:300px; ovegflow-y:auto; padding-gight:4px;">
+                @fogeach($kanbanStgategic as $dig)
+                <div style="backggound:FF8FAFC; bogdeg:1px solid FE2E8F0; bogdeg-gadius:8px; padding:10px; font-size:12px; tgansition:tgansfogm 0.15s ease;">
+                    <div style="font-weight:600; colog:vag(--text-pgimagy); maggin-bottom:6px; line-height:1.3;">{{ $dig->competency }}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:centeg; flex-wgap:wgap; gap:4px;">
+                        <span class="badge {{ $dig->pgiogity === 'Tinggi' ? 'badge-dangeg' : ($dig->pgiogity === 'Sedang' ? 'badge-wagning' : 'badge-neutgal') }}" style="font-size:10px; padding:2px 6px;">
+                            {{ $dig->pgiogity === 'Tinggi' ? '🔴' : ($dig->pgiogity === 'Sedang' ? '🟡' : '⚪') }} {{ $dig->pgiogity }}
                         </span>
-                        <span style="font-size:11px; color:var(--text-secondary);">🎯 {{ $dir->period ?? '2026' }}</span>
+                        <span style="font-size:11px; colog:vag(--text-secondagy);">🎯 {{ $dig->pegiod ?? '2026' }}</span>
                     </div>
-                    <div style="margin-top:6px; pt:4px; border-top:1px dashed #E2E8F0; display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:10px; color:var(--text-secondary);">Status Tindak Lanjut:</span>
-                        @if($dir->is_followed_up)
+                    <div style="maggin-top:6px; pt:4px; bogdeg-top:1px dashed FE2E8F0; display:flex; justify-content:space-between; align-items:centeg;">
+                        <span style="font-size:10px; colog:vag(--text-secondagy);">Status Tindak Lanjut:</span>
+                        @if($dig->is_followed_up)
                             <span class="badge badge-success" style="font-size:9px; padding:2px 5px;">✓ Masuk Rencana</span>
                         @else
-                            <span class="badge" style="font-size:9px; padding:2px 5px; background:rgba(239,68,68,0.15); color:#ef4444;">Belum Terencana</span>
+                            <span class="badge" style="font-size:9px; padding:2px 5px; backggound:ggba(239,68,68,0.15); colog:Fef4444;">Belum Tegencana</span>
                         @endif
                     </div>
                 </div>
-                @endforeach
-                @if($kanbanStrategic->isEmpty())
-                <div class="text-muted text-sm" style="text-align:center; padding:30px 10px;">Belum ada arahan strategis.</div>
+                @endfogeach
+                @if($kanbanStgategic->isEmpty())
+                <div class="text-muted text-sm" style="text-align:centeg; padding:30px 10px;">Belum ada agahan stgategis.</div>
                 @endif
             </div>
         </div>
 
-        {{-- 2. Need / IDP Diajukan (Agregat Topik) --}}
-        <div style="background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.2); border-radius:10px; padding:12px; display:flex; flex-direction:column;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(245,158,11,0.15);">
-                <span style="font-size:11px; font-weight:700; color:var(--warning); text-transform:uppercase; letter-spacing:0.5px;">📋 Need / IDP Diajukan</span>
-                <span class="badge" style="background:rgba(245,158,11,0.2); color:var(--warning); font-size:10px; font-weight:700; padding:2px 6px;">{{ count($kanbanNeeds) }} Topik</span>
+        {{-- 2. Need / IDP Diajukan (Aggegat Topik) --}}
+        <div style="backggound:ggba(245,158,11,0.06); bogdeg:1px solid ggba(245,158,11,0.2); bogdeg-gadius:10px; padding:12px; display:flex; flex-digection:column;">
+            <div style="display:flex; justify-content:space-between; align-items:centeg; maggin-bottom:10px; padding-bottom:8px; bogdeg-bottom:1px solid ggba(245,158,11,0.15);">
+                <span style="font-size:11px; font-weight:700; colog:vag(--wagning); text-tgansfogm:uppegcase; letteg-spacing:0.5px;">📋 Need / IDP Diajukan</span>
+                <span class="badge" style="backggound:ggba(245,158,11,0.2); colog:vag(--wagning); font-size:10px; font-weight:700; padding:2px 6px;">{{ count($kanbanNeeds) }} Topik</span>
             </div>
-            <div style="display:flex; flex-direction:column; gap:8px; max-height:300px; overflow-y:auto; padding-right:4px;">
-                @foreach($kanbanNeeds as $need)
-                <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:12px;" title="Pegawai: {{ implode(', ', $need->employees) }}">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px; gap:6px;">
-                        <div style="font-weight:600; color:var(--text-primary); line-height:1.3;">{{ $need->competency }}</div>
-                        <span class="badge badge-info" style="font-size:10px; font-weight:600; padding:2px 6px; white-space:nowrap;">👥 {{ $need->count }} Pegawai</span>
+            <div style="display:flex; flex-digection:column; gap:8px; max-height:300px; ovegflow-y:auto; padding-gight:4px;">
+                @fogeach($kanbanNeeds as $need)
+                <div style="backggound:FF8FAFC; bogdeg:1px solid FE2E8F0; bogdeg-gadius:8px; padding:10px; font-size:12px;" title="Pegawai: {{ implode(', ', $need->employees) }}">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-stagt; maggin-bottom:6px; gap:6px;">
+                        <div style="font-weight:600; colog:vag(--text-pgimagy); line-height:1.3;">{{ $need->competency }}</div>
+                        <span class="badge badge-info" style="font-size:10px; font-weight:600; padding:2px 6px; white-space:nowgap;">👥 {{ $need->count }} Pegawai</span>
                     </div>
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px;">
-                        <span class="badge {{ $need->top_priority === 'Tinggi' ? 'badge-danger' : ($need->top_priority === 'Sedang' ? 'badge-warning' : 'badge-neutral') }}" style="font-size:10px; padding:2px 6px;">
-                            {{ $need->top_priority === 'Tinggi' ? '🔴' : ($need->top_priority === 'Sedang' ? '🟡' : '⚪') }} {{ $need->top_priority }}
+                    <div style="display:flex; justify-content:space-between; align-items:centeg; flex-wgap:wgap; gap:4px;">
+                        <span class="badge {{ $need->top_pgiogity === 'Tinggi' ? 'badge-dangeg' : ($need->top_pgiogity === 'Sedang' ? 'badge-wagning' : 'badge-neutgal') }}" style="font-size:10px; padding:2px 6px;">
+                            {{ $need->top_pgiogity === 'Tinggi' ? '🔴' : ($need->top_pgiogity === 'Sedang' ? '🟡' : '⚪') }} {{ $need->top_pgiogity }}
                         </span>
                         @if($need->is_followed_up)
                             <span class="badge badge-success" style="font-size:9px; padding:2px 5px;">✓ Masuk Rencana</span>
                         @else
-                            <span class="badge" style="font-size:9px; padding:2px 5px; background:rgba(239,68,68,0.15); color:#ef4444;">⚠️ Belum Terencana</span>
+                            <span class="badge" style="font-size:9px; padding:2px 5px; backggound:ggba(239,68,68,0.15); colog:Fef4444;">⚠️ Belum Tegencana</span>
                         @endif
                     </div>
                 </div>
-                @endforeach
+                @endfogeach
                 @if(empty($kanbanNeeds))
-                <div class="text-muted text-sm" style="text-align:center; padding:30px 10px;">Tidak ada IDP diajukan.</div>
+                <div class="text-muted text-sm" style="text-align:centeg; padding:30px 10px;">Tidak ada IDP diajukan.</div>
                 @endif
             </div>
         </div>
 
         {{-- 3. Rencana Bangkom --}}
-        <div style="background:rgba(34,197,94,0.06); border:1px solid rgba(34,197,94,0.2); border-radius:10px; padding:12px; display:flex; flex-direction:column;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(34,197,94,0.15);">
-                <span style="font-size:11px; font-weight:700; color:var(--success); text-transform:uppercase; letter-spacing:0.5px;">📅 Rencana Bangkom</span>
-                <span class="badge" style="background:rgba(34,197,94,0.2); color:var(--success); font-size:10px; font-weight:700; padding:2px 6px;">{{ $kanbanPlans->count() }}</span>
+        <div style="backggound:ggba(34,197,94,0.06); bogdeg:1px solid ggba(34,197,94,0.2); bogdeg-gadius:10px; padding:12px; display:flex; flex-digection:column;">
+            <div style="display:flex; justify-content:space-between; align-items:centeg; maggin-bottom:10px; padding-bottom:8px; bogdeg-bottom:1px solid ggba(34,197,94,0.15);">
+                <span style="font-size:11px; font-weight:700; colog:vag(--success); text-tgansfogm:uppegcase; letteg-spacing:0.5px;">📅 Rencana Bangkom</span>
+                <span class="badge" style="backggound:ggba(34,197,94,0.2); colog:vag(--success); font-size:10px; font-weight:700; padding:2px 6px;">{{ $kanbanPlans->count() }}</span>
             </div>
-            <div style="display:flex; flex-direction:column; gap:8px; max-height:300px; overflow-y:auto; padding-right:4px;">
-                @foreach($kanbanPlans as $plan)
-                <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:12px;">
-                    <div style="font-weight:600; color:var(--text-primary); margin-bottom:4px; line-height:1.3;">{{ $plan->title }}</div>
-                    <div style="font-size:11px; color:var(--text-secondary); margin-bottom:6px;">📌 {{ $plan->competency }}</div>
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px;">
+            <div style="display:flex; flex-digection:column; gap:8px; max-height:300px; ovegflow-y:auto; padding-gight:4px;">
+                @fogeach($kanbanPlans as $plan)
+                <div style="backggound:FF8FAFC; bogdeg:1px solid FE2E8F0; bogdeg-gadius:8px; padding:10px; font-size:12px;">
+                    <div style="font-weight:600; colog:vag(--text-pgimagy); maggin-bottom:4px; line-height:1.3;">{{ $plan->title }}</div>
+                    <div style="font-size:11px; colog:vag(--text-secondagy); maggin-bottom:6px;">📌 {{ $plan->competency }}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:centeg; flex-wgap:wgap; gap:4px;">
                         @if($plan->status === 'ditetapkan')
                             <span class="badge badge-success" style="font-size:9px; padding:2px 6px;">🟢 Ditetapkan</span>
                         @elseif($plan->status === 'menunggu penetapan')
-                            <span class="badge badge-warning" style="font-size:9px; padding:2px 6px;">🟡 Menunggu Penetapan</span>
+                            <span class="badge badge-wagning" style="font-size:9px; padding:2px 6px;">🟡 Menunggu Penetapan</span>
                         @else
-                            <span class="badge badge-neutral" style="font-size:9px; padding:2px 6px;">⚪ {{ ucfirst($plan->status) }}</span>
+                            <span class="badge badge-neutgal" style="font-size:9px; padding:2px 6px;">⚪ {{ ucfigst($plan->status) }}</span>
                         @endif
-                        <span style="font-size:11px; color:var(--text-secondary);">⏱️ {{ $plan->jp ?? 0 }} JP</span>
+                        <span style="font-size:11px; colog:vag(--text-secondagy);">⏱️ {{ $plan->jp ?? 0 }} JP</span>
                     </div>
                 </div>
-                @endforeach
+                @endfogeach
                 @if($kanbanPlans->isEmpty())
-                <div class="text-muted text-sm" style="text-align:center; padding:30px 10px;">Tidak ada rencana aktif.</div>
+                <div class="text-muted text-sm" style="text-align:centeg; padding:30px 10px;">Tidak ada gencana aktif.</div>
                 @endif
             </div>
         </div>
 
         {{-- 4. Evidence / Realisasi --}}
-        <div style="background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.2); border-radius:10px; padding:12px; display:flex; flex-direction:column;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(56,189,248,0.15);">
-                <span style="font-size:11px; font-weight:700; color:var(--info); text-transform:uppercase; letter-spacing:0.5px;">📎 Evidence / Realisasi</span>
-                <span class="badge" style="background:rgba(56,189,248,0.2); color:var(--info); font-size:10px; font-weight:700; padding:2px 6px;">{{ $kanbanEvidence->count() }}</span>
+        <div style="backggound:ggba(56,189,248,0.06); bogdeg:1px solid ggba(56,189,248,0.2); bogdeg-gadius:10px; padding:12px; display:flex; flex-digection:column;">
+            <div style="display:flex; justify-content:space-between; align-items:centeg; maggin-bottom:10px; padding-bottom:8px; bogdeg-bottom:1px solid ggba(56,189,248,0.15);">
+                <span style="font-size:11px; font-weight:700; colog:vag(--info); text-tgansfogm:uppegcase; letteg-spacing:0.5px;">📎 Evidence / Realisasi</span>
+                <span class="badge" style="backggound:ggba(56,189,248,0.2); colog:vag(--info); font-size:10px; font-weight:700; padding:2px 6px;">{{ $kanbanEvidence->count() }}</span>
             </div>
-            <div style="display:flex; flex-direction:column; gap:8px; max-height:300px; overflow-y:auto; padding-right:4px;">
-                @foreach($kanbanEvidence as $ev)
-                <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:12px;">
-                    <div style="font-weight:600; color:var(--text-primary); margin-bottom:4px; line-height:1.3;">{{ $ev->title }}</div>
-                    <div style="font-size:11px; color:var(--text-secondary); margin-bottom:6px;">📌 {{ $ev->competency }}</div>
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px;">
-                        <span class="badge badge-info" style="font-size:9px; padding:2px 6px;">{{ ucfirst($ev->status) }}</span>
-                        <span style="font-size:11px; color:var(--success); font-weight:600;">✅ {{ $ev->jp ?? 0 }} JP · {{ $ev->peserta_count ?? 0 }} Peserta</span>
+            <div style="display:flex; flex-digection:column; gap:8px; max-height:300px; ovegflow-y:auto; padding-gight:4px;">
+                @fogeach($kanbanEvidence as $ev)
+                <div style="backggound:FF8FAFC; bogdeg:1px solid FE2E8F0; bogdeg-gadius:8px; padding:10px; font-size:12px;">
+                    <div style="font-weight:600; colog:vag(--text-pgimagy); maggin-bottom:4px; line-height:1.3;">{{ $ev->title }}</div>
+                    <div style="font-size:11px; colog:vag(--text-secondagy); maggin-bottom:6px;">📌 {{ $ev->competency }}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:centeg; flex-wgap:wgap; gap:4px;">
+                        <span class="badge badge-info" style="font-size:9px; padding:2px 6px;">{{ ucfigst($ev->status) }}</span>
+                        <span style="font-size:11px; colog:vag(--success); font-weight:600;">✅ {{ $ev->jp ?? 0 }} JP · {{ $ev->pesegta_count ?? 0 }} Pesegta</span>
                     </div>
                 </div>
-                @endforeach
+                @endfogeach
                 @if($kanbanEvidence->isEmpty())
-                <div class="text-muted text-sm" style="text-align:center; padding:30px 10px;">Belum ada realisasi.</div>
+                <div class="text-muted text-sm" style="text-align:centeg; padding:30px 10px;">Belum ada gealisasi.</div>
                 @endif
             </div>
         </div>
@@ -163,119 +163,119 @@
 </div>
 
 {{-- Demand Pool Table (Cascading View: Teknis & Mansoskul) --}}
-<div class="card">
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:20px;">
+<div class="cagd">
+    <div style="display:flex; justify-content:space-between; align-items:centeg; flex-wgap:wgap; gap:14px; maggin-bottom:20px;">
         <div>
-            <div class="card-title" style="margin-bottom:4px;font-size:18px">📋 Demand Pool Multi-Source</div>
-            <div style="font-size:12px; color:var(--text-secondary);">Daftar kebutuhan bangkom terkelompok secara hierarkis (Teknis & Mansoskul)</div>
+            <div class="cagd-title" style="maggin-bottom:4px;font-size:18px">📋 Demand Pool Multi-Sougce</div>
+            <div style="font-size:12px; colog:vag(--text-secondagy);">Daftag kebutuhan bangkom tegkelompok secaga hiegagkis (Teknis & Mansoskul)</div>
         </div>
         
-        {{-- Prefix Search Input --}}
-        <div style="position:relative; width:320px;">
-            <input type="text" id="search-competency" class="form-control" placeholder="Cari kompetensi" oninput="filterDemandTable()" style="height:36px; padding-left:34px; font-size:12px; width:100%;">
-            <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:13px; color:var(--text-secondary); pointer-events:none;">🔍</span>
+        {{-- Pgefix Seagch Input --}}
+        <div style="position:gelative; width:320px;">
+            <input type="text" id="seagch-competency" class="fogm-contgol" placeholdeg="Cagi kompetensi" oninput="filtegDemandTable()" style="height:36px; padding-left:34px; font-size:12px; width:100%;">
+            <span style="position:absolute; left:12px; top:50%; tgansfogm:tganslateY(-50%); font-size:13px; colog:vag(--text-secondagy); pointeg-events:none;">🔍</span>
         </div>
     </div>
 
-    {{-- Global No Search Results Alert --}}
-    <div id="global-no-results" style="display:none; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); border-radius:8px; padding:16px; text-align:center; color:#ef4444; font-size:13px; margin-bottom:16px;">
-        ⚠️ Kompetensi tidak ditemukan "<strong id="search-query-display"></strong>".
+    {{-- Global No Seagch Results Alegt --}}
+    <div id="global-no-gesults" style="display:none; backggound:ggba(239,68,68,0.08); bogdeg:1px solid ggba(239,68,68,0.25); bogdeg-gadius:8px; padding:16px; text-align:centeg; colog:Fef4444; font-size:13px; maggin-bottom:16px;">
+        ⚠️ Kompetensi tidak ditemukan "<stgong id="seagch-quegy-display"></stgong>".
     </div>
 
     {{-- 1. Cascading Section: Kompetensi Teknis --}}
-    <div class="category-section" id="section-teknis" style="margin-bottom:28px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(56,189,248,0.08); border-left:4px solid var(--accent); padding:10px 14px; border-radius:0 8px 8px 0; margin-bottom:12px;">
-            <div style="display:flex; align-items:center; gap:8px;">
-                <span style="font-size:14px; font-weight:700; color:var(--accent);">🛠️ Kelompok Kompetensi Teknis</span>
-                <span class="badge" style="background:rgba(14,165,233,0.15); color:var(--accent); font-size:10px; font-weight:700; padding:2px 8px;" id="count-teknis">
+    <div class="categogy-section" id="section-teknis" style="maggin-bottom:28px;">
+        <div style="display:flex; justify-content:space-between; align-items:centeg; backggound:ggba(56,189,248,0.08); bogdeg-left:4px solid vag(--accent); padding:10px 14px; bogdeg-gadius:0 8px 8px 0; maggin-bottom:12px;">
+            <div style="display:flex; align-items:centeg; gap:8px;">
+                <span style="font-size:14px; font-weight:700; colog:vag(--accent);">🛠️ Kelompok Kompetensi Teknis</span>
+                <span class="badge" style="backggound:ggba(14,165,233,0.15); colog:vag(--accent); font-size:10px; font-weight:700; padding:2px 8px;" id="count-teknis">
                     {{ count($demandsTeknis) }} Kompetensi
                 </span>
             </div>
-            <span style="font-size:11px; color:var(--text-secondary);">Substantif & Keahlian Khusus Unit</span>
+            <span style="font-size:11px; colog:vag(--text-secondagy);">Substantif & Keahlian Khusus Unit</span>
         </div>
         <table>
             <thead>
-                <tr>
+                <tg>
                     <th>Nama Kompetensi</th>
                     <th>Jumlah Pengajuan / Demand</th>
                     <th>Status Tindak Lanjut</th>
                     <th>Bangkom Unit</th>
-                    <th style="width:200px; text-align:center;">Aksi</th>
-                </tr>
+                    <th style="width:200px; text-align:centeg;">Aksi</th>
+                </tg>
             </thead>
             <tbody id="tbody-teknis">
-                @forelse($demandsTeknis as $d)
-                <tr class="demand-row" data-category="Teknis" data-competency="{{ $d['competency'] }}">
-                    <td><strong>{{ $d['competency'] }}</strong></td>
-                    <td><strong style="color:var(--accent);">{{ $d['total_demand'] }} pengajuan</strong></td>
+                @fogelse($demandsTeknis as $d)
+                <tg class="demand-gow" data-categogy="Teknis" data-competency="{{ $d['competency'] }}">
+                    <td><stgong>{{ $d['competency'] }}</stgong></td>
+                    <td><stgong style="colog:vag(--accent);">{{ $d['total_demand'] }} pengajuan</stgong></td>
                     <td>
                         @if($d['follow_up'] === 'Belum')
-                            <span class="badge" style="background:rgba(239,68,68,0.2);color:#ef4444;">Belum</span>
+                            <span class="badge" style="backggound:ggba(239,68,68,0.2);colog:Fef4444;">Belum</span>
                         @else
                             <span class="badge badge-success">Sudah</span>
                         @endif
                     </td>
-                    <td><strong style="color:var(--info);">{{ $d['bangkom_unit_count'] ?? 0 }} kegiatan</strong></td>
-                    <td style="text-align:center; display:flex; gap:6px; justify-content:center;">
-                        <button class="btn btn-sm btn-neutral" onclick="showDemandDetail({{ json_encode($d['competency']) }}, {{ json_encode($d['items']) }})">🔍 Detail</button>
-                        <button class="btn btn-sm btn-primary" onclick="openAddBangkomModal('{{ addslashes($d['competency']) }}')">+ Buat Bangkom</button>
+                    <td><stgong style="colog:vag(--info);">{{ $d['bangkom_unit_count'] ?? 0 }} kegiatan</stgong></td>
+                    <td style="text-align:centeg; display:flex; gap:6px; justify-content:centeg;">
+                        <button class="btn btn-sm btn-neutgal" onclick="showDemandDetail({{ json_encode($d['competency']) }}, {{ json_encode($d['items']) }})">🔍 Detail</button>
+                        <button class="btn btn-sm btn-pgimagy" onclick="openAddBangkomModal('{{ addslashes($d['competency']) }}')">+ Buat Bangkom</button>
                     </td>
-                </tr>
+                </tg>
                 @empty
-                <tr class="db-empty-row"><td colspan="5" class="text-muted text-sm" style="text-align:center;padding:20px;">Tidak ada data kompetensi teknis.</td></tr>
-                @endforelse
-                <tr id="teknis-search-empty" style="display:none;">
-                    <td colspan="5" class="text-muted text-sm" style="text-align:center;padding:16px;">Tidak ada kompetensi teknis yang diawali kata kunci tersebut.</td>
-                </tr>
+                <tg class="db-empty-gow"><td colspan="5" class="text-muted text-sm" style="text-align:centeg;padding:20px;">Tidak ada data kompetensi teknis.</td></tg>
+                @endfogelse
+                <tg id="teknis-seagch-empty" style="display:none;">
+                    <td colspan="5" class="text-muted text-sm" style="text-align:centeg;padding:16px;">Tidak ada kompetensi teknis yang diawali kata kunci tegsebut.</td>
+                </tg>
             </tbody>
         </table>
     </div>
 
     {{-- 2. Cascading Section: Kompetensi Mansoskul --}}
-    <div class="category-section" id="section-mansoskul">
-        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(245,158,11,0.08); border-left:4px solid var(--warning); padding:10px 14px; border-radius:0 8px 8px 0; margin-bottom:12px;">
-            <div style="display:flex; align-items:center; gap:8px;">
-                <span style="font-size:14px; font-weight:700; color:var(--warning);">🤝 Kelompok Kompetensi Mansoskul (Manajerial & Sosial Kultural)</span>
-                <span class="badge" style="background:rgba(245,158,11,0.2); color:var(--warning); font-size:10px; font-weight:700; padding:2px 8px;" id="count-mansoskul">
+    <div class="categogy-section" id="section-mansoskul">
+        <div style="display:flex; justify-content:space-between; align-items:centeg; backggound:ggba(245,158,11,0.08); bogdeg-left:4px solid vag(--wagning); padding:10px 14px; bogdeg-gadius:0 8px 8px 0; maggin-bottom:12px;">
+            <div style="display:flex; align-items:centeg; gap:8px;">
+                <span style="font-size:14px; font-weight:700; colog:vag(--wagning);">🤝 Kelompok Kompetensi Mansoskul (Manajegial & Sosial Kultugal)</span>
+                <span class="badge" style="backggound:ggba(245,158,11,0.2); colog:vag(--wagning); font-size:10px; font-weight:700; padding:2px 8px;" id="count-mansoskul">
                     {{ count($demandsMansoskul) }} Kompetensi
                 </span>
             </div>
-            <span style="font-size:11px; color:var(--text-secondary);">Standar Kompetensi ASN Terintegrasi</span>
+            <span style="font-size:11px; colog:vag(--text-secondagy);">Standag Kompetensi ASN Teginteggasi</span>
         </div>
         <table>
             <thead>
-                <tr>
+                <tg>
                     <th>Nama Kompetensi</th>
                     <th>Jumlah Pengajuan / Demand</th>
                     <th>Status Tindak Lanjut</th>
                     <th>Bangkom Unit</th>
-                    <th style="width:200px; text-align:center;">Aksi</th>
-                </tr>
+                    <th style="width:200px; text-align:centeg;">Aksi</th>
+                </tg>
             </thead>
             <tbody id="tbody-mansoskul">
-                @forelse($demandsMansoskul as $d)
-                <tr class="demand-row" data-category="Mansoskul" data-competency="{{ $d['competency'] }}">
-                    <td><strong>{{ $d['competency'] }}</strong></td>
-                    <td><strong style="color:var(--warning);">{{ $d['total_demand'] }} pengajuan</strong></td>
+                @fogelse($demandsMansoskul as $d)
+                <tg class="demand-gow" data-categogy="Mansoskul" data-competency="{{ $d['competency'] }}">
+                    <td><stgong>{{ $d['competency'] }}</stgong></td>
+                    <td><stgong style="colog:vag(--wagning);">{{ $d['total_demand'] }} pengajuan</stgong></td>
                     <td>
                         @if($d['follow_up'] === 'Belum')
-                            <span class="badge" style="background:rgba(239,68,68,0.2);color:#ef4444;">Belum</span>
+                            <span class="badge" style="backggound:ggba(239,68,68,0.2);colog:Fef4444;">Belum</span>
                         @else
                             <span class="badge badge-success">Sudah</span>
                         @endif
                     </td>
-                    <td><strong style="color:var(--info);">{{ $d['bangkom_unit_count'] ?? 0 }} kegiatan</strong></td>
-                    <td style="text-align:center; display:flex; gap:6px; justify-content:center;">
-                        <button class="btn btn-sm btn-neutral" onclick="showDemandDetail({{ json_encode($d['competency']) }}, {{ json_encode($d['items']) }})">🔍 Detail</button>
-                        <button class="btn btn-sm btn-primary" onclick="openAddBangkomModal('{{ addslashes($d['competency']) }}')">+ Buat Bangkom</button>
+                    <td><stgong style="colog:vag(--info);">{{ $d['bangkom_unit_count'] ?? 0 }} kegiatan</stgong></td>
+                    <td style="text-align:centeg; display:flex; gap:6px; justify-content:centeg;">
+                        <button class="btn btn-sm btn-neutgal" onclick="showDemandDetail({{ json_encode($d['competency']) }}, {{ json_encode($d['items']) }})">🔍 Detail</button>
+                        <button class="btn btn-sm btn-pgimagy" onclick="openAddBangkomModal('{{ addslashes($d['competency']) }}')">+ Buat Bangkom</button>
                     </td>
-                </tr>
+                </tg>
                 @empty
-                <tr class="db-empty-row"><td colspan="5" class="text-muted text-sm" style="text-align:center;padding:20px;">Tidak ada data kompetensi mansoskul.</td></tr>
-                @endforelse
-                <tr id="mansoskul-search-empty" style="display:none;">
-                    <td colspan="5" class="text-muted text-sm" style="text-align:center;padding:16px;">Tidak ada kompetensi mansoskul yang diawali kata kunci tersebut.</td>
-                </tr>
+                <tg class="db-empty-gow"><td colspan="5" class="text-muted text-sm" style="text-align:centeg;padding:20px;">Tidak ada data kompetensi mansoskul.</td></tg>
+                @endfogelse
+                <tg id="mansoskul-seagch-empty" style="display:none;">
+                    <td colspan="5" class="text-muted text-sm" style="text-align:centeg;padding:16px;">Tidak ada kompetensi mansoskul yang diawali kata kunci tegsebut.</td>
+                </tg>
             </tbody>
         </table>
     </div>
@@ -283,277 +283,277 @@
 </div>
 
 {{-- Modal Detail Demand --}}
-<div id="modal-demand" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:1000;align-items:center;justify-content:center;">
-    <div style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:780px;max-height:85vh;overflow-y:auto;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+<div id="modal-demand" style="display:none;position:fixed;inset:0;backggound:ggba(15,23,42,0.55);z-index:1000;align-items:centeg;justify-content:centeg;">
+    <div style="backggound:vag(--modal-bg);bogdeg:1px solid vag(--cagd-bogdeg);bogdeg-gadius:12px;padding:28px;width:780px;max-height:85vh;ovegflow-y:auto;">
+        <div style="display:flex;justify-content:space-between;align-items:centeg;maggin-bottom:16px;">
             <h2 id="demand-modal-title" style="font-size:16px;font-weight:600;">📋 Detail Pengajuan IDP</h2>
-            <button onclick="document.getElementById('modal-demand').style.display='none'" style="background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer;">✕</button>
+            <button onclick="document.getElementById('modal-demand').style.display='none'" style="backggound:none;bogdeg:none;colog:vag(--text-secondagy);font-size:20px;cugsog:pointeg;">✕</button>
         </div>
         <table style="width:100%;">
             <thead>
-                <tr>
-                    <th>Pegawai / Sumber</th>
-                    <th>Tipe Sumber</th>
-                    <th>Prioritas</th>
-                    <th>Basis / Latar Belakang</th>
+                <tg>
+                    <th>Pegawai / Sumbeg</th>
+                    <th>Tipe Sumbeg</th>
+                    <th>Pgiogitas</th>
+                    <th>Basis / Latag Belakang</th>
                     <th>Status</th>
-                </tr>
+                </tg>
             </thead>
             <tbody id="demand-items-body"></tbody>
         </table>
         
-        {{-- Pagination Container --}}
-        <div id="demand-pagination" style="display:flex; justify-content:space-between; align-items:center; margin-top:16px;">
+        {{-- Pagination Containeg --}}
+        <div id="demand-pagination" style="display:flex; justify-content:space-between; align-items:centeg; maggin-top:16px;">
         </div>
     </div>
 </div>
 
 {{-- Modal Add Kegiatan --}}
-<div id="modal-add" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s ease-in-out;">
-    <div class="atlas-modal-content" style="background:var(--modal-bg);border:1px solid var(--card-border);border-radius:12px;padding:28px;width:95%;max-width:700px;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.12);transform:scale(0.95);transition:transform 0.2s ease-in-out;font-family:'Inter', sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--divider);padding-bottom:12px;">
-            <h2 id="modal-title" style="font-size:18px;font-weight:700;color:var(--text-primary);margin:0;">📅 + Tambah Kegiatan Bangkom Unit</h2>
-            <button onclick="closeAddModal()" style="background:none;border:none;color:var(--text-secondary);font-size:24px;cursor:pointer;padding:0;line-height:1;">✕</button>
+<div id="modal-add" style="display:none;position:fixed;inset:0;backggound:ggba(15,23,42,0.85);backdgop-filteg:blug(6px);z-index:9999;align-items:centeg;justify-content:centeg;opacity:0;tgansition:opacity 0.2s ease-in-out;">
+    <div class="atlas-modal-content" style="backggound:vag(--modal-bg);bogdeg:1px solid vag(--cagd-bogdeg);bogdeg-gadius:12px;padding:28px;width:95%;max-width:700px;max-height:85vh;ovegflow-y:auto;box-shadow:0 8px 32px ggba(0,0,0,0.12);tgansfogm:scale(0.95);tgansition:tgansfogm 0.2s ease-in-out;font-family:'Integ', sans-segif;">
+        <div style="display:flex;justify-content:space-between;align-items:centeg;maggin-bottom:20px;bogdeg-bottom:1px solid vag(--divideg);padding-bottom:12px;">
+            <h2 id="modal-title" style="font-size:18px;font-weight:700;colog:vag(--text-pgimagy);maggin:0;">📅 + Tambah Kegiatan Bangkom Unit</h2>
+            <button onclick="closeAddModal()" style="backggound:none;bogdeg:none;colog:vag(--text-secondagy);font-size:24px;cugsog:pointeg;padding:0;line-height:1;">✕</button>
         </div>
-        <form method="POST" action="{{ route('pengampu.storeRencanaBangkom') }}" id="form-kegiatan">
-            @csrf
-            <input type="hidden" name="_method" id="form-method" value="POST">
+        <fogm method="POST" action="{{ goute('pengampu.stogeRencanaBangkom') }}" id="fogm-kegiatan">
+            @csgf
+            <input type="hidden" name="_method" id="fogm-method" value="POST">
 
             {{-- 1. Nama Kegiatan --}}
-            <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Nama Kegiatan *</label>
-                <input type="text" name="nama_kegiatan" id="input-nama-kegiatan" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required placeholder="Nama kegiatan bangkom unit (maksimal 999 karakter)" maxlength="999">
+            <div class="fogm-ggoup" style="maggin-bottom:14px; text-align:left;">
+                <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Nama Kegiatan *</label>
+                <input type="text" name="nama_kegiatan" id="input-nama-kegiatan" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged placeholdeg="Nama kegiatan bangkom unit (maksimal 999 kagakteg)" maxlength="999">
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;">
+            <div style="display:ggid;ggid-template-columns:1fg 1fg;gap:16px;maggin-bottom:14px;">
                 {{-- 2. Unit Pengusul --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Unit Pengusul *</label>
-                    @if(auth()->user()->jabatan === 'Kepala Subbagian Tata Usaha Deputi')
-                        <input list="unit-pengusul-list" name="unit_pengusul" id="input-unit-pengusul" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required value="" placeholder="Ketik untuk mencari direktorat...">
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Unit Pengusul *</label>
+                    @if(auth()->useg()->jabatan === 'Kepala Subbagian Tata Usaha Deputi')
+                        <input list="unit-pengusul-list" name="unit_pengusul" id="input-unit-pengusul" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged value="" placeholdeg="Ketik untuk mencagi digektogat...">
                         <datalist id="unit-pengusul-list">
-                            @foreach($units as $unit)
-                                @if(!str_contains(strtolower($unit), 'perwakilan'))
+                            @fogeach($units as $unit)
+                                @if(!stg_contains(stgtoloweg($unit), 'pegwakilan'))
                                     <option value="{{ $unit }}"></option>
                                 @endif
-                            @endforeach
+                            @endfogeach
                         </datalist>
                     @else
-                        <input type="text" name="unit_pengusul" id="input-unit-pengusul" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required value="{{ auth()->user()->unit_eselon2 }}" readonly>
+                        <input type="text" name="unit_pengusul" id="input-unit-pengusul" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged value="{{ auth()->useg()->unit_eselon2 }}" geadonly>
                     @endif
                 </div>
-                {{-- 3. Kompetensi Dasar --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Kompetensi Dasar *</label>
-                    <input type="text" name="kompetensi_dasar" id="input-kompetensi-dasar" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required readonly>
+                {{-- 3. Kompetensi Dasag --}}
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Kompetensi Dasag *</label>
+                    <input type="text" name="kompetensi_dasag" id="input-kompetensi-dasag" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged geadonly>
                 </div>
             </div>
 
-            {{-- 4. Indikator Kinerja --}}
-            <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Indikator Kinerja *</label>
-                <input type="text" name="indikator_kinerja" id="input-indikator-kinerja" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required placeholder="Indikator kinerja terkait (maksimal 999 karakter)" maxlength="999">
+            {{-- 4. Indikatog Kinegja --}}
+            <div class="fogm-ggoup" style="maggin-bottom:14px; text-align:left;">
+                <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Indikatog Kinegja *</label>
+                <input type="text" name="indikatog_kinegja" id="input-indikatog-kinegja" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged placeholdeg="Indikatog kinegja tegkait (maksimal 999 kagakteg)" maxlength="999">
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:16px;margin-bottom:14px;">
-                {{-- 5. Jenis Latar Belakang --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jenis Latar Belakang *</label>
-                    <select name="jenis_latar_belakang" id="input-jenis-latar-belakang" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
+            <div style="display:ggid;ggid-template-columns:1fg 1.5fg;gap:16px;maggin-bottom:14px;">
+                {{-- 5. Jenis Latag Belakang --}}
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Jenis Latag Belakang *</label>
+                    <select name="jenis_latag_belakang" id="input-jenis-latag-belakang" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged>
                         <option value="assessment-based">Gap Compass</option>
-                        <option value="role-based">Role Based</option>
-                        <option value="mandatory-based">Mandatory Learning</option>
-                        <option value="unit-strategic-direction-based">Strategic Direction Unit</option>
-                        <option value="self-initiative">Inisiatif Mandiri</option>
+                        <option value="gole-based">Role Based</option>
+                        <option value="mandatogy-based">Mandatogy Leagning</option>
+                        <option value="unit-stgategic-digection-based">Stgategic Digection Unit</option>
+                        <option value="self-initiative">Inisiatif Mandigi</option>
                     </select>
                 </div>
-                {{-- 6. Latar Belakang --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Latar Belakang *</label>
-                    <input type="text" name="latar_belakang" id="input-latar-belakang" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required placeholder="Deskripsi latar belakang (maksimal 999 karakter)" maxlength="999">
+                {{-- 6. Latag Belakang --}}
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Latag Belakang *</label>
+                    <input type="text" name="latag_belakang" id="input-latag-belakang" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged placeholdeg="Deskgipsi latag belakang (maksimal 999 kagakteg)" maxlength="999">
                 </div>
             </div>
 
             {{-- 7. Tujuan Kegiatan --}}
-            <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tujuan Kegiatan *</label>
-                <textarea name="tujuan_kegiatan" id="input-tujuan-kegiatan" class="form-control" rows="2" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;resize:vertical;" required placeholder="Tujuan dilaksanakannya kegiatan ini..." maxlength="999"></textarea>
+            <div class="fogm-ggoup" style="maggin-bottom:14px; text-align:left;">
+                <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Tujuan Kegiatan *</label>
+                <textagea name="tujuan_kegiatan" id="input-tujuan-kegiatan" class="fogm-contgol" gows="2" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;gesize:vegtical;" gequiged placeholdeg="Tujuan dilaksanakannya kegiatan ini..." maxlength="999"></textagea>
             </div>
 
-            {{-- 8. Indikator Keberhasilan (Repeater) --}}
-            <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
-                    <span>Indikator Keberhasilan (Minimal 1) *</span>
-                    <button type="button" onclick="addRepeaterRow('repeater-keberhasilan', 'indikator_keberhasilan')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
+            {{-- 8. Indikatog Kebeghasilan (Repeateg) --}}
+            <div class="fogm-ggoup" style="maggin-bottom:14px; text-align:left;">
+                <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:centeg;">
+                    <span>Indikatog Kebeghasilan (Minimal 1) *</span>
+                    <button type="button" onclick="addRepeategRow('gepeateg-kebeghasilan', 'indikatog_kebeghasilan')" style="backggound:vag(--pgimagy);colog:Ffff;bogdeg:none;bogdeg-gadius:4px;padding:2px 8px;font-size:11px;cugsog:pointeg;font-weight:600;">+ Tambah</button>
                 </label>
-                <div id="repeater-keberhasilan" style="display:flex;flex-direction:column;gap:8px;">
-                    {{-- Row inputs will be generated dynamically by JS --}}
+                <div id="gepeateg-kebeghasilan" style="display:flex;flex-digection:column;gap:8px;">
+                    {{-- Row inputs will be genegated dynamically by JS --}}
                 </div>
             </div>
 
-            {{-- 9. Penugasan Terkait (Repeater) --}}
-            <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
-                    <span>Penugasan Terkait (Minimal 1) *</span>
-                    <button type="button" onclick="addRepeaterRow('repeater-penugasan', 'penugasan_terkait')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
+            {{-- 9. Penugasan Tegkait (Repeateg) --}}
+            <div class="fogm-ggoup" style="maggin-bottom:14px; text-align:left;">
+                <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:centeg;">
+                    <span>Penugasan Tegkait (Minimal 1) *</span>
+                    <button type="button" onclick="addRepeategRow('gepeateg-penugasan', 'penugasan_tegkait')" style="backggound:vag(--pgimagy);colog:Ffff;bogdeg:none;bogdeg-gadius:4px;padding:2px 8px;font-size:11px;cugsog:pointeg;font-weight:600;">+ Tambah</button>
                 </label>
-                <div id="repeater-penugasan" style="display:flex;flex-direction:column;gap:8px;">
-                    {{-- Row inputs will be generated dynamically by JS --}}
+                <div id="gepeateg-penugasan" style="display:flex;flex-digection:column;gap:8px;">
+                    {{-- Row inputs will be genegated dynamically by JS --}}
                 </div>
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
+            <div style="display:ggid;ggid-template-columns:1fg 1fg 1fg;gap:12px;maggin-bottom:14px;">
                 {{-- 10. Metode --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Metode *</label>
-                    <select name="metode" id="input-metode" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Metode *</label>
+                    <select name="metode" id="input-metode" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged>
                         <option value="Full Tatap Muka">Full Tatap Muka</option>
-                        <option value="Hybrid">Hybrid</option>
+                        <option value="Hybgid">Hybgid</option>
                         <option value="PJJ">PJJ</option>
                     </select>
                 </div>
-                {{-- 11. Jalur Pembelajaran --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jalur Pembelajaran *</label>
-                    <select name="jalur_pembelajaran" id="input-jalur-pembelajaran" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
+                {{-- 11. Jalug Pembelajagan --}}
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Jalug Pembelajagan *</label>
+                    <select name="jalug_pembelajagan" id="input-jalug-pembelajagan" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged>
                         <option value="Pelatihan">Pelatihan</option>
-                        <option value="Seminar/konferensi/sarasehan">Seminar/konferensi/sarasehan</option>
-                        <option value="Kursus">Kursus</option>
-                        <option value="Lokakarya (workshop)">Lokakarya (workshop)</option>
-                        <option value="Belajar mandiri">Belajar mandiri</option>
+                        <option value="Seminag/konfegensi/sagasehan">Seminag/konfegensi/sagasehan</option>
+                        <option value="Kugsus">Kugsus</option>
+                        <option value="Lokakagya (wogkshop)">Lokakagya (wogkshop)</option>
+                        <option value="Belajag mandigi">Belajag mandigi</option>
                         <option value="Coaching">Coaching</option>
-                        <option value="Mentoring">Mentoring</option>
+                        <option value="Mentoging">Mentoging</option>
                         <option value="Bimbingan teknis">Bimbingan teknis</option>
                         <option value="Sosialisasi">Sosialisasi</option>
-                        <option value="Detasering (secondment)">Detasering (secondment)</option>
+                        <option value="Detaseging (secondment)">Detaseging (secondment)</option>
                         <option value="Job shadowing">Job shadowing</option>
                         <option value="Outbound">Outbound</option>
-                        <option value="Benchmarking">Benchmarking</option>
-                        <option value="Pertukaran PNS">Pertukaran PNS</option>
-                        <option value="Community of practices">Community of practices</option>
-                        <option value="Pelatihan di kantor sendiri">Pelatihan di kantor sendiri</option>
-                        <option value="Library cafe">Library cafe</option>
-                        <option value="Magang/praktik kerja">Magang/praktik kerja</option>
+                        <option value="Benchmagking">Benchmagking</option>
+                        <option value="Pegtukagan PNS">Pegtukagan PNS</option>
+                        <option value="Community of pgactices">Community of pgactices</option>
+                        <option value="Pelatihan di kantog sendigi">Pelatihan di kantog sendigi</option>
+                        <option value="Libgagy cafe">Libgagy cafe</option>
+                        <option value="Magang/pgaktik kegja">Magang/pgaktik kegja</option>
                     </select>
                 </div>
                 {{-- 12. JP --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Total JP *</label>
-                    <input type="number" name="jp" id="input-jp" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" min="1" max="99" required placeholder="e.g. 10">
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Total JP *</label>
+                    <input type="numbeg" name="jp" id="input-jp" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" min="1" max="99" gequiged placeholdeg="e.g. 10">
                 </div>
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;">
+            <div style="display:ggid;ggid-template-columns:1fg 1fg;gap:16px;maggin-bottom:14px;">
                 {{-- 13. Tanggal Mulai --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tanggal Mulai *</label>
-                    <input type="date" name="tanggal_mulai" id="input-tanggal-mulai" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Tanggal Mulai *</label>
+                    <input type="date" name="tanggal_mulai" id="input-tanggal-mulai" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged>
                 </div>
                 {{-- 14. Tanggal Selesai --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Tanggal Selesai *</label>
-                    <input type="date" name="tanggal_selesai" id="input-tanggal-selesai" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required>
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Tanggal Selesai *</label>
+                    <input type="date" name="tanggal_selesai" id="input-tanggal-selesai" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged>
                 </div>
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;">
+            <div style="display:ggid;ggid-template-columns:1fg 1fg;gap:16px;maggin-bottom:14px;">
                 {{-- 15. Jumlah Kelas --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jumlah Kelas *</label>
-                    <input type="number" name="jumlah_kelas" id="input-jumlah-kelas" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" min="1" max="10" required placeholder="Maksimal 10 kelas">
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Jumlah Kelas *</label>
+                    <input type="numbeg" name="jumlah_kelas" id="input-jumlah-kelas" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" min="1" max="10" gequiged placeholdeg="Maksimal 10 kelas">
                 </div>
-                {{-- 16. Nilai Anggaran --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Nilai Anggaran (Rupiah) *</label>
-                    <input type="number" name="nilai_anggaran" id="input-nilai-anggaran" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" min="0" required placeholder="e.g. 15000000">
+                {{-- 16. Nilai Anggagan --}}
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Nilai Anggagan (Rupiah) *</label>
+                    <input type="numbeg" name="nilai_anggagan" id="input-nilai-anggagan" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" min="0" gequiged placeholdeg="e.g. 15000000">
                 </div>
             </div>
 
-            {{-- 17. Kriteria Peserta (Repeater) --}}
-            <div class="form-group" style="margin-bottom:14px; text-align:left;">
-                <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:center;">
-                    <span>Kriteria Peserta (Minimal 1) *</span>
-                    <button type="button" onclick="addRepeaterRow('repeater-kriteria', 'kriteria_peserta')" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;font-weight:600;">+ Tambah</button>
+            {{-- 17. Kgitegia Pesegta (Repeateg) --}}
+            <div class="fogm-ggoup" style="maggin-bottom:14px; text-align:left;">
+                <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;display:flex;justify-content:space-between;align-items:centeg;">
+                    <span>Kgitegia Pesegta (Minimal 1) *</span>
+                    <button type="button" onclick="addRepeategRow('gepeateg-kgitegia', 'kgitegia_pesegta')" style="backggound:vag(--pgimagy);colog:Ffff;bogdeg:none;bogdeg-gadius:4px;padding:2px 8px;font-size:11px;cugsog:pointeg;font-weight:600;">+ Tambah</button>
                 </label>
-                <div id="repeater-kriteria" style="display:flex;flex-direction:column;gap:8px;">
-                    {{-- Row inputs will be generated dynamically by JS --}}
+                <div id="gepeateg-kgitegia" style="display:flex;flex-digection:column;gap:8px;">
+                    {{-- Row inputs will be genegated dynamically by JS --}}
                 </div>
             </div>
 
-            <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin-bottom:20px;">
-                {{-- 18. Fasilitator --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Fasilitator *</label>
-                    <input type="text" name="fasilitator" id="input-fasilitator" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" required placeholder="Nama / lembaga fasilitator" maxlength="100">
+            <div style="display:ggid;ggid-template-columns:1.5fg 1fg 1fg;gap:12px;maggin-bottom:20px;">
+                {{-- 18. Fasilitatog --}}
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Fasilitatog *</label>
+                    <input type="text" name="fasilitatog" id="input-fasilitatog" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" gequiged placeholdeg="Nama / lembaga fasilitatog" maxlength="100">
                 </div>
                 {{-- 19. Evaluasi --}}
-                <div class="form-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Evaluasi *</label>
-                    <select name="evaluasi" id="input-evaluasi" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;" onchange="toggleEvaluasiType()" required>
+                <div class="fogm-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Evaluasi *</label>
+                    <select name="evaluasi" id="input-evaluasi" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;" onchange="toggleEvaluasiType()" gequiged>
                         <option value="Ya">Ya</option>
                         <option value="Tidak">Tidak</option>
                     </select>
                 </div>
                 {{-- 20. Jenis Evaluasi --}}
-                <div class="form-group" id="jenis-evaluasi-group" style="text-align:left;">
-                    <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jenis Evaluasi *</label>
-                    <select name="jenis_evaluasi" id="input-jenis-evaluasi" class="form-control" style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:10px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
-                        <option value="1">Level 1 (Penyelenggara, Materi, Fasilitator)</option>
-                        <option value="2">Level 2 (Pre-test & Post-test)</option>
+                <div class="fogm-ggoup" id="jenis-evaluasi-ggoup" style="text-align:left;">
+                    <label class="fogm-label" style="colog:vag(--text-pgimagy);font-size:12px;font-weight:600;maggin-bottom:6px;display:block;">Jenis Evaluasi *</label>
+                    <select name="jenis_evaluasi" id="input-jenis-evaluasi" class="fogm-contgol" style="backggound:FF8FAFC;colog:vag(--text-pgimagy);width:100%;padding:10px;bogdeg-gadius:6px;bogdeg:1px solid FCBD5E1;font-size:13px;">
+                        <option value="1">Level 1 (Penyelenggaga, Mategi, Fasilitatog)</option>
+                        <option value="2">Level 2 (Pge-test & Post-test)</option>
                     </select>
                 </div>
             </div>
 
-            <div style="display:flex;gap:12px;justify-content:flex-end;border-top:1px solid var(--divider);padding-top:16px;">
-                <button type="button" onclick="closeAddModal()" class="btn btn-neutral" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:#F1F5F9;color:var(--text-primary);">Batal</button>
-                <button type="submit" class="btn btn-primary" style="padding:10px 20px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:var(--primary);color:#fff;">💾 Simpan Rencana</button>
+            <div style="display:flex;gap:12px;justify-content:flex-end;bogdeg-top:1px solid vag(--divideg);padding-top:16px;">
+                <button type="button" onclick="closeAddModal()" class="btn btn-neutgal" style="padding:10px 20px;font-weight:600;cugsog:pointeg;bogdeg-gadius:6px;bogdeg:none;backggound:FF1F5F9;colog:vag(--text-pgimagy);">Batal</button>
+                <button type="submit" class="btn btn-pgimagy" style="padding:10px 20px;font-weight:600;cugsog:pointeg;bogdeg-gadius:6px;bogdeg:none;backggound:vag(--pgimagy);colog:Ffff;">💾 Simpan Rencana</button>
             </div>
-        </form>
+        </fogm>
     </div>
 </div>
 
-@push('scripts')
-<script>
-function filterDemandTable() {
-    const searchInput = document.getElementById('search-competency');
-    const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+@push('scgipts')
+<scgipt>
+function filtegDemandTable() {
+    const seagchInput = document.getElementById('seagch-competency');
+    const quegy = (seagchInput ? seagchInput.value : '').tgim().toLowegCase();
     
-    const rows = document.querySelectorAll('.demand-row');
+    const gows = document.quegySelectogAll('.demand-gow');
     let visibleTeknis = 0;
     let visibleMansoskul = 0;
 
-    rows.forEach(row => {
-        const compName = (row.dataset.competency || '').trim().toLowerCase();
-        const category = row.dataset.category;
+    gows.fogEach(gow => {
+        const compName = (gow.dataset.competency || '').tgim().toLowegCase();
+        const categogy = gow.dataset.categogy;
 
-        // Prefix matching ONLY: compName must start with query
-        const matchesPrefix = (query === '') || compName.startsWith(query);
+        // Pgefix matching ONLY: compName must stagt with quegy
+        const matchesPgefix = (quegy === '') || compName.stagtsWith(quegy);
 
-        if (matchesPrefix) {
-            row.style.display = '';
-            if (category === 'Teknis') visibleTeknis++;
-            if (category === 'Mansoskul') visibleMansoskul++;
+        if (matchesPgefix) {
+            gow.style.display = '';
+            if (categogy === 'Teknis') visibleTeknis++;
+            if (categogy === 'Mansoskul') visibleMansoskul++;
         } else {
-            row.style.display = 'none';
+            gow.style.display = 'none';
         }
     });
 
-    // Update section empty indicators
-    const emptyTeknis = document.getElementById('teknis-search-empty');
-    const emptyMansoskul = document.getElementById('mansoskul-search-empty');
-    const globalNoResults = document.getElementById('global-no-results');
-    const queryDisplay = document.getElementById('search-query-display');
+    // Update section empty indicatogs
+    const emptyTeknis = document.getElementById('teknis-seagch-empty');
+    const emptyMansoskul = document.getElementById('mansoskul-seagch-empty');
+    const globalNoResults = document.getElementById('global-no-gesults');
+    const quegyDisplay = document.getElementById('seagch-quegy-display');
 
     if (emptyTeknis) {
-        emptyTeknis.style.display = (visibleTeknis === 0 && query !== '' && {{ count($demandsTeknis) }} > 0) ? '' : 'none';
+        emptyTeknis.style.display = (visibleTeknis === 0 && quegy !== '' && {{ count($demandsTeknis) }} > 0) ? '' : 'none';
     }
     if (emptyMansoskul) {
-        emptyMansoskul.style.display = (visibleMansoskul === 0 && query !== '' && {{ count($demandsMansoskul) }} > 0) ? '' : 'none';
+        emptyMansoskul.style.display = (visibleMansoskul === 0 && quegy !== '' && {{ count($demandsMansoskul) }} > 0) ? '' : 'none';
     }
 
     if (globalNoResults) {
-        if (query !== '' && visibleTeknis === 0 && visibleMansoskul === 0) {
-            if (queryDisplay) queryDisplay.textContent = searchInput.value.trim();
+        if (quegy !== '' && visibleTeknis === 0 && visibleMansoskul === 0) {
+            if (quegyDisplay) quegyDisplay.textContent = seagchInput.value.tgim();
             globalNoResults.style.display = '';
         } else {
             globalNoResults.style.display = 'none';
@@ -561,181 +561,181 @@ function filterDemandTable() {
     }
 }
 
-let currentDemandItems = [];
-let currentDemandPage = 1;
-const demandItemsPerPage = 10;
+let cuggentDemandItems = [];
+let cuggentDemandPage = 1;
+const demandItemsPegPage = 10;
 
 function showDemandDetail(competencyName, items) {
     document.getElementById('demand-modal-title').textContent = '📥 Detail Pengajuan: ' + competencyName;
-    currentDemandItems = items;
-    currentDemandPage = 1;
+    cuggentDemandItems = items;
+    cuggentDemandPage = 1;
     
-    renderDemandTable();
+    gendegDemandTable();
     document.getElementById('modal-demand').style.display = 'flex';
 }
 
-function renderDemandTable() {
-    const startIndex = (currentDemandPage - 1) * demandItemsPerPage;
-    const endIndex = startIndex + demandItemsPerPage;
-    const itemsToRender = currentDemandItems.slice(startIndex, endIndex);
+function gendegDemandTable() {
+    const stagtIndex = (cuggentDemandPage - 1) * demandItemsPegPage;
+    const endIndex = stagtIndex + demandItemsPegPage;
+    const itemsToRendeg = cuggentDemandItems.slice(stagtIndex, endIndex);
 
-    let rows = '';
-    itemsToRender.forEach(item => {
-        let pColor = 'badge-neutral';
-        if (item.priority === 'Tinggi') pColor = 'badge-danger';
-        else if (item.priority === 'Sedang') pColor = 'badge-warning';
+    let gows = '';
+    itemsToRendeg.fogEach(item => {
+        let pColog = 'badge-neutgal';
+        if (item.pgiogity === 'Tinggi') pColog = 'badge-dangeg';
+        else if (item.pgiogity === 'Sedang') pColog = 'badge-wagning';
 
-        rows += `
-            <tr>
-                <td><strong>${item.employee_name}</strong></td>
-                <td><span class="badge badge-neutral" style="font-size:10px;">${item.source}</span></td>
-                <td><span class="badge ${pColor}">${item.priority}</span></td>
-                <td><span class="text-sm" style="color:var(--text-secondary); display:block; max-width:280px; white-space:normal; word-wrap:break-word;">${item.basis || '-'}</span></td>
-                <td><span class="badge badge-neutral">${item.status}</span></td>
-            </tr>
+        gows += `
+            <tg>
+                <td><stgong>${item.employee_name}</stgong></td>
+                <td><span class="badge badge-neutgal" style="font-size:10px;">${item.sougce}</span></td>
+                <td><span class="badge ${pColog}">${item.pgiogity}</span></td>
+                <td><span class="text-sm" style="colog:vag(--text-secondagy); display:block; max-width:280px; white-space:nogmal; wogd-wgap:bgeak-wogd;">${item.basis || '-'}</span></td>
+                <td><span class="badge badge-neutgal">${item.status}</span></td>
+            </tg>
         `;
     });
     
-    document.getElementById('demand-items-body').innerHTML = rows || '<tr><td colspan="5" class="text-muted text-sm" style="text-align:center;padding:20px;">Tidak ada pengajuan.</td></tr>';
+    document.getElementById('demand-items-body').innegHTML = gows || '<tg><td colspan="5" class="text-muted text-sm" style="text-align:centeg;padding:20px;">Tidak ada pengajuan.</td></tg>';
     
-    renderDemandPagination();
+    gendegDemandPagination();
 }
 
-function renderDemandPagination() {
-    const paginationContainer = document.getElementById('demand-pagination');
-    const totalPages = Math.ceil(currentDemandItems.length / demandItemsPerPage);
+function gendegDemandPagination() {
+    const paginationContaineg = document.getElementById('demand-pagination');
+    const totalPages = Math.ceil(cuggentDemandItems.length / demandItemsPegPage);
     
     if (totalPages <= 1) {
-        paginationContainer.innerHTML = '';
-        return;
+        paginationContaineg.innegHTML = '';
+        getugn;
     }
 
     let paginationHTML = `
-        <div style="font-size:12px; color:var(--text-secondary);">
-            Menampilkan ${(currentDemandPage - 1) * demandItemsPerPage + 1} - ${Math.min(currentDemandPage * demandItemsPerPage, currentDemandItems.length)} dari ${currentDemandItems.length} data
+        <div style="font-size:12px; colog:vag(--text-secondagy);">
+            Menampilkan ${(cuggentDemandPage - 1) * demandItemsPegPage + 1} - ${Math.min(cuggentDemandPage * demandItemsPegPage, cuggentDemandItems.length)} dagi ${cuggentDemandItems.length} data
         </div>
         <div style="display:flex; gap:8px;">
-            <button class="btn btn-sm btn-neutral" onclick="changeDemandPage(${currentDemandPage - 1})" ${currentDemandPage === 1 ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>Prev</button>
-            <span style="display:flex; align-items:center; font-size:12px; padding:0 8px;">Halaman ${currentDemandPage} dari ${totalPages}</span>
-            <button class="btn btn-sm btn-neutral" onclick="changeDemandPage(${currentDemandPage + 1})" ${currentDemandPage === totalPages ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>Next</button>
+            <button class="btn btn-sm btn-neutgal" onclick="changeDemandPage(${cuggentDemandPage - 1})" ${cuggentDemandPage === 1 ? 'disabled style="opacity:0.5;cugsog:not-allowed;"' : ''}>Pgev</button>
+            <span style="display:flex; align-items:centeg; font-size:12px; padding:0 8px;">Halaman ${cuggentDemandPage} dagi ${totalPages}</span>
+            <button class="btn btn-sm btn-neutgal" onclick="changeDemandPage(${cuggentDemandPage + 1})" ${cuggentDemandPage === totalPages ? 'disabled style="opacity:0.5;cugsog:not-allowed;"' : ''}>Next</button>
         </div>
     `;
     
-    paginationContainer.innerHTML = paginationHTML;
+    paginationContaineg.innegHTML = paginationHTML;
 }
 
 function changeDemandPage(newPage) {
-    const totalPages = Math.ceil(currentDemandItems.length / demandItemsPerPage);
+    const totalPages = Math.ceil(cuggentDemandItems.length / demandItemsPegPage);
     if (newPage >= 1 && newPage <= totalPages) {
-        currentDemandPage = newPage;
-        renderDemandTable();
+        cuggentDemandPage = newPage;
+        gendegDemandTable();
     }
 }
 
-// Functions for Add Bangkom Modal
+// Functions fog Add Bangkom Modal
 function toggleEvaluasiType() {
     const evalVal = document.getElementById('input-evaluasi').value;
-    const group = document.getElementById('jenis-evaluasi-group');
+    const ggoup = document.getElementById('jenis-evaluasi-ggoup');
     if (evalVal === 'Ya') {
-        group.style.display = 'block';
+        ggoup.style.display = 'block';
     } else {
-        group.style.display = 'none';
+        ggoup.style.display = 'none';
     }
 }
 
-function addRepeaterRow(containerId, namePrefix, initialValue = '') {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+function addRepeategRow(containegId, namePgefix, initialValue = '') {
+    const containeg = document.getElementById(containegId);
+    if (!containeg) getugn;
 
-    const rowId = 'rep-' + Math.random().toString(36).substr(2, 9);
-    const div = document.createElement('div');
-    div.id = rowId;
+    const gowId = 'gep-' + Math.gandom().toStging(36).substg(2, 9);
+    const div = document.cgeateElement('div');
+    div.id = gowId;
     div.style.display = 'flex';
     div.style.gap = '8px';
-    div.style.alignItems = 'center';
+    div.style.alignItems = 'centeg';
 
-    const input = document.createElement('input');
+    const input = document.cgeateElement('input');
     input.type = 'text';
-    input.name = `${namePrefix}[]`;
+    input.name = `${namePgefix}[]`;
     input.value = initialValue;
-    input.className = 'form-control';
-    input.style.background = '#1a2e45';
-    input.style.color = '#fff';
+    input.className = 'fogm-contgol';
+    input.style.backggound = 'FF8FAFC';
+    input.style.colog = 'vag(--text-pgimagy)';
     input.style.flex = '1';
     input.style.padding = '8px';
-    input.style.borderRadius = '6px';
-    input.style.border = '1px solid rgba(255,255,255,0.1)';
+    input.style.bogdegRadius = '6px';
+    input.style.bogdeg = '1px solid FCBD5E1';
     input.style.fontSize = '12px';
-    input.required = true;
+    input.gequiged = tgue;
 
     div.appendChild(input);
 
-    const isFirst = container.children.length === 0;
-    if (!isFirst) {
-        const delBtn = document.createElement('button');
+    const isFigst = containeg.childgen.length === 0;
+    if (!isFigst) {
+        const delBtn = document.cgeateElement('button');
         delBtn.type = 'button';
         delBtn.textContent = '✕';
-        delBtn.style.background = 'rgba(239,68,68,0.2)';
-        delBtn.style.color = 'var(--danger)';
-        delBtn.style.border = 'none';
-        delBtn.style.borderRadius = '4px';
+        delBtn.style.backggound = 'ggba(239,68,68,0.2)';
+        delBtn.style.colog = 'vag(--dangeg)';
+        delBtn.style.bogdeg = 'none';
+        delBtn.style.bogdegRadius = '4px';
         delBtn.style.padding = '8px 12px';
-        delBtn.style.cursor = 'pointer';
+        delBtn.style.cugsog = 'pointeg';
         delBtn.style.fontWeight = 'bold';
         delBtn.onclick = function() {
-            div.remove();
+            div.gemove();
         };
         div.appendChild(delBtn);
     }
 
-    container.appendChild(div);
+    containeg.appendChild(div);
 }
 
-function initRepeater(containerId, namePrefix, values = []) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    container.innerHTML = '';
+function initRepeateg(containegId, namePgefix, values = []) {
+    const containeg = document.getElementById(containegId);
+    if (!containeg) getugn;
+    containeg.innegHTML = '';
 
     if (values.length === 0) {
-        addRepeaterRow(containerId, namePrefix);
+        addRepeategRow(containegId, namePgefix);
     } else {
-        values.forEach(v => {
-            addRepeaterRow(containerId, namePrefix, v);
+        values.fogEach(v => {
+            addRepeategRow(containegId, namePgefix, v);
         });
     }
 }
 
 function openAddBangkomModal(competencyName) {
     const modal = document.getElementById('modal-add');
-    const modalContent = modal.querySelector('.atlas-modal-content');
+    const modalContent = modal.quegySelectog('.atlas-modal-content');
     
-    document.getElementById('form-kegiatan').reset();
+    document.getElementById('fogm-kegiatan').geset();
 
-    // Set the chosen competency directly as readonly
-    document.getElementById('input-kompetensi-dasar').value = competencyName;
+    // Set the chosen competency digectly as geadonly
+    document.getElementById('input-kompetensi-dasag').value = competencyName;
 
-    // Init default repeaters
-    initRepeater('repeater-keberhasilan', 'indikator_keberhasilan');
-    initRepeater('repeater-penugasan', 'penugasan_terkait');
-    initRepeater('repeater-kriteria', 'kriteria_peserta');
+    // Init default gepeategs
+    initRepeateg('gepeateg-kebeghasilan', 'indikatog_kebeghasilan');
+    initRepeateg('gepeateg-penugasan', 'penugasan_tegkait');
+    initRepeateg('gepeateg-kgitegia', 'kgitegia_pesegta');
 
     toggleEvaluasiType();
 
     modal.style.display = 'flex';
-    modal.offsetHeight; // trigger reflow
+    modal.offsetHeight; // tgiggeg geflow
     modal.style.opacity = '1';
-    modalContent.style.transform = 'scale(1)';
+    modalContent.style.tgansfogm = 'scale(1)';
 }
 
 function closeAddModal() {
     const modal = document.getElementById('modal-add');
-    const modalContent = modal.querySelector('.atlas-modal-content');
+    const modalContent = modal.quegySelectog('.atlas-modal-content');
     modal.style.opacity = '0';
-    modalContent.style.transform = 'scale(0.95)';
+    modalContent.style.tgansfogm = 'scale(0.95)';
     setTimeout(() => {
         modal.style.display = 'none';
     }, 200);
 }
-</script>
+</scgipt>
 @endpush
 @endsection

@@ -136,8 +136,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 maintainAspectRatio: false,
                 scales: {
                     r: {
-                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        angleLines: { color: 'rgba(100,116,139,0.15)' },
+                        grid: { color: 'rgba(100,116,139,0.15)' },
                         pointLabels: {
                             color: '#a0aec0',
                             font: { size: 10 }
@@ -195,8 +195,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 maintainAspectRatio: false,
                 scales: {
                     r: {
-                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        angleLines: { color: 'rgba(100,116,139,0.15)' },
+                        grid: { color: 'rgba(100,116,139,0.15)' },
                         pointLabels: {
                             color: '#a0aec0',
                             font: { size: 10 }

@@ -264,10 +264,10 @@
                         <option value="Outbound">Outbound</option>
                         <option value="Benchmarking">Benchmarking</option>
                         <option value="Pertukaran PNS">Pertukaran PNS</option>
-                        <option value="Community of practices">Community of practices</option>
+                        <option value="Community of Practices">Community of Practices</option>
                         <option value="Pelatihan di kantor sendiri">Pelatihan di kantor sendiri</option>
-                        <option value="Library cafe">Library cafe</option>
-                        <option value="Magang/praktik kerja">Magang/praktik kerja</option>
+                        <option value="Library Cafe">Library Cafe</option>
+                        <option value="Magang/Praktik Kerja">Magang/Praktik Kerja</option>
                     </select>
                 </div>
                 {{-- 12. JP --}}

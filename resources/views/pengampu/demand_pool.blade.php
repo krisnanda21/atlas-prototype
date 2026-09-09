@@ -674,12 +674,12 @@ function addRepeaterRow(containerId, namePrefix, initialValue = '') {
     input.name = `${namePrefix}[]`;
     input.value = initialValue;
     input.className = 'form-control';
-    input.style.background = '#1a2e45';
-    input.style.color = '#fff';
+    input.style.background = '#F8FAFC';
+    input.style.color = 'var(--text-primary)';
     input.style.flex = '1';
     input.style.padding = '8px';
     input.style.borderRadius = '6px';
-    input.style.border = '1px solid rgba(255,255,255,0.1)';
+    input.style.border = '1px solid #CBD5E1';
     input.style.fontSize = '12px';
     input.required = true;
 

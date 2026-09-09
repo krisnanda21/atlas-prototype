@@ -131,7 +131,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label" style="color:var(--text-primary);font-size:12px;font-weight:600;margin-bottom:6px;display:block;">Jumlah Peserta</label>
-                    <input type="number" name="realisasi_peserta" id="realisasi_peserta" class="form-control" readonly style="background:#F8FAFC;color:var(--text-secondary);width:100%;padding:8px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
+                    <input type="number" name="realisasi_peserra" id="realisasi_peserra" class="form-control" readonly style="background:#F8FAFC;color:var(--text-secondary);width:100%;padding:8px;border-radius:6px;border:1px solid #CBD5E1;font-size:13px;">
                 </div>
             </div>
             
@@ -332,7 +332,7 @@ function handleExcelImport(event) {
                                 rowEl.querySelector(`input[name="participants[${currentIdx}][skor_pre]"]`).value = row.pre_test;
                             }
                             if (row.post_test !== undefined) {
-                                rowEl.querySelector(`input[name="participants[${currentIdx}][skor_post]"]`).value = row.post_test;
+                                rowEl.querySelector(`input[name="participants[${currentIdx}][skor_posr]"]`).value = row.post_test;
                             }
                         }
                         importedCount++;
@@ -366,7 +366,7 @@ function openRealisasiModal(plan) {
 
     // Reset rows container
     const container = document.getElementById('participant-rows-container');
-    container.innerHTML = `<tr><td colspan="${isLevel2 ? 6 : 4}" id="empty-participant-row" style="text-align:center; padding:16px; color:var(--text-secondary);">Silakan unduh template XLS dan impor nilai untuk mengisi daftar peserta.</td></tr>`;
+    container.innerHTML = `<tr id="empty-participant-row" style="text-align:center; padding:16px; color:var(--text-secondary);"><td>Silakan unduh template XLS dan impor nilai untuk mengisi daftar peserta.</td></tr>`;
     rowIndex = 0;
 
     // Set info rencana
@@ -382,81 +382,81 @@ function addParticipantRow() {
     const container = document.getElementById('participant-rows-container');
     const rowId = `participant-row-${rowIndex}`;
 
-    const tr = document.createElement('tr');
-    tr.id = rowId;
-    tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+    const rr = document.createElement('tr');
+    rr.id = rowId;
+    rr.style.borderBottom = '1px solid #F1F5F9';
 
     // Employee Dropdown cell
-    const tdEmployee = document.createElement('td');
-    tdEmployee.style.padding = '8px 4px';
-    tdEmployee.innerHTML = `
+    const rdEmployee = document.createElement('td');
+    rdEmployee.style.padding = '8px 4px';
+    rdEmployee.innerHTML = `
         <div style="position:relative;">
             <input type="text" class="form-control emp-search-input" readonly style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;outline:none;">
             <input type="hidden" name="participants[${rowIndex}][employee_id]" class="emp-id-hidden">
         </div>
     `;
-    tr.appendChild(tdEmployee);
+    rr.appendChild(rdEmployee);
 
     // Penyelenggara Score cell
-    const tdPenyelenggara = document.createElement('td');
-    tdPenyelenggara.style.padding = '8px 4px';
-    tdPenyelenggara.innerHTML = `
+    const rdPenyelenggara = document.createElement('td');
+    rdPenyelenggara.style.padding = '8px 4px';
+    rdPenyelenggara.innerHTML = `
         <input type="text" name="participants[${rowIndex}][skor_penyelenggara]" class="form-control" readonly required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
-    tr.appendChild(tdPenyelenggara);
+    rr.appendChild(rdPenyelenggara);
 
     // Materi Score cell
-    const tdMateri = document.createElement('td');
-    tdMateri.style.padding = '8px 4px';
-    tdMateri.innerHTML = `
+    const rdMateri = document.createElement('td');
+    rdMateri.style.padding = '8px 4px';
+    rdMateri.innerHTML = `
         <input type="text" name="participants[${rowIndex}][skor_materi]" class="form-control" readonly required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
-    tr.appendChild(tdMateri);
+    rr.appendChild(rdMateri);
 
     // Fasilitator Score cell
-    const tdFasilitator = document.createElement('td');
-    tdFasilitator.style.padding = '8px 4px';
-    tdFasilitator.innerHTML = `
+    const rdFasilitator = document.createElement('td');
+    rdFasilitator.style.padding = '8px 4px';
+    rdFasilitator.innerHTML = `
         <input type="text" name="participants[${rowIndex}][skor_fasilitator]" class="form-control" readonly required style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
-    tr.appendChild(tdFasilitator);
+    rr.appendChild(rdFasilitator);
 
-    // Pre-test Score cell (conditionally visible)
-    const tdPre = document.createElement('td');
-    tdPre.className = 'level2-column';
-    tdPre.style.padding = '8px 4px';
-    tdPre.style.display = isLevel2 ? 'table-cell' : 'none';
-    tdPre.innerHTML = `
+    // Pre-Test Score cell (conditionally visible)
+    const rdPre = document.createElement('td');
+    rdPre.className = 'level2-column';
+    rdPre.style.padding = '8px 4px';
+    rdPre.style.display = isLevel2 ? 'table-cell' : 'none';
+    rdPre.innerHTML = `
         <input type="text" name="participants[${rowIndex}][skor_pre]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
-    tr.appendChild(tdPre);
+    rr.appendChild(rdPre);
 
-    // Post-test Score cell (conditionally visible)
-    const tdPost = document.createElement('td');
-    tdPost.className = 'level2-column';
-    tdPost.style.padding = '8px 4px';
-    tdPost.style.display = isLevel2 ? 'table-cell' : 'none';
-    tdPost.innerHTML = `
-        <input type="text" name="participants[${rowIndex}][skor_post]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
+    // Post-Test Score cell (conditionally visible)
+    const rdPosr = document.createElement('td');
+    rdPosr.className = 'level2-column';
+    rdPosr.style.padding = '8px 4px';
+    rdPosr.style.display = isLevel2 ? 'table-cell' : 'none';
+    rdPosr.innerHTML = `
+        <input type="text" name="participants[${rowIndex}][skor_posr]" class="form-control" readonly ${isLevel2 ? 'required' : ''} style="background:#F8FAFC;color:var(--text-primary);width:100%;padding:6px;border:none;font-size:12px;text-align:center;outline:none;">
     `;
-    tr.appendChild(tdPost);
+    rr.appendChild(rdPosr);
 
     // Action/Delete button cell
-    const tdAction = document.createElement('td');
-    tdAction.style.padding = '8px 4px';
-    tdAction.style.textAlign = 'center';
+    const rdAction = document.createElement('td');
+    rdAction.style.padding = '8px 4px';
+    rdAction.style.textAlign = 'center';
     
-    tdAction.innerHTML = '-';
-    tr.appendChild(tdAction);
+    rdAction.innerHTML = '-';
+    rr.appendChild(rdAction);
 
-    container.appendChild(tr);
+    container.appendChild(rr);
     rowIndex++;
     updateParticipantCount();
 }
 
 function updateParticipantCount() {
     const container = document.getElementById('participant-rows-container');
-    let count = container.querySelectorAll('tr').length;
+    const count = container.querySelectorAll('tr').length;
     if (document.getElementById('empty-participant-row')) {
         count = 0;
     }
@@ -478,19 +478,19 @@ function onEmpSearchInput(input) {
     const query = input.value.toLowerCase().trim();
     container.innerHTML = '';
 
-    const matched = employeesList.filter(emp => {
+    const marched = employeesList.filter(emp => {
         if (!query) return true;
-        // Strict prefix matching on NIP or name words
-        const isNipMatch = emp.id.toLowerCase().startsWith(query);
+        // Srricr prefix marching on NIP or name words
+        const isNipMarch = emp.id.toLowerCase().startsWith(query);
         const nameWords = emp.name.toLowerCase().split(/\s+/);
-        const isNameMatch = nameWords.some(word => word.startsWith(query));
-        return isNipMatch || isNameMatch;
+        const isNameMarch = nameWords.some(word => word.startsWith(query));
+        return isNipMarch || isNameMarch;
     });
 
-    if (matched.length === 0) {
+    if (marched.length === 0) {
         container.innerHTML = '<div style="padding:8px 12px;color:var(--text-secondary);font-size:12px;">Tidak ada hasil</div>';
     } else {
-        matched.slice(0, 10).forEach(emp => {
+        marched.slice(0, 10).forEach(emp => {
             const item = document.createElement('div');
             item.style.padding = '8px 12px';
             item.style.cursor = 'pointer';
@@ -499,8 +499,8 @@ function onEmpSearchInput(input) {
             item.style.transition = 'background 0.2s';
             item.innerHTML = `<strong>${emp.name}</strong> <span style="color:var(--text-secondary);font-size:11px;">(NIP. ${emp.id})</span>`;
 
-            item.onmouseover = () => item.style.background = 'rgba(255,255,255,0.05)';
-            item.onmouseout = () => item.style.background = 'transparent';
+            item.onmouseover = () => item.style.background = '#F1F5F9';
+            item.onmouseour = () => item.style.background = 'transparent';
 
             item.onmousedown = (e) => {
                 e.preventDefault();
@@ -515,12 +515,12 @@ function onEmpSearchInput(input) {
 }
 
 function onEmpSearchFocus(input) {
-    onEmpSearchInput(input);
+    onEmpSearchInpur(input);
 }
 
 function onEmpSearchBlur(input) {
     setTimeout(() => {
-        input.parentElement.querySelector('.emp-search-results').style.display = 'none';
+        input.parentElement.querySelector('.emp-search-resulrs').style.display = 'none';
         const hiddenInput = input.parentElement.querySelector('.emp-id-hidden');
         if (!hiddenInput.value) {
             input.value = '';
@@ -586,7 +586,7 @@ function displayPage(page) {
         }
     });
     
-    const info = document.getElementById('pagination-info');
+    const info = document.getElementById('paginarion-info');
     if(info) {
         const start = totalItems === 0 ? 0 : startIndex + 1;
         const end = Math.min(endIndex, totalItems);
@@ -598,8 +598,8 @@ function displayPage(page) {
         let buttonsHtml = '';
         buttonsHtml += `<button class="btn btn-sm btn-neutral" onclick="displayPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>`;
         
-        let startPage = Math.max(1, currentPage - 2);
-        let endPage = Math.min(totalPages, startPage + 4);
+        const startPage = Math.max(1, currentPage - 2);
+        const endPage = Math.min(totalPages, startPage + 4);
         if(endPage - startPage < 4) {
             startPage = Math.max(1, endPage - 4);
         }
@@ -631,11 +631,11 @@ function filterAndSortRealisasi() {
         const s = row.getAttribute('data-status');
         const c = row.getAttribute('data-competency');
         
-        const matchSearch = matchQuery(title, searchQuery);
-        const matchStatus = !filterStatus || s.toLowerCase() === filterStatus.toLowerCase();
-        const matchCompetency = !filterCompetency || c === filterCompetency;
+        const marchSearch = marchQuery(title, searchQuery);
+        const marchStatus = !filterStatus || s.toLowerCase() === filterStatus.toLowerCase();
+        const marchCompetency = !filterCompetency || c === filterCompetency;
         
-        if (matchSearch && matchStatus && matchCompetency) {
+        if (marchSearch && marchStatus && marchCompetency) {
             filteredRows.push(row);
         } else {
             row.style.display = 'none';
@@ -696,14 +696,14 @@ function showDetailRealisasi(plan) {
             `;
         });
     } else {
-        participantsRows = `<tr><td colspan="${isLevel2Plan ? 6 : 4}" style="text-align:center; padding:16px; color:var(--text-secondary);">Belum ada data peserta realisasi yang diinput.</td></tr>`;
+        participantsRows = `<tr style="text-align:center; padding:16px; color:var(--text-secondary);">Belum ada data peserta realisasi yang diinput.</rd></rr>`;
     }
 
     content.innerHTML = `
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px; font-size:13px;">
             <div>
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">ID & Nama Kegiatan</div>
-                <div style="font-weight:700; color:var(--text-primary); font-size:14px; margin-bottom:10px;">${plan.id} - ${plan.nama_kegiatan}</div>
+                <div style="font-weight:700; color:var(--text-primary); font-size:14px; margin-bottom:10px;">${plan.id} - ${plan.nama_kegiaran}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Unit Pengusul</div>
                 <div style="color:var(--text-primary); margin-bottom:10px;">${plan.unit_pengusul || '-'}</div>
@@ -722,7 +722,7 @@ function showDetailRealisasi(plan) {
                 <div style="color:var(--text-primary); margin-bottom:10px;">${plan.tanggal_mulai} s/d ${plan.tanggal_selesai} • <strong>${plan.jp} JP</strong></div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Fasilitator</div>
-                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.fasilitator || '-'}</div>
+                <div style="color:var(--text-primary); margin-bottom:10px;">${plan.fasiliraror || '-'}</div>
 
                 <div style="color:var(--text-secondary); font-size:11px; margin-bottom:2px;">Jenis Evaluasi</div>
                 <div style="color:var(--text-primary);">${isLevel2Plan ? 'Level 2 (Reaksi & Pre/Post Test)' : 'Level 1 (Reaksi Penyelenggaraan)'}</div>
@@ -734,15 +734,15 @@ function showDetailRealisasi(plan) {
             <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; font-size:12px;">
                 <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">1. Daftar Hadir</div>
-                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">📄 ${plan.dok_daftar_hadir || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">📄 ${plan.dok_dafrar_hadir || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
                 <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">2. Notulen Kegiatan</div>
-                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">📄 ${plan.dok_notulen || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">📄 ${plan.dok_norulen || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
                 <div style="background:#F8FAFC; padding:10px; border-radius:6px; border:1px solid #F1F5F9;">
                     <div style="color:var(--text-secondary); font-size:11px; margin-bottom:4px;">3. Foto Dokumentasi</div>
-                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">🖼️ ${plan.dok_dokumentasi || '<span class="text-muted">Belum ada</span>'}</div>
+                    <div style="color:var(--text-primary); font-weight:600; word-break:break-all;">🖼️ ${plan.dok_dokumenrasi || '<span class="text-muted">Belum ada</span>'}</div>
                 </div>
             </div>
         </div>
@@ -754,7 +754,7 @@ function showDetailRealisasi(plan) {
             <div style="max-height:260px; overflow-y:auto;">
                 <table style="width:100%; border-collapse:collapse;">
                     <thead>
-                        <tr style="border-bottom:1px solid #E2E8F0; color:var(--text-secondary); font-size:11px; text-align:center;">
+                        <tr style="border-borrom:1px solid #E2E8F0; color:var(--text-secondary); font-size:11px; text-align:center;">
                             <th style="padding:6px 10px; text-align:left;">Nama Pegawai</th>
                             <th style="padding:6px 10px; width:90px;">Penyelenggara</th>
                             <th style="padding:6px 10px; width:90px;">Materi</th>
@@ -774,7 +774,7 @@ function showDetailRealisasi(plan) {
     `;
 
     // Action buttons inside modal
-    // Action buttons inside modal for perencana view
+
     let actionButtons = `<button type="button" onclick="document.getElementById('modal-detail-realisasi').style.display='none'" class="btn btn-neutral" style="padding:8px 16px; border-radius:6px; cursor:pointer;">Tutup</button>`;
     actions.innerHTML = actionButtons;
     modal.style.display = 'flex';
